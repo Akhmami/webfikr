@@ -14,3 +14,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::view('/', 'welcome')->name('home');
+Route::view('users', 'dash.users.index')->name('users.index');
+Route::name('dash.')
+    ->middleware(['permission:lihat billing'])
+    ->prefix('dashboard')
+    ->group(function () {
+        Route::view('/', 'dashboard')->name('dash.index');
+        Route::view('billing', 'dash.keuangan.billing')->name('billing.index');
+});

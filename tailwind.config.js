@@ -21,9 +21,11 @@ module.exports = {
             './resources/**/*.jsx',
             './resources/**/*.ts',
             './resources/**/*.tsx',
-            './resources/**/*.php',
+            './resources/**/*.blade.php',
             './resources/**/*.vue',
             './resources/**/*.twig',
+            './vendor/livewire-ui/modal/resources/views/*.blade.php',
+            './storage/framework/views/*.php',
         ],
         options: {
             defaultExtractor: (content) => content.match(/[\w-/.:]+(?<!:)/g) || [],
