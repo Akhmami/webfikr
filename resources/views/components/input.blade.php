@@ -11,13 +11,15 @@
     @if (!empty($label))
     <label class="block text-sm font-medium text-gray-700">{{ $label }}</label>
     @endif
+    @php
+    $error_class = '';
+    if($errors->has($name)){
+    $error_class = 'pr-10 border-red-300 border-2 text-red-900 focus:ring-red-500 focus:border-red-500';
+    }
+    @endphp
     <div class="mt-1 relative rounded-md shadow-sm">
         <input type="{{ $type }}" {{ $livewire ? 'wire:model' : 'name' }}="{{ $name }}" {!! $attributes->merge(['class'
-        => 'block
-        w-full focus:outline-none
-        sm:text-sm rounded-md' ]) !!} @error($name) {!! $attributes->merge(['class' => 'pr-10
-        border-red-300 text-red-900 focus:ring-red-500 focus:border-red-500' ]) !!}
-        @enderror
+        => $error_class . ' block w-full focus:outline-none sm:text-sm rounded-md' ]) !!}
         value="{{ !empty($value) ? $value : '' }}"
         {{ $disabled ? 'disabled' : '' }}>
         @error ($name)
@@ -33,6 +35,6 @@
         @enderror
     </div>
     @error ($name)
-    <p class="mt-2 text-sm text-red-600" id="email-error">{{ $message }}</p>
+    <p class="mt-2 text-xs font-semibold text-red-600" id="email-error">{{ $message }}</p>
     @enderror
 </div>

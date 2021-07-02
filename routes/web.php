@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::view('/', 'welcome')->name('home');
 Route::view('users', 'dash.users.index')->name('users.index');
 Route::name('dash.')
-    ->middleware(['permission:lihat billing'])
+    ->middleware(['permission:lihat billing|publish artikel'])
     ->prefix('dashboard')
     ->group(function () {
         Route::view('/', 'dashboard')->name('dash.index');

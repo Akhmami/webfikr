@@ -9,13 +9,20 @@ use Rappasoft\LaravelLivewireTables\Views\Column;
 
 class UsersTable extends DataTableComponent
 {
+    protected $listeners = [
+        'closeAlertModal' => 'indexUsers'
+    ];
+
     public function columns(): array
     {
         return [
             Column::make('Name')
                 ->sortable()
-                ->searchable(),
-            Column::make('E-mail', 'email')
+                ->searchable()
+                ->format(function($value, $column, $row) {
+                    return view('livewire.dash.users.name-column')->withUser($row);
+                }),
+            Column::make('Username')
                 ->sortable()
                 ->searchable(),
             Column::make('Role', 'roles')
@@ -31,6 +38,14 @@ class UsersTable extends DataTableComponent
 
     public function query(): Builder
     {
-        return User::query();
+        return User::query()
+            ->whereHas('roles', function ($q) {
+                $q->where('name', '<>', 'super-admin');
+            });
+    }
+
+    public function indexUsers()
+    {
+        #
     }
 }

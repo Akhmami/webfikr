@@ -1,5 +1,8 @@
 <!-- Alert -->
-<div class="rounded-md {{ $type === 'error' ? 'bg-red-50' : 'bg-green-50' }} p-4">
+@php
+$type === 'error' ? $bg = 'bg-red-50' : $bg = 'bg-green-50';
+@endphp
+<div {!! $attributes->merge(['class' => 'rounded-md p-4 ' . $bg]) !!}>
     <div class="flex">
         <div class="flex-shrink-0">
             @if ($type === 'error')

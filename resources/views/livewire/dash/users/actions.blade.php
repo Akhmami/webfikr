@@ -1,6 +1,6 @@
 <div>
     <button type="button"
-        onclick="Livewire.emit('openModal', 'dash.users.modal-edit', {{ json_encode(['user' => $user->id]) }})"
+        onclick="Livewire.emit('openModal', 'dash.users.user-edit', {{ json_encode(['user' => $user->id]) }})"
         class="group inline-flex items-center p-2 border border-transparent rounded-full shadow-sm text-white bg-gray-200 hover:bg-yellow-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400">
         <!-- Heroicon name: solid/edit-alt -->
         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-500 group-hover:text-white" viewBox="0 0 20 20"
@@ -13,6 +13,7 @@
     </button>
 
     <button type="button"
+        onclick="Livewire.emit('openModal', 'dash.users.user-delete', {{ json_encode(['user' => $user->id]) }})"
         class="group inline-flex items-center p-2 border border-transparent rounded-full shadow-sm text-white bg-gray-200 hover:bg-red-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400">
         <!-- Heroicon name: solid/x -->
         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-500 group-hover:text-white" viewBox="0 0 20 20"
