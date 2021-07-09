@@ -11,7 +11,7 @@ use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable, SoftDeletes, HasRoles;
+    use HasFactory, Notifiable, SoftDeletes, HasRoles, Search;
 
     /**
      * The attributes that are mass assignable.
@@ -43,4 +43,25 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    protected $searchable = [
+        'name',
+        'username',
+        'email'
+    ];
+
+    public function userDetail()
+    {
+        return $this->hasOne(UserDetail::class);
+    }
+
+    public function billings()
+    {
+        return $this->hasMany(Billing::class);
+    }
+
+    public function paymentHistories()
+    {
+        return $this->hasMany(PaymentHistory::class, Billing::class);
+    }
 }

@@ -17,7 +17,7 @@ class CreatePaymentTypesTable extends Migration
             $table->id();
             $table->foreignId('payment_option_id')->constrained();
             $table->string('nama', 25);
-            $table->decimal('amount', 14,0);
+            $table->decimal('nominal', 14,0);
             $table->timestamps();
         });
     }

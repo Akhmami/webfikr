@@ -6,11 +6,13 @@ use LivewireUI\Modal\ModalComponent;
 
 class AlertModal extends ModalComponent
 {
+    public $emit;
     public $title;
     public $description;
 
-    public function mount($title, $description)
+    public function mount($emit, $title, $description)
     {
+        $this->emit = $emit;
         $this->title = $title;
         $this->description = $description;
     }
@@ -22,7 +24,7 @@ class AlertModal extends ModalComponent
 
     public function close()
     {
-        $this->emit('closeAlertModal');
+        $this->emit($this->emit);
         $this->forceClose()->closeModal();
     }
 

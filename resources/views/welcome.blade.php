@@ -39,9 +39,7 @@
 
                     <h1 class="text-5xl font-extrabold tracking-wider text-center text-gray-600">
                         {{-- {{ config('app.name') }} --}}
-                        <x-input name="test" :value="$data" />
-                        <x-select name="select" :value="$data" />
-                        <x-textarea name="textarea" :value="$data" />
+                        <x-input name="test" data-type="currency" />
                     </h1>
 
                     <ul class="list-reset">
@@ -67,13 +65,4 @@
             </div>
         </div>
     </div>
-
-    <script>
-        const formatRupiah = (money) => {
-        return new Intl.NumberFormat('id-ID',
-        { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }
-        ).format(money);
-        }
-        console.log(formatRupiah(15000));
-    </script>
 </x-app-layout>

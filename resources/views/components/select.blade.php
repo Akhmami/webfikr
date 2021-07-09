@@ -3,20 +3,25 @@
 'selected' => '',
 'livewire' => false,
 'label',
-'name',
-'value'
+'name'
 ])
+
+@php
+if($errors->has($name)){
+$class = 'pr-10 border-red-300 border-2 text-red-900 focus:ring-red-500 focus:border-red-500 block w-full
+focus:outline-none sm:text-sm rounded-md';
+} else {
+$class = 'block w-full focus:outline-none sm:text-sm rounded-md';
+}
+@endphp
 
 <div>
     @if (!empty($label))
     <label class="block text-sm font-medium text-gray-700">{{ $label }}</label>
     @endif
     <div class="mt-1 relative rounded-md shadow-sm">
-        <select {{ $livewire ? 'wire:model' : 'name' }}="{{ $name }}" {!! $attributes->merge(['class' => 'block
-            w-full focus:outline-none
-            sm:text-sm rounded-md' ]) !!} @error($name) {!! $attributes->merge(['class' => 'pr-10
-            border-red-300 text-red-900 focus:ring-red-500 focus:border-red-500' ]) !!}
-            @enderror>
+        <select {{ $livewire ? 'wire:model.lazy' : 'name' }}="{{ $name }}" {!! $attributes->merge(['class' => $class ])
+            !!}>
             <option value="">Pilih item</option>
             @forelse ($list as $key => $value)
             <option value="{{ $key }}" @if($selected==$key) selected @endif>{{ $value }}</option>

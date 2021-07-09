@@ -1,4 +1,8 @@
 <x-dash-layout>
+    <x-slot name="breadtitle">
+        Dashboard
+    </x-slot>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
 
     <main class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">

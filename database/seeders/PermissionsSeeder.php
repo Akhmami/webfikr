@@ -20,6 +20,8 @@ class PermissionsSeeder extends Seeder
         app()[PermissionRegistrar::class]->forgetCachedPermissions();
 
         // create permissions
+        Permission::create(['name' => 'lihat dashboard']);
+        Permission::create(['name' => 'buat artikel']);
         Permission::create(['name' => 'edit artikel']);
         Permission::create(['name' => 'hapus artikel']);
         Permission::create(['name' => 'publish artikel']);
@@ -28,9 +30,10 @@ class PermissionsSeeder extends Seeder
         // create roles and assign existing permissions
         $role1 = Role::create(['name' => 'writer']);
         $role1->givePermissionTo('edit artikel');
-        $role1->givePermissionTo('hapus artikel');
+        $role1->givePermissionTo('buat artikel');
 
         $role2 = Role::create(['name' => 'admin']);
+        $role2->givePermissionTo('lihat dashboard');
         $role2->givePermissionTo('publish artikel');
         $role2->givePermissionTo('unpublish artikel');
 

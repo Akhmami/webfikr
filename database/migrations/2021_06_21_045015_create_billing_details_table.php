@@ -17,7 +17,7 @@ class CreateBillingDetailsTable extends Migration
             $table->id();
             $table->foreignId('billing_id')->constrained();
             $table->string('nama');
-            $table->decimal('amount', 14,0)->default(0);
+            $table->decimal('nominal', 14,0)->default(0);
             $table->timestamps();
         });
     }

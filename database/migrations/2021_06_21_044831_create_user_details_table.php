@@ -16,6 +16,7 @@ class CreateUserDetailsTable extends Migration
         Schema::create('user_details', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained();
+            $table->char('no_pendaftaran', 8);
             $table->string('nis', 12)->nullable();
             $table->string('nisn', 12)->nullable();
             $table->char('nik', 16)->nullable();

@@ -1,7 +1,7 @@
 <div>
     <x-modal action="update({{ $user_id }})">
         <x-slot name="title">
-            Hello World
+            Edit User
         </x-slot>
 
         <x-slot name="content">
@@ -9,7 +9,7 @@
                 <x-input label="Nama Lengkap" name="name" livewire />
                 <x-input label="E-mail" name="email" livewire />
             </div>
-            <span class="">Role/Jenis Pengguna:</span>
+            <span class="mt-4">Role/Jenis Pengguna:</span>
             @foreach ($all_roles as $item)
             @if ($item->name !== 'super-admin')
             <div>

@@ -12,14 +12,17 @@
     <label class="block text-sm font-medium text-gray-700">{{ $label }}</label>
     @endif
     @php
-    $error_class = '';
     if($errors->has($name)){
-    $error_class = 'pr-10 border-red-300 border-2 text-red-900 focus:ring-red-500 focus:border-red-500';
+    $class = 'pr-10 border-red-300 border-2 text-red-900 focus:ring-red-500 focus:border-red-500 block w-full
+    focus:outline-none sm:text-sm rounded-md';
+    } else {
+    $class = 'block w-full focus:outline-none sm:text-sm rounded-md';
     }
     @endphp
     <div class="mt-1 relative rounded-md shadow-sm">
-        <input type="{{ $type }}" {{ $livewire ? 'wire:model' : 'name' }}="{{ $name }}" {!! $attributes->merge(['class'
-        => $error_class . ' block w-full focus:outline-none sm:text-sm rounded-md' ]) !!}
+        <input type="{{ $type }}" {{ $livewire ? 'wire:model.lazy' : 'name' }}="{{ $name }}" {!!
+            $attributes->merge(['class'
+        => $class ]) !!}
         value="{{ !empty($value) ? $value : '' }}"
         {{ $disabled ? 'disabled' : '' }}>
         @error ($name)

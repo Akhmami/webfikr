@@ -7,10 +7,20 @@ use Spatie\Permission\Models\Role;
 
 class Roles extends Component
 {
+    protected $listeners = [
+        'closeUserAlertModal' => 'indexRoles',
+        'closeRoleAlertModal' => 'indexRoles'
+    ];
+
     public function render()
     {
         return view('livewire.dash.users.roles', [
-            'roles' => Role::get()
+            'roles' => Role::where('name', '<>', 'super-admin')->get()
         ]);
+    }
+
+    public function indexRoles()
+    {
+        # code...
     }
 }

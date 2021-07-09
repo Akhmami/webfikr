@@ -14,11 +14,15 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::view('/', 'welcome')->name('home');
-Route::view('users', 'dash.users.index')->name('users.index');
 Route::name('dash.')
-    ->middleware(['permission:lihat billing|publish artikel'])
+    ->middleware(['auth', 'permission:lihat dashboard'])
     ->prefix('dashboard')
     ->group(function () {
-        Route::view('/', 'dashboard')->name('dash.index');
-        Route::view('billing', 'dash.keuangan.billing')->name('billing.index');
+        Route::view('/', 'dashboard')->name('index');
+        Route::view('users', 'dash.users.index')
+            ->middleware('role:super-admin|admin')
+            ->name('users.index');
+        Route::view('billing', 'dash.keuangan.billing')
+            ->middleware('permission:lihat billing|edit billing|hapus billing|buat billing')
+            ->name('billing.index');
 });

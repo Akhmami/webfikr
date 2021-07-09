@@ -11,7 +11,7 @@
     <label class="block text-sm font-medium text-gray-700">{{ $label }}</label>
     @endif
     <div class="mt-1 relative rounded-md shadow-sm">
-        <textarea {{ $livewire ? 'wire:model' : 'name' }}="{{ $name }}" rows="3" {!! $attributes->merge(['class' => 'block
+        <textarea {{ $livewire ? 'wire:model.lazy' : 'name' }}="{{ $name }}" rows="3" {!! $attributes->merge(['class' => 'block
         w-full focus:outline-none
         sm:text-sm rounded-md' ]) !!} @error($name) {!! $attributes->merge(['class' => 'pr-10
         border-red-300 text-red-900 focus:ring-red-500 focus:border-red-500' ]) !!}

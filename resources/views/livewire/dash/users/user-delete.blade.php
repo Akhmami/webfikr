@@ -2,7 +2,7 @@
     <x-alert-modal type="error">
         <x-slot name="title">Delete User</x-slot>
         <x-slot name="description">
-            Apakah yakin ingin menghapus data user?
+            Apakah yakin ingin menghapus data user terpilih?
         </x-slot>
         <x-slot name="buttons">
             <button type="button" wire:click="$emit('closeModal')"
