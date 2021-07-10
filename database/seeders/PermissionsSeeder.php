@@ -52,7 +52,7 @@ class PermissionsSeeder extends Seeder
             'amount' => 3500000,
             'billing_type' => 'c',
             'type' => 'spp',
-            'datetime_expired' => date('c', strtotime('2 month')),
+            'datetime_expired' => date('Y-m-d H:i:s', strtotime('2 month')),
             'virtual_account' => '12345',
             'description' => 'testing'
         ]);
@@ -68,7 +68,7 @@ class PermissionsSeeder extends Seeder
             'amount' => 3500000,
             'billing_type' => 'c',
             'type' => 'spp',
-            'datetime_expired' => date('c', strtotime('2 month')),
+            'datetime_expired' => date('Y-m-d H:i:s', strtotime('2 month')),
             'virtual_account' => '11111',
             'description' => 'testing'
         ]);
@@ -84,7 +84,7 @@ class PermissionsSeeder extends Seeder
             'amount' => 3500000,
             'billing_type' => 'c',
             'type' => 'spp',
-            'datetime_expired' => date('c', strtotime('2 month')),
+            'datetime_expired' => date('Y-m-d H:i:s', strtotime('2 month')),
             'virtual_account' => '22222',
             'description' => 'testing'
         ]);
