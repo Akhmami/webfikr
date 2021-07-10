@@ -86,6 +86,30 @@ class VA
         }
     }
 
+    public function callback()
+    {
+        $data = file_get_contents('php://input');
+
+        $data_json = json_decode($data, true);
+
+        if (!$data_json) {
+            // handling orang iseng
+            return json_decode('{"status":"999","message":"jangan iseng :D"}', true);
+        } else {
+            if ($data_json['client_id'] === $this->client_id) {
+                $data_asli = $this->parsing($data_json['data']);
+
+                if (!$data_asli) {
+                    // handling jika waktu server salah/tdk sesuai atau secret key salah
+                    return json_decode('{"status":"999","message":"waktu server tidak sesuai NTP atau secret key salah."}', true);
+                } else {
+                    $data_asli['status'] = '000';
+                    return $data_asli;
+                }
+            }
+        }
+    }
+
     private function hashing($data_asli)
     {
         $hashed_string = BsiHashing::encrypt(

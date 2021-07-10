@@ -47,6 +47,9 @@ class PermissionsSeeder extends Seeder
             'email' => 'writer@example.com',
         ]);
         $user->assignRole($role1);
+        $user->billings()->create([
+
+        ]);
 
         $user = \App\Models\User::factory()->create([
             'name' => 'Example Admin User',

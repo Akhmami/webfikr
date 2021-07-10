@@ -2,6 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\CallbackController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +16,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+Route::get('/{slug}', function () {
+    return response()->json('Not found', 404);
+});
+
+Route::post('/register', [AuthController::class, 'register']);
+Route::post('/login', [AuthController::class, 'login']);
+Route::post('/callback/payments', [CallbackController::class, 'index']);
+Route::post('/dev/callback/payments', [CallbackController::class, 'development']);
+
+Route::middleware('auth:sanctum')->group( function () {
+    Route::post('/me', [AuthController::class, 'me']);
 });

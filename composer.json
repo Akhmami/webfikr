@@ -12,6 +12,7 @@
         "laravel-frontend-presets/tall": "^3.1",
         "laravel/fortify": "^1.7",
         "laravel/framework": "^8.40",
+        "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
         "livewire-ui/modal": "^0.1.7",
         "livewire/livewire": "^2.5",
