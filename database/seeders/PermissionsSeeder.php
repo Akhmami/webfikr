@@ -54,8 +54,6 @@ class PermissionsSeeder extends Seeder
             'type' => 'spp',
             'datetime_expired' => date('c', strtotime('2 month')),
             'virtual_account' => '12345',
-            'customer_email' => 'akhmami@gmail.com',
-            'customer_phone' => '085156154439',
             'description' => 'testing'
         ]);
 
@@ -72,8 +70,6 @@ class PermissionsSeeder extends Seeder
             'type' => 'spp',
             'datetime_expired' => date('c', strtotime('2 month')),
             'virtual_account' => '11111',
-            'customer_email' => 'akhmami@gmail.com',
-            'customer_phone' => '085156154439',
             'description' => 'testing'
         ]);
 
@@ -90,8 +86,6 @@ class PermissionsSeeder extends Seeder
             'type' => 'spp',
             'datetime_expired' => date('c', strtotime('2 month')),
             'virtual_account' => '22222',
-            'customer_email' => 'akhmami@gmail.com',
-            'customer_phone' => '085156154439',
             'description' => 'testing'
         ]);
     }
