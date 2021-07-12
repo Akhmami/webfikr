@@ -32,12 +32,14 @@ class CallbackController extends BaseController
             $bill = Billing::with('users')->where('trx_id', $data['trx_id'])->first();
 
             if (!$bill) {
-                return '{"status":"999", "message":"Trx_id tidak tersedia"}';
+                echo '{"status":"999", "message":"Trx_id tidak tersedia"}';
             }
 
             $bill->datetime_payment = $data['datetime_payment'];
             $bill->cumulative_payment_amount = $data['cumulative_payment_amount'];
             $bill->save();
+
+            echo '{"status":"000"}';
         }
     }
 }
