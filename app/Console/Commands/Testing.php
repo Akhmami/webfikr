@@ -42,15 +42,15 @@ class Testing extends Command
         $secret_key = 'adagag40245262vdsfgsgwt';
         $va = new VA($client_id, $secret_key);
         $data = array(
-            'trx_id' => 'TRXID1234567894',
+            'trx_id' => 'TRXID11111',
             'trx_amount' => 3500000,
             'billing_type' => 'c',
             'datetime_expired' => date('c', strtotime('2 month')),
-            'virtual_account' => '12345678',
-            'customer_name' => 'Baba Ahmad',
+            'virtual_account' => '11111',
+            'customer_name' => 'Ini Budi',
             'customer_email' => 'akhmami@gmail.com',
             'customer_phone' => '085156154439',
-            'description' => 'testing'
+            'description' => 'spp'
         );
 
         $result = $va->create($data);

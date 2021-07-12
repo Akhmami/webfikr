@@ -19,6 +19,7 @@ class CallbackController extends BaseController
         // FROM BNI
         $client_id = config('bsi.client_id');
         $secret_key = config('bsi.secret_key');
+        dd($client_id);
 
         $va = new VA($client_id, $secret_key);
 
