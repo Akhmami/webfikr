@@ -91,7 +91,6 @@ class VA
         $data = file_get_contents('php://input');
 
         $data_json = json_decode($data, true);
-        dd($data_json);
 
         if (!$data_json) {
             // handling orang iseng
@@ -99,6 +98,7 @@ class VA
         } else {
             if ($data_json['client_id'] === $this->client_id) {
                 $data_asli = $this->parsing($data_json['data']);
+                dd($data_asli);
 
                 if (!$data_asli) {
                     // handling jika waktu server salah/tdk sesuai atau secret key salah
