@@ -90,6 +90,7 @@ class VA
     {
         $data = file_get_contents('php://input');
 
+        dd($data);
         $data_json = json_decode($data, true);
         dd($data_json);
 
