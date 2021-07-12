@@ -29,7 +29,7 @@ class CallbackController extends BaseController
             echo $data['message'];
         } else {
             // save to DB
-            $bill = Billing::with('users')->where('trx_id', $data['trx_id'])->first();
+            $bill = Billing::with('user')->where('trx_id', $data['trx_id'])->first();
 
             if (!$bill) {
                 echo '{"status":"999", "message":"Trx_id tidak tersedia"}';
