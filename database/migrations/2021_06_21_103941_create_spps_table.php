@@ -16,9 +16,8 @@ class CreateSppsTable extends Migration
         Schema::create('spps', function (Blueprint $table) {
             $table->id();
             $table->foreignId('grade_user_id')->constrained('grade_user');
-            $table->foreignId('billing_id')->constrained();
+            $table->foreignId('payment_history_id')->nullable()->constrained();
             $table->date('bulan');
-            $table->enum('status', ['paid', 'unpaid']);
             $table->timestamps();
         });
     }

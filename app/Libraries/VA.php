@@ -10,15 +10,15 @@ class VA
     private $secret_key;
     private $url;
 
-    public function __construct($client_id, $secret_key)
+    public function __construct()
     {
         if (config('app.env') == 'production') {
-            $this->client_id = $client_id;
-            $this->secret_key = $secret_key;
-            $this->url = 'https://api.bni-ecollection.com/';
-        } else {
             $this->client_id = config('bsi.client_id');
             $this->secret_key = config('bsi.secret_key');
+            $this->url = 'https://billing-bpi-dev.maja.id/bni/register';
+        } else {
+            $this->client_id = '9194';
+            $this->secret_key = 'a2566731-c314-46e3-96d8-762d86d60330';
             $this->url = 'https://billing-bpi-dev.maja.id/bni/register';
         }
     }

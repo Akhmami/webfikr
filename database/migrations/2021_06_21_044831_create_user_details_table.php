@@ -64,6 +64,7 @@ class CreateUserDetailsTable extends Migration
             $table->char('gelombang', 2)->nullable();
             $table->char('tahun_pendaftaran', 4)->nullable();
             $table->char('tahun_ajaran', 4)->nullable();
+            $table->enum('status', ['santri', 'keluar'])->nullable();
             $table->timestamps();
         });
     }

@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Spp extends Model
 {
     use HasFactory;
+
+    public function gradeUser()
+    {
+        return $this->belongsTo(GradeUser::class);
+    }
 }

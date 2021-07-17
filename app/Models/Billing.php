@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 
 class Billing extends Model
 {
@@ -15,15 +16,19 @@ class Billing extends Model
      * @var array
      */
     protected $fillable = [
+        'user_id',
+        'biller_id',
         'trx_id',
         'virtual_account',
-        'amount',
-        'cumulative_payment_amount',
+        'trx_amount',
         'billing_type',
-        'type',
-        'status',
+        'is_paid',
         'description',
         'datetime_expired'
+    ];
+
+    protected $casts = [
+        'datetime_expired' => 'datetime',
     ];
 
     public function user()
@@ -31,13 +36,23 @@ class Billing extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function billingDetails()
-    {
-        return $this->hasMany(BillingDetail::class);
-    }
-
     public function paymentHistories()
     {
         return $this->hasMany(PaymentHistory::class);
+    }
+
+    public function getDateExpiredAttribute($value)
+    {
+        return tanggal(date('Y-m-d', strtotime($this->datetime_expired))) .' '. date('H:i', strtotime($this->datetime_expired));
+    }
+
+    public function scopeActive($query)
+    {
+        return $query->where('datetime_expired', '>', Carbon::now());
+    }
+
+    public function scopeInActive($query)
+    {
+        return $query->where('datetime_expired', '<=', Carbon::now());
     }
 }

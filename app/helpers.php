@@ -76,3 +76,30 @@ if (! function_exists('tanggal')) {
         return $bulan[ (int)$date ];
     }
 }
+
+if (! function_exists('rupiah')) {
+    function rupiah($angka){
+        $convert = "Rp " . number_format($angka,0,'','.');
+        return $convert;
+    }
+}
+
+if (! function_exists('range_month')) {
+    function date_range($start, $end=null, $type=null) {
+        if ($end === null) {
+            $end = date('Y-m-01');
+        }
+
+        if ($type === null) {
+            $type = '%m';
+        }
+
+        $start_date = new DateTime($start);
+        $end_date = new DateTime($end);
+
+        $diff = $start_date->diff($end_date);
+        $month = $diff->format($type); // 1
+
+        return $month;
+    }
+}

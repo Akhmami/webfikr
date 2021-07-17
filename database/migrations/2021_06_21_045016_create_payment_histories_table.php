@@ -18,7 +18,6 @@ class CreatePaymentHistoriesTable extends Migration
             $table->foreignId('billing_id')->nullable()->constrained();
             $table->string('payment_ntb');
             $table->string('customer_name');
-            $table->decimal('cumulative_payment_amount', 14,0)->default(0);
             $table->decimal('payment_amount', 14,0);
             $table->timestamp('datetime_payment');
             $table->timestamps();

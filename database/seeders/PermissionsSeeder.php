@@ -47,15 +47,15 @@ class PermissionsSeeder extends Seeder
             'email' => 'writer@example.com',
         ]);
         $user->assignRole($role1);
-        $user->billings()->create([
-            'trx_id' => 'TRXID12345',
-            'amount' => 3500000,
-            'billing_type' => 'c',
-            'type' => 'spp',
-            'datetime_expired' => date('Y-m-d H:i:s', strtotime('2 month')),
-            'virtual_account' => '12345',
-            'description' => 'testing'
-        ]);
+        // $user->billings()->create([
+        //     'trx_id' => 'TRXID12345',
+        //     'amount' => 3500000,
+        //     'billing_type' => 'c',
+        //     'type' => 'spp',
+        //     'datetime_expired' => date('Y-m-d H:i:s', strtotime('2 month')),
+        //     'virtual_account' => '12345',
+        //     'description' => 'testing'
+        // ]);
 
         $user = \App\Models\User::factory()->create([
             'name' => 'Example Admin User',
@@ -63,15 +63,6 @@ class PermissionsSeeder extends Seeder
             'email' => 'admin@example.com',
         ]);
         $user->assignRole($role2);
-        $user->billings()->create([
-            'trx_id' => 'TRXID11111',
-            'amount' => 3500000,
-            'billing_type' => 'c',
-            'type' => 'spp',
-            'datetime_expired' => date('Y-m-d H:i:s', strtotime('2 month')),
-            'virtual_account' => '11111',
-            'description' => 'testing'
-        ]);
 
         $user = \App\Models\User::factory()->create([
             'name' => 'Example Super-Admin User',
@@ -79,14 +70,5 @@ class PermissionsSeeder extends Seeder
             'email' => 'superadmin@example.com',
         ]);
         $user->assignRole($role3);
-        $user->billings()->create([
-            'trx_id' => 'TRXID22222',
-            'amount' => 3500000,
-            'billing_type' => 'c',
-            'type' => 'spp',
-            'datetime_expired' => date('Y-m-d H:i:s', strtotime('2 month')),
-            'virtual_account' => '22222',
-            'description' => 'testing'
-        ]);
     }
 }

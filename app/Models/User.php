@@ -56,13 +56,55 @@ class User extends Authenticatable
         return $this->hasOne(UserDetail::class);
     }
 
+    public function scopeSantri($query)
+    {
+        return $query->whereHas('userDetail', function ($q) {
+            $q->status('santri');
+        });
+    }
+
+    public function billers()
+    {
+        return $this->hasMany(Biller::class);
+    }
+
+    public function activeBillers()
+    {
+        return $this->billers()->where('is_active', 'Y');
+    }
+
+    public function billerSPP()
+    {
+        return $this->hasOne(Biller::class)
+            ->where('type', 'SPP')
+            ->where('is_active', 'Y')
+            ->latest();
+    }
+
+    public function billerAnother()
+    {
+        return $this->billers()
+            ->where('type', '<>', 'SPP')
+            ->where('is_active', 'Y');
+    }
+
     public function billings()
     {
         return $this->hasMany(Billing::class);
     }
 
-    public function paymentHistories()
+    public function grades()
     {
-        return $this->hasMany(PaymentHistory::class, Billing::class);
+        return $this->belongsToMany(Grade::class)->withTimestamps();
+    }
+
+    public function activeGrade()
+    {
+        return $this->grades()->wherePivot('is_active', 'Y')->latest('pivot_created_at')->limit(1);
+    }
+
+    public function setSpp()
+    {
+        return $this->hasOne(SetSpp::class);
     }
 }

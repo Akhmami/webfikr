@@ -19,6 +19,7 @@ class CreateGradeUserTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->char('tahun_ajaran', 4)->nullable();
             $table->enum('is_active', ['Y', 'N']);
+            $table->timestamps();
         });
     }
 

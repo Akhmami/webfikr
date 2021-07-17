@@ -56,6 +56,8 @@ return [
 
     'asset_url' => env('ASSET_URL', null),
 
+    'domain' => env('APP_DOMAIN', 'nfbsv3.test'),
+
     /*
     |--------------------------------------------------------------------------
     | Application Timezone

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBillingDetailsTable extends Migration
+class CreateSetSppsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,9 @@ class CreateBillingDetailsTable extends Migration
      */
     public function up()
     {
-        Schema::create('billing_details', function (Blueprint $table) {
+        Schema::create('set_spps', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('billing_id')->constrained();
-            $table->string('nama');
+            $table->foreignId('user_id')->constrained();
             $table->decimal('nominal', 14,0)->default(0);
             $table->timestamps();
         });
@@ -29,6 +28,6 @@ class CreateBillingDetailsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('billing_details');
+        Schema::dropIfExists('set_spps');
     }
 }

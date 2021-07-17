@@ -1,1 +1,1 @@
-<x-badge color="{{ $data->status === 'paid' ? 'green' : 'red' }}" :text="$data->status" />
+<x-badge color="{{ $data->is_paid === 'Y' ? 'green' : 'red' }}" :text="$data->is_paid === 'Y' ? 'paid' : 'unpaid'" />

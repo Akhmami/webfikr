@@ -23,7 +23,7 @@ class BillingsTable extends DataTableComponent
             Column::make('Virtual Account', 'virtual_account')
                 ->sortable()
                 ->searchable(),
-            Column::make('Jumlah', 'amount')
+            Column::make('Jumlah', 'trx_amount')
                 ->sortable()
                 ->searchable(),
             Column::make('Status')
@@ -53,7 +53,6 @@ class BillingsTable extends DataTableComponent
     {
         return Billing::query()
             ->with('user')
-            ->where('status', '<>', 'draft')
             ->when($this->getFilter('status'), fn ($query, $status) => $query->where('status', $status));
     }
 

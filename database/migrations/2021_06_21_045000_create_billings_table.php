@@ -15,14 +15,13 @@ class CreateBillingsTable extends Migration
     {
         Schema::create('billings', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('biller_id')->constrained();
             $table->foreignId('user_id')->constrained();
-            $table->string('trx_id');
+            $table->string('trx_id')->unique();
             $table->char('virtual_account', 16);
-            $table->decimal('amount', 14,0);
-            $table->decimal('cumulative_payment_amount', 14,0)->default(0);
+            $table->decimal('trx_amount', 14,0);
             $table->enum('billing_type', ['o', 'i', 'c']);
-            $table->enum('type', ['SPP', 'DKT', 'PSB', 'DUPSB', 'MUTASI', 'DUMUTASI', 'LAINNYA']);
-            $table->enum('status', ['paid', 'unpaid', 'draft'])->default('unpaid');
+            $table->enum('is_paid', ['Y', 'N'])->default('N');
             $table->string('description')->nullable();
             $table->timestamp('datetime_expired')->nullable();
             $table->timestamps();
