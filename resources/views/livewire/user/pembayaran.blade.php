@@ -4,6 +4,7 @@
             <h2 class="sr-only" id="profile-overview-title">Pembayaran Overview</h2>
             <div class="bg-white p-6">
                 <div class="flex flex-col">
+                    @if ($payments->count() > 0)
                     @foreach ($payments as $payment)
                     <div class="text-center">
                         <h2 class="text-lg font-semibold">Selesaikan Pembayaran dalam</h2>
@@ -34,7 +35,7 @@
                                 <div>
                                     <button type="button" onclick="copyToClipboard({{$payment->virtual_account}})"
                                         class="inline-flex space-x-1 text-sm leading-5 font-medium text-indigo-600
-                                        hover:underline">
+                                                            hover:underline">
                                         Salin <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
                                             viewBox="0 0 24 24" stroke="currentColor">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -70,6 +71,35 @@
                         </ol>
                     </div>
                     @endforeach
+                    @else
+                    <div class="text-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="mx-auto h-12 w-12 text-gray-400" width="44"
+                            height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#9ca3af" fill="none"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                            <circle cx="12" cy="12" r="9" />
+                            <line x1="9" y1="10" x2="9.01" y2="10" />
+                            <line x1="15" y1="10" x2="15.01" y2="10" />
+                            <line x1="9" y1="15" x2="15" y2="15" />
+                        </svg>
+                        <h3 class="mt-2 text-sm font-medium text-gray-900">Tidak ada pembayaran</h3>
+                        <p class="mt-1 text-sm text-gray-500">
+                            Pastikan kamu tidak memiliki tagihan, lihat rincian tagihan.
+                        </p>
+                        <div class="mt-6">
+                            <button type="button"
+                                onclick="Livewire.emit('openModal', 'user.rincian-tagihan', {{ json_encode(['user' => auth()->user()->id ]) }})"
+                                class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="-ml-1 mr-2 h-5 w-5" fill="none"
+                                    viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122" />
+                                </svg>
+                                Rincian Tagihan
+                            </button>
+                        </div>
+                    </div>
+                    @endif
                 </div>
             </div>
         </div>

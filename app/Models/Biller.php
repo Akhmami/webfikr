@@ -15,6 +15,7 @@ class Biller extends Model
         'type',
         'is_active',
         'qty_spp',
+        'previous_spp_date',
         'description',
     ];
 
@@ -41,5 +42,10 @@ class Biller extends Model
     public function paymentHistories()
     {
         return $this->hasManyThrough(PaymentHistory::class, Billing::class);
+    }
+
+    public function scopeActive($query)
+    {
+        return $query->where('is_active', 'Y');
     }
 }

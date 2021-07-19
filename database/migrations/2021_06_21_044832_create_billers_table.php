@@ -22,6 +22,7 @@ class CreateBillersTable extends Migration
             $table->enum('is_installment', ['Y', 'N'])->default('N');
             $table->enum('is_active', ['Y', 'N'])->default('Y');
             $table->tinyInteger('qty_spp')->default(0);
+            $table->date('previous_spp_date')->nullable();
             $table->string('description')->nullable();
             $table->timestamps();
         });

@@ -13,4 +13,9 @@ class Spp extends Model
     {
         return $this->belongsTo(GradeUser::class);
     }
+
+    public function paymentHistory()
+    {
+        return $this->belongsTo(PaymentHistory::class);
+    }
 }

@@ -10,8 +10,7 @@ class Pembayaran extends Component
 
     public function render()
     {
-        $this->payments = auth()->user()->billings()
-            ->where('is_paid', 'N')->get();
+        $this->payments = auth()->user()->billings()->active()->get();
 
         return view('livewire.user.pembayaran');
     }

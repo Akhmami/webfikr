@@ -27,6 +27,11 @@ class PaymentHistory extends Model
         return $this->belongsTo(Billing::class);
     }
 
+    public function spps()
+    {
+        return $this->hasMany(Spp::class);
+    }
+
     public function getDateTimeAttribute($value)
     {
         return tanggal(date('Y-m-d', strtotime($this->datetime_payment))) .' '. date('H:i', strtotime($this->datetime_payment));

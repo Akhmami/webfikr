@@ -62,22 +62,23 @@ class CheckBillSPP extends Command
                 $spp_perbulan = $user->setSpp->nominal;
                 $adder = '+'.$range.' month';
                 $addMonth = date('Y-m-d', strtotime($adder, strtotime($item->latestSpp->bulan)));
-                $date = tanggal($month[date('m', strtotime($addMonth))], 'bulan');
+                $month_only = tanggal($month[date('m', strtotime($addMonth))], 'bulan');
 
                 $latest_biller = $user->billers()->latest()->first();
                 if (date('m', strtotime($latest_biller->created_at)) !== date('m')) {
                     $biller = $user->billers()->where('type', 'SPP')
-                        ->where('is_active', 'Y')->get();
+                        ->active()->get();
                     $tunggakan = $biller->sum('amount');
                     $user->billers()->where('type', 'SPP')
-                        ->where('is_active', 'Y')->update(['is_active' => 'N']);
+                        ->active()->update(['is_active' => 'N']);
 
                     $user->billers()->create([
                         'amount' => $tunggakan + ($spp_perbulan * $range),
                         'type' => 'SPP',
                         'is_active' => 'Y',
                         'qty_spp' => $range,
-                        'description' => 'Tagihan SPP hingga bulan '. $date
+                        'previous_spp_date' => $item->latestSpp->bulan,
+                        'description' => 'Tagihan SPP hingga bulan '. $month_only
                     ]);
                 }
             }

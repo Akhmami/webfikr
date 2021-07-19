@@ -26,7 +26,7 @@ class RincianTagihan extends ModalComponent
         $biller = Biller::with('user')->findOrFail($biller_id);
         $no_pendaftaran = $biller->user->userDetail->no_pendaftaran;
         $cek_billing = Billing::where('virtual_account', $no_pendaftaran)
-            ->where('is_paid', 'N')->exists();
+            ->active()->exists();
 
         if (!$cek_billing) {
             if ($biller->is_installment === 'Y') {

@@ -27,13 +27,22 @@ class Billing extends Model
         'datetime_expired'
     ];
 
-    protected $casts = [
-        'datetime_expired' => 'datetime',
+    // protected $casts = [
+    //     'datetime_expired' => 'datetime',
+    // ];
+
+    protected $dates = [
+        'datetime_expired'
     ];
 
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function biller()
+    {
+        return $this->belongsTo(Biller::class);
     }
 
     public function paymentHistories()
@@ -48,7 +57,7 @@ class Billing extends Model
 
     public function scopeActive($query)
     {
-        return $query->where('datetime_expired', '>', Carbon::now());
+        return $query->where('datetime_expired', '>=', Carbon::now());
     }
 
     public function scopeInActive($query)
