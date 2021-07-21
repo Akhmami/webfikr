@@ -6,7 +6,6 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
-use App\Models\PaymentHistory;
 
 class PaymentNotification extends Notification
 {
@@ -18,7 +17,7 @@ class PaymentNotification extends Notification
      *
      * @return void
      */
-    public function __construct(PaymentHistory $payment)
+    public function __construct($payment)
     {
         $this->payment = $payment;
     }
@@ -43,11 +42,11 @@ class PaymentNotification extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->line('Assalaamu\'alaikum '. $this->payment->user->name)
-                    ->greeting('Pembayaran terverifikasi dan telah kami terima')
+                    ->greeting('Assalaamu\'alaikum '. $this->payment['customer_name'])
+                    ->line('Pembayaran terverifikasi dan telah kami terima')
                     ->line('Terimakasih, berikut informasi pembayaranmu:')
-                    ->action('Notification Action', url('/'))
-                    ->line('Thank you for using our application!');
+                    ->action('History Pembayaran', route('user.home'))
+                    ->line('Jazakallah khoir, semoga Allah memberikan keberkahan dan kelancaran rizki.');
     }
 
     /**
@@ -59,9 +58,9 @@ class PaymentNotification extends Notification
     public function toArray($notifiable)
     {
         return [
-            'goto' => route('home'),
-            'title' => 'Pembayaranmu terverifikasi',
-            'description' => 'Pembayaranmu sudah kami terima, silahkan cek disnini.'
+            'goto' => route('user.home'),
+            'title' => 'Pembayaran terverifikasi',
+            'description' => 'Pembayaranmu sudah kami terima, silahkan cek disini.'
         ];
     }
 }

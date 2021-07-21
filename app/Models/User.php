@@ -107,4 +107,14 @@ class User extends Authenticatable
     {
         return $this->hasOne(SetSpp::class);
     }
+
+    public function mobilePhones()
+    {
+        return $this->hasMany(MobilePhone::class);
+    }
+
+    public function firstMobilePhone()
+    {
+        return $this->hasOne(MobilePhone::class)->where('is_first', 'Y')->latestOfMany();
+    }
 }

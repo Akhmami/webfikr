@@ -38,11 +38,11 @@ class Testing extends Command
      */
     public function handle()
     {
-        $client_id = '1234';
-        $secret_key = 'adagag40245262vdsfgsgwt';
-        $va = new VA($client_id, $secret_key);
+        // $client_id = '1234';
+        // $secret_key = 'adagag40245262vdsfgsgwt';
+        // $va = new VA($client_id, $secret_key);
         $data = array(
-            'trx_id' => 'TRXID11111',
+            'trx_id' => 'SPP11111',
             'trx_amount' => 3500000,
             'billing_type' => 'c',
             'datetime_expired' => date('c', strtotime('2 month')),
@@ -50,10 +50,16 @@ class Testing extends Command
             'customer_name' => 'Ini Budi',
             'customer_email' => 'akhmami@gmail.com',
             'customer_phone' => '085156154439',
-            'description' => 'spp'
+            'description' => 'spp',
+            'template' => '',
+            'payment_amount' => 3500000
         );
 
-        $result = $va->create($data);
-        dd($result);
+        // $result = $va->create($data);
+        // dd($result);
+        $user = \App\Models\User::find(1);
+
+        $wa = new \App\Libraries\WA($user);
+        dd($wa->notifyPayment($data));
     }
 }

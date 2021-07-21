@@ -5,6 +5,7 @@ namespace App\Listeners;
 use App\Events\Paymented;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
+use App\Notifications\PaymentNotification;
 
 class DatabasePaymentNotification
 {
@@ -26,6 +27,9 @@ class DatabasePaymentNotification
      */
     public function handle(Paymented $event)
     {
-        //
+        $billing = $event->billing;
+        $data = $event->data;
+
+        $billing->user->notify(new PaymentNotification($data));
     }
 }
