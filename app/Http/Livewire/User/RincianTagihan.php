@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\User;
 
 use LivewireUI\Modal\ModalComponent;
+use App\Libraries\VA;
 use App\Models\User;
 use App\Models\Biller;
 use App\Models\Billing;
@@ -43,6 +44,14 @@ class RincianTagihan extends ModalComponent
                     'description' => 'Pembayaran ' . $biller->type,
                     'datetime_expired' => date('Y-m-d H:i:s', strtotime('2 days'))
                 ]);
+
+                $data = $billing->toArray();
+                $data['customer_name'] = auth()->user()->name;
+
+                $client_id = config('bsi.client_id');
+                $secret_key = config('bsi.secret_key');
+                $va = new VA($client_id, $secret_key);
+                $result = $va->create($data);
             }
         } else {
             $this->emit('openModal', 'user.alert-modal', ['message' => 'Mohon maaf, sepertinya masih ada pembayaran yang belum diselesaikan']);

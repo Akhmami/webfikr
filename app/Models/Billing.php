@@ -47,7 +47,7 @@ class Billing extends Model
 
     public function paymentHistories()
     {
-        return $this->hasMany(PaymentHistory::class);
+        return $this->morphMany(PaymentHistory::class, 'payment_history');
     }
 
     public function getDateExpiredAttribute($value)

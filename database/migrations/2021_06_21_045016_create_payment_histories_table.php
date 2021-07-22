@@ -15,7 +15,7 @@ class CreatePaymentHistoriesTable extends Migration
     {
         Schema::create('payment_histories', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('billing_id')->nullable()->constrained();
+            $table->morphs('payment_history');
             $table->string('payment_ntb');
             $table->string('customer_name');
             $table->decimal('payment_amount', 14,0);

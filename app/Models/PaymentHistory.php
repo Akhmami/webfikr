@@ -22,9 +22,9 @@ class PaymentHistory extends Model
         return $this->hasOneThrough(User::class, Billing::class);
     }
 
-    public function billing()
+    public function paymentHistory()
     {
-        return $this->belongsTo(Billing::class);
+        return $this->morphTo();
     }
 
     public function spps()

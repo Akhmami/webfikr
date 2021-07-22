@@ -13,8 +13,8 @@ class VA
     public function __construct()
     {
         if (config('app.env') == 'production') {
-            $this->client_id = config('bsi.client_id');
-            $this->secret_key = config('bsi.secret_key');
+            $this->client_id = $this->client_id;
+            $this->secret_key = $this->secret_key;
             $this->url = 'https://billing-bpi-dev.maja.id/bni/register';
         } else {
             $this->client_id = '9194';

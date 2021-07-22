@@ -38,7 +38,7 @@ class PermissionsSeeder extends Seeder
         $role2->givePermissionTo('unpublish artikel');
 
         $role3 = Role::create(['name' => 'super-admin']);
-        // gets all permissions via Gate::before rule; see AuthServiceProvider
+        $role4 = Role::create(['name' => 'user']);
 
         // create demo users
         $user = \App\Models\User::factory()->create([
@@ -47,15 +47,6 @@ class PermissionsSeeder extends Seeder
             'email' => 'writer@example.com',
         ]);
         $user->assignRole($role1);
-        // $user->billings()->create([
-        //     'trx_id' => 'TRXID12345',
-        //     'amount' => 3500000,
-        //     'billing_type' => 'c',
-        //     'type' => 'spp',
-        //     'datetime_expired' => date('Y-m-d H:i:s', strtotime('2 month')),
-        //     'virtual_account' => '12345',
-        //     'description' => 'testing'
-        // ]);
 
         $user = \App\Models\User::factory()->create([
             'name' => 'Example Admin User',
@@ -70,5 +61,30 @@ class PermissionsSeeder extends Seeder
             'email' => 'superadmin@example.com',
         ]);
         $user->assignRole($role3);
+
+        $user = \App\Models\User::factory()->create([
+            'name' => 'Basic User',
+            'username' => 'user',
+            'email' => 'user@example.com',
+        ]);
+        $user->assignRole($role4);
+
+        $biller = $user->billers()->create([
+            'amount' => 7000000,
+            'type' => 'SPP',
+            'is_active' => 'Y',
+            'qty_spp' => 2,
+            'previous_spp_date' => '2021-05-01',
+            'description' => 'Tagihan SPP hingga bulan Juli'
+        ]);
+        $user->billings()->create([
+            'trx_id' => 'SPPSMP12345678',
+            'biller_id' => $biller->id,
+            'virtual_account' => '12345678',
+            'trx_amount' => 3500000,
+            'billing_type' => 'c',
+            'description' => 'Pembayaran SPP',
+            'datetime_expired' => date('Y-m-d H:i:s', strtotime('2 days'))
+        ]);
     }
 }
