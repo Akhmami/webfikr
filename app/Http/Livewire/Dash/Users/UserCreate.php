@@ -54,6 +54,7 @@ class UserCreate extends ModalComponent
         $user->assignRole($this->roles);
 
         $this->emit('openModal', 'alert-modal', [
+            'status' => 'success',
             'emit' => 'closeUserAlertModal',
             'title' => 'User Created',
             'description' => 'Data user yang dipilih berhasil dibuat!'

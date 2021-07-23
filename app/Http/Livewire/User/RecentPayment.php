@@ -12,7 +12,7 @@ class RecentPayment extends Component
     public function render()
     {
         return view('livewire.user.recent-payment', [
-            'payments' => PaymentHistory::with('billing')->latest()->paginate($this->limit)
+            'payments' => PaymentHistory::with('paymentHistory')->latest()->paginate($this->limit)
         ]);
     }
 }

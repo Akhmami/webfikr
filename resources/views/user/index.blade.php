@@ -16,7 +16,7 @@
                             <h2 class="sr-only" id="quick-links-title">Quick links</h2>
 
                             <div class="col-span-2 bg-white px-6 py-4 rounded-tl-lg rounded-tr-lg">
-                                Balance
+                                <livewire:user.topup-balance />
                             </div>
 
                             <a href="{{ route('user.spp') }}"

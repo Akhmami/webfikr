@@ -1,5 +1,5 @@
 <div>
-    <x-alert-modal type="success">
+    <x-alert-modal :type="$status">
         <x-slot name="title">{{ $title }}</x-slot>
         <x-slot name="description">
             {{ $description }}

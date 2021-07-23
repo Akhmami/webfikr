@@ -6,12 +6,14 @@ use LivewireUI\Modal\ModalComponent;
 
 class AlertModal extends ModalComponent
 {
+    public $status;
     public $emit;
     public $title;
     public $description;
 
-    public function mount($emit, $title, $description)
+    public function mount($status, $emit, $title, $description)
     {
+        $this->status = $status;
         $this->emit = $emit;
         $this->title = $title;
         $this->description = $description;
@@ -25,7 +27,11 @@ class AlertModal extends ModalComponent
     public function close()
     {
         $this->emit($this->emit);
-        $this->forceClose()->closeModal();
+        if ($this->status === 'success') {
+            $this->forceClose()->closeModal();
+        } else {
+            $this->closeModal();
+        }
     }
 
     public static function modalMaxWidth(): string

@@ -57,11 +57,13 @@ class Billing extends Model
 
     public function scopeActive($query)
     {
-        return $query->where('datetime_expired', '>=', Carbon::now());
+        return $query->where('datetime_expired', '>=', Carbon::now())
+            ->where('is_paid', 'N');
     }
 
     public function scopeInActive($query)
     {
-        return $query->where('datetime_expired', '<=', Carbon::now());
+        return $query->where('datetime_expired', '<=', Carbon::now())
+            ->orWhere('is_paid', 'Y');
     }
 }

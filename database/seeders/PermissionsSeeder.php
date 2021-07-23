@@ -68,6 +68,16 @@ class PermissionsSeeder extends Seeder
             'email' => 'user@example.com',
         ]);
         $user->assignRole($role4);
+        $user->userDetail()->create([
+            'no_pendaftaran' => '12345678',
+            'jenjang' => 'SMA',
+            'angkatan' => '18',
+            'jurusan_pilihan' => 'IPA',
+            'jurusan' => 'IPA',
+            'jenis_pendaftaran' => 'eksternal',
+            'asal_sekolah' => 'SMP Al Azhar',
+            'jalur_masuk' => 'psb'
+        ]);
 
         $biller = $user->billers()->create([
             'amount' => 7000000,
@@ -77,14 +87,14 @@ class PermissionsSeeder extends Seeder
             'previous_spp_date' => '2021-05-01',
             'description' => 'Tagihan SPP hingga bulan Juli'
         ]);
-        $user->billings()->create([
-            'trx_id' => 'SPPSMP12345678',
-            'biller_id' => $biller->id,
-            'virtual_account' => '12345678',
-            'trx_amount' => 3500000,
-            'billing_type' => 'c',
-            'description' => 'Pembayaran SPP',
-            'datetime_expired' => date('Y-m-d H:i:s', strtotime('2 days'))
-        ]);
+        // $user->billings()->create([
+        //     'trx_id' => 'SPPSMP12345678',
+        //     'biller_id' => $biller->id,
+        //     'virtual_account' => '12345678',
+        //     'trx_amount' => 3500000,
+        //     'billing_type' => 'c',
+        //     'description' => 'Pembayaran SPP',
+        //     'datetime_expired' => date('Y-m-d H:i:s', strtotime('2 days'))
+        // ]);
     }
 }

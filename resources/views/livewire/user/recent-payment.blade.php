@@ -29,7 +29,7 @@
                                         <td class="px-6 py-4">
                                             <div class="text-xs text-gray-500 pb-1">Deskripsi</div>
                                             <div class="text-sm text-gray-900">
-                                                {{ $payment->billing->description }}
+                                                {{ $payment->paymentHistory->description }}
                                             </div>
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-right">

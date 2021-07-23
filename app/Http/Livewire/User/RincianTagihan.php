@@ -52,6 +52,8 @@ class RincianTagihan extends ModalComponent
                 $secret_key = config('bsi.secret_key');
                 $va = new VA($client_id, $secret_key);
                 $result = $va->create($data);
+
+                return redirect()->to(route('user.pembayaran'));
             }
         } else {
             $this->emit('openModal', 'user.alert-modal', ['message' => 'Mohon maaf, sepertinya masih ada pembayaran yang belum diselesaikan']);
