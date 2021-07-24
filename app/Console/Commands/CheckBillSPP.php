@@ -3,7 +3,7 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
-use App\Models\GradeUser;
+use App\Models\User;
 
 class CheckBillSPP extends Command
 {
@@ -38,10 +38,10 @@ class CheckBillSPP extends Command
      */
     public function handle()
     {
-        $items = GradeUser::where('is_active', 'Y')->cursor();
-        foreach ($items as $item) {
-            $user = $item->user;
-            $range = date_range($item->latestSpp->bulan);
+        $users = User::has('activeGrade')->get();
+
+        foreach ($users as $user) {
+            $range = date_range($user->latestSpp->bulan);
             $month = [
                 '01' => 1,
                 '02' => 2,
@@ -62,23 +62,24 @@ class CheckBillSPP extends Command
                 $spp_perbulan = $user->setSpp->nominal;
                 # dapatkan bulan tunggakan hingga
                 $adder = '+'.$range.' month';
-                $addMonth = date('Y-m-d', strtotime($adder, strtotime($item->latestSpp->bulan)));
+                $addMonth = date('Y-m-d', strtotime($adder, strtotime($user->latestSpp->bulan)));
                 $month_only = tanggal($month[date('m', strtotime($addMonth))], 'bulan');
 
                 $latest_biller = $user->billers()->latest()->first();
                 if (date('m', strtotime($latest_biller->created_at)) !== date('m')) {
                     $biller = $user->billers()->where('type', 'SPP')
                         ->active()->get();
-                    $tunggakan = $biller->sum('amount');
+                    $tunggakan = $biller->sum('amount') - $biller->sum('cumulative_payment_amount');
                     $user->billers()->where('type', 'SPP')
                         ->active()->update(['is_active' => 'N']);
 
                     $user->billers()->create([
                         'amount' => $tunggakan + ($spp_perbulan * $range),
                         'type' => 'SPP',
+                        'is_installment' => ($range > 1 ? 'Y' : 'N'),
                         'is_active' => 'Y',
                         'qty_spp' => $range,
-                        'previous_spp_date' => $item->latestSpp->bulan,
+                        'previous_spp_date' => $user->latestSpp->bulan,
                         'description' => 'Tagihan SPP hingga bulan '. $month_only
                     ]);
                 }

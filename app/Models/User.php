@@ -108,6 +108,16 @@ class User extends Authenticatable
         return $this->hasOne(SetSpp::class);
     }
 
+    public function spps()
+    {
+        return $this->hasMany(Spp::class);
+    }
+
+    public function latestSpp()
+    {
+        return $this->hasOne(Spp::class)->latestOfMany()->withDefault();
+    }
+
     public function mobilePhones()
     {
         return $this->hasMany(MobilePhone::class);

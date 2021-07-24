@@ -87,7 +87,7 @@ if (! function_exists('rupiah')) {
 if (! function_exists('range_month')) {
     function date_range($start, $end=null, $type=null) {
         if ($end === null) {
-            $end = date('Y-m-01');
+            $end = date('Y-m-02');
         }
 
         if ($type === null) {
