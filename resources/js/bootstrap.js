@@ -1,4 +1,6 @@
 import 'alpinejs';
+// Reference from published scripts
+require('./vendor/livewire-ui/modal');
 
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
