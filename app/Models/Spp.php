@@ -9,9 +9,16 @@ class Spp extends Model
 {
     use HasFactory;
 
-    public function gradeUser()
+    protected $fillable = [
+        'user_id',
+        'grade_id',
+        'payment_history_id',
+        'bulan'
+    ];
+
+    public function user()
     {
-        return $this->belongsTo(GradeUser::class);
+        return $this->belongsTo(User::class);
     }
 
     public function paymentHistory()
