@@ -60,6 +60,7 @@ class CheckBillSPP extends Command
             if ($range > 0) {
                 # buat tagihan
                 $spp_perbulan = $user->setSpp->nominal;
+                # dapatkan bulan tunggakan hingga
                 $adder = '+'.$range.' month';
                 $addMonth = date('Y-m-d', strtotime($adder, strtotime($item->latestSpp->bulan)));
                 $month_only = tanggal($month[date('m', strtotime($addMonth))], 'bulan');
