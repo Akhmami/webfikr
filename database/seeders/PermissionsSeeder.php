@@ -20,7 +20,7 @@ class PermissionsSeeder extends Seeder
         app()[PermissionRegistrar::class]->forgetCachedPermissions();
 
         // create permissions
-        Permission::create(['name' => 'lihat dashboard']);
+        // Permission::create(['name' => 'lihat dashboard']);
         Permission::create(['name' => 'buat artikel']);
         Permission::create(['name' => 'edit artikel']);
         Permission::create(['name' => 'hapus artikel']);
