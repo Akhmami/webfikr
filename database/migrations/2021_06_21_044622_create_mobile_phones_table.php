@@ -15,6 +15,7 @@ class CreateMobilePhonesTable extends Migration
     {
         Schema::create('mobile_phones', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained();
             $table->string('country_code');
             $table->string('number', 15);
             $table->enum('is_first', ['Y', 'N'])->default('N');
