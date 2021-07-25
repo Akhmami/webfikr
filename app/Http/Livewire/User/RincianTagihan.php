@@ -35,28 +35,33 @@ class RincianTagihan extends ModalComponent
             } else {
                 $jenjang = $biller->user->userDetail->jenjang;
                 $trx_id = $biller->type . $jenjang . date('YmdHis');
-                $billing = $biller->billings()->create([
+                $client_id = config('bsi.client_id');
+                $secret_key = config('bsi.secret_key');
+
+                $data = array(
                     'trx_id' => $trx_id,
                     'user_id' => $biller->user->id,
                     'virtual_account' => $no_pendaftaran,
                     'trx_amount' => $biller->amount,
                     'billing_type' => 'c',
+                    'customer_name' => auth()->user()->name,
                     'description' => 'Pembayaran ' . $biller->type,
-                    'datetime_expired' => date('Y-m-d H:i:s', strtotime('2 days'))
-                ]);
+                    'datetime_expired' => date('c', strtotime('2 days'))
+                );
 
-                $data = $billing->toArray();
-                $data['customer_name'] = auth()->user()->name;
-
-                $client_id = config('bsi.client_id');
-                $secret_key = config('bsi.secret_key');
                 $va = new VA($client_id, $secret_key);
                 $result = $va->create($data);
 
-                return redirect()->to(route('user.pembayaran'));
+                if ($result['status'] !== '000') {
+                    $this->emit('openModal', 'user.alert-modal', ['message' => 'Gagal memproses tagihan, silahkan coba lagi jika masih berlanjut hubungi kami.']);
+                } else {
+                    $data['datetime_expired'] = date('Y-m-d H:i:s', strtotime('2 days'));
+                    $biller->billings()->create($data);
+                    return redirect()->to(route('user.pembayaran'));
+                }
             }
         } else {
-            $this->emit('openModal', 'user.alert-modal', ['message' => 'Mohon maaf, sepertinya masih ada pembayaran yang belum diselesaikan']);
+            $this->emit('openModal', 'user.alert-modal', ['message' => 'Masih ada pembayaran yang belum diselesaikan, selengkapnya klik <a href="'.route('user.pembayaran').'" class="underline text-indigo-600">disini</a>']);
         }
     }
 }

@@ -13,6 +13,7 @@ class Biller extends Model
         'amount',
         'cumulative_payment_amount',
         'type',
+        'is_installment',
         'is_active',
         'qty_spp',
         'previous_spp_date',

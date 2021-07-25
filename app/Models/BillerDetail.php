@@ -18,4 +18,9 @@ class BillerDetail extends Model
         'nama',
         'nominal'
     ];
+
+    public function biller()
+    {
+        return $this->belongsTo(Biller::class);
+    }
 }

@@ -4,15 +4,17 @@
             <h2 class="sr-only" id="profile-overview-title">Pembayaran Overview</h2>
             <div class="bg-white p-6">
                 <div class="flex flex-col">
-                    @if ($payments->count() > 0)
-                    @foreach ($payments as $payment)
+                    @if (!empty($payment))
                     <div class="text-center">
                         <h2 class="text-lg font-semibold">Selesaikan Pembayaran dalam</h2>
                         <span class="sr-only"
                             id="date">{{ date('M j, Y H:i:s', strtotime($payment->datetime_expired)) }}</span>
                         <div class="py-2 text-xl font-bold text-red-500" id="demo"></div>
                         <span class="text-sm text-gray-500">Batas Akhir Pembayaran</span>
-                        <h2 class="text-lg font-semibold">{{ $payment->date_expired }}</h2>
+                        <h2 class="text-lg font-semibold mb-4">{{ $payment->date_expired }}</h2>
+
+                        <a href="#" wire:click.prevent="batal" class="text-indigo-600 text-sm hover:underline">Batalkan
+                            Pembayaran</a>
                     </div>
 
                     <div class="w-2/3 mx-auto border rounded-md mt-8">
@@ -70,7 +72,6 @@
                             <li>1. Buka...</li>
                         </ol>
                     </div>
-                    @endforeach
                     @else
                     <div class="text-center">
                         <svg xmlns="http://www.w3.org/2000/svg" class="mx-auto h-12 w-12 text-gray-400" width="44"
@@ -132,7 +133,7 @@
           // If the count down is finished, write some text
           if (distance < 0) {
             clearInterval(x);
-            document.getElementById("demo").innerHTML = "EXPIRED";
+            document.getElementById("demo").innerHTML = "DIBATALKAN";
           }
         }, 1000);
 

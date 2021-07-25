@@ -11,15 +11,12 @@
                     <div class="flex items-center space-x-4">
                         <div class="flex-1 min-w-0">
                             <p class="text-md font-semibold text-gray-900 truncate">
-                                {{ rupiah($biller->amount) }}
+                                {{ rupiah(($biller->amount - $biller->cumulative_payment_amount)) }}
                             </p>
                             <p class="text-sm text-gray-500 truncate">
-                                {{ $biller->description }} {{ $biller->is_installment === 'Y' ? '(bisa dicicil)' : ''}}
+                                {{ $biller->description }}
                             </p>
                         </div>
-                        @error($biller->id)
-                        {{ $message }}
-                        @enderror
                         <div>
                             @if ($biller->activeBillings()->count() > 0)
                             <a href="{{ route('user.pembayaran') }}"

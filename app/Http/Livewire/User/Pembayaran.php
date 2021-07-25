@@ -6,12 +6,24 @@ use Livewire\Component;
 
 class Pembayaran extends Component
 {
-    public $payments;
+    public $payment;
+
+    public function mount()
+    {
+        $this->payment = auth()->user()->billings()->active()->latest()->first();
+    }
 
     public function render()
     {
-        $this->payments = auth()->user()->billings()->active()->get();
-
         return view('livewire.user.pembayaran');
+    }
+
+    public function batal()
+    {
+        $this->payment->update([
+            'datetime_expired' => now()
+        ]);
+
+        return redirect()->to(route('user.pembayaran'));
     }
 }

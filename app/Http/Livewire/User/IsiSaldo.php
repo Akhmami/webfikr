@@ -52,7 +52,7 @@ class IsiSaldo extends ModalComponent
 
             return redirect()->to(route('user.pembayaran'));
         } else {
-            $this->emit('openModal', 'user.alert-modal', ['message' => 'Mohon maaf, sepertinya masih ada pembayaran yang belum diselesaikan']);
+            $this->emit('openModal', 'user.alert-modal', ['message' => 'Masih ada pembayaran yang belum diselesaikan, selengkapnya klik <a href="'.route('user.pembayaran').'" class="underline text-indigo-600">disini</a>']);
         }
 
     }
