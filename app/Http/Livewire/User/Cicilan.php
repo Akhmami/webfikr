@@ -45,8 +45,6 @@ class Cicilan extends ModalComponent
     {
         $jenjang = auth()->user()->userDetail->jenjang;
         $trx_id = $this->biller['type'] . $jenjang . date('YmdHis');
-        $client_id = config('bsi.client_id');
-        $secret_key = config('bsi.secret_key');
 
         $data = array(
             'biller_id' => $this->biller['id'],
@@ -59,8 +57,7 @@ class Cicilan extends ModalComponent
             'datetime_expired' => date('c', strtotime('2 days'))
         );
 
-        $va = new VA($client_id, $secret_key);
-        dd($va);
+        $va = new VA;
         $result = $va->create($data);
 
         if ($result['status'] !== '000') {

@@ -35,8 +35,6 @@ class RincianTagihan extends ModalComponent
             } else {
                 $jenjang = $biller->user->userDetail->jenjang;
                 $trx_id = $biller->type . $jenjang . date('YmdHis');
-                $client_id = config('bsi.client_id');
-                $secret_key = config('bsi.secret_key');
 
                 $data = array(
                     'trx_id' => $trx_id,
@@ -49,7 +47,7 @@ class RincianTagihan extends ModalComponent
                     'datetime_expired' => date('c', strtotime('2 days'))
                 );
 
-                $va = new VA($client_id, $secret_key);
+                $va = new VA;
                 $result = $va->create($data);
 
                 if ($result['status'] !== '000') {

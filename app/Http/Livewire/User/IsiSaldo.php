@@ -45,9 +45,7 @@ class IsiSaldo extends ModalComponent
             $data['billing_type'] = 'c';
             $data['description'] = 'Isi saldo';
 
-            $client_id = config('bsi.client_id');
-            $secret_key = config('bsi.secret_key');
-            $va = new VA($client_id, $secret_key);
+            $va = new VA;
             $result = $va->create($data);
 
             return redirect()->to(route('user.pembayaran'));
