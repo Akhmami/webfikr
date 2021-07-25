@@ -141,8 +141,7 @@
                 <div class="pt-3 pb-2">
                     <div class="flex items-center justify-between px-4">
                         <div>
-                            <img class="h-8 w-auto" src="https://tailwindui.com/img/logos/workflow-mark-cyan-600.svg"
-                                alt="Workflow">
+                            <img class="h-8 w-auto" src="{{ asset('images/brand.svg') }}" alt="Workflow">
                         </div>
                         <div class="-mr-2">
                             <button type="button" @click="open= false"
@@ -161,30 +160,28 @@
                         <a href="{{ route('user.home') }}"
                             class="block rounded-md px-3 py-2 text-base text-gray-900 font-medium hover:bg-gray-100 hover:text-gray-800">Home</a>
 
-                        <a href="#"
+                        <a href="{{ route('user.coming-soon') }}"
                             class="block rounded-md px-3 py-2 text-base text-gray-900 font-medium hover:bg-gray-100 hover:text-gray-800">Profile</a>
 
-                        <a href="#"
+                        <a href="{{ route('user.coming-soon') }}"
                             class="block rounded-md px-3 py-2 text-base text-gray-900 font-medium hover:bg-gray-100 hover:text-gray-800">Resources</a>
 
-                        <a href="#"
+                        <a href="{{ route('user.coming-soon') }}"
                             class="block rounded-md px-3 py-2 text-base text-gray-900 font-medium hover:bg-gray-100 hover:text-gray-800">Company
                             Directory</a>
 
-                        <a href="#"
+                        <a href="{{ route('user.coming-soon') }}"
                             class="block rounded-md px-3 py-2 text-base text-gray-900 font-medium hover:bg-gray-100 hover:text-gray-800">Openings</a>
                     </div>
                 </div>
                 <div class="pt-4 pb-2">
                     <div class="flex items-center px-5">
                         <div class="flex-shrink-0">
-                            <img class="h-10 w-10 rounded-full"
-                                src="https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                                alt="">
+                            <img class="h-10 w-10 rounded-full" src="{{ asset('images/user.png') }}" alt="">
                         </div>
                         <div class="ml-3 min-w-0 flex-1">
-                            <div class="text-base font-medium text-gray-800 truncate">Chelsea Hagon</div>
-                            <div class="text-sm font-medium text-gray-500 truncate">chelseahagon@example.com
+                            <div class="text-base font-medium text-gray-800 truncate">{{ auth()->user()->name }}</div>
+                            <div class="text-sm font-medium text-gray-500 truncate">{{ auth()->user()->email }}
                             </div>
                         </div>
                         <button
