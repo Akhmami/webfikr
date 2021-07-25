@@ -44,7 +44,7 @@ class CallbackController extends BaseController
                     'is_active' => ($cpa_now < $billing->biller->amount ? 'Y' : 'N')
                 ]);
 
-                // Paymented::dispatch($billing, $data);
+                Paymented::dispatch($billing, $data);
 
                 echo '{"status":"000"}';
                 exit;
