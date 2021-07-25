@@ -50,7 +50,6 @@ class RincianTagihan extends ModalComponent
                 );
 
                 $va = new VA($client_id, $secret_key);
-                dd($va);
                 $result = $va->create($data);
 
                 if ($result['status'] !== '000') {
