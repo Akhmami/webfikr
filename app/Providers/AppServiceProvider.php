@@ -25,6 +25,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        // Fix for SwiftMailer Service;
+        $_SERVER["SERVER_NAME"] = config('app.domain');
         View::composer('layouts.dash', BreadcrumbComposer::class);
     }
 }

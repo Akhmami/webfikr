@@ -10,6 +10,7 @@ use Illuminate\Notifications\Notification;
 class PaymentNotification extends Notification
 {
     use Queueable;
+
     public $payment;
 
     /**

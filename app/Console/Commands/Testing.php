@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use App\Libraries\VA;
+use App\Notifications\PaymentNotification;
 
 class Testing extends Command
 {
@@ -58,8 +59,9 @@ class Testing extends Command
         // $result = $va->create($data);
         // dd($result);
         $user = \App\Models\User::find(4);
+        $user->notify(new PaymentNotification($data));
 
-        $wa = new \App\Libraries\WA($user);
-        dd($wa->notifyPayment($data));
+        // $wa = new \App\Libraries\WA($user);
+        // dd($wa->notifyPayment($data));
     }
 }
