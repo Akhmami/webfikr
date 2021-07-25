@@ -35,7 +35,7 @@
                                 </div>
                             </a>
 
-                            <a href="{{ route('user.lainnya') }}"
+                            <a href="{{ route('user.coming-soon') }}"
                                 class="relative group bg-white p-6 focus-within:ring-2 focus-within:ring-inset focus-within:ring-cyan-500">
                                 <div class="flex items-center space-x-2">
                                     <span class="rounded-lg inline-flex p-3 bg-sky-50 text-sky-700 ring-4 ring-white">

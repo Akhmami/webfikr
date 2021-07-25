@@ -8,16 +8,15 @@
                 </div>
 
                 <div class="flex flex-col space-y-4">
-                    @foreach ($grade_users->reverse() as $grades)
-                    @foreach ($grades as $items)
+                    @foreach ($grades as $grade)
                     <div class="bg-white overflow-hidden shadow rounded-lg divide-y divide-gray-200">
                         <div class="px-4 py-5 sm:px-6">
-                            Kelas {!! $items->grade->nama !!}
+                            Kelas {!! $grade->nama !!}
                         </div>
                         <div class="px-4 py-5 sm:p-6">
-                            @if ($items->spps->count() > 0)
+                            @if ($grade->spps->count() > 0)
                             <div class="flex space-x-4">
-                                @foreach ($items->spps->chunk(4) as $chunk)
+                                @foreach ($grade->spps->chunk(4) as $chunk)
                                 <div class="flex flex-col space-y-2 flex-1">
                                     @foreach ($chunk as $bln)
                                     <div class="flex items-center p-2 rounded-full bg-blue-50">
@@ -39,7 +38,6 @@
                             @endif
                         </div>
                     </div>
-                    @endforeach
                     @endforeach
                 </div>
 

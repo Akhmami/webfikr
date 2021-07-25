@@ -3,7 +3,7 @@
         <div class="relative flex flex-wrap items-center justify-center lg:justify-between">
             <!-- Logo -->
             <div class="absolute left-0 flex-shrink-0 lg:static">
-                <a href="#">
+                <a href="{{ route('home') }}">
                     <span class="sr-only">Logo</span>
                     <img class="h-10 w-full" src="{{ asset('images/brand2.svg') }}" alt="Brand Logo">
                 </a>
@@ -69,17 +69,17 @@
                                 Home
                             </a>
 
-                            <a href="#"
+                            <a href="{{ route('user.coming-soon') }}"
                                 class="text-blue-200 text-sm font-medium rounded-md bg-white bg-opacity-0 px-3 py-2 hover:bg-opacity-10">
                                 Profile
                             </a>
 
-                            <a href="#"
+                            <a href="{{ route('user.coming-soon') }}"
                                 class="text-blue-200 text-sm font-medium rounded-md bg-white bg-opacity-0 px-3 py-2 hover:bg-opacity-10">
                                 Rapor
                             </a>
 
-                            <a href="#"
+                            <a href="{{ route('user.coming-soon') }}"
                                 class="text-blue-200 text-sm font-medium rounded-md bg-white bg-opacity-0 px-3 py-2 hover:bg-opacity-10">
                                 Kehadiran
                             </a>

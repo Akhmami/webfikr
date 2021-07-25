@@ -22,7 +22,7 @@
                                                 d="M18.816 13.58c2.292 2.138 3.546 4 3.092 4.9c-.745 1.46 -5.783 -.259 -11.255 -3.838c-5.47 -3.579 -9.304 -7.664 -8.56 -9.123c.464 -.91 2.926 -.444 5.803 .805" />
                                             <circle cx="12" cy="12" r="7" />
                                         </svg>
-                                        <h3 class="mt-2 text-4xl font-medium text-gray-900">Cooming Soon</h3>
+                                        <h3 class="mt-2 text-4xl font-medium text-gray-900">Coming Soon</h3>
                                         <p class="mt-2 text-sm text-gray-500">
                                             Halaman yang anda tuju belum tersedia.
                                         </p>
