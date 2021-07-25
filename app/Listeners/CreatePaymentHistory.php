@@ -40,15 +40,14 @@ class CreatePaymentHistory
 
         if ($billing->biller->type === 'SPP') {
             $grade = $billing->user->activeGrade()->first();
-            $qty_bln = $billing->biller->qty_spp ?? 0;
-            $previous_spp_date = $billing->biller->previous_spp_date;
+            $spp_billing = json_decode($billing->spp_pay_month);
 
             // create spp
-            for($i = 1; $i <= $qty_bln; $i++) {
+            foreach ($spp_billing as $spp) {
                 $paymentHistory->spps()->create([
                     'user_id' => $billing->user->id,
                     'grade_id' => $grade->id,
-                    'bulan' => date('Y-m-01', strtotime('+'. $i .' month', strtotime($previous_spp_date)))
+                    'bulan' => $spp
                 ]);
             }
         }

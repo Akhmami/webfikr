@@ -24,6 +24,7 @@ class Billing extends Model
         'billing_type',
         'is_paid',
         'description',
+        'spp_pay_month',
         'datetime_expired'
     ];
 

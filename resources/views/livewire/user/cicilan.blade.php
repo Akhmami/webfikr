@@ -13,10 +13,13 @@
                 <div>
                     <span>Pilihan Pembayaran</span>
                     <div class="flex gap-4 flex-wrap mt-2">
+                        @php
+                        $id = 1;
+                        @endphp
                         @foreach ($options as $item)
                         <label class="border-gray-200 rounded-md border p-4 flex flex-col cursor-pointer">
                             <div class="flex items-center text-sm">
-                                <input type="radio" wire:model.lazy="payment_amount" value="{{ $item['value'] }}"
+                                <input type="radio" wire:model.lazy="option_id" value="{{ $id }}"
                                     class="h-4 w-4 text-indigo-600 border-gray-300 focus:ring-indigo-500">
                                 <span id="pricing-plans-0-label"
                                     class="text-gray-900 ml-3 font-medium">{{ rupiah($item['value']) }}</span>
@@ -27,6 +30,9 @@
                                 {{ $item['description'] }}</p>
                             @endif
                         </label>
+                        @php
+                        $id++;
+                        @endphp
                         @endforeach
                     </div>
                 </div>

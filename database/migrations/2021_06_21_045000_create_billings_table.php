@@ -23,6 +23,7 @@ class CreateBillingsTable extends Migration
             $table->enum('billing_type', ['o', 'i', 'c']);
             $table->enum('is_paid', ['Y', 'N'])->default('N');
             $table->string('description')->nullable();
+            $table->text('spp_pay_month')->nullable();
             $table->timestamp('datetime_expired')->nullable();
             $table->timestamps();
         });

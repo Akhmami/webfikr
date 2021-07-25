@@ -46,7 +46,7 @@ class PaymentNotification extends Notification
                     ->greeting('Assalaamu\'alaikum '. $this->payment['customer_name'])
                     ->line('Pembayaran terverifikasi dan telah kami terima')
                     ->line('Terimakasih, berikut informasi pembayaranmu:')
-                    ->action('History Pembayaran', route('user.home'))
+                    ->action('Riwayat Pembayaran', route('user.home'))
                     ->line('Jazakallah khoir, semoga Allah memberikan keberkahan dan kelancaran rizki.');
     }
 

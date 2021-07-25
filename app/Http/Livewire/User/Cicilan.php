@@ -8,17 +8,19 @@ use App\Libraries\VA;
 class Cicilan extends ModalComponent
 {
     public $max_amount;
-    public $payment_amount;
     public $biller;
+    public $option_id;
     public $options;
+    public $user;
 
     public function mount($biller)
     {
+        $this->user = auth()->user();
         $this->biller = $biller;
         $this->max_amount = $biller['amount'] - $biller['cumulative_payment_amount'];
         $qty = $this->biller['qty_spp'];
         if ($this->biller['type'] === 'SPP') {
-            $divider = auth()->user()->setSpp->nominal;
+            $divider = $this->user->setSpp->nominal;
         } else {
             $divider = $biller['amount'] / $qty;
         }
@@ -29,7 +31,7 @@ class Cicilan extends ModalComponent
                 break;
             }
 
-            $this->options[] = [
+            $this->options[$i] = [
                 'value' => $val,
                 'description' => $i . ' Bulan'
             ];
@@ -43,16 +45,17 @@ class Cicilan extends ModalComponent
 
     public function bayar()
     {
-        $jenjang = auth()->user()->userDetail->jenjang;
+        $jenjang = $this->user->userDetail->jenjang;
         $trx_id = $this->biller['type'] . $jenjang . date('YmdHis');
+        $payment_amount = $this->options[$this->option_id]['value'];
 
         $data = array(
             'biller_id' => $this->biller['id'],
             'trx_id' => $trx_id,
-            'virtual_account' => auth()->user()->userDetail->no_pendaftaran,
-            'trx_amount' => $this->payment_amount,
+            'virtual_account' => $this->user->userDetail->no_pendaftaran,
+            'trx_amount' => $payment_amount,
             'billing_type' => 'c',
-            'customer_name' => auth()->user()->name,
+            'customer_name' => $this->user->name,
             'description' => 'Pembayaran ' . $this->biller['type'],
             'datetime_expired' => date('c', strtotime('2 days'))
         );
@@ -63,8 +66,17 @@ class Cicilan extends ModalComponent
         if ($result['status'] !== '000') {
             $this->emit('openModal', 'user.alert-modal', ['message' => 'Gagal memproses tagihan, silahkan coba lagi jika masih berlanjut hubungi kami.']);
         } else {
+            if ($this->biller['type'] === 'SPP') {
+                $month = [];
+                for ($i=1; $i <= $this->option_id; $i++) {
+                    $adder = '+'.$i.' month';
+                    $month[] = date('Y-m-d', strtotime($adder, strtotime($this->user->latestSpp->bulan)));
+                }
+                $data['spp_pay_month'] = json_encode($month);
+            }
+
             $data['datetime_expired'] = date('Y-m-d H:i:s', strtotime('2 days'));
-            auth()->user()->billings()->create($data);
+            $this->user->billings()->create($data);
             return redirect()->to(route('user.pembayaran'));
         }
     }
