@@ -17,12 +17,7 @@ class CallbackController extends BaseController
 
     public function development()
     {
-        // FROM BNI
-        $client_id = config('bsi.client_id');
-        $secret_key = config('bsi.secret_key');
-
-        $va = new VA($client_id, $secret_key);
-
+        $va = new VA;
         $data = $va->callback();
 
         if ($data['status'] !== '000') {
@@ -39,7 +34,6 @@ class CallbackController extends BaseController
             } else {
                 // update billing
                 $billing->update([
-                    'trx_amount' => $data['trx_amount'],
                     'is_paid' => ($data['cumulative_payment_amount'] === $data['trx_amount'] ? 'Y' : 'N'),
                 ]);
 
