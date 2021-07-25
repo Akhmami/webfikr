@@ -6,6 +6,9 @@
 
         <x-slot name="content">
             <div class="flex flex-col space-y-2">
+                @if (empty($user->activeBillers))
+                Tagihan belum tersedia
+                @else
                 @foreach ($user->activeBillers as $biller)
                 <div class="p-4 bg-gray-100 rounded-md">
                     <div class="flex items-center space-x-4">
@@ -34,6 +37,7 @@
                     </div>
                 </div>
                 @endforeach
+                @endif
             </div>
         </x-slot>
 

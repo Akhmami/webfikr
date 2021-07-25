@@ -16,7 +16,7 @@ class Bill extends Component
         $bill_another = auth()->user()->billerAnother;
         $spp = ($bill_spp->amount ?? 0) - ($bill_spp->cumulative_payment_amount ?? 0);
         $another = $bill_another->sum('amount') - $bill_another->sum('cumulative_payment_amount');
-        $this->total_amount = rupiah(($spp + $another));
+        $this->total_amount = $spp + $another;
         $this->description = 'Tagihan belum tersedia';
 
         if (!empty($bill_spp) && $bill_another->sum('amount') > 0) {

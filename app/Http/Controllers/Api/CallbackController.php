@@ -27,6 +27,7 @@ class CallbackController extends BaseController
             // check to DB
             $billing = Billing::with(['user', 'biller'])->where('trx_id', $data['trx_id'])->first();
             $biller_cpa = $billing->biller->cumulative_payment_amount;
+            $cpa_now = $biller_cpa + $data['cumulative_payment_amount'];
 
             if (!$billing) {
                 echo '{"status":"999", "message":"Trx_id tidak tersedia"}';
@@ -39,7 +40,8 @@ class CallbackController extends BaseController
 
                 // update biller
                 $billing->biller()->update([
-                    'cumulative_payment_amount' => ($biller_cpa + $data['cumulative_payment_amount']),
+                    'cumulative_payment_amount' => $cpa_now,
+                    'is_active' => ($cpa_now < $billing->biller->amount ? 'Y' : 'N')
                 ]);
 
                 Paymented::dispatch($billing, $data);
