@@ -37,14 +37,14 @@ class WA
             'LAI' => 'Lainnya'
         ];
         $type = $types[substr($data['trx_id'], 0, 3)];
-        $url = $this->base_url . '/v1/broadcasts/whatsapp/direct';
+        $base_url = $this->base_url . '/v1/broadcasts/whatsapp/direct';
         $phone = $this->user->firstMobilePhone->country_code . $this->user->firstMobilePhone->number;
         $nominal = rupiah($data['payment_amount']);
         $url = 'https://apps.' . config('app.domain');
 
         sms($phone, "Terima kasih, pembayaran ananda {$this->user->name} sebesar {$nominal} telah berhasil, silahkan kunjungi {$url} untuk informasi lainnya. Semoga Allah berikan keberkahan rezeki kepada Ayah/Bunda.");
 
-        $response = Http::withToken($this->token)->post($url, [
+        $response = Http::withToken($this->token)->post($base_url, [
             'to_name' => 'Abun ' . $this->user->name,
             'to_number' => $phone ?? null,
             'message_template_id' => $data['template'],
