@@ -26,7 +26,7 @@ class EventServiceProvider extends ServiceProvider
         ],
         Paymented::class => [
             CreatePaymentHistory::class,
-            // SendPaymentNotification::class,
+            SendPaymentNotification::class,
             DatabasePaymentNotification::class,
         ],
     ];
