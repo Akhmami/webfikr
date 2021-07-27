@@ -11,7 +11,7 @@ if($errors->has($name)){
 $class = 'pr-10 border-red-300 border-2 text-red-900 focus:ring-red-500 focus:border-red-500 block w-full
 focus:outline-none sm:text-sm rounded-md';
 } else {
-$class = 'block w-full focus:outline-none sm:text-sm rounded-md';
+$class = 'block w-full focus:outline-none sm:text-sm rounded-md border-gray-300';
 }
 @endphp
 

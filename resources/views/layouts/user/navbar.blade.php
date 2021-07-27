@@ -40,12 +40,9 @@
                         x-transition:leave-end="transform opacity-0 scale-95"
                         class="origin-top-right z-40 absolute -right-2 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
                         role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
-                        <!-- Active: "bg-gray-100", Not Active: "" -->
-                        <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1"
-                            id="user-menu-item-0">Your Profile</a>
 
-                        <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1"
-                            id="user-menu-item-1">Settings</a>
+                        <a href="{{ route('user.setting.profile') }}" class="block px-4 py-2 text-sm text-gray-700"
+                            role="menuitem" tabindex="-1" id="user-menu-item-1">Settings</a>
 
                         <a href="{{ route('logout') }}" onclick="event.preventDefault();
                             document.getElementById('logout-form').submit();"
@@ -196,11 +193,7 @@
                         </button>
                     </div>
                     <div class="mt-3 px-2 space-y-1">
-                        <a href="#"
-                            class="block rounded-md px-3 py-2 text-base text-gray-900 font-medium hover:bg-gray-100 hover:text-gray-800">Your
-                            Profile</a>
-
-                        <a href="#"
+                        <a href="{{ route('user.setting.profile') }}"
                             class="block rounded-md px-3 py-2 text-base text-gray-900 font-medium hover:bg-gray-100 hover:text-gray-800">Settings</a>
 
                         <a href="{{ route('logout') }}" onclick="event.preventDefault();

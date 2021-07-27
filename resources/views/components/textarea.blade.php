@@ -12,7 +12,7 @@
     @endif
     <div class="mt-1 relative rounded-md shadow-sm">
         <textarea {{ $livewire ? 'wire:model.lazy' : 'name' }}="{{ $name }}" rows="3" {!! $attributes->merge(['class' => 'block
-        w-full focus:outline-none
+        w-full focus:outline-none border-gray-300
         sm:text-sm rounded-md' ]) !!} @error($name) {!! $attributes->merge(['class' => 'pr-10
         border-red-300 text-red-900 focus:ring-red-500 focus:border-red-500' ]) !!}
         @enderror

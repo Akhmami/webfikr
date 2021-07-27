@@ -38,4 +38,9 @@ Route::domain('apps.' . config('app.domain'))
         Route::view('/pembayaran', 'user.pembayaran')->name('pembayaran');
         Route::view('/spp', 'user.spp')->name('spp');
         Route::view('/coming-soon', 'user.coming-soon')->name('coming-soon');
+        Route::name('setting.')
+            ->prefix('settings')
+            ->group(function () {
+                Route::view('/', 'user.setting')->name('profile');
+            });
 });
