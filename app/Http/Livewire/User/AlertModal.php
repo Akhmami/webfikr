@@ -25,7 +25,7 @@ class AlertModal extends ModalComponent
     //     // '5xl'
     //     // '6xl'
     //     // '7xl'
-    //     return 'sm';
+    //     return 'md md:max-w-xl lg:max-w-3xl xl:max-w-5xl';
     // }
 
     public static function closeModalOnClickAway(): bool

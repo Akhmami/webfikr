@@ -67,4 +67,9 @@ class Billing extends Model
         return $query->where('datetime_expired', '<=', Carbon::now())
             ->orWhere('is_paid', 'Y');
     }
+
+    public function getFullVirtualAccountAttribute()
+    {
+        return config('bsi.bpi_code') . config('bsi.client_id') .' '. $this->virtual_account;
+    }
 }

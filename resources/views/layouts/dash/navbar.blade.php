@@ -22,33 +22,14 @@
                             </svg>
                         </a>
 
-                        <a @click.prevent="$dispatch('open-dropdown',{id: 1, menu: 'santri'})" href="#"
-                            class="inline-flex items-center group text-white hover:bg-blue-500 hover:bg-opacity-75 px-3 py-2 rounded-md text-sm font-medium">
-                            <span>Santri</span>
-                            <svg class="ml-1 -mr-1 h-5 w-5 group-hover:text-gray-500" xmlns="http://www.w3.org/2000/svg"
-                                viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                <path fill-rule="evenodd"
-                                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                                    clip-rule="evenodd" />
-                            </svg>
-                        </a>
+                        <a href="{{ route('dash.index') }}"
+                            class="text-white hover:bg-blue-500 hover:bg-opacity-75 px-3 py-2 rounded-md text-sm font-medium">Santri</a>
 
-                        <a @click.prevent="$dispatch('open-dropdown',{id: 1, menu: 'keuangan'})" href="#"
-                            class="inline-flex items-center group text-white hover:bg-blue-500 hover:bg-opacity-75 px-3 py-2 rounded-md text-sm font-medium">
-                            <span>Keuangan</span>
-                            <svg class="ml-1 -mr-1 h-5 w-5 group-hover:text-gray-500" xmlns="http://www.w3.org/2000/svg"
-                                viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                <path fill-rule="evenodd"
-                                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                                    clip-rule="evenodd" />
-                            </svg>
-                        </a>
+                        <a href="{{ route('dash.index') }}"
+                            class="text-white hover:bg-blue-500 hover:bg-opacity-75 px-3 py-2 rounded-md text-sm font-medium">PSB</a>
 
-                        <a href="#"
-                            class="text-white hover:bg-blue-500 hover:bg-opacity-75 px-3 py-2 rounded-md text-sm font-medium">CBT</a>
-
-                        <a href="#"
-                            class="text-white hover:bg-blue-500 hover:bg-opacity-75 px-3 py-2 rounded-md text-sm font-medium">User</a>
+                        <a href="{{ route('dash.keuangan.index') }}"
+                            class="text-white hover:bg-blue-500 hover:bg-opacity-75 px-3 py-2 rounded-md text-sm font-medium">Keuangan</a>
 
                         <a @click.prevent="$dispatch('open-dropdown',{id: 1, menu: 'lainnya'})" href="#"
                             class="inline-flex items-center group text-white hover:bg-blue-500 hover:bg-opacity-75 px-3 py-2 rounded-md text-sm font-medium">
@@ -233,30 +214,26 @@
         x-transition:leave-end="transform opacity-0 scale-95" class="md:hidden" id="mobile-menu">
         <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
             <!-- Current: "bg-indigo-700 text-white", Default: "text-white hover:bg-indigo-500 hover:bg-opacity-75" -->
-            <a href="#" class="bg-blue-700 text-white block px-3 py-2 rounded-md text-base font-medium">Dashboard</a>
+            <a href="{{ route('dash.index') }}"
+                class="bg-blue-700 text-white block px-3 py-2 rounded-md text-base font-medium">Dashboard</a>
 
             <a href="#"
-                class="text-white hover:bg-blue-500 hover:bg-opacity-75 block px-3 py-2 rounded-md text-base font-medium">Team</a>
+                class="text-white hover:bg-blue-500 hover:bg-opacity-75 block px-3 py-2 rounded-md text-base font-medium">Website</a>
 
             <a href="#"
-                class="text-white hover:bg-blue-500 hover:bg-opacity-75 block px-3 py-2 rounded-md text-base font-medium">Projects</a>
+                class="text-white hover:bg-blue-500 hover:bg-opacity-75 block px-3 py-2 rounded-md text-base font-medium">PSB</a>
 
             <a href="#"
-                class="text-white hover:bg-blue-500 hover:bg-opacity-75 block px-3 py-2 rounded-md text-base font-medium">Calendar</a>
-
-            <a href="#"
-                class="text-white hover:bg-blue-500 hover:bg-opacity-75 block px-3 py-2 rounded-md text-base font-medium">Reports</a>
+                class="text-white hover:bg-blue-500 hover:bg-opacity-75 block px-3 py-2 rounded-md text-base font-medium">Keuangan</a>
         </div>
         <div class="pt-4 pb-3 border-t border-blue-700">
             <div class="flex items-center px-5">
                 <div class="flex-shrink-0">
-                    <img class="h-10 w-10 rounded-full"
-                        src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                        alt="">
+                    <img class="h-10 w-10 rounded-full" src="{{ asset('images/user.png') }}" alt="">
                 </div>
                 <div class="ml-3">
-                    <div class="text-base font-medium text-white">Tom Cook</div>
-                    <div class="text-sm font-medium text-blue-300">tom@example.com</div>
+                    <div class="text-base font-medium text-white">{{ Auth::user()->name }}</div>
+                    <div class="text-sm font-medium text-blue-300">{{ Auth::user()->email }}</div>
                 </div>
                 <button
                     class="ml-auto bg-blue-600 flex-shrink-0 p-1 border-2 border-transparent rounded-full text-blue-200 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-blue-600 focus:ring-white">
@@ -271,10 +248,6 @@
             </div>
             <div class="mt-3 px-2 space-y-1">
                 <a href="#"
-                    class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-blue-500 hover:bg-opacity-75">Your
-                    Profile</a>
-
-                <a href="#"
                     class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-blue-500 hover:bg-opacity-75">Settings</a>
 
                 <a href="#"
@@ -284,11 +257,10 @@
     </div>
 </nav>
 
-<header x-data="{ open: false, website: false, santri: false, keuangan: false }" x-show="open"
-    @open-dropdown.window="if ($event.detail.id == 1) open = true"
-    @click.away="open = website = santri = keuangan = false" x-transition:enter="transition ease-out duration-100"
-    x-transition:enter-start="transform opacity-0 scale-95" x-transition:enter-end="transform opacity-100 scale-100"
-    class="bg-white shadow">
+<header x-data="{ open: false, website: false, lainnya: false }" x-show="open"
+    @open-dropdown.window="if ($event.detail.id == 1) open = true" @click.away="open = website = lainnya = false"
+    x-transition:enter="transition ease-out duration-100" x-transition:enter-start="transform opacity-0 scale-95"
+    x-transition:enter-end="transform opacity-100 scale-100" class="bg-white shadow">
     <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
         <ul class="flex items-center justify-start" x-show="website"
             @open-dropdown.window="if ($event.detail.menu == 'website') website = true">
@@ -319,8 +291,8 @@
             </li>
         </ul>
 
-        <ul class="flex items-center justify-start" x-show="santri"
-            @open-dropdown.window="if ($event.detail.menu == 'santri') santri = true">
+        <ul class="flex items-center justify-start" x-show="lainnya"
+            @open-dropdown.window="if ($event.detail.menu == 'lainnya') lainnya = true">
             <li class="flow-root">
                 <a href="#"
                     class="p-3 flex items-center space-x-1 rounded-md text-base font-medium text-gray-900 hover:bg-gray-50 transition ease-in-out duration-150">
@@ -330,7 +302,7 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                     </svg>
-                    <span class="ml-4">PSB</span>
+                    <span class="ml-4">CBT</span>
                 </a>
             </li>
 
@@ -343,23 +315,7 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
                     </svg>
-                    <span class="ml-4">Santri</span>
-                </a>
-            </li>
-        </ul>
-
-        <ul class="flex items-center justify-start" x-show="keuangan"
-            @open-dropdown.window="if ($event.detail.menu == 'keuangan') keuangan = true">
-            <li class="flow-root">
-                <a href="{{ route('dash.billing.index') }}"
-                    class="p-3 flex items-center space-x-1 rounded-md text-base font-medium text-gray-900 hover:bg-gray-50 transition ease-in-out duration-150">
-                    <!-- Heroicon name: outline/information-circle -->
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-400" fill="none"
-                        viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4" />
-                    </svg>
-                    <span class="ml-4">Billing</span>
+                    <span class="ml-4">Manajemen User</span>
                 </a>
             </li>
 
@@ -370,22 +326,9 @@
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-400" fill="none"
                         viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" />
+                            d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
                     </svg>
-                    <span class="ml-4">SPP</span>
-                </a>
-            </li>
-
-            <li class="flow-root">
-                <a href="#"
-                    class="p-3 flex items-center space-x-1 rounded-md text-base font-medium text-gray-900 hover:bg-gray-50 transition ease-in-out duration-150">
-                    <!-- Heroicon name: outline/office-building -->
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-400" fill="none"
-                        viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
-                    </svg>
-                    <span class="ml-4">Histori Pembayaran</span>
+                    <span class="ml-4">Raport</span>
                 </a>
             </li>
         </ul>

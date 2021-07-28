@@ -21,12 +21,12 @@ Route::domain(config('app.domain'))
             ->prefix('dashboard')
             ->group(function () {
                 Route::view('/', 'dashboard')->name('index');
-                Route::view('users', 'dash.users.index')
+                Route::view('/users', 'dash.users.index')
                     ->middleware('role:super-admin|admin')
                     ->name('users.index');
-                Route::view('billing', 'dash.keuangan.billing')
+                Route::view('/keuangan', 'dash.keuangan.index')
                     ->middleware('permission:lihat billing|edit billing|hapus billing|buat billing')
-                    ->name('billing.index');
+                    ->name('keuangan.index');
         });
 });
 

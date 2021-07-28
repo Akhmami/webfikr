@@ -31,7 +31,7 @@
                                         Nomor Virtual Account
                                     </p>
                                     <p class="text-lg font-bold truncate">
-                                        {{ $payment->virtual_account }}
+                                        {{ $payment->full_virtual_account }}
                                     </p>
                                 </div>
                                 <div>
