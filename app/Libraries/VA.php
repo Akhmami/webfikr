@@ -118,8 +118,6 @@ class VA
             $this->url = $this->base_url . '/bni/inquiry';
         }
 
-        dd($this->url);
-
         $hashed_string = BsiHashing::encrypt(
             $data_asli,
             $this->client_id,
