@@ -25,7 +25,8 @@ class Billing extends Model
         'is_paid',
         'description',
         'spp_pay_month',
-        'datetime_expired'
+        'datetime_expired',
+        'is_balance'
     ];
 
     // protected $casts = [

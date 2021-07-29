@@ -15,7 +15,7 @@ class CreateBillingsTable extends Migration
     {
         Schema::create('billings', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('biller_id')->constrained();
+            $table->foreignId('biller_id')->nullable()->constrained();
             $table->foreignId('user_id')->constrained();
             $table->string('trx_id')->unique();
             $table->char('virtual_account', 16);
@@ -25,6 +25,7 @@ class CreateBillingsTable extends Migration
             $table->string('description')->nullable();
             $table->text('spp_pay_month')->nullable();
             $table->timestamp('datetime_expired')->nullable();
+            $table->enum('is_balance', ['Y', 'N'])->default('N');
             $table->timestamps();
         });
     }

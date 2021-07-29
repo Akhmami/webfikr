@@ -11,9 +11,10 @@ class TopupBalance extends Component
     public function render()
     {
         $total = auth()->user()
-            ->balances()
+            ->billings()
+            ->where('is_balance', 'Y')
             ->where('is_paid', 'Y')
-            ->sum('payment_amount');
+            ->sum('trx_amount');
 
         $usage = auth()->user()
             ->balanceUsages()
