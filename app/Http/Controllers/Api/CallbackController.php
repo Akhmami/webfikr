@@ -12,11 +12,6 @@ class CallbackController extends BaseController
 {
     public function index()
     {
-        # code...
-    }
-
-    public function development()
-    {
         $va = new VA;
         $data = $va->callback();
 

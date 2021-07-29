@@ -23,7 +23,7 @@ Route::get('/{slug}', function () {
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/callback/payments', [CallbackController::class, 'index']);
-Route::post('/dev/callback/payments', [CallbackController::class, 'development']);
+// Route::post('/dev/callback/payments', [CallbackController::class, 'development']);
 
 Route::middleware('auth:sanctum')->group( function () {
     Route::post('/me', [AuthController::class, 'me']);
