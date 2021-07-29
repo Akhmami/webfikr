@@ -47,8 +47,6 @@ class RincianTagihan extends ModalComponent
                     'datetime_expired' => date('c', strtotime('2 days'))
                 );
 
-                dd($data);
-
                 $va = new VA;
                 $result = $va->create($data);
 

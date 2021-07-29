@@ -26,6 +26,8 @@ class VA
         //     $data_asli['virtual_account'] = str_replace(substr($data['virtual_account'], 0, 8), '98810789', $data['virtual_account']);
         // }
 
+        dd($data_asli);
+
         $res = $this->hashing($data_asli);
 
         if ($res['status'] !== '000') {
