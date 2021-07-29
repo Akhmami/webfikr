@@ -51,7 +51,7 @@ class RincianTagihan extends ModalComponent
                 $result = $va->create($data);
 
                 if ($result['status'] !== '000') {
-                    $this->emit('openModal', 'user.alert-modal', ['message' => 'Gagal memproses tagihan, silahkan coba lagi jika masih berlanjut hubungi kami. #'. $result['status'] . json_encode($result)]);
+                    $this->emit('openModal', 'user.alert-modal', ['message' => 'Gagal memproses tagihan, silahkan coba lagi jika masih berlanjut hubungi kami. #'. $result['status']]);
                 } else {
                     $data['datetime_expired'] = date('Y-m-d H:i:s', strtotime('2 days'));
                     $biller->billings()->create($data);
