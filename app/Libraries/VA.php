@@ -8,19 +8,19 @@ class VA
 {
     private $client_id;
     private $secret_key;
-    private $url;
+    private $base_url;
 
     public function __construct()
     {
         $this->client_id = config('bsi.client_id');
         $this->secret_key = config('bsi.secret_key');
-        $this->url = config('bsi.url');
+        $this->base_url = config('bsi.url');
     }
 
     public function create($data)
     {
         $data_asli = $data;
-        $data_asli['type'] = 'createBilling';
+        $data_asli['type'] = 'createbilling';
         $data_asli['client_id'] = $this->client_id;
         // if (config('app.env') != 'production') {
         //     $data_asli['virtual_account'] = str_replace(substr($data['virtual_account'], 0, 8), '98810789', $data['virtual_account']);
@@ -106,6 +106,18 @@ class VA
 
     private function hashing($data_asli)
     {
+        if ($data_asli['type'] === 'createbilling') {
+            $this->url = $this->base_url . '/bni/register';
+        }
+
+        if ($data_asli['type'] === 'updatebilling') {
+            $this->url = $this->base_url . '/bni/update';
+        }
+
+        if ($data_asli['type'] === 'inquirybilling') {
+            $this->url = $this->base_url . '/bni/inquiry';
+        }
+
         $hashed_string = BsiHashing::encrypt(
             $data_asli,
             $this->client_id,
