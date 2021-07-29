@@ -13,19 +13,13 @@ class AlertModal extends ModalComponent
         return view('livewire.user.alert-modal');
     }
 
+    /**
+     * Supported: 'sm', 'md', 'lg', 'xl', '2xl', '3xl', '4xl', '5xl', '6xl', '7xl'
+     */
     // public static function modalMaxWidth(): string
     // {
-    //     // 'sm'
-    //     // 'md'
-    //     // 'lg'
-    //     // 'xl'
-    //     // '2xl'
-    //     // '3xl'
-    //     // '4xl'
-    //     // '5xl'
-    //     // '6xl'
-    //     // '7xl'
-    //     return 'md md:max-w-xl lg:max-w-3xl xl:max-w-5xl';
+    //     // return 'md md:max-w-xl lg:max-w-3xl xl:max-w-5xl';
+    //     return 'sm';
     // }
 
     public static function closeModalOnClickAway(): bool

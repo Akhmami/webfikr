@@ -21,6 +21,6 @@
 <livewire:toaster />
 
 @livewire('livewire-ui-modal')
-@livewireUIScripts
+
 @stack('script')
 @endsection
