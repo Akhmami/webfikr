@@ -1,14 +1,14 @@
 <div>
     <x-modal action="create({{$user_id}})">
         <x-slot name="title">
-            Buat billing baru
+            Buat Tagihan Baru
         </x-slot>
 
         <x-slot name="content">
             <div class="flex flex-col space-y-4">
                 @php
                 $type = [
-                'SPP' => 'SPP',
+                // 'SPP' => 'SPP',
                 'DKT' => 'DKT',
                 'PSB' => 'PSB',
                 'DUPSB' => 'Daftar Ulang PSB',
@@ -16,15 +16,18 @@
                 'DUMUTASI' => 'Daftar Ulang Mutasi',
                 'LAINNYA' => 'Lainnya'
                 ];
-                $btype = [
-                'o' => 'Open Payment',
-                'i' => 'Partial Payment',
-                'c' => 'Close Payment'
-                ];
+                $installment = [
+                'Y' => 'Ya',
+                'N' => 'Tidak'
+                ]
                 @endphp
-                <x-select label="Jenis pembayaran" name="billing_type" :list="$btype" livewire />
-                <x-select label="Untuk" name="type" :list="$type" livewire />
-                <x-input label="Tanggal kadaluarsa" name="datetime_expired" livewire />
+
+                <x-select label="Tagihan Untuk" name="type" :list="$type" livewire />
+                <x-select label="Apakah Bisa Diangsur" name="is_installment" :list="$installment" livewire />
+
+                @if ($is_installment === 'Y')
+                <x-input label="Berapa kali diangsur" name="qty_spp" livewire />
+                @endif
 
                 <div class="flex items-center space-x-2">
                     <x-input label="Keterangan" name="nama.0" livewire />
@@ -32,7 +35,7 @@
                         <label class="block text-sm font-medium text-gray-700">Nominal</label>
                         <div class="mt-1 relative rounded-md shadow-sm">
                             <input type="text" wire:model="nominal.0"
-                                class="block w-full focus:outline-none sm:text-sm rounded-md @error('nominal.0')pr-10 border-red-300 border-2 text-red-900 focus:ring-red-500 focus:border-red-500 @enderror">
+                                class="block w-full focus:outline-none sm:text-sm rounded-md border-gray-300 @error('nominal.0')pr-10 border-red-300 border-2 text-red-900 focus:ring-red-500 focus:border-red-500 @enderror">
                             @error ('nominal.0')
                             <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
                                 <!-- Heroicon name: solid/exclamation-circle -->
@@ -62,14 +65,14 @@
                         </button>
                     </div>
                 </div>
-                @foreach ($billing_details as $key => $val)
+                @foreach ($biller_details as $key => $val)
                 <div class="flex items-center space-x-2">
                     <x-input label="Keterangan" name="nama.{{$val}}" livewire />
                     <div>
                         <label class="block text-sm font-medium text-gray-700">Nominal</label>
                         <div class="mt-1 relative rounded-md shadow-sm">
                             <input type="text" wire:model="nominal.{{$val}}"
-                                class="block w-full focus:outline-none sm:text-sm rounded-md @error('nominal.{{$val}}')pr-10 border-red-300 border-2 text-red-900 focus:ring-red-500 focus:border-red-500 @enderror">
+                                class="block w-full focus:outline-none sm:text-sm rounded-md border-gray-300 @error('nominal.{{$val}}')pr-10 border-red-300 border-2 text-red-900 focus:ring-red-500 focus:border-red-500 @enderror">
                             @error ('nominal.{{$val}}')
                             <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
                                 <!-- Heroicon name: solid/exclamation-circle -->

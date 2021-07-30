@@ -15,7 +15,9 @@ class CreatePaymentTypesTable extends Migration
     {
         Schema::create('payment_types', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('payment_option_id')->constrained();
+            $table->foreignId('payment_option_id')->constrained()
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
             $table->string('nama', 25);
             $table->decimal('nominal', 14,0);
             $table->timestamps();

@@ -1,7 +1,7 @@
 <div>
     <x-modal action="create">
         <x-slot name="title">
-            Buat billing baru
+            {{ $title }}
         </x-slot>
 
         <x-slot name="content">
@@ -15,7 +15,7 @@
                 -->
                 @if ($term == "")
                 <div class="text-gray-500 text-sm">
-                    Ketikan nama untuk mencari user
+                    Ketikan nama untuk mencari
                 </div>
                 @else
                 @if($users->isEmpty())
@@ -31,7 +31,7 @@
                                 <div class="relative focus-within:ring-2 focus-within:ring-indigo-500">
                                     <h3 class="text-sm font-semibold text-gray-800">
                                         <button type="button"
-                                            onclick="Livewire.emit('openModal', 'dash.keuangan.billing-create', {{ json_encode(['user_id' => $user->id]) }})"
+                                            onclick="Livewire.emit('openModal', '{{ $path }}', {{ json_encode(['user_id' => $user->id]) }})"
                                             class="hover:underline focus:outline-none">
                                             <!-- Extend touch target to entire panel -->
                                             <span class="absolute inset-0" aria-hidden="true"></span>

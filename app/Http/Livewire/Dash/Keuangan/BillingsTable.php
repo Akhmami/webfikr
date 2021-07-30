@@ -53,6 +53,7 @@ class BillingsTable extends DataTableComponent
     {
         return Billing::query()
             ->with('user')
+            ->latest()
             ->when($this->getFilter('status'), fn ($query, $status) => $query->where('status', $status));
     }
 

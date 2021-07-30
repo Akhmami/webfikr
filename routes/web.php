@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Dash\KeuanganController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,7 +25,7 @@ Route::domain(config('app.domain'))
                 Route::view('/users', 'dash.users.index')
                     ->middleware('role:super-admin|admin')
                     ->name('users.index');
-                Route::view('/keuangan', 'dash.keuangan.index')
+                Route::get('/keuangan', [KeuanganController::class, 'index'])
                     ->middleware('permission:lihat billing|edit billing|hapus billing|buat billing')
                     ->name('keuangan.index');
         });

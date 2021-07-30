@@ -15,7 +15,9 @@ class CreateBillerDetailsTable extends Migration
     {
         Schema::create('biller_details', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('biller_id')->constrained();
+            $table->foreignId('biller_id')->constrained()
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
             $table->string('nama');
             $table->decimal('nominal', 14,0)->default(0);
             $table->timestamps();

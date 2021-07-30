@@ -2,16 +2,16 @@
 
 namespace App\Http\Livewire\Dash\Keuangan;
 
-use App\Models\Biller;
+use App\Models\CostReduction;
 use Illuminate\Database\Eloquent\Builder;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 use Rappasoft\LaravelLivewireTables\Views\Filter;
 
-class BillersTable extends DataTableComponent
+class CostReductionsTable extends DataTableComponent
 {
     protected $listeners = [
-        'closeBillerAlertModal' => 'indexBilling'
+        'closeCoseReductionAlertModal' => 'indexBilling'
     ];
 
     public function columns(): array
@@ -20,18 +20,15 @@ class BillersTable extends DataTableComponent
             Column::make('Nama Lengkap', 'user.name')
                 ->sortable()
                 ->searchable(),
-            Column::make('Tagihan', 'type')
+            Column::make('Jml Keringanan', 'nominal')
                 ->sortable()
                 ->searchable(),
-            Column::make('Jumlah', 'amount')
-                ->sortable()
-                ->searchable(),
-            Column::make('Terbayar', 'cumulative_payment_amount')
+            Column::make('Untuk', 'type')
                 ->sortable()
                 ->searchable(),
             Column::make('Status')
                 ->format(function($value, $column, $row) {
-                    return view('dash.keuangan.status-biller')->withData($row);
+                    return view('dash.keuangan.status-cost-reduction')->withData($row);
                 }),
             Column::make('Actions')
                 ->format(function($value, $column, $row) {
@@ -54,7 +51,7 @@ class BillersTable extends DataTableComponent
 
     public function query(): Builder
     {
-        return Biller::query()
+        return CostReduction::query()
             ->with('user')
             ->latest()
             ->when($this->getFilter('status'), fn ($query, $status) => $query->where('status', $status));
