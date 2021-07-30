@@ -12,6 +12,8 @@ class Cicilan extends ModalComponent
     public $option_id;
     public $options;
     public $user;
+    public $cost_reduction;
+    public $keringanan;
 
     public function mount($biller)
     {
@@ -21,8 +23,14 @@ class Cicilan extends ModalComponent
         $qty = $this->biller['qty_spp'];
         if ($this->biller['type'] === 'SPP') {
             $divider = $this->user->setSpp->nominal;
+            $this->cost_reduction = $this->user->costReductions()
+            ->unused()
+            ->where('type', 'SPP')->first();
         } else {
             $divider = $biller['amount'] / $qty;
+            $this->cost_reduction = $this->user->costReductions()
+            ->unused()
+            ->where('type', '<>', 'SPP')->first();
         }
 
         for ($i=1; $i <= $qty; $i++) {
@@ -47,7 +55,7 @@ class Cicilan extends ModalComponent
     {
         $jenjang = $this->user->userDetail->jenjang;
         $trx_id = $this->biller['type'] . $jenjang . date('YmdHis');
-        $payment_amount = $this->options[$this->option_id]['value'];
+        $payment_amount = $this->options[$this->option_id]['value'] - $this->keringanan;
 
         $data = array(
             'biller_id' => $this->biller['id'],

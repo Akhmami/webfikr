@@ -136,4 +136,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(BalanceUsage::class);
     }
+
+    public function costReductions()
+    {
+        return $this->hasMany(CostReduction::class);
+    }
 }

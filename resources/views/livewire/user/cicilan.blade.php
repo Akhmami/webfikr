@@ -36,6 +36,21 @@
                         @endforeach
                     </div>
                 </div>
+                @if (!empty($cost_reduction))
+                <div>
+                    <span>Tersedia keringanan pembayaran</span>
+                    <div class="flex gap-4 flex-wrap mt-2">
+                        <label class="border-gray-200 rounded-md border p-4 flex flex-col cursor-pointer">
+                            <div class="flex items-center text-sm">
+                                <input type="radio" wire:model.lazy="keringanan" value="{{ $cost_reduction->nominal }}"
+                                    class="h-4 w-4 text-indigo-600 border-gray-300 focus:ring-indigo-500">
+                                <span id="pricing-plans-0-label"
+                                    class="text-gray-900 ml-3 font-medium">{{ rupiah($cost_reduction->nominal) }}</span>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+                @endif
             </div>
         </x-slot>
 
