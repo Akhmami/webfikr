@@ -12,11 +12,13 @@ class Bill extends Component
 
     public function render()
     {
-        $bill_spp = auth()->user()->billerSPP;
-        $bill_another = auth()->user()->billerAnother;
+        $user = auth()->user();
+        $bill_spp = $user->billerSPP;
+        $bill_another = $user->billerAnother;
+        $keringanan = $user->costReductions()->unused()->sum('nominal');
         $spp = ($bill_spp->amount ?? 0) - ($bill_spp->cumulative_payment_amount ?? 0);
         $another = $bill_another->sum('amount') - $bill_another->sum('cumulative_payment_amount');
-        $this->total_amount = $spp + $another;
+        $this->total_amount = $spp + $another - $keringanan;
         $this->description = 'Tagihan belum tersedia';
 
         if (!empty($bill_spp) && $bill_another->sum('amount') > 0) {

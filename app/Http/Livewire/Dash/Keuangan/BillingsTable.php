@@ -32,7 +32,7 @@ class BillingsTable extends DataTableComponent
                 }),
             Column::make('Actions')
                 ->format(function($value, $column, $row) {
-                    return view('livewire.dash.keuangan.actions')->withData($row);
+                    return view('livewire.dash.keuangan.billing-actions')->withData($row);
                 }),
         ];
     }

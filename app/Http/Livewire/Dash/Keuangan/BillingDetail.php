@@ -12,7 +12,7 @@ class BillingDetail extends ModalComponent
     public function mount($billing)
     {
         $this->billing = Billing::with([
-            'user', 'billingDetails', 'paymentHistories'
+            'user', 'paymentHistories'
         ])->findOrFail($billing);
     }
 

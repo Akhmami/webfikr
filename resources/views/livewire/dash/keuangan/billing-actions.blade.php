@@ -1,6 +1,6 @@
 <div class="flex items-center space-x-1">
     <button type="button" title="edit"
-        onclick="Livewire.emit('openModal', 'dash.keuangan.biller-edit', {{ json_encode(['biller' => $data->id]) }})"
+        onclick="Livewire.emit('openModal', 'dash.keuangan.billing-edit', {{ json_encode(['billing' => $data->id]) }})"
         class="group p-2 border border-transparent rounded-full shadow-sm text-white bg-gray-200 hover:bg-yellow-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400">
         <!-- Heroicon name: solid/edit-alt -->
         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-500 group-hover:text-white" viewBox="0 0 20 20"
@@ -11,19 +11,6 @@
                 clip-rule="evenodd" />
         </svg>
     </button>
-
-    {{-- <button type="button" title="hapus"
-        onclick="Livewire.emit('openModal', 'dash.users.user-delete', {{ json_encode(['billing' => $data->id]) }})"
-    class="group p-2 border border-transparent rounded-full shadow-sm text-white bg-gray-200 hover:bg-red-500
-    focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400">
-    <!-- Heroicon name: solid/x -->
-    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-500 group-hover:text-white" viewBox="0 0 20 20"
-        fill="currentColor">
-        <path fill-rule="evenodd"
-            d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-            clip-rule="evenodd" />
-    </svg>
-    </button> --}}
 
     <div x-data="{ isOn: false }" class="relative inline-block text-left pl-2">
         <div>
@@ -44,13 +31,7 @@
             role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
             <div class="py-1" role="none">
                 <a href="#"
-                    onclick="Livewire.emit('openModal', 'dash.keuangan.keringanan', {{ json_encode(['biller' => $data->id]) }})"
-                    class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100" role="menuitem" tabindex="-1"
-                    id="menu-item-0">Keringanan Biaya</a>
-                <a href="#" class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100" role="menuitem"
-                    tabindex="-1" id="menu-item-0">Kirim pesan WA</a>
-                <a href="#"
-                    onclick="Livewire.emit('openModal', 'dash.keuangan.biller-detail', {{ json_encode(['biller' => $data->id]) }})"
+                    onclick="Livewire.emit('openModal', 'dash.keuangan.billing-detail', {{ json_encode(['billing' => $data->id]) }})"
                     class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100" role="menuitem" tabindex="-1"
                     id="menu-item-1">Detail</a>
             </div>

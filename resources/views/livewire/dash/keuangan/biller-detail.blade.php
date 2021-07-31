@@ -5,7 +5,7 @@
                 Detail Billing
             </h3>
             <p class="mt-1 max-w-2xl text-sm text-gray-500">
-                Informasi tagihan dan histori pembayaran
+                Informasi tagihan, rincian tagihan dan histori pembayaran
             </p>
         </div>
         <div class="border-t border-gray-200">
@@ -40,8 +40,6 @@
                     </dt>
                     <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
                         {{ $billing->virtual_account }}
-                        <x-badge color="{{ $billing->is_paid === 'Y' ? 'green' : 'red' }}"
-                            :text="$billing->is_paid === 'Y' ? 'paid' : 'unpaid'" />
                     </dd>
                 </div>
                 <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -49,7 +47,13 @@
                         Jumlah Tagihan
                     </dt>
                     <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                        <div class="font-semibold mb-4">{{ rupiah($billing->trx_amount) }}</div>
+                        <div class="font-semibold mb-4">{{ $billing->amount }}</div>
+                        @foreach ($billing->billingDetails as $item)
+                        <div>
+                            <span>{{ $item->nama }}</span>
+                            <span>{{ $item->nominal }}</span>
+                        </div>
+                        @endforeach
                     </dd>
                 </div>
                 <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">

@@ -15,8 +15,12 @@ class CreateCostReductionsTable extends Migration
     {
         Schema::create('cost_reductions', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained();
-            $table->foreignId('billing_id')->nullable()->constrained();
+            $table->foreignId('user_id')->constrained()
+                ->cascadeOnDelete()
+                ->cascadeOnUpdate();
+            $table->foreignId('biller_detail_id')->constrained()
+                ->cascadeOnDelete()
+                ->cascadeOnUpdate();
             $table->decimal('nominal', 14,0);
             $table->string('keterangan')->nullable();
             $table->enum('type', ['SPP', 'LAINNYA']);

@@ -4,6 +4,7 @@ namespace App\Http\Livewire\User;
 
 use LivewireUI\Modal\ModalComponent;
 use App\Libraries\VA;
+use App\Models\Biller;
 
 class Cicilan extends ModalComponent
 {
@@ -15,35 +16,35 @@ class Cicilan extends ModalComponent
     public $cost_reduction;
     public $keringanan;
 
-    public function mount($biller)
+    public function mount(Biller $biller)
     {
         $this->user = auth()->user();
         $this->biller = $biller;
-        $this->max_amount = $biller['amount'] - $biller['cumulative_payment_amount'];
-        $qty = $this->biller['qty_spp'];
-        if ($this->biller['type'] === 'SPP') {
+
+        $qty = $this->biller->qty_spp;
+        if ($this->biller->type === 'SPP') {
             $divider = $this->user->setSpp->nominal;
-            $this->cost_reduction = $this->user->costReductions()
-            ->unused()
-            ->where('type', 'SPP')->first();
+            $this->keringanan = $this->user->costReductions()
+                ->unused()->where('type', 'SPP')->first()->nominal ?? 0;
         } else {
-            $divider = $biller['amount'] / $qty;
-            $this->cost_reduction = $this->user->costReductions()
-            ->unused()
-            ->where('type', '<>', 'SPP')->first();
+            $divider = $biller->amount / $qty;
+            $this->keringanan = $this->user->costReductions()
+                ->unused()->where('type', '<>', 'SPP')->first()->nominal ?? 0;
         }
+
+        $this->max_amount = $biller->amount - $biller->cumulative_payment_amount - $this->keringanan;
 
         for ($i=1; $i <= $qty; $i++) {
-            $val = $i * $divider;
-            if ($val > $this->max_amount) {
-                break;
-            }
+                $val = ($i * $divider) - $this->keringanan;
+                if ($val > $this->max_amount) {
+                    break;
+                }
 
-            $this->options[$i] = [
-                'value' => $val,
-                'description' => $i . ' Bulan'
-            ];
-        }
+                $this->options[$i] = [
+                    'value' => $val,
+                    'description' => $i . ' Bulan '
+                ];
+            }
     }
 
     public function render()
@@ -54,17 +55,17 @@ class Cicilan extends ModalComponent
     public function bayar()
     {
         $jenjang = $this->user->userDetail->jenjang;
-        $trx_id = $this->biller['type'] . $jenjang . date('YmdHis');
-        $payment_amount = $this->options[$this->option_id]['value'] - $this->keringanan;
+        $trx_id = $this->biller->type . $jenjang . date('YmdHis');
+        $payment_amount = $this->options[$this->option_id]['value'];
 
         $data = array(
-            'biller_id' => $this->biller['id'],
+            'biller_id' => $this->biller->id,
             'trx_id' => $trx_id,
             'virtual_account' => $this->user->userDetail->no_pendaftaran,
             'trx_amount' => $payment_amount,
             'billing_type' => 'c',
             'customer_name' => $this->user->name,
-            'description' => 'Pembayaran ' . $this->biller['type'],
+            'description' => 'Pembayaran ' . $this->biller->type,
             'datetime_expired' => date('c', strtotime('2 days'))
         );
 
@@ -74,7 +75,7 @@ class Cicilan extends ModalComponent
         if ($result['status'] !== '000') {
             $this->emit('openModal', 'user.alert-modal', ['message' => 'Gagal memproses tagihan, silahkan coba lagi jika masih berlanjut hubungi kami.']);
         } else {
-            if ($this->biller['type'] === 'SPP') {
+            if ($this->biller->type === 'SPP') {
                 $month = [];
                 for ($i=1; $i <= $this->option_id; $i++) {
                     $adder = '+'.$i.' month';

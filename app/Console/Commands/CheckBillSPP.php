@@ -66,7 +66,7 @@ class CheckBillSPP extends Command
                 $month_only = tanggal($month[date('m', strtotime($addMonth))], 'bulan');
 
                 $latest_biller = $user->billers()->latest()->first();
-                if (date('m', strtotime($latest_biller->created_at)) !== date('m')) {
+                if (date('Y-m', strtotime($latest_biller->created_at)) !== date('Y-m')) {
                     $biller = $user->billers()->where('type', 'SPP')
                         ->active()->get();
                     $tunggakan = $biller->sum('amount') - $biller->sum('cumulative_payment_amount');

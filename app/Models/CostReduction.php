@@ -15,9 +15,14 @@ class CostReduction extends Model
         'is_used'
     ];
 
+    public function billerDetail()
+    {
+        return $this->belongsTo(BillerDetail::class);
+    }
+
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(BillerDetail::class);
     }
 
     public function scopeUsed($query)
