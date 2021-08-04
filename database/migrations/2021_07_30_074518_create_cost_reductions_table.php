@@ -25,6 +25,7 @@ class CreateCostReductionsTable extends Migration
             $table->string('keterangan')->nullable();
             $table->enum('type', ['SPP', 'LAINNYA']);
             $table->enum('is_used', ['Y', 'N'])->default('N');
+            // $table->enum('operator', ['min', 'plus'])->nullable();
             $table->timestamps();
         });
     }

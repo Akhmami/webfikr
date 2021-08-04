@@ -29,6 +29,8 @@
                 <x-input label="Berapa kali diangsur" name="qty_spp" livewire />
                 @endif
 
+                <x-textarea label="Deskripsi tagihan" name="description" livewire />
+
                 <div class="flex items-center space-x-2">
                     <x-input label="Keterangan" name="nama.0" livewire />
 

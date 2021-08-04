@@ -24,8 +24,8 @@ class BillerDetail extends Model
         return $this->belongsTo(Biller::class);
     }
 
-    public function costReductions()
+    public function costReduction()
     {
-        return $this->hasMany(CostReduction::class);
+        return $this->hasOne(CostReduction::class);
     }
 }

@@ -31,7 +31,7 @@ class BillersTable extends DataTableComponent
                 ->searchable(),
             Column::make('Status')
                 ->format(function($value, $column, $row) {
-                    return view('dash.keuangan.status-biller')->withData($row);
+                    return view('livewire.dash.keuangan.status-biller')->withData($row);
                 }),
             Column::make('Actions')
                 ->format(function($value, $column, $row) {

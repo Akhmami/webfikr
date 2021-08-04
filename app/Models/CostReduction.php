@@ -10,9 +10,11 @@ class CostReduction extends Model
     use HasFactory;
 
     protected $fillable = [
+        'user_id',
         'nominal',
         'keterangan',
-        'is_used'
+        'is_used',
+        'type'
     ];
 
     public function billerDetail()
@@ -22,7 +24,7 @@ class CostReduction extends Model
 
     public function user()
     {
-        return $this->belongsTo(BillerDetail::class);
+        return $this->belongsTo(User::class);
     }
 
     public function scopeUsed($query)

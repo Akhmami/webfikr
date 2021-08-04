@@ -15,7 +15,8 @@ class BillerCreate extends ModalComponent
     public $i = 1;
     public $biller_details = [];
     public $is_installment;
-    public $qty_spp;
+    public $qty_spp = 0;
+    public $description;
 
     protected $rules = [
         'type' => 'required',
@@ -25,7 +26,8 @@ class BillerCreate extends ModalComponent
         'nominal.*' => 'required|max:14',
         'amount' => 'nullable',
         'is_installment' => 'required',
-        'qty_spp' => 'nullable'
+        'qty_spp' => 'nullable',
+        'description' => 'required'
     ];
 
     protected $messages = [
@@ -36,7 +38,8 @@ class BillerCreate extends ModalComponent
         'nama.*.required' => 'Nama keterangan harus diisi!',
         'nominal.*.required' => 'Nominal Tagihan harus diisi!',
         'nominal.*.max' => 'Nominal tagihan terlalu besar',
-        'is_installment.required' => 'Angsuran harus dipilih'
+        'is_installment.required' => 'Angsuran harus dipilih',
+        'description.required' => 'Deskripsi tagihan harus diisi!'
     ];
 
     public function mount($user_id)

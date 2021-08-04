@@ -47,8 +47,8 @@
                     onclick="Livewire.emit('openModal', 'dash.keuangan.keringanan', {{ json_encode(['biller' => $data->id]) }})"
                     class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100" role="menuitem" tabindex="-1"
                     id="menu-item-0">Keringanan Biaya</a>
-                <a href="#" class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100" role="menuitem"
-                    tabindex="-1" id="menu-item-0">Kirim pesan WA</a>
+                {{-- <a href="#" class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100" role="menuitem"
+                    tabindex="-1" id="menu-item-0">Kirim pesan WA</a> --}}
                 <a href="#"
                     onclick="Livewire.emit('openModal', 'dash.keuangan.biller-detail', {{ json_encode(['biller' => $data->id]) }})"
                     class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100" role="menuitem" tabindex="-1"

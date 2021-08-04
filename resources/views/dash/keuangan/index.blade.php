@@ -114,7 +114,7 @@
                                 Daftar Keringanan Biaya
                             </div>
                             <button type="button"
-                                onclick="Livewire.emit('openModal', 'dash.get-name', {{ json_encode(['title' => 'Tambah Keringanan Biaya', 'path' => 'dash.keuangan.cost-reduction-create' ]) }})"
+                                onclick="Livewire.emit('openModal', 'dash.get-name', {{ json_encode(['title' => 'Tambah Keringanan Biaya', 'path' => 'dash.keuangan.biller-show' ]) }})"
                                 class="inline-flex items-center pl-3 pr-4 py-1.5 border border-transparent text-xs font-medium rounded shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
                                     fill="currentColor">
