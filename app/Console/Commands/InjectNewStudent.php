@@ -165,7 +165,8 @@ class InjectNewStudent extends Command
                     'is_paid' => 'N',
                     'description' => 'Tagihan SPP Agustus',
                     'is_balance' => 'N',
-                    'datetime_expired' => date('Y-m-d H:i:s', strtotime('2 month'))
+                    'datetime_expired' => date('Y-m-d H:i:s', strtotime('2 month')),
+                    'spp_pay_month' => json_encode(['2021-08-01'])
                 ]);
 
                 DB::commit();
