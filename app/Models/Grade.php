@@ -9,6 +9,13 @@ class Grade extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'nama',
+        'jenjang',
+        'wali',
+        'kapasitas'
+    ];
+
     public function users()
     {
         return $this->belongsToMany(User::class);

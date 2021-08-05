@@ -29,13 +29,13 @@ class PermissionsSeeder extends Seeder
 
         // create roles and assign existing permissions
         $role1 = Role::create(['name' => 'writer']);
-        // $role1->givePermissionTo('edit artikel');
-        // $role1->givePermissionTo('buat artikel');
+        $role1->givePermissionTo('edit artikel');
+        $role1->givePermissionTo('buat artikel');
 
         $role2 = Role::create(['name' => 'admin']);
-        // $role2->givePermissionTo('lihat dashboard');
-        // $role2->givePermissionTo('publish artikel');
-        // $role2->givePermissionTo('unpublish artikel');
+        $role2->givePermissionTo('lihat dashboard');
+        $role2->givePermissionTo('publish artikel');
+        $role2->givePermissionTo('unpublish artikel');
 
         $role3 = Role::create(['name' => 'super-admin']);
         $role4 = Role::create(['name' => 'user']);
@@ -62,31 +62,31 @@ class PermissionsSeeder extends Seeder
         ]);
         $user->assignRole($role3);
 
-        $user = \App\Models\User::factory()->create([
-            'name' => 'Basic User',
-            'username' => 'user',
-            'email' => 'user@example.com',
-        ]);
-        $user->assignRole($role4);
-        $user->userDetail()->create([
-            'no_pendaftaran' => '12345678',
-            'jenjang' => 'SMA',
-            'angkatan' => '18',
-            'jurusan_pilihan' => 'IPA',
-            'jurusan' => 'IPA',
-            'jenis_pendaftaran' => 'eksternal',
-            'asal_sekolah' => 'SMP Al Azhar',
-            'jalur_masuk' => 'psb'
-        ]);
+        // $user = \App\Models\User::factory()->create([
+        //     'name' => 'Basic User',
+        //     'username' => 'user',
+        //     'email' => 'user@example.com',
+        // ]);
+        // $user->assignRole($role4);
+        // $user->userDetail()->create([
+        //     'no_pendaftaran' => '12345678',
+        //     'jenjang' => 'SMA',
+        //     'angkatan' => '18',
+        //     'jurusan_pilihan' => 'IPA',
+        //     'jurusan' => 'IPA',
+        //     'jenis_pendaftaran' => 'eksternal',
+        //     'asal_sekolah' => 'SMP Al Azhar',
+        //     'jalur_masuk' => 'psb'
+        // ]);
 
-        $biller = $user->billers()->create([
-            'amount' => 7000000,
-            'type' => 'SPP',
-            'is_active' => 'Y',
-            'qty_spp' => 2,
-            'previous_spp_date' => '2021-05-01',
-            'description' => 'Tagihan SPP hingga bulan Juli'
-        ]);
+        // $biller = $user->billers()->create([
+        //     'amount' => 7000000,
+        //     'type' => 'SPP',
+        //     'is_active' => 'Y',
+        //     'qty_spp' => 2,
+        //     'previous_spp_date' => '2021-05-01',
+        //     'description' => 'Tagihan SPP hingga bulan Juli'
+        // ]);
         // $user->billings()->create([
         //     'trx_id' => 'SPPSMP12345678',
         //     'biller_id' => $biller->id,

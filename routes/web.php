@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Dash\KeuanganController;
+use App\Http\Controllers\Api\CallbackController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,6 +18,7 @@ use App\Http\Controllers\Dash\KeuanganController;
 Route::domain(config('app.domain'))
     ->group(function () {
         Route::view('/', 'welcome')->name('home');
+        Route::post('/callback/payments', [CallbackController::class, 'index']);
         Route::name('dash.')
             ->middleware(['auth', 'permission:lihat dashboard'])
             ->prefix('dashboard')

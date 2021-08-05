@@ -22,9 +22,9 @@ class CreateUserDetailsTable extends Migration
             $table->char('nik', 16)->nullable();
             $table->enum('jenjang', ['SMP', 'SMA']);
             $table->char('angkatan', 2)->default('00');
-            $table->enum('jurusan_pilihan', ['IPA', 'IPS', 'IPC']);
+            $table->enum('jurusan_pilihan', ['IPA', 'IPS', 'IPC'])->nullable();
             $table->enum('jurusan', ['IPA', 'IPS', 'IPC'])->nullable();
-            $table->enum('jenis_pendaftaran', ['internal', 'eksternal', 'beasiswa', 'anak karyawan']);
+            $table->enum('jenis_pendaftaran', ['internal', 'eksternal', 'beasiswa', 'anak karyawan'])->nullable();
             $table->string('asal_sekolah')->nullable();
             $table->char('npsn', 10)->nullable();
             $table->string('alamat_asal_sekolah')->nullable();
@@ -60,7 +60,7 @@ class CreateUserDetailsTable extends Migration
             $table->string('haji_umroh_ibu', 25)->nullable();
             $table->string('organisasi_islam_ibu')->nullable();
             $table->string('buku_bacaan_islam_ibu')->nullable();
-            $table->enum('jalur_masuk', ['psb', 'mutasi']);
+            $table->enum('jalur_masuk', ['psb', 'mutasi'])->default('psb');
             $table->char('gelombang', 2)->nullable();
             $table->char('tahun_pendaftaran', 4)->nullable();
             $table->char('tahun_ajaran', 4)->nullable();
