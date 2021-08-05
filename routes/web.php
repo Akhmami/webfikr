@@ -18,7 +18,7 @@ use App\Http\Controllers\Api\CallbackController;
 Route::domain(config('app.domain'))
     ->group(function () {
         Route::view('/', 'welcome')->name('home');
-        Route::post('/payments/callback', [CallbackController::class, 'index']);
+        Route::post('/payments/callback/spp', [CallbackController::class, 'index']);
         Route::name('dash.')
             ->middleware(['auth', 'permission:lihat dashboard'])
             ->prefix('dashboard')
