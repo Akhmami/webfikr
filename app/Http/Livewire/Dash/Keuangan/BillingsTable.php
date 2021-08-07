@@ -27,12 +27,12 @@ class BillingsTable extends DataTableComponent
                 ->sortable()
                 ->searchable(),
             Column::make('Status')
-                ->format(function($value, $column, $row) {
-                    return view('livewire.dash.keuangan.status-column')->withData($row);
+                ->format(function ($value, $column, $row) {
+                    return view('livewire.dash.keuangan.status-column', ['data' => $row]);
                 }),
             Column::make('Actions')
-                ->format(function($value, $column, $row) {
-                    return view('livewire.dash.keuangan.billing-actions')->withData($row);
+                ->format(function ($value, $column, $row) {
+                    return view('livewire.dash.keuangan.billing-actions', ['data' => $row]);
                 }),
         ];
     }

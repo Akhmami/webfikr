@@ -18,6 +18,7 @@
         "livewire/livewire": "^2.5",
         "propaganistas/laravel-phone": "^4.3",
         "rappasoft/laravel-livewire-tables": "^1.10",
+        "sentry/sentry-laravel": "^2.7",
         "spatie/laravel-permission": "^4.2"
     },
     "require-dev": {
