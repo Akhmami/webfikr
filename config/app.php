@@ -167,7 +167,7 @@ return [
         /*
          * Package Service Providers...
          */
-        Rollbar\Laravel\RollbarServiceProvider::class,
+        Bugsnag\BugsnagLaravel\BugsnagServiceProvider::class
 
         /*
          * Application Service Providers...

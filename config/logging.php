@@ -37,7 +37,7 @@ return [
     'channels' => [
         'stack' => [
             'driver' => 'stack',
-            'channels' => ['single'],
+            'channels' => ['single', 'bugsnag'],
             'ignore_exceptions' => false,
         ],
 
@@ -101,12 +101,10 @@ return [
             'path' => storage_path('logs/laravel.log'),
         ],
 
-        'rollbar' => [
-            'driver' => 'monolog',
-            'handler' => \Rollbar\Laravel\MonologHandler::class,
-            'access_token' => env('ROLLBAR_TOKEN'),
-            'level' => 'debug',
-        ]
+        // Create a bugsnag logging channel:
+        'bugsnag' => [
+            'driver' => 'bugsnag',
+        ],
     ],
 
 ];

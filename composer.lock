@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d1f10a7922bfa8ff1411d6e8f1a12ac1",
+    "content-hash": "831f27f9325c2ea5a72f0ffa01fbd204",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -170,6 +170,272 @@
                 }
             ],
             "time": "2021-01-20T22:51:39+00:00"
+        },
+        {
+            "name": "bugsnag/bugsnag",
+            "version": "v3.26.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/bugsnag/bugsnag-php.git",
+                "reference": "36d7a22d60e72b6c750ad1600dc5ae5d4073598d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/bugsnag/bugsnag-php/zipball/36d7a22d60e72b6c750ad1600dc5ae5d4073598d",
+                "reference": "36d7a22d60e72b6c750ad1600dc5ae5d4073598d",
+                "shasum": ""
+            },
+            "require": {
+                "composer/ca-bundle": "^1.0",
+                "guzzlehttp/guzzle": "^5.0|^6.0|^7.0",
+                "php": ">=5.5"
+            },
+            "require-dev": {
+                "guzzlehttp/psr7": "^1.3",
+                "mtdowling/burgomaster": "dev-master#72151eddf5f0cf101502b94bf5031f9c53501a04",
+                "php-mock/php-mock-phpunit": "^1.1|^2.1",
+                "phpunit/phpunit": "^4.8.36|^7.5.15|^9.3.10",
+                "sebastian/version": ">=1.0.3"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.20-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Bugsnag\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "James Smith",
+                    "email": "notifiers@bugsnag.com",
+                    "homepage": "https://bugsnag.com"
+                }
+            ],
+            "description": "Official Bugsnag notifier for PHP applications.",
+            "homepage": "https://github.com/bugsnag/bugsnag-php",
+            "keywords": [
+                "bugsnag",
+                "errors",
+                "exceptions",
+                "logging",
+                "tracking"
+            ],
+            "support": {
+                "issues": "https://github.com/bugsnag/bugsnag-php/issues",
+                "source": "https://github.com/bugsnag/bugsnag-php/tree/v3.26.0"
+            },
+            "time": "2021-02-10T09:35:17+00:00"
+        },
+        {
+            "name": "bugsnag/bugsnag-laravel",
+            "version": "v2.22.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/bugsnag/bugsnag-laravel.git",
+                "reference": "22f57f3bda2a93b68fe56a380cfd88a18e0003a4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/bugsnag/bugsnag-laravel/zipball/22f57f3bda2a93b68fe56a380cfd88a18e0003a4",
+                "reference": "22f57f3bda2a93b68fe56a380cfd88a18e0003a4",
+                "shasum": ""
+            },
+            "require": {
+                "bugsnag/bugsnag": "^3.26.0",
+                "bugsnag/bugsnag-psr-logger": "^1.4",
+                "illuminate/contracts": "^5.0|^6.0|^7.0|^8.0",
+                "illuminate/support": "^5.0|^6.0|^7.0|^8.0",
+                "monolog/monolog": "^1.12|^2.0",
+                "php": ">=5.5"
+            },
+            "require-dev": {
+                "graham-campbell/testbench": "^3.1|^4.0|^5.0 < 5.6",
+                "graham-campbell/testbench-core": "< 3.3",
+                "mockery/mockery": "^0.9.4|^1.3.1",
+                "phpunit/phpunit": "^4.8.36|^6.3.1|^7.5.15|^8.3.5|^9.3.10"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.18-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Bugsnag\\BugsnagLaravel\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "James Smith",
+                    "email": "notifiers@bugsnag.com"
+                }
+            ],
+            "description": "Official Bugsnag notifier for Laravel applications.",
+            "homepage": "https://github.com/bugsnag/bugsnag-laravel",
+            "keywords": [
+                "bugsnag",
+                "errors",
+                "exceptions",
+                "laravel",
+                "logging",
+                "tracking"
+            ],
+            "support": {
+                "issues": "https://github.com/bugsnag/bugsnag-laravel/issues",
+                "source": "https://github.com/bugsnag/bugsnag-laravel/tree/v2.22.1"
+            },
+            "time": "2021-04-29T08:21:36+00:00"
+        },
+        {
+            "name": "bugsnag/bugsnag-psr-logger",
+            "version": "v1.4.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/bugsnag/bugsnag-psr-logger.git",
+                "reference": "222a7338bc5c39833c7c3922a175c539e996797c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/bugsnag/bugsnag-psr-logger/zipball/222a7338bc5c39833c7c3922a175c539e996797c",
+                "reference": "222a7338bc5c39833c7c3922a175c539e996797c",
+                "shasum": ""
+            },
+            "require": {
+                "bugsnag/bugsnag": "^3.10",
+                "php": ">=5.5",
+                "psr/log": "^1.0"
+            },
+            "require-dev": {
+                "graham-campbell/testbench-core": "^1.1",
+                "mockery/mockery": "^0.9.4|^1.3.1",
+                "phpunit/phpunit": "^4.8.36|^7.5.15"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.5-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Bugsnag\\PsrLogger\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "James Smith",
+                    "email": "notifiers@bugsnag.com",
+                    "homepage": "https://bugsnag.com"
+                }
+            ],
+            "description": "Official Bugsnag PHP PSR Logger.",
+            "homepage": "https://github.com/bugsnag/bugsnag-psr",
+            "keywords": [
+                "bugsnag",
+                "errors",
+                "exceptions",
+                "logging",
+                "psr",
+                "tracking"
+            ],
+            "support": {
+                "issues": "https://github.com/bugsnag/bugsnag-psr-logger/issues",
+                "source": "https://github.com/bugsnag/bugsnag-psr-logger/tree/master"
+            },
+            "time": "2020-02-26T22:02:20+00:00"
+        },
+        {
+            "name": "composer/ca-bundle",
+            "version": "1.2.10",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/composer/ca-bundle.git",
+                "reference": "9fdb22c2e97a614657716178093cd1da90a64aa8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/composer/ca-bundle/zipball/9fdb22c2e97a614657716178093cd1da90a64aa8",
+                "reference": "9fdb22c2e97a614657716178093cd1da90a64aa8",
+                "shasum": ""
+            },
+            "require": {
+                "ext-openssl": "*",
+                "ext-pcre": "*",
+                "php": "^5.3.2 || ^7.0 || ^8.0"
+            },
+            "require-dev": {
+                "phpstan/phpstan": "^0.12.55",
+                "psr/log": "^1.0",
+                "symfony/phpunit-bridge": "^4.2 || ^5",
+                "symfony/process": "^2.5 || ^3.0 || ^4.0 || ^5.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-main": "1.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Composer\\CaBundle\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jordi Boggiano",
+                    "email": "j.boggiano@seld.be",
+                    "homepage": "http://seld.be"
+                }
+            ],
+            "description": "Lets you find a path to the system CA bundle, and includes a fallback to the Mozilla CA bundle.",
+            "keywords": [
+                "cabundle",
+                "cacert",
+                "certificate",
+                "ssl",
+                "tls"
+            ],
+            "support": {
+                "irc": "irc://irc.freenode.org/composer",
+                "issues": "https://github.com/composer/ca-bundle/issues",
+                "source": "https://github.com/composer/ca-bundle/tree/1.2.10"
+            },
+            "funding": [
+                {
+                    "url": "https://packagist.com",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/composer",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/composer/composer",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2021-06-07T13:58:28+00:00"
         },
         {
             "name": "dasprid/enum",
@@ -3736,142 +4002,6 @@
                 }
             ],
             "time": "2021-07-10T21:03:13+00:00"
-        },
-        {
-            "name": "rollbar/rollbar",
-            "version": "v2.1.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/rollbar/rollbar-php.git",
-                "reference": "ff3db5739dd635740caed02ddad43e671b5a37e5"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/rollbar/rollbar-php/zipball/ff3db5739dd635740caed02ddad43e671b5a37e5",
-                "reference": "ff3db5739dd635740caed02ddad43e671b5a37e5",
-                "shasum": ""
-            },
-            "require": {
-                "ext-curl": "*",
-                "monolog/monolog": "^1 || ^2",
-                "psr/log": "^1"
-            },
-            "require-dev": {
-                "codeclimate/php-test-reporter": "dev-master",
-                "mockery/mockery": "1.*",
-                "packfire/php5.3-compat": "*",
-                "phpmd/phpmd": "@stable",
-                "phpunit/phpunit": "4.8.* || 5.7.* || ^8",
-                "squizlabs/php_codesniffer": "2.*"
-            },
-            "suggest": {
-                "fluent/logger": "Needed to use the 'fluent' handler for fluentd support",
-                "packfire/php5.3-compat": "for backward compatibility with PHP 5.3"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Rollbar\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Rollbar, Inc.",
-                    "email": "support@rollbar.com",
-                    "role": "Developer"
-                }
-            ],
-            "description": "Monitors errors and exceptions and reports them to Rollbar",
-            "homepage": "http://github.com/rollbar/rollbar-php",
-            "keywords": [
-                "debugging",
-                "errors",
-                "exceptions",
-                "logging",
-                "monitoring"
-            ],
-            "support": {
-                "email": "support@rollbar.com",
-                "issues": "https://github.com/rollbar/rollbar-php/issues",
-                "source": "https://github.com/rollbar/rollbar-php/tree/v2.1.0"
-            },
-            "time": "2020-07-01T23:21:01+00:00"
-        },
-        {
-            "name": "rollbar/rollbar-laravel",
-            "version": "v7.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/rollbar/rollbar-php-laravel.git",
-                "reference": "9ffed9026f3786538a64cf5fb7e28a1fbdd11b2d"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/rollbar/rollbar-php-laravel/zipball/9ffed9026f3786538a64cf5fb7e28a1fbdd11b2d",
-                "reference": "9ffed9026f3786538a64cf5fb7e28a1fbdd11b2d",
-                "shasum": ""
-            },
-            "require": {
-                "illuminate/support": "^6.0|^7.0|^8.0",
-                "php": ">=7.2",
-                "rollbar/rollbar": "^2"
-            },
-            "require-dev": {
-                "mockery/mockery": "^1",
-                "orchestra/testbench": "^4.0|^5.0|^6.0",
-                "php-coveralls/php-coveralls": "^2.2",
-                "phpunit/phpunit": "^8",
-                "squizlabs/php_codesniffer": "3.*"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "Rollbar\\Laravel\\RollbarServiceProvider"
-                    ],
-                    "aliases": {
-                        "Rollbar": "Rollbar\\Laravel\\Facades\\Rollbar"
-                    }
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Rollbar\\Laravel\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Jens Segers",
-                    "homepage": "https://jenssegers.com"
-                },
-                {
-                    "name": "Artur Moczulski",
-                    "email": "artur.moczulski@gmail.com",
-                    "role": "Contractor @ Rollbar, Inc."
-                }
-            ],
-            "description": "Rollbar error monitoring integration for Laravel projects",
-            "homepage": "https://github.com/rollbar/rollbar-php-laravel",
-            "keywords": [
-                "error",
-                "laravel",
-                "logging",
-                "monitoring",
-                "rollbar"
-            ],
-            "support": {
-                "issues": "https://github.com/rollbar/rollbar-php-laravel/issues",
-                "source": "https://github.com/rollbar/rollbar-php-laravel/tree/v7.0.0"
-            },
-            "time": "2020-09-10T17:20:14+00:00"
         },
         {
             "name": "spatie/laravel-package-tools",

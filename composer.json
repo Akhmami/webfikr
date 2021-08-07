@@ -6,6 +6,7 @@
     "license": "MIT",
     "require": {
         "php": "^7.3|^8.0",
+        "bugsnag/bugsnag-laravel": "^2.0",
         "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
@@ -18,7 +19,6 @@
         "livewire/livewire": "^2.5",
         "propaganistas/laravel-phone": "^4.3",
         "rappasoft/laravel-livewire-tables": "^1.10",
-        "rollbar/rollbar-laravel": "^7.0",
         "spatie/laravel-permission": "^4.2"
     },
     "require-dev": {
