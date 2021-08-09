@@ -14,9 +14,10 @@
                             Kelas {!! $grade->nama !!}
                         </div>
                         <div class="px-4 py-5 sm:p-6">
-                            @if ($grade->spps->count() > 0)
+                            @if ($grade->spps()->where('user_id', auth()->user()->id)->count() > 0)
                             <div class="flex space-x-4">
-                                @foreach ($grade->spps->chunk(4) as $chunk)
+                                @foreach ($grade->spps()->where('user_id', auth()->user()->id)->get()->chunk(4) as
+                                $chunk)
                                 <div class="flex flex-col space-y-2 flex-1">
                                     @foreach ($chunk as $bln)
                                     <div class="flex items-center p-2 rounded-full bg-blue-50">

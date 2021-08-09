@@ -18,6 +18,7 @@
                 </div>
                 <div>
                     <p class="text-xs text-gray-500">
+                        <x-badge color="gray" :text="$payment->paymentHistory->biller->type" />
                         {{ $payment->customer_name }}
                     </p>
                     <p class="text-xl text-gray-700 font-semibold">{{ rupiah($payment->payment_amount) }}</p>

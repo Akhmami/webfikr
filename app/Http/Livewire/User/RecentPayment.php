@@ -11,8 +11,9 @@ class RecentPayment extends Component
 
     public function render()
     {
+        $billings = auth()->user()->billers()->pluck('id')->toArray();
         return view('livewire.user.recent-payment', [
-            'payments' => PaymentHistory::with('paymentHistory')->latest()->paginate($this->limit)
+            'payments' => PaymentHistory::whereIn('payment_history_id', $billings)->latest()->paginate($this->limit)
         ]);
     }
 }

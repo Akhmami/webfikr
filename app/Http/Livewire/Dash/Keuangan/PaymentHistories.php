@@ -10,7 +10,7 @@ class PaymentHistories extends Component
     public function render()
     {
         return view('livewire.dash.keuangan.payment-histories', [
-            'payments' => PaymentHistory::latest()->take(5)->get()
+            'payments' => PaymentHistory::with('paymentHistory')->latest()->take(5)->get()
         ]);
     }
 }
