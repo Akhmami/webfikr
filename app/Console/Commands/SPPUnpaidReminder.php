@@ -2,7 +2,9 @@
 
 namespace App\Console\Commands;
 
+use App\Models\Biller;
 use Illuminate\Console\Command;
+use App\Libraries\WA;
 
 class SPPUnpaidReminder extends Command
 {
@@ -37,6 +39,12 @@ class SPPUnpaidReminder extends Command
      */
     public function handle()
     {
-        return 0;
+        $billers = Biller::where('type', 'SPP')
+            ->where('is_active', 'Y')->cursor();
+
+        foreach ($billers as $biller) {
+            $wa = new WA($biller->user);
+            $wa->notifyPayment('');
+        }
     }
 }
