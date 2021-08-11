@@ -38,6 +38,11 @@ module.exports = {
             defaultExtractor: (content) => content.match(/[\w-/.:]+(?<!:)/g) || [],
             whitelistPatterns: [/-active$/, /-enter$/, /-leave-to$/, /show$/],
         },
+        safelist: [
+            'sm:max-w-2xl',
+            'sm:max-w-sm',
+            'hidden'
+        ]
     },
     plugins: [
         require('@tailwindcss/forms'),

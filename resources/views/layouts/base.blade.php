@@ -33,9 +33,6 @@
 <body>
     @yield('body')
 
-    {{-- Fixed livewire-modal in production --}}
-    <div class="sm:max-w-2xl sm:max-w-sm hidden"></div>
-
     @livewireScripts
 </body>
 
