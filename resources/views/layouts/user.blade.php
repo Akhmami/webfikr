@@ -6,8 +6,6 @@
 
 @section('body')
 
-<x-loading-indicator />
-
 <div class="bg-gray-100 min-h-screen">
     @include('layouts.user.navbar')
 

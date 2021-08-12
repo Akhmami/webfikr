@@ -307,7 +307,7 @@
             </li>
 
             <li class="flow-root">
-                <a href="#"
+                <a href="{{ route('dash.users.index') }}"
                     class="p-3 flex items-center space-x-1 rounded-md text-base font-medium text-gray-900 hover:bg-gray-50 transition ease-in-out duration-150">
                     <!-- Heroicon name: outline/office-building -->
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-400" fill="none"
