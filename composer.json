@@ -19,6 +19,7 @@
         "livewire/livewire": "^2.5",
         "propaganistas/laravel-phone": "^4.3",
         "rappasoft/laravel-livewire-tables": "^1.10",
+        "spatie/laravel-activitylog": "^3.17",
         "spatie/laravel-permission": "^4.2"
     },
     "require-dev": {

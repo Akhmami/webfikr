@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\User;
 
 use Livewire\Component;
+use App\Jobs\UserActivity;
 
 class SettingProfile extends Component
 {
@@ -53,6 +54,8 @@ class SettingProfile extends Component
     {
         $validatedData = $this->validate();
         auth()->user()->update($validatedData);
+
+        UserActivity::dispatch(auth()->user(), 'Setting profile, melakukan update');
 
         $this->emit('openModal', 'alert-modal', [
             'status' => 'success',

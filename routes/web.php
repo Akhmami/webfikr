@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Dash\KeuanganController;
 use App\Http\Controllers\Api\CallbackController;
+use App\Http\Controllers\Dash\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,6 +20,7 @@ Route::domain(config('app.domain'))
     ->group(function () {
         Route::view('/', 'welcome')->name('home');
         Route::post('/payments/callback/spp', [CallbackController::class, 'index']);
+        # Dashboard
         Route::name('dash.')
             ->middleware(['auth', 'permission:lihat dashboard'])
             ->prefix('dashboard')
@@ -27,11 +29,13 @@ Route::domain(config('app.domain'))
                 Route::view('/users', 'dash.users.index')
                     ->middleware('role:super-admin|admin')
                     ->name('users.index');
+                Route::get('/users/{id}', [UserController::class, 'detail'])->name('users.show');
+                Route::get('/users/{id}/user-page', [UserController::class, 'userPage'])->name('users.user-page');
                 Route::get('/keuangan', [KeuanganController::class, 'index'])
                     ->middleware('permission:lihat billing|edit billing|hapus billing|buat billing')
                     ->name('keuangan.index');
-        });
-});
+            });
+    });
 
 Route::domain('apps.' . config('app.domain'))
     ->name('user.')
@@ -46,4 +50,4 @@ Route::domain('apps.' . config('app.domain'))
             ->group(function () {
                 Route::view('/', 'user.setting')->name('profile');
             });
-});
+    });

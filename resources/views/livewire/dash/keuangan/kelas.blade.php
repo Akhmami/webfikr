@@ -1,0 +1,1 @@
+{{ $data->activeGrade()->first()->nama }}

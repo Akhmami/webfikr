@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\User;
 
 use LivewireUI\Modal\ModalComponent;
+use App\Jobs\UserActivity;
 use App\Libraries\VA;
 use App\Models\Billing;
 
@@ -46,16 +47,18 @@ class IsiSaldo extends ModalComponent
             $result = $va->create($data);
 
             if ($result['status'] !== '000') {
-                $this->emit('openModal', 'user.alert-modal', ['message' => 'Gagal memproses permintaan, silahkan coba lagi jika masih berlanjut hubungi kami. #'. $result['status']]);
+                $this->emit('openModal', 'user.alert-modal', ['message' => 'Gagal memproses permintaan, silahkan coba lagi jika masih berlanjut hubungi kami. #' . $result['status']]);
             } else {
                 $data['datetime_expired'] = date('Y-m-d H:i:s', strtotime('2 days'));
                 $data['is_balance'] = 'Y';
                 auth()->user()->billings()->create($data);
+
+                UserActivity::dispatch(auth()->user(), 'Ngisi saldo');
+
                 return redirect()->to(route('user.pembayaran'));
             }
         } else {
-            $this->emit('openModal', 'user.alert-modal', ['message' => 'Masih ada pembayaran yang belum diselesaikan, selengkapnya klik <a href="'.route('user.pembayaran').'" class="underline text-indigo-600">disini</a>']);
+            $this->emit('openModal', 'user.alert-modal', ['message' => 'Masih ada pembayaran yang belum diselesaikan, selengkapnya klik <a href="' . route('user.pembayaran') . '" class="underline text-indigo-600">disini</a>']);
         }
-
     }
 }

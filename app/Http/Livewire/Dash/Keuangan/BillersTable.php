@@ -2,7 +2,8 @@
 
 namespace App\Http\Livewire\Dash\Keuangan;
 
-use App\Models\Biller;
+use App\Models\User;
+use App\Models\Grade;
 use Illuminate\Database\Eloquent\Builder;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Column;
@@ -17,25 +18,19 @@ class BillersTable extends DataTableComponent
     public function columns(): array
     {
         return [
-            Column::make('Nama Lengkap', 'user.name')
+            Column::make('Nama Lengkap', 'name')
                 ->sortable()
-                ->searchable(),
-            Column::make('Tagihan', 'type')
-                ->sortable()
-                ->searchable(),
-            Column::make('Jumlah', 'amount')
-                ->sortable()
-                ->searchable(),
-            Column::make('Terbayar', 'cumulative_payment_amount')
-                ->sortable()
-                ->searchable(),
-            Column::make('Status')
-                ->format(function($value, $column, $row) {
-                    return view('livewire.dash.keuangan.status-biller')->withData($row);
+                ->format(function ($value, $column, $row) {
+                    return '<a href="' . route('dash.users.show', $row) . '" class="text-indigo-600 font-semibold hover:underline cursor-pointer">' . $value . '</a>';
+                })
+                ->asHtml(),
+            Column::make('Kelas')
+                ->format(function ($value, $column, $row) {
+                    return view('livewire.dash.keuangan.kelas')->withData($row);
                 }),
-            Column::make('Actions')
-                ->format(function($value, $column, $row) {
-                    return view('livewire.dash.keuangan.actions')->withData($row);
+            Column::make('Tagihan')
+                ->format(function ($value, $column, $row) {
+                    return view('livewire.dash.keuangan.tagihan')->withData($row);
                 }),
         ];
     }
@@ -43,21 +38,23 @@ class BillersTable extends DataTableComponent
     public function filters(): array
     {
         return [
-            'status' => Filter::make('Status Tunggakan')
-                ->select([
-                    '' => 'Semua',
-                    'Y' => 'Active',
-                    'N' => 'Inactive',
-                ])
+            'kelas' => Filter::make('Kelas')
+                ->select(
+                    Grade::pluck('nama', 'nama')->toArray()
+                )
         ];
     }
 
     public function query(): Builder
     {
-        return Biller::query()
-            ->with('user')
+        return User::query()
+            ->with(['billers', 'activeGrade'])
+            ->whereHas('roles', fn ($query) => $query->where('name', 'user'))
             ->latest()
-            ->when($this->getFilter('status'), fn ($query, $status) => $query->where('status', $status));
+            ->when($this->getFilter('kelas'), fn ($query, $kelas) => $query->whereHas(
+                'grades',
+                fn ($query) => $query->where('nama', $kelas)
+            ));
     }
 
     public function indexBilling()

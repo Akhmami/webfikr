@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Permission\Traits\HasRoles;
+use Spatie\Activitylog\ActivitylogServiceProvider;
 use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
@@ -55,6 +56,14 @@ class User extends Authenticatable
         'email'
     ];
 
+    public function activities()
+    {
+        return $this->morphMany(
+            ActivitylogServiceProvider::determineActivityModel(),
+            'causer'
+        )->latest('id')->limit(8);
+    }
+
     public function userDetail()
     {
         return $this->hasOne(UserDetail::class);
@@ -82,7 +91,7 @@ class User extends Authenticatable
         return $this->hasOne(Biller::class)
             ->where('type', 'SPP')
             ->where('is_active', 'Y')
-            ->latest();
+            ->latest('id');
     }
 
     public function billerAnother()
@@ -140,5 +149,10 @@ class User extends Authenticatable
     public function costReductions()
     {
         return $this->hasMany(CostReduction::class);
+    }
+
+    public function getTempatTanggalLahirAttribute()
+    {
+        return $this->birth_place . ', ' . tanggal($this->birth_date);
     }
 }

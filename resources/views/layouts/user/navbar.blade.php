@@ -38,8 +38,25 @@
                     <div x-show="isOpen" x-transition:leave="transition ease-in duration-75"
                         x-transition:leave-start="transform opacity-100 scale-100"
                         x-transition:leave-end="transform opacity-0 scale-95"
-                        class="origin-top-right z-40 absolute -right-2 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
+                        class="origin-top-right z-40 absolute -right-2 mt-2 w-64 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
                         role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
+
+                        <a href="#" class="flex-shrink-0 group block px-4 py-2">
+                            <div class="flex items-center">
+                                <div>
+                                    <img class="inline-block h-9 w-9 rounded-full" src="{{ asset('images/user.png') }}"
+                                        alt="">
+                                </div>
+                                <div class="ml-3">
+                                    <p class="text-sm font-medium text-gray-700 group-hover:text-gray-900">
+                                        {{ Auth::user()->name }}
+                                    </p>
+                                    <p class="text-xs font-medium text-gray-500 group-hover:text-gray-700">
+                                        Lihat Profile
+                                    </p>
+                                </div>
+                            </div>
+                        </a>
 
                         <a href="{{ route('user.setting.profile') }}" class="block px-4 py-2 text-sm text-gray-700"
                             role="menuitem" tabindex="-1" id="user-menu-item-1">Settings</a>

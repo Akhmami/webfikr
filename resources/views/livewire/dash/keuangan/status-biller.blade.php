@@ -1,2 +1,2 @@
-<x-badge color="{{ $data->is_active === 'Y' ? 'green' : 'gray' }}"
-    :text="$data->is_active === 'Y' ? 'active' : 'inactive'" />
+<x-badge color="{{ $biller->is_active === 'Y' ? 'green' : 'gray' }}"
+    :text="$biller->is_active === 'Y' ? 'active' : 'inactive'" />

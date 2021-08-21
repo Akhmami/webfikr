@@ -2,7 +2,7 @@
     <div class="bg-white shadow overflow-hidden sm:rounded-lg">
         <div class="px-4 py-5 sm:px-6">
             <h3 class="text-lg leading-6 font-medium text-gray-900">
-                Detail Tagihan
+                Rincian Tagihan
             </h3>
             <p class="mt-1 max-w-2xl text-sm text-gray-500">
                 Informasi tagihan dan rincian tagihan
@@ -77,16 +77,24 @@
                     <dt class="text-sm font-medium text-gray-500">
                         Jumlah Tagihan
                     </dt>
-                    <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                    <dd class="mt-1 text-sm text-indigo-600 sm:mt-0 sm:col-span-2 font-semibold">
                         {{ rupiah($biller->amount) }}
                     </dd>
                 </div>
                 <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                     <dt class="text-sm font-medium text-gray-500">
-                        Sudah dibayarkan
+                        Sudah Dibayarkan
                     </dt>
-                    <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                    <dd class="mt-1 text-sm text-green-600 sm:mt-0 sm:col-span-2 font-semibold">
                         {{ rupiah($biller->cumulative_payment_amount) }}
+                    </dd>
+                </div>
+                <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                    <dt class="text-sm font-medium text-gray-500">
+                        Sisa Tagihan
+                    </dt>
+                    <dd class="mt-1 text-sm text-yellow-600 sm:mt-0 sm:col-span-2 font-semibold">
+                        {{ rupiah($biller->amount - $biller->cumulative_payment_amount) }}
                     </dd>
                 </div>
             </dl>

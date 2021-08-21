@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\User;
 
 use Livewire\Component;
+use App\Jobs\UserActivity;
 
 class Pembayaran extends Component
 {
@@ -11,6 +12,7 @@ class Pembayaran extends Component
     public function mount()
     {
         $this->payment = auth()->user()->billings()->active()->latest()->first();
+        UserActivity::dispatch(auth()->user(), 'ke halaman pembayaran, menunggu pembayaran');
     }
 
     public function render()

@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\User;
 
 use LivewireUI\Modal\ModalComponent;
+use App\Jobs\UserActivity;
 use App\Libraries\VA;
 use App\Models\User;
 use App\Models\Biller;
@@ -15,6 +16,7 @@ class RincianTagihan extends ModalComponent
     public function mount($user)
     {
         $this->user = User::with('activeBillers')->findOrFail($user);
+        UserActivity::dispatch(auth()->user(), 'mengklik tombaol Rincian Tagihan');
     }
 
     public function render()
@@ -51,15 +53,17 @@ class RincianTagihan extends ModalComponent
                 $result = $va->create($data);
 
                 if ($result['status'] !== '000') {
-                    $this->emit('openModal', 'user.alert-modal', ['message' => 'Gagal memproses tagihan, silahkan coba lagi jika masih berlanjut hubungi kami. #'. $result['status']]);
+                    $this->emit('openModal', 'user.alert-modal', ['message' => 'Gagal memproses tagihan, silahkan coba lagi jika masih berlanjut hubungi kami. #' . $result['status']]);
                 } else {
                     $data['datetime_expired'] = date('Y-m-d H:i:s', strtotime('2 days'));
                     $biller->billings()->create($data);
                     return redirect()->to(route('user.pembayaran'));
                 }
             }
+
+            UserActivity::dispatch(auth()->user(), 'Memproses tagihan, tombol Bayar Sekarang diklik');
         } else {
-            $this->emit('openModal', 'user.alert-modal', ['message' => 'Masih ada pembayaran yang belum diselesaikan, selengkapnya klik <a href="'.route('user.pembayaran').'" class="underline text-indigo-600">disini</a>']);
+            $this->emit('openModal', 'user.alert-modal', ['message' => 'Masih ada pembayaran yang belum diselesaikan, selengkapnya klik <a href="' . route('user.pembayaran') . '" class="underline text-indigo-600">disini</a>']);
         }
     }
 }

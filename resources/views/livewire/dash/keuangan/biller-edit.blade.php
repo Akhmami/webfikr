@@ -1,7 +1,7 @@
 <div>
     <x-modal action="update">
         <x-slot name="title">
-            Edit Tagihan
+            Edit Tagihan <strong class="text-gray-400">{{ $biller->user->name }}</strong>
         </x-slot>
 
         <x-slot name="content">

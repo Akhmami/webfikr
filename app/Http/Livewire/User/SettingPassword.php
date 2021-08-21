@@ -4,6 +4,7 @@ namespace App\Http\Livewire\User;
 
 use Livewire\Component;
 use App\Rules\CurrentPassword;
+use App\Jobs\UserActivity;
 
 class SettingPassword extends Component
 {
@@ -29,6 +30,8 @@ class SettingPassword extends Component
         auth()->user()->update([
             'password' => bcrypt($this->password)
         ]);
+
+        UserActivity::dispatch(auth()->user(), 'Setting Password, mengganti password');
 
         $this->emit('openModal', 'alert-modal', [
             'status' => 'success',

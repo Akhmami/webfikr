@@ -54,7 +54,7 @@ class Billing extends Model
 
     public function getDateExpiredAttribute($value)
     {
-        return tanggal(date('Y-m-d', strtotime($this->datetime_expired))) .' '. date('H:i', strtotime($this->datetime_expired));
+        return tanggal(date('Y-m-d', strtotime($this->datetime_expired))) . ' ' . date('H:i', strtotime($this->datetime_expired));
     }
 
     public function scopeActive($query)
@@ -71,6 +71,6 @@ class Billing extends Model
 
     public function getFullVirtualAccountAttribute()
     {
-        return config('bsi.bpi_code') . config('bsi.institute_code') .' '. $this->virtual_account;
+        return config('bsi.bpi_code') . config('bsi.institute_code') . ' ' . $this->virtual_account;
     }
 }

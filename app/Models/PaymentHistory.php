@@ -17,6 +17,10 @@ class PaymentHistory extends Model
         'datetime_payment',
     ];
 
+    protected $casts = [
+        'datetime_payment' => 'datetime'
+    ];
+
     public function user()
     {
         return $this->hasOneThrough(User::class, Billing::class);
@@ -34,6 +38,6 @@ class PaymentHistory extends Model
 
     public function getDateTimeAttribute($value)
     {
-        return tanggal(date('Y-m-d', strtotime($this->datetime_payment))) .' '. date('H:i', strtotime($this->datetime_payment));
+        return tanggal(date('Y-m-d', strtotime($this->datetime_payment))) . ' ' . date('H:i', strtotime($this->datetime_payment));
     }
 }

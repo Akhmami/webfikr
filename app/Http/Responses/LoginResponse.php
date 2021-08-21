@@ -3,6 +3,8 @@
 namespace App\Http\Responses;
 
 use Laravel\Fortify\Contracts\LoginResponse as LoginResponseContract;
+use App\Jobs\UserActivity;
+use Illuminate\Support\Facades\Auth;
 
 class LoginResponse implements LoginResponseContract
 {
@@ -17,6 +19,8 @@ class LoginResponse implements LoginResponseContract
         if (auth()->user()->hasRole('akuntan')) {
             $home = '/dashboard';
         }
+
+        UserActivity::dispatch(Auth::user(), 'User login, IP: ' . $request->ip());
 
         return redirect()->intended($home);
     }
