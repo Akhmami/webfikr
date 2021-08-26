@@ -37,11 +37,18 @@ class BillersTable extends DataTableComponent
 
     public function filters(): array
     {
+        $init = ['' => 'Semua'];
+        $pluck = Grade::pluck('nama', 'nama')->toArray();
+        $grades = $init + $pluck;
         return [
             'kelas' => Filter::make('Kelas')
-                ->select(
-                    Grade::pluck('nama', 'nama')->toArray()
-                )
+                ->select($grades),
+            'is_active' => Filter::make('Status tagihan')
+                ->select([
+                    '' => 'Semua',
+                    'Y' => 'Active',
+                    'N' => 'Inactive'
+                ])
         ];
     }
 
@@ -54,6 +61,10 @@ class BillersTable extends DataTableComponent
             ->when($this->getFilter('kelas'), fn ($query, $kelas) => $query->whereHas(
                 'grades',
                 fn ($query) => $query->where('nama', $kelas)
+            ))
+            ->when($this->getFilter('is_active'), fn ($query, $is_active) => $query->whereHas(
+                'billers',
+                fn ($query) => $query->where('is_active', $is_active)
             ));
     }
 

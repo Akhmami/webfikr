@@ -17,6 +17,8 @@
                                 <option selected>Hak Akses User</option>
 
                                 <option>Halaman User</option>
+
+                                <option>Aktifitas User</option>
                             </select>
                         </div>
                         <div class="hidden sm:block">
@@ -32,6 +34,12 @@
                                         :class="{ 'border-indigo-500 text-indigo-600' : tab === '#halaman-user' }"
                                         class="border-transparent text-gray-500 hover:text-gray-700 hover:border-indigo-500 border-b-2 whitespace-nowrap flex py-4 px-6 font-medium text-sm">
                                         <span>Halaman User</span>
+                                    </a>
+
+                                    <a href="#" x-on:click.prevent="tab='#aktifitas-user'"
+                                        :class="{ 'border-indigo-500 text-indigo-600' : tab === '#aktifitas-user' }"
+                                        class="border-transparent text-gray-500 hover:text-gray-700 hover:border-indigo-500 border-b-2 whitespace-nowrap flex py-4 px-6 font-medium text-sm">
+                                        <span>Aktifitas User</span>
                                     </a>
                                 </nav>
                             </div>
@@ -102,6 +110,27 @@
                                     <livewire:dash.users.berita-terbaru />
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                    <!-- Tab Aktifitas user -->
+                    <div class="divide-y" x-show="tab == '#aktifitas-user'" x-cloak>
+                        <div class="flex items-center justify-between px-2 py-4">
+                            <div class="text-md font-medium uppercase text-gray-700">
+                                Aktifitas User
+                            </div>
+                            {{-- <button type="button" onclick="Livewire.emit('openModal', 'dash.users.user-create')"
+                                class="inline-flex items-center pl-3 pr-4 py-1.5 border border-transparent text-xs font-medium rounded shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
+                                    fill="currentColor">
+                                    <path fill-rule="evenodd"
+                                        d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                                <span>NEW</span>
+                            </button> --}}
+                        </div>
+                        <div class="rounded-b flex flex-col px-2 py-4">
+                            <livewire:dash.users.user-activities-table />
                         </div>
                     </div>
                 </div>

@@ -361,10 +361,17 @@
                                 </div>
                             </dl>
 
+                            <dl x-show="tab == '#spp'" x-cloak
+                                class="px-4 sm:px-6 grid grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-2">
+                                <div class="sm:col-span-2">
+                                    <livewire:dash.users.spp-user :user="$user" />
+                                </div>
+                            </dl>
+
                             <dl x-show="tab == '#riwayat-pembayaran'" x-cloak
                                 class="px-4 sm:px-6 grid grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-2">
                                 <div class="sm:col-span-2">
-                                    <livewire:dash.users.payment-history-table user="{{ $user->id }}" />
+                                    <livewire:dash.users.payment-history-table :user="$user->id" />
                                 </div>
                             </dl>
                         </div>
@@ -381,7 +388,7 @@
                     <!-- Activity Feed -->
                     <div class="mt-6 flow-root">
                         <ul class="-mb-8">
-                            @foreach ($user->activities->reverse() as $activity)
+                            @foreach ($user->activities as $activity)
                             <li>
                                 <div class="relative pb-8">
                                     @if ($user->activities->count() > 1 && !$loop->last)
@@ -411,7 +418,7 @@
                                             </div>
                                             <div class="text-right text-sm whitespace-nowrap text-gray-500">
                                                 <time
-                                                    datetime="{{ $activity->created_at }}">{{ date('d M', strtotime($activity->created_at)) }}</time>
+                                                    datetime="{{ $activity->created_at }}">{{ $activity->created_at->shortRelativeDiffForHumans() }}</time>
                                             </div>
                                         </div>
                                     </div>
@@ -421,9 +428,9 @@
                         </ul>
                     </div>
                     <div class="mt-6 flex flex-col justify-stretch">
-                        <button type="button"
+                        <a href="{{ route('dash.users.index') }}#aktifitas-user"
                             class="inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">Lihat
-                            lainnya</button>
+                            lainnya</a>
                     </div>
                 </div>
             </section>

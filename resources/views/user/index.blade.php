@@ -12,44 +12,52 @@
                     <!-- Actions panel -->
                     <section aria-labelledby="quick-links-title">
                         <div
-                            class="rounded-lg bg-gray-200 overflow-hidden shadow divide-y divide-gray-200 sm:divide-y-0 sm:grid sm:grid-cols-2 sm:gap-px">
+                            class="rounded-lg bg-gray-50 overflow-hidden shadow divide-y divide-gray-200 sm:divide-y-0">
                             <h2 class="sr-only" id="quick-links-title">Quick links</h2>
 
                             <div class="col-span-2 bg-white px-6 py-4 rounded-tl-lg rounded-tr-lg">
                                 <livewire:user.topup-balance />
                             </div>
 
-                            <a href="{{ route('user.spp') }}"
-                                class="relative group bg-white p-6 focus-within:ring-2 focus-within:ring-inset focus-within:ring-cyan-500">
-                                <div class="flex items-center space-x-2">
-                                    <span class="rounded-lg inline-flex p-3 bg-teal-50 text-teal-700 ring-4 ring-white">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
-                                            viewBox="0 0 24 24" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" />
-                                        </svg>
-                                    </span>
-                                    <span class="text-lg">
-                                        SPP
-                                    </span>
-                                </div>
-                            </a>
+                            <div class="flex p-4 space-x-4">
+                                <a href="{{ route('user.spp') }}" class="group">
+                                    <div class="flex flex-col space-y-1 items-center">
+                                        <div>
+                                            <div
+                                                class="rounded-lg inline-flex p-3 bg-gradient-to-br from-teal-200 to-teal-500 text-teal-800 ring-4 ring-white">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
+                                                    viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        stroke-width="2"
+                                                        d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" />
+                                                </svg>
+                                            </div>
+                                        </div>
+                                        <div class="text-sm">
+                                            SPP
+                                        </div>
+                                    </div>
+                                </a>
 
-                            <a href="{{ route('user.coming-soon') }}"
-                                class="relative group bg-white p-6 focus-within:ring-2 focus-within:ring-inset focus-within:ring-cyan-500">
-                                <div class="flex items-center space-x-2">
-                                    <span class="rounded-lg inline-flex p-3 bg-sky-50 text-sky-700 ring-4 ring-white">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
-                                            viewBox="0 0 24 24" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
-                                        </svg>
-                                    </span>
-                                    <span class="text-lg">
-                                        Liannya
-                                    </span>
-                                </div>
-                            </a>
+                                <a href="{{ route('user.spp') }}" class="group">
+                                    <div class="flex flex-col space-y-1 items-center">
+                                        <div>
+                                            <div
+                                                class="rounded-lg inline-flex p-3 bg-gradient-to-br from-gray-200 to-gray-500 text-gray-800 ring-4 ring-white">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
+                                                    viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        stroke-width="2"
+                                                        d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
+                                                </svg>
+                                            </div>
+                                        </div>
+                                        <div class="text-sm">
+                                            Lainnya
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
                         </div>
                     </section>
 

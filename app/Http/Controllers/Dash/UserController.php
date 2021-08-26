@@ -22,7 +22,6 @@ class UserController extends Controller
             'grades',
             'activeGrade',
             'mobilePhones',
-            'spps',
             'setSpp'
         ])->findOrFail($id);
 

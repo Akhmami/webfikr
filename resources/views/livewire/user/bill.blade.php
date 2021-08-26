@@ -41,7 +41,7 @@
                 </div>
 
                 <div class="col-span-2 px-6 py-5 text-sm font-medium text-center">
-                    <span class="text-gray-600">Tagihan yang jatuh tempo akan di akumulasikan ke tagihan
+                    <span class="text-gray-600">Tagihan jatuh tempo akan di akumulasikan ke tagihan
                         berikutnya</span>
                 </div>
             </div>
