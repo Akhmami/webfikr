@@ -13,6 +13,7 @@ class PaymentHistory extends Model
     protected $fillable = [
         'payment_ntb',
         'customer_name',
+        'virtual_account',
         'payment_amount',
         'datetime_payment',
     ];

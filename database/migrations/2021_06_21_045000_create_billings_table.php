@@ -18,9 +18,10 @@ class CreateBillingsTable extends Migration
             $table->foreignId('biller_id')->nullable()->constrained();
             $table->foreignId('user_id')->constrained();
             $table->string('trx_id')->unique();
+            $table->string('customer_name')->nullable();
             $table->char('virtual_account', 16);
-            $table->decimal('trx_amount', 14,0);
-            $table->enum('billing_type', ['o', 'i', 'c']);
+            $table->decimal('trx_amount', 14, 0);
+            $table->enum('billing_type', ['o', 'i', 'c', 'saldo']);
             $table->enum('is_paid', ['Y', 'N'])->default('N');
             $table->string('description')->nullable();
             $table->text('spp_pay_month')->nullable();

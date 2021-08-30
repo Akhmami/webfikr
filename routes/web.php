@@ -51,3 +51,9 @@ Route::domain('apps.' . config('app.domain'))
                 Route::view('/', 'user.setting')->name('profile');
             });
     });
+
+Route::domain('psb.' . config('app.domain'))
+    ->name('psb.')
+    ->group(function () {
+        Route::view('/', 'psb.index')->name('index');
+    });

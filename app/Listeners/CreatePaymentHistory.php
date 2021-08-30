@@ -34,6 +34,7 @@ class CreatePaymentHistory
             'payment_ntb' => $data['payment_ntb']
         ], [
             'customer_name' => $data['customer_name'],
+            'virtual_account' => $data['virtual_account'],
             'payment_amount' => $data['payment_amount'],
             'datetime_payment' => $data['datetime_payment']
         ]);

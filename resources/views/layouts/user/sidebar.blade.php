@@ -13,19 +13,17 @@
                                 <a href="#" class="hover:underline focus:outline-none">
                                     <!-- Extend touch target to entire panel -->
                                     <span class="absolute inset-0" aria-hidden="true"></span>
-                                    Office closed on July 2nd
+                                    BANTU KAMI MENINGKATKAN KUALITAS PELAYANAN PRIMA
                                 </a>
                             </h3>
                             <p class="mt-1 text-sm text-gray-600 line-clamp-2">
-                                Cum qui rem deleniti. Suscipit in dolor veritatis sequi aut.
-                                Vero ut
-                                earum quis deleniti. Ut a sunt eum cum ut repudiandae possimus.
-                                Nihil ex tempora neque cum consectetur dolores.
+                                Demi meningkatkan kualitas pelayanan prima mohon untuk memastikan kelengkapan data
+                                berikut
                             </p>
                         </div>
                     </li>
 
-                    <li class="py-5">
+                    {{-- <li class="py-5">
                         <div class="relative focus-within:ring-2 focus-within:ring-cyan-500">
                             <h3 class="text-sm font-semibold text-gray-800">
                                 <a href="#" class="hover:underline focus:outline-none">
@@ -64,7 +62,7 @@
                                 Consequatur quis dignissimos voluptatem nisi.
                             </p>
                         </div>
-                    </li>
+                    </li> --}}
                 </ul>
             </div>
             <div class="mt-6">

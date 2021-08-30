@@ -17,7 +17,7 @@ class BillingsTable extends DataTableComponent
     public function columns(): array
     {
         return [
-            Column::make('Nama Lengkap', 'user.name')
+            Column::make('Nama Lengkap', 'customer_name')
                 ->sortable()
                 ->searchable(),
             Column::make('Virtual Account', 'virtual_account')
@@ -52,7 +52,6 @@ class BillingsTable extends DataTableComponent
     public function query(): Builder
     {
         return Billing::query()
-            ->with('user')
             ->latest()
             ->when($this->getFilter('status'), fn ($query, $status) => $query->where('status', $status));
     }

@@ -78,7 +78,7 @@
                     <div class="hidden lg:block lg:col-span-2">
                         <nav class="flex space-x-4">
                             <a href="{{ route('user.home') }}"
-                                class="text-white text-sm font-medium rounded-md bg-white bg-opacity-0 px-3 py-2 hover:bg-opacity-10"
+                                class="{{ set_active('user.home', 'text-white', 'text-blue-200') }} text-sm font-medium rounded-md bg-white bg-opacity-0 px-3 py-2 hover:bg-opacity-10"
                                 aria-current="page">
                                 Home
                             </a>
@@ -96,6 +96,11 @@
                             <a href="{{ route('user.coming-soon') }}"
                                 class="text-blue-200 text-sm font-medium rounded-md bg-white bg-opacity-0 px-3 py-2 hover:bg-opacity-10">
                                 Kehadiran
+                            </a>
+
+                            <a href="{{ route('user.pembayaran') }}"
+                                class="{{ set_active('user.pembayaran', 'text-white', 'text-blue-200') }} text-sm font-medium rounded-md bg-white bg-opacity-0 px-3 py-2 hover:bg-opacity-10">
+                                Pembayaran
                             </a>
                         </nav>
                     </div>

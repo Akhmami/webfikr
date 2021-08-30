@@ -160,3 +160,11 @@ function sms_otp($mobile, $pesan)
         return true;
     }
 }
+
+function set_active($route, $active = null, $default = null)
+{
+    if (is_array($route)) {
+        return in_array(request()->route()->getName(), $route) ? $active : $default;
+    }
+    return request()->route()->getName() == $route ? $active : $default;
+}

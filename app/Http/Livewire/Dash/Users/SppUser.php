@@ -7,6 +7,7 @@ use Livewire\Component;
 class SppUser extends Component
 {
     public $grades;
+    public $komitmen;
 
     public function mount($user)
     {
@@ -14,6 +15,8 @@ class SppUser extends Component
             ->with('spps')
             ->latest('nama')
             ->get();
+
+        $this->komitmen = rupiah($user->setSpp->nominal);
     }
 
     public function render()

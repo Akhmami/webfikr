@@ -19,6 +19,7 @@ class Billing extends Model
         'user_id',
         'biller_id',
         'trx_id',
+        'customer_name',
         'virtual_account',
         'trx_amount',
         'billing_type',

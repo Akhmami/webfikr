@@ -28,6 +28,29 @@
                             <div class="flex items-center space-x-4">
                                 <div class="flex-1 min-w-0">
                                     <p class="text-sm text-gray-500 truncate">
+                                        Kode Bayar
+                                    </p>
+                                    <p class="text-lg font-bold truncate">
+                                        {{ $payment->virtual_account }}
+                                    </p>
+                                </div>
+                                <div>
+                                    <button type="button" onclick="copyToClipboard({{$payment->virtual_account}})"
+                                        class="inline-flex space-x-1 text-sm leading-5 font-medium text-indigo-600
+                                                                                    hover:underline">
+                                        Salin <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
+                                            viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2" />
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-4">
+                            <div class="flex items-center space-x-4">
+                                <div class="flex-1 min-w-0">
+                                    <p class="text-sm text-gray-500 truncate">
                                         Nomor Virtual Account
                                     </p>
                                     <p class="text-lg font-bold truncate">
@@ -35,7 +58,7 @@
                                     </p>
                                 </div>
                                 <div>
-                                    <button type="button" onclick="copyToClipboard({{$payment->virtual_account}})"
+                                    <button type="button" onclick="copyToClipboard({{$payment->full_virtual_account}})"
                                         class="inline-flex space-x-1 text-sm leading-5 font-medium text-indigo-600
                                                             hover:underline">
                                         Salin <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
@@ -66,13 +89,47 @@
                         </div>
                     </div>
 
-                    <div class="w-2/3 mx-auto mt-4">
-                        <h2>Cara Pembayaran</h2>
-                        <ol class="text-sm">
-                            <li>1. Buka...</li>
-                        </ol>
+                    <div class="prose w-2/3 mx-auto mt-6">
+                        <h4>Cara Pembayaran</h4>
+                        <ul class="text-sm">
+                            <li class="font-semibold">Menggunakan Metode Transfer BSI Mobile Banking</li>
+                            <ol class="pl-6 pb-4">
+                                <li>Akses BSI Mobile Banking dari handphone kemudian pilih "Tansfer".</li>
+                                <li>Pilih "Transfer antar Rekening BSI"</li>
+                                <li>Masukkan nomor Virtual Account Anda
+                                    <strong>{{ $payment->full_virtual_account }}</strong>
+                                    pada input "Masukan no rekening tujuan".</li>
+                                <li>Masukan nominal <strong>{{ rupiah($payment->trx_amount, false) }}</strong></li>
+                                <li>Klik "SELANJUTNYA" dan selesaikan pembayaran</li>
+                            </ol>
+
+                            <li class="font-semibold">Menggunakan Pembayaran Akademik BSI Mobile Banking</li>
+                            <ol class="pl-6 pb-4">
+                                <li>Akses BSI Mobile Banking dari handphone kemudian pilih "Bayar".</li>
+                                <li>Pilih "Akademik"</li>
+                                <li>Dibagian "Nama Akademik" cari <strong>9194 - NFBS SERANG</strong></li>
+                                <li>Dibagian "Masukan ID Pelanggan/Kode Bayar" masukan
+                                    <strong>{{ $payment->virtual_account }}</strong></li>
+                                <li>Klik "SELANJUTNYA" dan selesaikan pembayaran</li>
+                            </ol>
+
+                            <li class="font-semibold">Menggunakan Metode Transfer Dari Bank Lain</li>
+                            <ol class="pl-6 pb-4">
+                                <li>Pilih menu "Transfer antar bank" atau "Transfer online antarbank".</li>
+                                <li>Masukkan kode bank BNI (451) atau pilih bank yang dituju yaitu BSI.</li>
+                                <li>Masukkan nomor Virtual Account Anda
+                                    <strong>{{ $payment->full_virtual_account }}</strong>
+                                    pada rekening tujuan.</li>
+                                <li>Masukan nominal transfer <strong>{{ rupiah($payment->trx_amount, false) }}</strong>
+                                </li>
+                                <li>Konfirmasi rincian Anda akan tampil di layar, cek dan apabila sudah sesuai silahkan
+                                    lanjutkan transaksi sampai dengan
+                                    selesai.</li>
+                            </ol>
+                        </ul>
                     </div>
                     @else
+                    <!-- Tidak ada pembayaran -->
                     <div class="text-center">
                         <svg xmlns="http://www.w3.org/2000/svg" class="mx-auto h-12 w-12 text-gray-400" width="44"
                             height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#9ca3af" fill="none"

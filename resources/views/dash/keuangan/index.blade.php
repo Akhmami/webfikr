@@ -31,7 +31,7 @@
 
                                         <span :class="{ 'bg-indigo-100 text-indigo-600' : tab === '#tagihan' }"
                                             class="bg-gray-100 text-gray-900 hidden ml-3 py-0.5 px-2.5 rounded-full text-xs font-medium md:inline-block">
-                                            {{ $tagihan }}
+                                            <x-tooltip message="belum dibayar" :title="$tagihan" />
                                         </span>
                                     </a>
 
@@ -41,9 +41,22 @@
                                         aria-current="page">
                                         <span>Virtual Account</span>
 
-                                        <span :class="{ 'bg-indigo-100 text-indigo-600' : tab === '#virtual-account' }"
+                                        <span title="active"
+                                            :class="{ 'bg-indigo-100 text-indigo-600' : tab === '#virtual-account' }"
                                             class="bg-gray-100 text-gray-900 hidden ml-3 py-0.5 px-2.5 rounded-full text-xs font-medium md:inline-block">
-                                            {{ $virtual_account }}
+                                            <x-tooltip message="VA active" :title="$virtual_account" />
+                                        </span>
+                                    </a>
+
+                                    <a href="#" x-on:click.prevent="tab='#riwayat-pembayaran'"
+                                        :class="{ 'border-indigo-500 text-indigo-600' : tab === '#riwayat-pembayaran' }"
+                                        class="border-transparent text-gray-500 hover:text-gray-700 hover:border-indigo-500 border-b-2 whitespace-nowrap flex py-4 px-6 font-medium text-sm">
+                                        <span>Riwayat Pembayaran</span>
+
+                                        <span title="Hari ini"
+                                            :class="{ 'bg-indigo-100 text-indigo-600' : tab === '#riwayat-pembayaran' }"
+                                            class="bg-gray-100 text-gray-900 hidden ml-3 py-0.5 px-2.5 rounded-full text-xs font-medium md:inline-block">
+                                            <x-tooltip message="pembayaran hari ini" :title="$keringanan" />
                                         </span>
                                     </a>
 
@@ -51,11 +64,6 @@
                                         :class="{ 'border-indigo-500 text-indigo-600' : tab === '#keringanan' }"
                                         class="border-transparent text-gray-500 hover:text-gray-700 hover:border-indigo-500 border-b-2 whitespace-nowrap flex py-4 px-6 font-medium text-sm">
                                         <span>Keringanan</span>
-
-                                        <span :class="{ 'bg-indigo-100 text-indigo-600' : tab === '#keringanan' }"
-                                            class="bg-gray-100 text-gray-900 hidden ml-3 py-0.5 px-2.5 rounded-full text-xs font-medium md:inline-block">
-                                            {{ $keringanan }}
-                                        </span>
                                     </a>
                                 </nav>
                             </div>
@@ -107,6 +115,17 @@
                             <livewire:dash.keuangan.billings-table />
                         </div>
                     </div>
+                    <!-- Tab riwayat pembayaran -->
+                    <div class="divide-y" x-show="tab == '#riwayat-pembayaran'" x-cloak>
+                        <div class="flex items-center justify-between px-2 py-4">
+                            <div class="text-md font-medium uppercase text-gray-700">
+                                Daftar Riwayat Pembayaran
+                            </div>
+                        </div>
+                        <div class="rounded-b flex flex-col px-2 py-4">
+                            <livewire:dash.keuangan.payment-histories-table />
+                        </div>
+                    </div>
                     <!-- Tab Keringanan -->
                     <div class="divide-y" x-show="tab == '#keringanan'" x-cloak>
                         <div class="flex items-center justify-between px-2 py-4">
@@ -134,7 +153,34 @@
 
             <div x-show="isClose" class="w-2/6">
                 <livewire:dash.keuangan.balance />
-                <livewire:dash.keuangan.payment-histories />
+                <div>
+                    <div class="mb-2 flex items-center justify-between py-1">
+                        <div class="text-md font-medium uppercase text-gray-700">
+                            Riwayat Pembayaran Terbaru
+                        </div>
+                    </div>
+                    <div class="flex flex-col space-y-2">
+                        <div class="bg-white rounded shadow">
+                            <div class="flex items-center space-x-4 p-4">
+                                <div class="rounded-full bg-green-100 p-4">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500"
+                                        viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd"
+                                            d="M16.707 10.293a1 1 0 010 1.414l-6 6a1 1 0 01-1.414 0l-6-6a1 1 0 111.414-1.414L9 14.586V3a1 1 0 012 0v11.586l4.293-4.293a1 1 0 011.414 0z"
+                                            clip-rule="evenodd" />
+                                    </svg>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-gray-500">
+                                        <x-badge color="gray" text="dfg" />
+                                        Fulan Ahmad
+                                    </p>
+                                    <p class="text-xl text-gray-700 font-semibold">1.000.000</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </main>

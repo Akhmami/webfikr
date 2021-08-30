@@ -34,6 +34,7 @@ class WA
             'DUP' => 'Daftar Ulang PSB',
             'MUT' => 'Mutasi',
             'DUM' => 'Daftar Ulang Mutasi',
+            'TOP' => 'Isi Saldo',
             'LAI' => 'Lainnya'
         ];
         $type = $types[substr($data['trx_id'], 0, 3)];

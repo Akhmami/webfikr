@@ -19,7 +19,8 @@
         "livewire/livewire": "^2.5",
         "rappasoft/laravel-livewire-tables": "^1.10",
         "spatie/laravel-activitylog": "^3.17",
-        "spatie/laravel-permission": "^4.2"
+        "spatie/laravel-permission": "^4.2",
+        "spatie/laravel-analytics": "^3.10"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.6",

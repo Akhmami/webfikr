@@ -2,9 +2,8 @@
 
 namespace App\Console\Commands;
 
+use App\Models\Billing;
 use Illuminate\Console\Command;
-use App\Libraries\VA;
-use App\Notifications\PaymentNotification;
 
 class Testing extends Command
 {
@@ -39,29 +38,9 @@ class Testing extends Command
      */
     public function handle()
     {
-        // $client_id = '1234';
-        // $secret_key = 'adagag40245262vdsfgsgwt';
-        // $va = new VA($client_id, $secret_key);
-        $data = array(
-            'trx_id' => 'SPP11111',
-            'trx_amount' => 3500000,
-            'billing_type' => 'c',
-            'datetime_expired' => date('c', strtotime('2 month')),
-            'virtual_account' => '11111',
-            'customer_name' => 'Ini Budi',
-            'customer_email' => 'akhmami@gmail.com',
-            'customer_phone' => '085156154439',
-            'description' => 'spp',
-            'template' => '',
-            'payment_amount' => 3500000
-        );
-
-        // $result = $va->create($data);
-        // dd($result);
-        $user = \App\Models\User::find(4);
-        $user->notify(new PaymentNotification($data));
-
-        // $wa = new \App\Libraries\WA($user);
-        // dd($wa->notifyPayment($data));
+        $billings = Billing::has('user')->cursor();
+        foreach ($billings as $bill) {
+            $bill->update(['customer_name' => $bill->user->name]);
+        }
     }
 }

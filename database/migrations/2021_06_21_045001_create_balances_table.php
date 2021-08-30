@@ -16,11 +16,11 @@ class CreateBalancesTable extends Migration
         Schema::create('balances', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained();
-            $table->string('trx_id', 50)->unique();
-            $table->string('virtual_account', 20);
-            $table->decimal('payment_amount', 14, 0)->default(0);
-            $table->enum('is_paid', ['Y', 'N'])->default('N');
-            $table->timestamp('datetime_expired')->nullable();
+            $table->decimal('last_amount', 14, 0)->default(0);
+            $table->enum('type', ['plus', 'minus']);
+            $table->decimal('nominal', 14, 0)->default(0);
+            $table->decimal('current_amount', 14, 0)->default(0);
+            $table->string('description')->nullable();
             $table->timestamps();
         });
     }

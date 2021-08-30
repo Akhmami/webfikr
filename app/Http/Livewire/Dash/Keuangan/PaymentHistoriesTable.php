@@ -13,26 +13,21 @@ class PaymentHistoriesTable extends DataTableComponent
     public function columns(): array
     {
         return [
-            Column::make('Nama Lengkap', 'name')
+            Column::make('ID Pembayaran', 'payment_ntb')
                 ->sortable()
-                ->searchable()
-                ->format(function($value, $column, $row) {
-                    return view('livewire.dash.keuangan.name-column')->withUser($row);
-                }),
+                ->searchable(),
+            Column::make('Nama Lengkap', 'customer_name')
+                ->sortable()
+                ->searchable(),
             Column::make('Virtual Account', 'virtual_account')
                 ->sortable()
                 ->searchable(),
-            Column::make('Jumlah', 'amount')
+            Column::make('Jumlah', 'payment_amount')
                 ->sortable()
                 ->searchable(),
-            Column::make('Status')
-                ->format(function($value, $column, $row) {
-                    return view('livewire.dash.keuangan.status-column')->withUser($row);
-                }),
-            Column::make('Actions')
-                ->format(function($value, $column, $row) {
-                    return view('livewire.dash.keuangan.actions')->withUser($row);
-                }),
+            Column::make('Tgl Bayar', 'datetime_payment')
+                ->sortable()
+                ->searchable(),
         ];
     }
 
@@ -51,6 +46,7 @@ class PaymentHistoriesTable extends DataTableComponent
     public function query(): Builder
     {
         return PaymentHistory::query()
+            ->with('paymentHistory')
             ->when($this->getFilter('status'), fn ($query, $status) => $query->where('status', $status));
     }
 }
