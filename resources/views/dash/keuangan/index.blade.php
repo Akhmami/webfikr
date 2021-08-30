@@ -56,7 +56,7 @@
                                         <span title="Hari ini"
                                             :class="{ 'bg-indigo-100 text-indigo-600' : tab === '#riwayat-pembayaran' }"
                                             class="bg-gray-100 text-gray-900 hidden ml-3 py-0.5 px-2.5 rounded-full text-xs font-medium md:inline-block">
-                                            <x-tooltip message="pembayaran hari ini" :title="$keringanan" />
+                                            <x-tooltip message="pembayaran hari ini" :title="$history" />
                                         </span>
                                     </a>
 

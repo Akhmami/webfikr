@@ -11,16 +11,8 @@
                         <a href="#"
                             class="bg-blue-700 text-white px-3 py-2 rounded-md text-sm font-medium">Dashboard</a>
 
-                        <a @click.prevent="$dispatch('open-dropdown',{id: 1, menu: 'website'})" href="#"
-                            class="inline-flex items-center group text-white hover:bg-blue-500 hover:bg-opacity-75 px-3 py-2 rounded-md text-sm font-medium">
-                            <span>Website</span>
-                            <svg class="ml-1 -mr-1 h-5 w-5 group-hover:text-gray-500" xmlns="http://www.w3.org/2000/svg"
-                                viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                <path fill-rule="evenodd"
-                                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                                    clip-rule="evenodd" />
-                            </svg>
-                        </a>
+                        <a href="{{ route('dash.index') }}"
+                            class="text-white hover:bg-blue-500 hover:bg-opacity-75 px-3 py-2 rounded-md text-sm font-medium">Website</a>
 
                         <a href="{{ route('dash.index') }}"
                             class="text-white hover:bg-blue-500 hover:bg-opacity-75 px-3 py-2 rounded-md text-sm font-medium">Santri</a>
@@ -58,7 +50,7 @@
                             </svg>
                         </button>
 
-                        <div x-show="isOpen" @click.away="isOpen = false"
+                        <div x-show="isOpen" @click.away="isOpen = false" x-cloak
                             x-transition:enter="transition ease-out duration-100"
                             x-transition:enter-start="transform opacity-0 scale-95"
                             x-transition:enter-end="transform opacity-100 scale-100"
@@ -130,7 +122,7 @@
                             <img class="h-8 w-8 rounded-full" src="{{ asset('images/admin.png') }}" alt="">
                         </button>
 
-                        <div x-show="isOpen" @click.away="isOpen = false"
+                        <div x-show="isOpen" @click.away="isOpen = false" x-cloak
                             x-transition:enter="transition ease-out duration-100"
                             x-transition:enter-start="transform opacity-0 scale-95"
                             x-transition:enter-end="transform opacity-100 scale-100"
@@ -254,40 +246,11 @@
     </div>
 </nav>
 
-<header x-data="{ open: false, website: false, lainnya: false }" x-show="open"
-    @open-dropdown.window="if ($event.detail.id == 1) open = true" @click.away="open = website = lainnya = false"
+<header x-data="{ open: false, lainnya: false }" x-show="open" x-cloak
+    @open-dropdown.window="if ($event.detail.id == 1) open = true" @click.away="open = lainnya = false"
     x-transition:enter="transition ease-out duration-100" x-transition:enter-start="transform opacity-0 scale-95"
     x-transition:enter-end="transform opacity-100 scale-100" class="bg-white shadow">
     <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-        <ul class="flex items-center justify-start" x-show="website"
-            @open-dropdown.window="if ($event.detail.menu == 'website') website = true">
-            <li class="flow-root">
-                <a href="#"
-                    class="p-3 flex items-center space-x-1 rounded-md text-base font-medium text-gray-900 hover:bg-gray-50 transition ease-in-out duration-150">
-                    <!-- Heroicon name: outline/information-circle -->
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-400" fill="none"
-                        viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2" />
-                    </svg>
-                    <span class="ml-4">Semua Posting</span>
-                </a>
-            </li>
-
-            <li class="flow-root">
-                <a href="#"
-                    class="p-3 flex items-center space-x-1 rounded-md text-base font-medium text-gray-900 hover:bg-gray-50 transition ease-in-out duration-150">
-                    <!-- Heroicon name: outline/office-building -->
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-400" fill="none"
-                        viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                    </svg>
-                    <span class="ml-4">Posting Baru</span>
-                </a>
-            </li>
-        </ul>
-
         <ul class="flex items-center justify-start" x-show="lainnya"
             @open-dropdown.window="if ($event.detail.menu == 'lainnya') lainnya = true">
             <li class="flow-root">

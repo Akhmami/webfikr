@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Dash;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use Carbon\Carbon;
 use App\Models\Billing;
 use App\Models\Biller;
-use App\Models\CostReduction;
+use App\Models\PaymentHistory;
 
 class KeuanganController extends Controller
 {
@@ -14,12 +14,12 @@ class KeuanganController extends Controller
     {
         $virtual_account = Billing::active()->count();
         $tagihan = Biller::active()->count();
-        $keringanan = CostReduction::unused()->count();
+        $history = PaymentHistory::whereDate('datetime_payment', '>', Carbon::yesterday())->count();
 
         return view('dash.keuangan.index', [
             'virtual_account' => $virtual_account,
             'tagihan' => $tagihan,
-            'keringanan' => $keringanan
+            'history' => $history
         ]);
     }
 }
