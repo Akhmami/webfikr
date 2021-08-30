@@ -26,12 +26,11 @@ class CostReductionsTable extends DataTableComponent
             Column::make('Untuk', 'type')
                 ->sortable()
                 ->searchable(),
-            Column::make('Status')
-                ->format(function($value, $column, $row) {
-                    return view('livewire.dash.keuangan.status-cost-reduction')->withData($row);
-                }),
+            Column::make('Keterangan', 'keterangan')
+                ->sortable()
+                ->searchable(),
             Column::make('Actions')
-                ->format(function($value, $column, $row) {
+                ->format(function ($value, $column, $row) {
                     return view('livewire.dash.keuangan.cost-reduction-actions')->withData($row);
                 }),
         ];
