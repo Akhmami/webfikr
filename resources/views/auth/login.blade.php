@@ -8,7 +8,7 @@
             </div>
             <div class="mt-10 px-12 sm:px-24 md:px-48 lg:px-12 lg:mt-16 xl:px-24 xl:max-w-2xl">
                 <h2 class="text-center text-4xl text-indigo-900 font-display font-semibold lg:text-left xl:text-5xl
-              xl:text-bold">Log in</h2>
+              xl:text-bold">Login</h2>
                 <div class="mt-12">
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
@@ -33,7 +33,7 @@
                                     @if (Route::has('password.request'))
                                     <a href="{{ route('password.request') }}"
                                         class="text-xs font-display font-semibold text-indigo-600 hover:text-indigo-800 cursor-pointer">
-                                        Forgot Password?
+                                        Lupa password?
                                     </a>
                                     @endif
                                 </div>
@@ -52,7 +52,7 @@
                             <button class="bg-indigo-500 text-gray-100 p-4 w-full rounded-full tracking-wide
                           font-semibold font-display focus:outline-none focus:shadow-outline hover:bg-indigo-600
                           shadow-lg">
-                                Log In
+                                Login
                             </button>
                         </div>
                     </form>

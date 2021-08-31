@@ -29,10 +29,10 @@ class CostReductionsTable extends DataTableComponent
             Column::make('Keterangan', 'keterangan')
                 ->sortable()
                 ->searchable(),
-            Column::make('Actions')
-                ->format(function ($value, $column, $row) {
-                    return view('livewire.dash.keuangan.cost-reduction-actions')->withData($row);
-                }),
+            // Column::make('Actions')
+            //     ->format(function ($value, $column, $row) {
+            //         return view('livewire.dash.keuangan.cost-reduction-actions')->withData($row);
+            //     }),
         ];
     }
 

@@ -20,6 +20,7 @@ class BillersTable extends DataTableComponent
         return [
             Column::make('Nama Lengkap', 'name')
                 ->sortable()
+                ->searchable()
                 ->format(function ($value, $column, $row) {
                     return '<a href="' . route('dash.users.show', $row) . '" class="text-indigo-600 font-semibold hover:underline cursor-pointer">' . $value . '</a>';
                 })
