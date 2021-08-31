@@ -10,7 +10,7 @@ class TopupBalance extends Component
 
     public function render()
     {
-        $this->balance = auth()->user()->balance->current_amount;
+        $this->balance = auth()->user()->balance->current_amount ?? 0;
 
         return view('livewire.user.topup-balance');
     }
