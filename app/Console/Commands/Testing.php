@@ -2,7 +2,7 @@
 
 namespace App\Console\Commands;
 
-use App\Models\Billing;
+use App\Models\User;
 use Illuminate\Console\Command;
 
 class Testing extends Command
@@ -38,9 +38,11 @@ class Testing extends Command
      */
     public function handle()
     {
-        $billings = Billing::has('user')->cursor();
-        foreach ($billings as $bill) {
-            $bill->update(['customer_name' => $bill->user->name]);
+        $users = User::whereHas('roles', function ($q) {
+            $q->where('name', 'user');
+        })->cursor();
+        foreach ($users as $user) {
+            $user->update(['password' => '$2y$10$A0bttMCw3Z6iq6EQukJ7ZOsuKrGCR4FpMkva/5bqHaYIecMNxiRzy']);
         }
     }
 }
