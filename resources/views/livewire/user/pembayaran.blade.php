@@ -74,10 +74,22 @@
                             <div class="flex items-center space-x-4">
                                 <div class="flex-1 min-w-0">
                                     <p class="text-sm text-gray-500 truncate">
+                                        Biaya Admin Bank BSI
+                                    </p>
+                                    <p class="text-lg font-bold truncate">
+                                        Rp 2.000
+                                    </p>
+                                </div>x
+                            </div>
+                        </div>
+                        <div class="p-4">
+                            <div class="flex items-center space-x-4">
+                                <div class="flex-1 min-w-0">
+                                    <p class="text-sm text-gray-500 truncate">
                                         Total Pembayaran
                                     </p>
                                     <p class="text-lg font-bold truncate">
-                                        {{ rupiah($payment->trx_amount) }}
+                                        {{ rupiah(($payment->trx_amount + 2000)) }}
                                     </p>
                                 </div>
                                 <div>

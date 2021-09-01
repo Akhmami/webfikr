@@ -39,10 +39,10 @@ class CreateUserDetailsTable extends Migration
             $table->string('kecamatan', 50)->nullable();
             $table->string('kelurahan', 50)->nullable();
             $table->string('nama_ayah')->nullable();
-            $table->char('tahun_lahir_ayah', 4)->nullable();
+            $table->char('tanggal_lahir_ayah', 4)->nullable();
             $table->enum('pendidikan_ayah', ['SD', 'SMP', 'SMA', 'D3', 'S1', 'S2', 'S3'])->nullable();
             $table->string('pekerjaan_ayah')->nullable();
-            $table->decimal('penghasilan_ayah', 14,0)->nullable();
+            $table->decimal('penghasilan_ayah', 14, 0)->nullable();
             $table->string('tempat_kerja_ayah', 50)->nullable();
             $table->string('pendidikan_agama_ayah')->nullable();
             $table->string('baca_quran_ayah', 25)->nullable();
@@ -50,10 +50,10 @@ class CreateUserDetailsTable extends Migration
             $table->string('organisasi_islam_ayah')->nullable();
             $table->string('buku_bacaan_islam_ayah')->nullable();
             $table->string('nama_ibu')->nullable();
-            $table->char('tahun_lahir_ibu', 4)->nullable();
+            $table->char('tanggal_lahir_ibu', 4)->nullable();
             $table->enum('pendidikan_ibu', ['SD', 'SMP', 'SMA', 'D3', 'S1', 'S2', 'S3'])->nullable();
             $table->string('pekerjaan_ibu')->nullable();
-            $table->decimal('penghasilan_ibu', 14,0)->nullable();
+            $table->decimal('penghasilan_ibu', 14, 0)->nullable();
             $table->string('tempat_kerja_ibu', 50)->nullable();
             $table->string('pendidikan_agama_ibu')->nullable();
             $table->string('baca_quran_ibu', 25)->nullable();
