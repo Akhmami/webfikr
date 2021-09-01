@@ -47,6 +47,7 @@ class PaymentHistoriesTable extends DataTableComponent
     {
         return PaymentHistory::query()
             ->with('paymentHistory')
-            ->when($this->getFilter('status'), fn ($query, $status) => $query->where('status', $status));
+            ->when($this->getFilter('status'), fn ($query, $status) => $query->where('status', $status))
+            ->latest('id');
     }
 }
