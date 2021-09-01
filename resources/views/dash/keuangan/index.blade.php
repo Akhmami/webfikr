@@ -153,13 +153,13 @@
 
             <div x-show="isClose" class="w-2/6">
                 <livewire:dash.keuangan.balance />
-                <div>
+                {{-- <div>
                     <div class="mb-2 flex items-center justify-between py-1">
                         <div class="text-md font-medium uppercase text-gray-700">
                             Riwayat Pembayaran Terbaru
                         </div>
                     </div>
-                    {{-- <div class="flex flex-col space-y-2">
+                    <div class="flex flex-col space-y-2">
                         <div class="bg-white rounded shadow">
                             <div class="flex items-center space-x-4 p-4">
                                 <div class="rounded-full bg-green-100 p-4">
@@ -179,8 +179,8 @@
                                 </div>
                             </div>
                         </div>
-                    </div> --}}
-                </div>
+                    </div>
+                </div> --}}
             </div>
         </div>
     </main>
