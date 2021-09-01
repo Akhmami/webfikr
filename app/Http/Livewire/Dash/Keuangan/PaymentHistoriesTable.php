@@ -13,12 +13,12 @@ class PaymentHistoriesTable extends DataTableComponent
     public function columns(): array
     {
         return [
-            Column::make('ID Pembayaran', 'payment_ntb')
-                ->sortable()
-                ->searchable(),
             Column::make('Nama Lengkap', 'customer_name')
                 ->sortable()
-                ->searchable(),
+                ->searchable()
+                ->format(function ($value, $column, $row) {
+                    return view('livewire.dash.keuangan.name-payment-history', ['data' => $row]);
+                }),
             Column::make('Virtual Account', 'virtual_account')
                 ->sortable()
                 ->searchable(),
