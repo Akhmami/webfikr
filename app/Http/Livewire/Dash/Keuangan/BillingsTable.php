@@ -25,7 +25,11 @@ class BillingsTable extends DataTableComponent
                 ->searchable(),
             Column::make('Jumlah', 'trx_amount')
                 ->sortable()
-                ->searchable(),
+                ->searchable()
+                ->format(function ($value, $column, $row) {
+                    return rupiah($value, false);
+                })
+                ->asHtml(),
             Column::make('Status')
                 ->format(function ($value, $column, $row) {
                     return view('livewire.dash.keuangan.status-column', ['data' => $row]);
