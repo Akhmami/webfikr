@@ -79,7 +79,7 @@
                                     <p class="text-lg font-bold truncate">
                                         Rp 2.000
                                     </p>
-                                </div>x
+                                </div>
                             </div>
                         </div>
                         <div class="p-4">
