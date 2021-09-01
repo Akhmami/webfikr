@@ -24,7 +24,11 @@ class PaymentHistoriesTable extends DataTableComponent
                 ->searchable(),
             Column::make('Jumlah', 'payment_amount')
                 ->sortable()
-                ->searchable(),
+                ->searchable()
+                ->format(function ($value, $column, $row) {
+                    return rupiah($value, false);
+                })
+                ->asHtml(),
             Column::make('Tgl Bayar', 'datetime_payment')
                 ->sortable()
                 ->searchable(),
