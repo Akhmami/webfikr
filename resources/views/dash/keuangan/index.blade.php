@@ -159,7 +159,7 @@
                             Riwayat Pembayaran Terbaru
                         </div>
                     </div>
-                    <div class="flex flex-col space-y-2">
+                    {{-- <div class="flex flex-col space-y-2">
                         <div class="bg-white rounded shadow">
                             <div class="flex items-center space-x-4 p-4">
                                 <div class="rounded-full bg-green-100 p-4">
@@ -179,7 +179,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>
