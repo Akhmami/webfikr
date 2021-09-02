@@ -70,25 +70,25 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="p-4">
+                        <div class="px-4 pt-4 pb-2">
                             <div class="flex items-center space-x-4">
                                 <div class="flex-1 min-w-0">
-                                    <p class="text-sm text-gray-500 truncate">
+                                    <p class="text-xs text-gray-500 truncate">
                                         Tagihan
                                     </p>
-                                    <p class="text-lg font-bold truncate text-gray-600">
+                                    <p class="text-md font-bold truncate text-gray-600">
                                         {{ rupiah(($payment->trx_amount)) }}
                                     </p>
                                 </div>
                             </div>
                         </div>
-                        <div class="p-4">
+                        <div class="px-4 pt-2 pb-4">
                             <div class="flex items-center space-x-4">
                                 <div class="flex-1 min-w-0">
-                                    <p class="text-sm text-gray-500 truncate">
+                                    <p class="text-xs text-gray-500 truncate">
                                         Biaya Admin Bank BSI
                                     </p>
-                                    <p class="text-lg font-bold truncate text-gray-600">
+                                    <p class="text-md font-bold truncate text-gray-600">
                                         Rp 2.000
                                     </p>
                                 </div>
@@ -100,7 +100,7 @@
                                     <p class="text-sm text-gray-500 truncate">
                                         Total Pembayaran
                                     </p>
-                                    <p class="text-lg font-bold truncate text-yellow-600">
+                                    <p class="text-lg font-bold truncate">
                                         {{ rupiah(($payment->trx_amount + 2000)) }}
                                     </p>
                                 </div>
