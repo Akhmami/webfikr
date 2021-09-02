@@ -32,6 +32,6 @@ class UserController extends Controller
     {
         auth()->loginUsingId($id);
 
-        return redirect()->to('//apps.nfbsv3.test');
+        return redirect()->to('//apps.' . config('app.domain'));
     }
 }
