@@ -76,7 +76,7 @@
                                     <p class="text-sm text-gray-500 truncate">
                                         Tagihan
                                     </p>
-                                    <p class="text-lg font-semibold truncate text-gray-600">
+                                    <p class="text-lg truncate text-gray-600">
                                         {{ rupiah(($payment->trx_amount)) }}
                                     </p>
                                 </div>
@@ -88,7 +88,7 @@
                                     <p class="text-sm text-gray-500 truncate">
                                         Biaya Admin Bank BSI
                                     </p>
-                                    <p class="text-lg font-semibold truncate text-gray-600">
+                                    <p class="text-lg truncate text-gray-600">
                                         Rp 2.000
                                     </p>
                                 </div>
