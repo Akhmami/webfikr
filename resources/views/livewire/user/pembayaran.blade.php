@@ -123,7 +123,8 @@
                                 <li>Masukkan nomor Virtual Account Anda
                                     <strong>{{ $payment->full_virtual_account }}</strong>
                                     pada input "Masukan no rekening tujuan".</li>
-                                <li>Masukan nominal <strong>{{ rupiah($payment->trx_amount, false) }}</strong></li>
+                                <li>Masukan nominal <strong>{{ rupiah(($payment->trx_amount + 2000), false) }}</strong>
+                                </li>
                                 <li>Klik "SELANJUTNYA" dan selesaikan pembayaran</li>
                             </ol>
 
@@ -144,7 +145,8 @@
                                 <li>Masukkan nomor Virtual Account Anda
                                     <strong>{{ $payment->full_virtual_account }}</strong>
                                     pada rekening tujuan.</li>
-                                <li>Masukan nominal transfer <strong>{{ rupiah($payment->trx_amount, false) }}</strong>
+                                <li>Masukan nominal transfer
+                                    <strong>{{ rupiah(($payment->trx_amount + 2000), false) }}</strong>
                                 </li>
                                 <li>Konfirmasi rincian Anda akan tampil di layar, cek dan apabila sudah sesuai silahkan
                                     lanjutkan transaksi sampai dengan
