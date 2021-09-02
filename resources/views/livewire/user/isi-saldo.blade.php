@@ -19,7 +19,18 @@
                             </div>
                             </label>
                             @endfor
+                            <label class="border-gray-200 rounded-md border p-4 flex flex-col cursor-pointer">
+                                <div class="flex items-center text-sm group">
+                                    Lainnya
+                                    <input type="number" wire:model.lazy="trx_amount"
+                                        class="ml-3 block w-full focus:outline-none sm:text-sm rounded-md border-gray-300"
+                                        placeholder="Masukan nominal">
+                                </div>
+                            </label>
                     </div>
+                    @error('trx_amount')
+                    <strong class="text-red-500 text-sm font-medium">{{ $message }}</strong>
+                    @enderror
                 </div>
             </div>
         </x-slot>

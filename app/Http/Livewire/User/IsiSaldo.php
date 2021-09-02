@@ -12,11 +12,12 @@ class IsiSaldo extends ModalComponent
     public $trx_amount;
 
     protected $rules = [
-        'trx_amount' => 'required'
+        'trx_amount' => 'required|min:5'
     ];
 
     protected $messages = [
         'trx_amount.required' => 'Nominal harus dipilih!',
+        'trx_amount.min' => 'Nominal tidak disarankan'
     ];
 
     public function render()
