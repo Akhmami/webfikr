@@ -45,7 +45,7 @@ class PermissionsSeeder extends Seeder
             'name' => 'Administrator',
             'username' => 'admin',
             'email' => 'admin@example.com',
-            'password' => bcrypt('Admin2021#')
+            'password' => bcrypt('secret')
         ]);
         $user->assignRole($role2);
 

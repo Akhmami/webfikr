@@ -38,11 +38,15 @@ class Testing extends Command
      */
     public function handle()
     {
-        $users = User::whereHas('roles', function ($q) {
-            $q->where('name', 'user');
-        })->cursor();
+        $users = User::has('billings')->cursor();
+
         foreach ($users as $user) {
-            $user->update(['password' => '$2y$10$A0bttMCw3Z6iq6EQukJ7ZOsuKrGCR4FpMkva/5bqHaYIecMNxiRzy']);
+            $name = $user->name;
+            $name2 = $user->billings()->first()->customer_name;
+
+            if (strtolower($name) != strtolower($name2)) {
+                $this->error($name . ' => ' . $name2);
+            }
         }
     }
 }

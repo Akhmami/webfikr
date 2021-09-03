@@ -19,6 +19,7 @@ class CreatePaymentHistoriesTable extends Migration
             $table->morphs('payment_history');
             $table->string('payment_ntb');
             $table->string('customer_name');
+            $table->string('virtual_account')->nullable();
             $table->decimal('payment_amount', 14, 0);
             $table->timestamp('datetime_payment')->nullable();
             $table->timestamps();

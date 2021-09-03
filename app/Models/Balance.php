@@ -9,5 +9,11 @@ class Balance extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['amount'];
+    protected $fillable = [
+        'last_amount',
+        'type',
+        'nominal',
+        'current_amount',
+        'description'
+    ];
 }
