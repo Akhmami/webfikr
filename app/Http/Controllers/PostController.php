@@ -30,7 +30,7 @@ class PostController extends Controller
 
     public function articles(Request $request)
     {
-        $posts = Post::with('author')
+        $posts = Post::with('user')
             ->when($request->q, function ($query) use ($request) {
                 $query->where('title', 'like', "%{$request->q}%");
             })
@@ -44,7 +44,7 @@ class PostController extends Controller
     public function category(Category $category)
     {
         $posts = $category->posts()
-            ->with('author')
+            ->with('user')
             ->latestFirst()
             ->published()
             ->simplePaginate($this->limit);
