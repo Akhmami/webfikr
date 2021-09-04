@@ -3,7 +3,7 @@
         <div class="relative flex flex-wrap items-center justify-center lg:justify-between">
             <!-- Logo -->
             <div class="absolute left-0 flex-shrink-0 lg:static">
-                <a href="{{ route('home') }}">
+                <a href="{{ route('user.home') }}">
                     <span class="sr-only">Logo</span>
                     <img class="h-10 w-full" src="{{ asset('images/brand2.svg') }}" alt="Brand Logo">
                 </a>
@@ -183,14 +183,13 @@
                             class="block rounded-md px-3 py-2 text-base text-gray-900 font-medium hover:bg-gray-100 hover:text-gray-800">Profile</a>
 
                         <a href="{{ route('user.coming-soon') }}"
-                            class="block rounded-md px-3 py-2 text-base text-gray-900 font-medium hover:bg-gray-100 hover:text-gray-800">Resources</a>
+                            class="block rounded-md px-3 py-2 text-base text-gray-900 font-medium hover:bg-gray-100 hover:text-gray-800">Rapor</a>
 
                         <a href="{{ route('user.coming-soon') }}"
-                            class="block rounded-md px-3 py-2 text-base text-gray-900 font-medium hover:bg-gray-100 hover:text-gray-800">Company
-                            Directory</a>
+                            class="block rounded-md px-3 py-2 text-base text-gray-900 font-medium hover:bg-gray-100 hover:text-gray-800">Kehadiran</a>
 
-                        <a href="{{ route('user.coming-soon') }}"
-                            class="block rounded-md px-3 py-2 text-base text-gray-900 font-medium hover:bg-gray-100 hover:text-gray-800">Openings</a>
+                        <a href="{{ route('user.pembayaran') }}"
+                            class="block rounded-md px-3 py-2 text-base text-gray-900 font-medium hover:bg-gray-100 hover:text-gray-800">Pembayaran</a>
                     </div>
                 </div>
                 <div class="pt-4 pb-2">

@@ -28,7 +28,7 @@
                             <div class="flex items-center space-x-4">
                                 <div class="flex-1 min-w-0">
                                     <p class="text-sm text-gray-500 truncate">
-                                        Kode Bayar
+                                        Kode Bayar <span class="text-xs">(Pembayaran via BSI)</span>
                                     </p>
                                     <p class="text-lg font-bold truncate">
                                         {{ $payment->virtual_account }}
@@ -51,7 +51,7 @@
                             <div class="flex items-center space-x-4">
                                 <div class="flex-1 min-w-0">
                                     <p class="text-sm text-gray-500 truncate">
-                                        Nomor Virtual Account
+                                        Nomor Virtual Account <span class="text-xs">(Transfer Bank Lain)</span>
                                     </p>
                                     <p class="text-lg font-bold truncate">
                                         {{ $payment->full_virtual_account }}

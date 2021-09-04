@@ -30,12 +30,19 @@ class RincianTagihan extends ModalComponent
         $no_pendaftaran = $biller->user->userDetail->no_pendaftaran;
         $cek_billing = Billing::where('virtual_account', $no_pendaftaran)
             ->active()->exists();
+        // $balance = auth()->user()->balance->current_amount;
 
         if ($biller->amount > 0) {
             if (!$cek_billing) {
+                // kalo pembayaran lebih dari 1 bln/cicilan
                 if ($biller->is_installment === 'Y') {
                     $this->emit('openModal', 'user.cicilan', ['biller' => $biller]);
                 } else {
+                    // klo saldo lebih dari 0
+                    // if ($balance > 0) {
+                    //     $this->emit('openModal', 'user.use-balance', ['biller' => $biller]);
+                    // }
+
                     $jenjang = $biller->user->userDetail->jenjang;
                     $trx_id = $biller->type . $jenjang . date('YmdHis');
 
