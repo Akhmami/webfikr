@@ -47,7 +47,7 @@ class CheckFalse extends Command
             if ($spp != $item->lunas_bulan) {
                 if ($item->lunas_bulan > $spp) {
                     for ($i = 1; $i < $item->lunas_bulan; $i++) {
-                        $this->error('>>>>>' . $item->nama_lengkap . ' DB:' . $spp . ' XL:' . $item->lunas_bulan);
+                        $this->error('>>>>>' . $item->nama_lengkap . ' DB:' . $spp . ' XL:' . $item->lunas_bulan . ' SPP Last:' . $user->spps()->latest()->first()->bulan);
                     }
                 }
             }
