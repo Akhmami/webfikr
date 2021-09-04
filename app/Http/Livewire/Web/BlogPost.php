@@ -11,7 +11,7 @@ class BlogPost extends Component
 
     public function render()
     {
-        $this->posts = Post::with('author')->published()->pinned()->latestFirst()->take(6)->get();
+        $this->posts = Post::published()->pinned()->latestFirst()->take(6)->get();
 
         return view('livewire.web.blog-post');
     }
