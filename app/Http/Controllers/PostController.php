@@ -104,7 +104,6 @@ class PostController extends Controller
 
     public function show(Post $post)
     {
-        $post->load('user');
         $post->increment('view_count');
         $categories = $this->categories();
         $popularPosts = $this->popularPosts();
