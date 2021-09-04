@@ -240,7 +240,7 @@ class OldStudent extends Command
 
                             // SPP PAID kelas sebelumnya
                             $user->spps()->create([
-                                'grade_id' => $grades[$item->kelas - 1],
+                                'grade_id' => null,
                                 'payment_history_id' => null,
                                 'bulan' => '2021-06-01'
                             ]);
