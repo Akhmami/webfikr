@@ -62,34 +62,39 @@ class CheckFalse extends Command
 
                 if ($item->lunas_bulan > $spp) {
                     $this->error('>>>>>' . $item->nama_lengkap . ' DB:' . $spp . ' XL:' . $item->lunas_bulan . ' SPP Last:' . $user->spps()->latest()->first()->bulan);
-                    // if ($item->komitmen_spp > 0) {
-                    //     $biller = $user->billers()->where('type', 'SPP')->active()->latest('id')->first();
-                    //     $biller->update([
-                    //         'amount' => (3 - $item->lunas_bulan) * $user->setSpp->nominal,
-                    //         'is_installment' => ((3 - $item->lunas_bulan) > 1 ? 'Y' : 'N'),
-                    //         'is_active' => 'Y',
-                    //         'qty_spp' => (3 - $item->lunas_bulan),
-                    //         'previous_spp_date' => $spp_paid[$item->lunas_bulan] ?? null
-                    //     ]);
+                    if ($item->komitmen_spp > 0) {
+                        $biller = $user->billers()->where('type', 'SPP')->active()->latest('id')->first();
+                        $biller->update([
+                            'amount' => (3 - $item->lunas_bulan) * $user->setSpp->nominal,
+                            'is_installment' => ((3 - $item->lunas_bulan) > 1 ? 'Y' : 'N'),
+                            'is_active' => 'Y',
+                            'qty_spp' => (3 - $item->lunas_bulan),
+                            'previous_spp_date' => $spp_paid[$item->lunas_bulan] ?? null
+                        ]);
 
-                    //     // delete latest spp
-                    //     $user->spps()->latest('id')->first()->delete();
+                        // add spps
+                        $grades = ['7' => 1, '8' => 2, '9' => 3, '10' => 4, '11' => 5, '12' => 6];
+                        $user->spps()->create([
+                            'grade_id' => $grades[$item->kelas],
+                            'payment_history_id' => null,
+                            'bulan' => $spp_paid[$item->lunas_bulan]
+                        ]);
 
-                    //     // kelebihan pembayaran
-                    //     if ($item->kelebihan > 0) {
-                    //         $currentAmount_from_last = $user->balance->current_amount ?? 0;
-                    //         $current_amount = $currentAmount_from_last + $item->kelebihan;
-                    //         $user->balance()->create([
-                    //             'last_amount' => $currentAmount_from_last,
-                    //             'type' => 'plus',
-                    //             'nominal' => $item->kelebihan,
-                    //             'current_amount' => $current_amount,
-                    //             'description' => 'Tambah saldo'
-                    //         ]);
-                    //     }
+                        // kelebihan pembayaran
+                        if ($item->kelebihan > 0) {
+                            $currentAmount_from_last = $user->balance->current_amount ?? 0;
+                            $current_amount = $currentAmount_from_last + $item->kelebihan;
+                            $user->balance()->create([
+                                'last_amount' => $currentAmount_from_last,
+                                'type' => 'plus',
+                                'nominal' => $item->kelebihan,
+                                'current_amount' => $current_amount,
+                                'description' => 'Tambah saldo'
+                            ]);
+                        }
 
-                    //     $this->info('Success');
-                    // }
+                        $this->info('Success');
+                    }
                 }
             }
         }
