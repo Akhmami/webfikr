@@ -120,14 +120,14 @@ class OldStudent extends Command
                         [
                             'name' => 'No HP Ayah',
                             'country_code' => '62',
-                            'number' => $item->nomor_hp_ayah ?? 8,
-                            'is_first' => 'Y'
+                            'number' => str_replace('628', '8', $item->nomor_hp_ayah),
+                            'is_first' => ($item->no_hp_default == 'a' ? 'Y' : 'N')
                         ],
                         [
                             'name' => 'No HP Ibu',
                             'country_code' => '62',
-                            'number' => $item->nomor_hp_ibu ?? 8,
-                            'is_first' => 'Y'
+                            'number' => str_replace('628', '8', $item->nomor_hp_ibu),
+                            'is_first' => ($item->no_hp_default == 'i' ? 'Y' : 'N')
                         ],
 
                     ]);
