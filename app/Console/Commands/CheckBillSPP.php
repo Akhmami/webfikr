@@ -67,14 +67,14 @@ class CheckBillSPP extends Command
 
                 $latest_biller = $user->billers()->latest()->first();
                 // if (date('Y-m', strtotime($latest_biller->created_at)) !== date('Y-m')) {
-                $biller = $user->billers()->where('type', 'SPP')
-                    ->active()->get();
-                $tunggakan = $biller->sum('amount') - $biller->sum('cumulative_payment_amount');
+                // $biller = $user->billers()->where('type', 'SPP')
+                //     ->active()->get();
+                // $tunggakan = $biller->sum('amount') - $biller->sum('cumulative_payment_amount');
                 $user->billers()->where('type', 'SPP')
                     ->active()->update(['is_active' => 'N']);
 
                 $newBiller = $user->billers()->create([
-                    'amount' => $tunggakan + ($spp_perbulan * $range),
+                    'amount' => ($spp_perbulan * $range),
                     'type' => 'SPP',
                     'is_installment' => ($range > 1 ? 'Y' : 'N'),
                     'is_active' => 'Y',
