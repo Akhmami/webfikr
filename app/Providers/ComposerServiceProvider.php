@@ -3,9 +3,9 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use App\Views\Composers\PopupComposer;
-use App\Views\Composers\NavbarComposer;
-use App\Views\Composers\ProfileComposer;
+use App\View\Composers\PopupComposer;
+use App\View\Composers\NavbarComposer;
+use App\View\Composers\ProfileComposer;
 
 class ComposerServiceProvider extends ServiceProvider
 {
