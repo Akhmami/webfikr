@@ -99,9 +99,12 @@ if (!function_exists('range_month')) {
 
         $start_date = new DateTime($start);
         $end_date = new DateTime($end);
-
         $diff = $start_date->diff($end_date);
         $month = $diff->format($type); // 1
+
+        if (strtotime(date($start)) > strtotime(date($end))) {
+            return '0';
+        }
 
         return $month;
     }

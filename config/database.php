@@ -66,7 +66,8 @@ return [
         'mysql2' => [
             'driver' => 'mysql',
             'url' => env('DATABASE_URL'),
-            'host' => env('DB_HOST', '127.0.0.1'), //178.128.24.222
+            // 'host' => env('DB_HOST', '127.0.0.1'), //production
+            'host' => '178.128.24.222',
             'port' => env('DB_PORT', '3306'),
             'database' => 'nfbs',
             'username' => 'adminNfbs',
