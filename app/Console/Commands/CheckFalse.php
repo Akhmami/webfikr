@@ -43,7 +43,13 @@ class CheckFalse extends Command
         foreach ($this->generator() as $item) {
             // udah lunas berapa bulan
             $user = User::with(['spps', 'setSpp', 'billers', 'balance'])->where('username', $item->no_pendaftaran)->first();
-            $spp = $user->spps()->count() ?? 0;
+            try {
+                $spp = $user->spps()->count();
+            } catch (\Throwable $th) {
+                //throw $th;
+                $spp = 0;
+                $th->getMessage();
+            }
             if ($spp != $item->lunas_bulan) {
                 $this->error('>>>>>' . $item->nama_lengkap . ' DB:' . $spp . ' XL:' . $item->lunas_bulan . ' SPP Last:' . $user->spps()->latest()->first()->bulan);
 
