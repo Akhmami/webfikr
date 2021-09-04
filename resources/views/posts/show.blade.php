@@ -1,7 +1,7 @@
 @extends('layouts.web')
 
 @section('meta')
-<meta name="author" content="{{ $post->author->name }}">
+<meta name="author" content="{{ $post->user->name }}">
 <meta name="description" content="{{str_excerpt(strip_tags($post->body))}}">
 <meta property="description" content="{{str_excerpt(strip_tags($post->body))}}">
 <meta property="og:url" content="{{URL::current()}}" />
