@@ -21,6 +21,8 @@ class NavbarComposer
         $info = Post::published()->info()->latestFirst()->first();
         $primaryMenu = Menu::with('submenus')->where('type', 'primary')->get();
         $footerMenu = Menu::with('submenus')->where('type', 'footer')->get();
-        $view->with(['info' => $info,'primaryMenu' => $primaryMenu, 'footerMenu' => $footerMenu]);
+        $view->with(['info' => $info, 'primaryMenu' => $primaryMenu, 'footerMenu' => $footerMenu]);
+
+        dd($info);
     }
 }
