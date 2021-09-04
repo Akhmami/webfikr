@@ -45,42 +45,42 @@ class CheckFalse extends Command
             $user = User::with(['spps', 'setSpp', 'billers', 'balance'])->where('username', $item->no_pendaftaran)->first();
             $spp = $user->spps->count();
             if ($spp != $item->lunas_bulan) {
-                // $this->error('>>>>>' . $item->nama_lengkap . ' DB:' . $spp . ' XL:' . $item->lunas_bulan . ' SPP Last:' . $user->spps()->latest()->first()->bulan);
+                $this->error('>>>>>' . $item->nama_lengkap . ' DB:' . $spp . ' XL:' . $item->lunas_bulan . ' SPP Last:' . $user->spps()->latest()->first()->bulan);
 
-                $spp_paid = [
-                    '1' => '2021-07-01', '2' => '2021-08-01', '3' => '2021-09-01', '4' => '2021-10-01',
-                    '5' => '2021-11-01', '6' => '2021-12-01', '7' => '2022-01-01', '8' => '2022-02-01',
-                    '9' => '2022-03-01', '10' => '2022-04-01', '11' => '2022-05-01', '12' => '2022-06-01'
-                ];
+                // $spp_paid = [
+                //     '1' => '2021-07-01', '2' => '2021-08-01', '3' => '2021-09-01', '4' => '2021-10-01',
+                //     '5' => '2021-11-01', '6' => '2021-12-01', '7' => '2022-01-01', '8' => '2022-02-01',
+                //     '9' => '2022-03-01', '10' => '2022-04-01', '11' => '2022-05-01', '12' => '2022-06-01'
+                // ];
 
-                if ($spp > $item->lunas_bulan) {
-                    $biller = $user->billers()->where('type', 'SPP')->active()->latest('id')->first();
-                    $biller->update([
-                        'amount' => (3 - $item->lunas_bulan) * $user->setSpp->nominal,
-                        'is_installment' => ((3 - $item->lunas_bulan) > 1 ? 'Y' : 'N'),
-                        'is_active' => 'Y',
-                        'qty_spp' => (3 - $item->lunas_bulan),
-                        'previous_spp_date' => $spp_paid[$item->lunas_bulan] ?? null
-                    ]);
+                // if ($spp > $item->lunas_bulan) {
+                //     $biller = $user->billers()->where('type', 'SPP')->active()->latest('id')->first();
+                //     $biller->update([
+                //         'amount' => (3 - $item->lunas_bulan) * $user->setSpp->nominal,
+                //         'is_installment' => ((3 - $item->lunas_bulan) > 1 ? 'Y' : 'N'),
+                //         'is_active' => 'Y',
+                //         'qty_spp' => (3 - $item->lunas_bulan),
+                //         'previous_spp_date' => $spp_paid[$item->lunas_bulan] ?? null
+                //     ]);
 
-                    // delete latest spp
-                    $user->spps()->latest('id')->first()->delete();
+                //     // delete latest spp
+                //     $user->spps()->latest('id')->first()->delete();
 
-                    // kelebihan pembayaran
-                    if ($item->kelebihan > 0) {
-                        $currentAmount_from_last = $user->balance->current_amount ?? 0;
-                        $current_amount = $currentAmount_from_last + $item->kelebihan;
-                        $user->balance()->create([
-                            'last_amount' => $currentAmount_from_last,
-                            'type' => 'plus',
-                            'nominal' => $item->kelebihan,
-                            'current_amount' => $current_amount,
-                            'description' => 'Tambah saldo'
-                        ]);
-                    }
+                //     // kelebihan pembayaran
+                //     if ($item->kelebihan > 0) {
+                //         $currentAmount_from_last = $user->balance->current_amount ?? 0;
+                //         $current_amount = $currentAmount_from_last + $item->kelebihan;
+                //         $user->balance()->create([
+                //             'last_amount' => $currentAmount_from_last,
+                //             'type' => 'plus',
+                //             'nominal' => $item->kelebihan,
+                //             'current_amount' => $current_amount,
+                //             'description' => 'Tambah saldo'
+                //         ]);
+                //     }
 
-                    $this->info('Success');
-                }
+                //     $this->info('Success');
+                // }
             }
         }
     }
