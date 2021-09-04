@@ -109,6 +109,8 @@ class PostController extends Controller
         $categories = $this->categories();
         $popularPosts = $this->popularPosts();
 
+        dd($post);
+
         return view("posts.show", compact('post', 'categories', 'popularPosts'));
     }
 
