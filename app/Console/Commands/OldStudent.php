@@ -211,7 +211,7 @@ class OldStudent extends Command
                         if ($item->komitmen_spp > 0) {
                             $biller = $user->billers()->create([
                                 'amount' => preg_replace('/\D/', '', $item->komitmen_spp ?? 0),
-                                'cumulative_payment_amount' => preg_replace('/\D/', '', $item->komitmen_spp ?? 0),
+                                'cumulative_payment_amount' => 0,
                                 'type' => 'SPP',
                                 'is_installment' => 'N',
                                 'is_active' => 'Y',
