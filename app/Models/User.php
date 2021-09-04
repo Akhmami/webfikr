@@ -56,6 +56,38 @@ class User extends Authenticatable
         'email'
     ];
 
+    // public function setSlugAttribute($value)
+    // {
+    //     if (static::whereSlug($slug = str_slug($value))->exists()) {
+    //         $slug = $slug . '-' . date('s');
+    //     }
+    //     $this->attributes['slug'] = $slug;
+    // }
+
+    // public function setUsernameAttribute($value)
+    // {
+    //     if (static::whereUsername($value)->exists()) {
+    //         $value = is_int($value) === 1 ? $value + 1 : $value;
+    //     }
+
+    //     $this->attributes['username'] = $value;
+    // }
+
+    public function getVerifiedAttribute($value)
+    {
+        return is_null($this->email_verified_at) ? false : true;
+    }
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+
+    public function posts()
+    {
+        return $this->hasMany(Post::class, 'author_id');
+    }
+
     public function activities()
     {
         return $this->morphMany(

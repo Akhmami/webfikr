@@ -17,9 +17,9 @@ class Post extends Model
     protected $dates = ['published_at', 'deleted_at'];
     protected $fillable = ['title', 'slug', 'excerpt', 'body', 'published_at', 'category_id', 'image'];
 
-    public function author()
+    public function user()
     {
-        return $this->belongsTo(User::class, 'author_id');
+        return $this->belongsTo(User::class);
     }
 
     public function category()
