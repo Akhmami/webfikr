@@ -47,8 +47,16 @@ class CheckFalse extends Command
             if ($spp != $item->lunas_bulan) {
                 if ($item->lunas_bulan > $spp) {
                     // $this->error('>>>>>' . $item->nama_lengkap . ' DB:' . $spp . ' XL:' . $item->lunas_bulan . ' SPP Last:' . $user->spps()->latest()->first()->bulan);
-                    $biller = $user->billers()->where('type', 'SPP')->active()->get();
-                    dd($biller);
+                    $biller = $user->billers()->where('type', 'SPP')->active()->latest('id')->first();
+                    $biller->update([
+                        'amount' => $user->setSpp->nominal,
+                        'is_installment' => 'N',
+                        'is_active' => 'Y',
+                        'qty_spp' => 1,
+                        'previous_spp_date' => '2021-08-01'
+                    ]);
+
+                    $this->info('Success');
                 }
             }
         }
