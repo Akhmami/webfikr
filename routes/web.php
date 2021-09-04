@@ -19,20 +19,6 @@ use App\Http\Controllers\PostController;
 
 Route::domain(config('app.domain'))
     ->group(function () {
-        Route::view('/', 'welcome')->name('home');
-        // Route::get('sitemap.xml', 'SitemapController@index');
-        Route::post('/payments/callback/spp', [CallbackController::class, 'index']);
-
-        // Route::get('/', [PostController::class, 'index'])->name('home');
-        Route::get('/videos', [PostController::class, 'videos'])->name('post.videos');
-        Route::get('/fasilitas', [PostController::class, 'facilities'])->name('post.facilities');
-        Route::get('/artikel', [PostController::class, 'articles'])->name('post.articles');
-        Route::get('/{slug}', [PostController::class, 'show'])->name('post.show');
-        Route::get('/category/{category}', [PostController::class, 'category'])->name('category');
-        Route::get('/author/{author}', [PostController::class, 'author'])->name('author');
-        // ajax
-        Route::get('/facility/{facility}/get-more', [PostController::class, 'subfacilities'])->name('post.subfacility');
-
         # Dashboard
         Route::name('dash.')
             ->middleware(['auth', 'permission:lihat dashboard'])
@@ -48,6 +34,20 @@ Route::domain(config('app.domain'))
                     ->middleware('permission:lihat billing|edit billing|hapus billing|buat billing')
                     ->name('keuangan.index');
             });
+
+        Route::view('/', 'welcome')->name('home');
+        // Route::get('sitemap.xml', 'SitemapController@index');
+        Route::post('/payments/callback/spp', [CallbackController::class, 'index']);
+
+        // Route::get('/', [PostController::class, 'index'])->name('home');
+        Route::get('/videos', [PostController::class, 'videos'])->name('post.videos');
+        Route::get('/fasilitas', [PostController::class, 'facilities'])->name('post.facilities');
+        Route::get('/artikel', [PostController::class, 'articles'])->name('post.articles');
+        Route::get('/{slug}', [PostController::class, 'show'])->name('post.show');
+        Route::get('/category/{category}', [PostController::class, 'category'])->name('category');
+        Route::get('/author/{author}', [PostController::class, 'author'])->name('author');
+        // ajax
+        Route::get('/facility/{facility}/get-more', [PostController::class, 'subfacilities'])->name('post.subfacility');
     });
 
 Route::domain('apps.' . config('app.domain'))
