@@ -19,11 +19,11 @@ use App\Http\Controllers\PostController;
 
 Route::domain(config('app.domain'))
     ->group(function () {
-        // Route::view('/', 'welcome')->name('home');
+        Route::view('/', 'welcome')->name('home');
         // Route::get('sitemap.xml', 'SitemapController@index');
         Route::post('/payments/callback/spp', [CallbackController::class, 'index']);
 
-        Route::get('/', [PostController::class, 'index'])->name('home');
+        // Route::get('/', [PostController::class, 'index'])->name('home');
         Route::get('/videos', [PostController::class, 'videos'])->name('post.videos');
         Route::get('/fasilitas', [PostController::class, 'facilities'])->name('post.facilities');
         Route::get('/artikel', [PostController::class, 'articles'])->name('post.articles');
