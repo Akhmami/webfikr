@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Menu extends Model
 {
     use HasFactory;
+
+    protected $fillable = ['name', 'url', 'type'];
+
+    public function submenus()
+    {
+        return $this->hasMany(SubMenu::class);
+    }
 }
