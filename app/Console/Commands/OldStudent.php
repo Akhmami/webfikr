@@ -215,14 +215,15 @@ class OldStudent extends Command
                                 'type' => 'SPP',
                                 'is_installment' => 'N',
                                 'is_active' => 'Y',
-                                'description' => 'Pembayaran SPP bulan Juli'
+                                'description' => 'Pembayaran SPP bulan Juli',
+                                'previous_spp_date' => '2021-06-01',
                             ]);
 
                             $biller->billerDetails()->create([
                                 'nama' => 'SPP bulan Juli',
                                 'nominal' => preg_replace('/\D/', '', $item->komitmen_spp ?? 0)
                             ]);
-                            // Set VA Paid
+                            // Set VA UnPaid
                             $billing = $biller->billings()->create([
                                 'user_id' => $user->id,
                                 'trx_id' => 'SPP' . $student->jenjang . $item->no_pendaftaran . mt_rand(1000, 9999),
@@ -235,6 +236,13 @@ class OldStudent extends Command
                                 'is_balance' => 'N',
                                 'datetime_expired' => date('Y-m-d H:i:s', strtotime('yesterday')),
                                 'spp_pay_month' => json_encode(['2021-07-01'])
+                            ]);
+
+                            // SPP PAID kelas sebelumnya
+                            $user->spps()->create([
+                                'grade_id' => $grades[$item->kelas],
+                                'payment_history_id' => null,
+                                'bulan' => '2021-06-01'
                             ]);
                         }
                     }
