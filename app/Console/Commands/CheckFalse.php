@@ -44,7 +44,11 @@ class CheckFalse extends Command
             // udah lunas berapa bulan
             $user = User::with('spps')->where('username', $item->no_pendaftaran)->first();
             $spp = $user->spps->count();
-            dd($spp);
+            if ($spp == 2) {
+                dd('betul');
+            }
+
+            dd('aga');
         }
     }
 
