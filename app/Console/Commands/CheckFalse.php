@@ -42,13 +42,12 @@ class CheckFalse extends Command
     {
         foreach ($this->generator() as $item) {
             // udah lunas berapa bulan
-            $user = User::with('spps')->where('username', $item->no_pendaftaran)->first();
+            $user = User::with(['spps', 'setSpp'])->where('username', $item->no_pendaftaran)->first();
             $spp = $user->spps->count();
             if ($spp != $item->lunas_bulan) {
                 if ($item->lunas_bulan > $spp) {
-                    for ($i = 1; $i < $item->lunas_bulan; $i++) {
-                        $this->error('>>>>>' . $item->nama_lengkap . ' DB:' . $spp . ' XL:' . $item->lunas_bulan . ' SPP Last:' . $user->spps()->latest()->first()->bulan);
-                    }
+                    // $this->error('>>>>>' . $item->nama_lengkap . ' DB:' . $spp . ' XL:' . $item->lunas_bulan . ' SPP Last:' . $user->spps()->latest()->first()->bulan);
+                    dd($user->setSpp->nominal);
                 }
             }
         }
