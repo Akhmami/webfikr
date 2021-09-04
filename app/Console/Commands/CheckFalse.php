@@ -42,7 +42,7 @@ class CheckFalse extends Command
     {
         foreach ($this->generator() as $item) {
             // udah lunas berapa bulan
-            $user = User::with(['spps', 'setSpp', 'billers'])->where('username', $item->no_pendaftaran)->first();
+            $user = User::with(['spps', 'setSpp', 'billers', 'balance'])->where('username', $item->no_pendaftaran)->first();
             $spp = $user->spps->count();
             if ($spp != $item->lunas_bulan) {
                 if ($item->lunas_bulan > $spp) {
@@ -55,6 +55,19 @@ class CheckFalse extends Command
                         'qty_spp' => 1,
                         'previous_spp_date' => '2021-08-01'
                     ]);
+
+                    // kelebihan pembayaran
+                    if ($item->kelebihan > 0) {
+                        $currentAmount_from_last = $user->balance->current_amount ?? 0;
+                        $current_amount = $currentAmount_from_last + $item->kelebihan;
+                        $user->balance()->create([
+                            'last_amount' => $currentAmount_from_last,
+                            'type' => 'plus',
+                            'nominal' => $item->kelebihan,
+                            'current_amount' => $current_amount,
+                            'description' => 'Tambah saldo'
+                        ]);
+                    }
 
                     $this->info('Success');
                 }
