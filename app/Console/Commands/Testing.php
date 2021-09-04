@@ -39,6 +39,6 @@ class Testing extends Command
      */
     public function handle()
     {
-        $posts = Post::get()->update(['user_id' => 1]);
+        $posts = Post::where('author_id', 1)->update(['user_id' => 1]);
     }
 }
