@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Models\Post;
 use App\Models\User;
 use Illuminate\Console\Command;
 
@@ -38,15 +39,6 @@ class Testing extends Command
      */
     public function handle()
     {
-        $users = User::has('billings')->cursor();
-
-        foreach ($users as $user) {
-            $name = $user->name;
-            $name2 = $user->billings()->first()->customer_name;
-
-            if (strtolower($name) != strtolower($name2)) {
-                $this->error($name . ' => ' . $name2);
-            }
-        }
+        $posts = Post::get()->update(['user_id' => 1]);
     }
 }
