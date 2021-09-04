@@ -45,7 +45,11 @@ class CheckFalse extends Command
             $user = User::with('spps')->where('username', $item->no_pendaftaran)->first();
             $spp = $user->spps->count();
             if ($spp != $item->lunas_bulan) {
-                $this->error('>>>>>' . $item->nama_lengkap . ' DB:' . $spp . ' XL:' . $item->lunas_bulan);
+                if ($item->lunas_bulan > $spp) {
+                    for ($i = 1; $i < $item->lunas_bulan; $i++) {
+                        $this->error('>>>>>' . $item->nama_lengkap . ' DB:' . $spp . ' XL:' . $item->lunas_bulan);
+                    }
+                }
             }
         }
     }
