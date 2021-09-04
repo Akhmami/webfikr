@@ -171,3 +171,17 @@ function set_active($route, $active = null, $default = null)
     }
     return request()->route()->getName() == $route ? $active : $default;
 }
+
+function str_excerpt($content, $length = 100, $end = '')
+{
+    if (!is_string($content)) {
+        return 'Nurul Fikri Boarding School Serang' . $end;
+    } elseif (strlen($content) < $length) {
+        return $content . $end;
+    }
+
+    $pos = strpos($content, ' ', $length);
+    $result = substr($content, 0, $pos);
+
+    return $result . $end;
+}
