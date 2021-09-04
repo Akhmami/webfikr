@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Views\Composers;
+namespace App\View\Composers;
 
 use Illuminate\View\View;
 use App\Models\Menu;
@@ -22,7 +22,5 @@ class NavbarComposer
         $primaryMenu = Menu::with('submenus')->where('type', 'primary')->get();
         $footerMenu = Menu::with('submenus')->where('type', 'footer')->get();
         $view->with(['info' => $info, 'primaryMenu' => $primaryMenu, 'footerMenu' => $footerMenu]);
-
-        dd($info);
     }
 }

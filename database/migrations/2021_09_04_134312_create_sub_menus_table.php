@@ -15,6 +15,9 @@ class CreateSubMenusTable extends Migration
     {
         Schema::create('sub_menus', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('menu_id')->constrained();
+            $table->string('sub_name');
+            $table->string('sub_url');
             $table->timestamps();
         });
     }

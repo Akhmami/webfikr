@@ -23,6 +23,7 @@
         "tailwindcss": "^2.2.7"
     },
     "dependencies": {
+        "@splidejs/splide": "^2.4.21",
         "@tailwindcss/line-clamp": "^0.2.1"
     }
 }

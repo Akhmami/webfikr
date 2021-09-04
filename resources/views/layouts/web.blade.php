@@ -16,7 +16,7 @@
     @else
     <title>NFBS Serang | YAYASAN PESANTREN IBNU SALAM NURUL FIKRI</title>
     @endif
-    <link href="{{ asset('css/webv2.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/web.css') }}" rel="stylesheet">
     @livewireStyles
     @stack('style')
     <style>
@@ -94,8 +94,10 @@
                                 d="M4.293 15.707a1 1 0 010-1.414L8.586 10 4.293 5.707a1 1 0 011.414-1.414l5 5a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0z"
                                 clip-rule="evenodd" />
                         </svg>
+                        @if (!empty($info))
                         <a href="{{ route('post.show', $info->slug) }}"
                             class="hover:text-white hover:underline">{{ Str::limit($info->title, 53) }}</a>
+                        @endif
                     </div>
                     <div class="hidden md:flex items-center">
                         <p class="p-2">Ikuti kami </p>
@@ -442,7 +444,7 @@
     </footer>
 
     @livewireScripts
-    <script src="{{ asset('js/webv2.js') }}"></script>
+    <script src="{{ asset('js/web.js') }}"></script>
     @stack('script')
     <script>
         // grab everything we need

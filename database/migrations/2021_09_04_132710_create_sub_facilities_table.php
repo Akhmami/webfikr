@@ -15,6 +15,8 @@ class CreateSubFacilitiesTable extends Migration
     {
         Schema::create('sub_facilities', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('facility_id')->constrained();
+            $table->string('image');
             $table->timestamps();
         });
     }
