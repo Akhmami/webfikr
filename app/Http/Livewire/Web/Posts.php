@@ -37,6 +37,6 @@ class Posts extends Component
 
     public function newest()
     {
-        $this->posts = Post::with('author')->published()->pinned()->latestFirst()->take(6)->get();
+        $this->posts = Post::with('user')->published()->pinned()->latestFirst()->take(6)->get();
     }
 }
