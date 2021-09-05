@@ -22,7 +22,15 @@ class BillersTable extends DataTableComponent
                 ->sortable()
                 ->searchable()
                 ->format(function ($value, $column, $row) {
-                    return '<a href="' . route('dash.users.show', $row) . '" class="text-indigo-600 font-semibold hover:underline cursor-pointer">' . $value . '</a>';
+                    return '<a href="' . route('dash.users.show', $row->id) . '" class="text-indigo-600 font-semibold hover:underline cursor-pointer">' . $value . '</a>';
+                })
+                ->asHtml(),
+            Column::make('Saldo')
+                ->sortable()
+                ->searchable()
+                ->format(function ($value, $column, $row) {
+                    return !empty($row->balance) ?
+                        '<a href="' . route('dash.users.show', $row->balance->id) . '" class="text-grey-900 font-semibold hover:underline cursor-pointer">' . $row->balance->current_amount . '</a>' : 0;
                 })
                 ->asHtml(),
             Column::make('Kelas')
@@ -56,7 +64,7 @@ class BillersTable extends DataTableComponent
     public function query(): Builder
     {
         return User::query()
-            ->with(['billers', 'activeGrade'])
+            ->with(['billers', 'activeGrade', 'balance'])
             ->whereHas('roles', fn ($query) => $query->where('name', 'user'))
             ->latest()
             ->when($this->getFilter('kelas'), fn ($query, $kelas) => $query->whereHas(
