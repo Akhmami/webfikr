@@ -212,7 +212,7 @@
             <a href="#"
                 class="text-white hover:bg-blue-500 hover:bg-opacity-75 block px-3 py-2 rounded-md text-base font-medium">PSB</a>
 
-            <a href="#"
+            <a href="{{ route('dash.keuangan.index') }}"
                 class="text-white hover:bg-blue-500 hover:bg-opacity-75 block px-3 py-2 rounded-md text-base font-medium">Keuangan</a>
         </div>
         <div class="pt-4 pb-3 border-t border-blue-700">
