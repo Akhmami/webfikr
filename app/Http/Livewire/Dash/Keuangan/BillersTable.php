@@ -26,8 +26,6 @@ class BillersTable extends DataTableComponent
                 })
                 ->asHtml(),
             Column::make('Saldo')
-                ->sortable()
-                ->searchable()
                 ->format(function ($value, $column, $row) {
                     return !empty($row->balance) ?
                         '<a href="' . route('dash.users.show', $row->balance->id) . '" class="text-grey-900 font-semibold hover:underline cursor-pointer">' . $row->balance->current_amount . '</a>' : 0;
