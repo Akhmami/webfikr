@@ -86,7 +86,7 @@ class Cicilan extends ModalComponent
         $result = $va->create($data);
 
         if ($result['status'] !== '000') {
-            $this->emit('openModal', 'user.alert-modal', ['message' => 'Gagal memproses tagihan, silahkan coba lagi jika masih berlanjut hubungi kami.']);
+            $this->emit('openModal', 'user.alert-modal', ['message' => 'Gagal memproses tagihan, silahkan coba lagi jika masih berlanjut hubungi kami. #' . $result['status']]);
         } else {
             if ($this->biller->type === 'SPP') {
                 $month = [];
