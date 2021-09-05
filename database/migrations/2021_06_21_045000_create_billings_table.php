@@ -25,6 +25,7 @@ class CreateBillingsTable extends Migration
             $table->enum('is_paid', ['Y', 'N'])->default('N');
             $table->string('description')->nullable();
             $table->text('spp_pay_month')->nullable();
+            $table->decimal('use_balance', 14, 0)->nullable();
             $table->timestamp('datetime_expired')->nullable();
             $table->enum('is_balance', ['Y', 'N'])->default('N');
             $table->timestamps();

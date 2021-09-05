@@ -15,6 +15,8 @@ class Cicilan extends ModalComponent
     public $user;
     public $cost_reduction;
     public $keringanan;
+    public $balance;
+    public $total_pay;
 
     public function mount(Biller $biller)
     {
@@ -34,29 +36,40 @@ class Cicilan extends ModalComponent
 
         $this->max_amount = $biller->amount - $biller->cumulative_payment_amount - $this->keringanan;
 
-        for ($i=1; $i <= $qty; $i++) {
-                $val = ($i * $divider) - $this->keringanan;
-                if ($val > $this->max_amount) {
-                    break;
-                }
-
-                $this->options[$i] = [
-                    'value' => $val,
-                    'description' => $i . ' Bulan '
-                ];
+        for ($i = 1; $i <= $qty; $i++) {
+            $val = ($i * $divider) - $this->keringanan;
+            if ($val > $this->max_amount) {
+                break;
             }
+
+            $this->options[$i] = [
+                'value' => $val,
+                'description' => $i . ' Bulan '
+            ];
+        }
     }
 
     public function render()
     {
-        return view('livewire.user.cicilan');
+        $selected = (($this->options[$this->option_id]['value']) ?? 0);
+        $calculate = $selected - $this->balance;
+
+        if ($calculate < 0) {
+            $this->total_pay = 0;
+        } else {
+            $this->total_pay = $calculate;
+        }
+
+        return view('livewire.user.cicilan', [
+            'total_balance' => (auth()->user()->balance->current_amount ?? 0)
+        ]);
     }
 
     public function bayar()
     {
         $jenjang = $this->user->userDetail->jenjang;
         $trx_id = $this->biller->type . $jenjang . date('YmdHis');
-        $payment_amount = $this->options[$this->option_id]['value'];
+        $payment_amount = $this->total_pay;
 
         $data = array(
             'biller_id' => $this->biller->id,
@@ -77,13 +90,14 @@ class Cicilan extends ModalComponent
         } else {
             if ($this->biller->type === 'SPP') {
                 $month = [];
-                for ($i=1; $i <= $this->option_id; $i++) {
-                    $adder = '+'.$i.' month';
+                for ($i = 1; $i <= $this->option_id; $i++) {
+                    $adder = '+' . $i . ' month';
                     $month[] = date('Y-m-d', strtotime($adder, strtotime($this->user->latestSpp->bulan)));
                 }
                 $data['spp_pay_month'] = json_encode($month);
             }
 
+            $data['use_balance'] = $this->balance ?? 0;
             $data['datetime_expired'] = date('Y-m-d H:i:s', strtotime('2 days'));
             $this->user->billings()->create($data);
             return redirect()->to(route('user.pembayaran'));

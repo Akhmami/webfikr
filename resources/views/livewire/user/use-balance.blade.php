@@ -7,33 +7,31 @@
         <x-slot name="content">
             <div class="flex flex-col space-y-6">
                 <div class="text-left">
-                    <span class="text-xs text-gray-500">Jumlah Pembayaran</span>
-                    <div class="mt-1 font-bold text-2xl text-yellow-600">{{ rupiah($max_amount) }}</div>
+                    <span class="text-sm text-gray-500">Jumlah Tagihan</span>
+                    <div class="mt-1 font-bold text-lg text-gray-700">{{ rupiah($max_amount) }}</div>
                 </div>
                 <div>
-                    <span>Pilihan Pembayaran</span>
-                    <div class="flex gap-4 flex-wrap mt-2">
-                        @php
-                        $id = 1;
-                        @endphp
-                        @foreach ($options as $item)
-                        <label class="border-gray-200 rounded-md border p-4 flex flex-col cursor-pointer">
+
+                    @if ($total_balance > 0)
+                    <span>Gunakan Saldo</span>
+                    <div class="flex gap-4 flex-wrap mt-2 mb-4">
+                        <label class="flex flex-col cursor-pointer">
                             <div class="flex items-center text-sm">
-                                <input type="radio" wire:model.lazy="option_id" value="{{ $id }}"
-                                    class="h-4 w-4 text-indigo-600 border-gray-300 focus:ring-indigo-500">
-                                <span id="pricing-plans-0-label"
-                                    class="text-gray-900 ml-3 font-medium">{{ rupiah($item['value']) }}</span>
+                                <label class="inline-flex items-center">
+                                    <input type="checkbox" wire:model.lazy="balance" value="{{ $total_balance }}"
+                                        class="form-checkbox rounded-md h-4 w-4 text-indigo-600 border-gray-300 focus:ring-indigo-500">
+                                    <span
+                                        class="ml-2 text-gray-700 font-semibold text-md">{{ rupiah($total_balance) }}</span>
+                                </label>
                             </div>
-                            @if ($biller['type'] === 'SPP')
-                            <p id="pricing-plans-0-description-1"
-                                class="text-gray-500 ml-6 pl-1 text-sm md:ml-0 md:pl-0 md:text-right">
-                                {{ $item['description'] }}</p>
-                            @endif
                         </label>
-                        @php
-                        $id++;
-                        @endphp
-                        @endforeach
+                    </div>
+                    @endif
+
+                    <div class="mt-4 bg-indigo-100 rounded-md p-4 flex flex-col items-center justify-center">
+                        <div class="text-sm text-gray-500">Total Bayar</div>
+                        <div class="text-indigo-700 text-2xl font-semibold">
+                            {{ rupiah($total_pay) }}</div>
                     </div>
                 </div>
             </div>

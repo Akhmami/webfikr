@@ -7,12 +7,12 @@
         <x-slot name="content">
             <div class="flex flex-col space-y-6">
                 <div class="text-left">
-                    <span class="text-xs text-gray-500">Maksimal Pembayaran</span>
-                    <div class="mt-1 font-bold text-2xl text-yellow-600">{{ rupiah($max_amount) }}</div>
+                    <span class="text-sm text-gray-500">Jumlah Tagihan</span>
+                    <div class="mt-1 font-bold text-lg text-gray-700">{{ rupiah($max_amount) }}</div>
                 </div>
                 <div>
                     <span>Pilihan Pembayaran</span>
-                    <div class="flex gap-4 flex-wrap mt-2">
+                    <div class="flex gap-4 flex-wrap mt-2 mb-4">
                         @php
                         $id = 1;
                         @endphp
@@ -34,6 +34,28 @@
                         $id++;
                         @endphp
                         @endforeach
+                    </div>
+
+                    @if ($total_balance > 0)
+                    <span>Gunakan Saldo</span>
+                    <div class="flex gap-4 flex-wrap mt-2 mb-4">
+                        <label class="flex flex-col cursor-pointer">
+                            <div class="flex items-center text-sm">
+                                <label class="inline-flex items-center">
+                                    <input type="checkbox" wire:model.lazy="balance" value="{{ $total_balance }}"
+                                        class="form-checkbox rounded-md h-4 w-4 text-indigo-600 border-gray-300 focus:ring-indigo-500">
+                                    <span
+                                        class="ml-2 text-gray-700 font-semibold text-md">{{ rupiah($total_balance) }}</span>
+                                </label>
+                            </div>
+                        </label>
+                    </div>
+                    @endif
+
+                    <div class="mt-4 bg-indigo-100 rounded-md p-4 flex flex-col items-center justify-center">
+                        <div class="text-sm text-gray-500">Total Bayar</div>
+                        <div class="text-indigo-700 text-2xl font-semibold">
+                            {{ rupiah($total_pay) }}</div>
                     </div>
                 </div>
             </div>
