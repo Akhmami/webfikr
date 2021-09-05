@@ -33,6 +33,7 @@ class CreatePaymentHistory
         $paymentHistory = $billing->paymentHistories()->updateOrCreate([
             'payment_ntb' => $data['payment_ntb']
         ], [
+            'user_id' => $billing->user->id,
             'customer_name' => $data['customer_name'],
             'virtual_account' => $data['virtual_account'],
             'payment_amount' => $data['payment_amount'],

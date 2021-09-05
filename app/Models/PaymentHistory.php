@@ -11,6 +11,7 @@ class PaymentHistory extends Model
     use HasFactory, Notifiable;
 
     protected $fillable = [
+        'user_id',
         'payment_ntb',
         'customer_name',
         'virtual_account',
