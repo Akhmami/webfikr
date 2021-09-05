@@ -16,8 +16,8 @@ class LoginResponse implements LoginResponseContract
     {
         $home = '/dashboard';
 
-        if (auth()->user()->hasRole('akuntan')) {
-            $home = '/dashboard';
+        if (auth()->user()->hasRole('user')) {
+            $home = route('user.home');
         }
 
         UserActivity::dispatch(Auth::user(), 'User login, IP: ' . $request->ip());
