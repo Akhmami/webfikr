@@ -51,7 +51,7 @@ class PostController extends Controller
 
         $categories = $this->categories();
 
-        return view("blog.views", compact('posts', 'categories'));
+        return view("posts.views", compact('posts', 'categories'));
     }
 
     public function facilities(Request $request)
@@ -84,7 +84,7 @@ class PostController extends Controller
         $video = new YouTube($apikey, $channel_id);
         $videoLists = $video->get($keyword, $page);
 
-        return view('blog.videos', [
+        return view('posts.videos', [
             'videoLists' => $videoLists
         ]);
     }
@@ -99,7 +99,7 @@ class PostController extends Controller
             ->published()
             ->simplePaginate($this->limit);
 
-        return view("blog.views", compact('posts', 'authorName'));
+        return view("posts.views", compact('posts', 'authorName'));
     }
 
     public function show(Post $post)
