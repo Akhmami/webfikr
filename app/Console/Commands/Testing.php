@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Models\Billing;
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\Console\Command;
@@ -39,6 +40,6 @@ class Testing extends Command
      */
     public function handle()
     {
-        $posts = Post::where('author_id', 1)->update(['user_id' => 1]);
+        $users = Billing::active()->update(['datetime_expired' => date('Y-m-d H:i:s')]);
     }
 }
