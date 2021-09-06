@@ -71,7 +71,8 @@ class UseBalance extends ModalComponent
             $this->emit('openModal', 'user.alert-modal', ['message' => 'Gagal memproses tagihan, silahkan coba lagi jika masih berlanjut hubungi kami. #' . $result['status']]);
         } else {
             if ($this->biller->type === 'SPP') {
-                $data['spp_pay_month'] = json_encode([$this->user->latestSpp->bulan]);
+                $month = date('Y-m-d', strtotime('+1 month', strtotime($this->user->latestSpp->bulan)));
+                $data['spp_pay_month'] = json_encode([$month]);
             }
 
             $data['use_balance'] = $this->balance ?? 0;
