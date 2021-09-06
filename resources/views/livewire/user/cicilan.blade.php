@@ -35,7 +35,7 @@
                         @endphp
                         @endforeach
                         @error('option_id')
-                        <span class="text-red-500">{{ $message }}</span>
+                        <div class="text-sm text-red-500">{{ $message }}</div>
                         @enderror
                     </div>
 
