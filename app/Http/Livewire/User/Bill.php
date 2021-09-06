@@ -19,7 +19,7 @@ class Bill extends Component
         $user = auth()->user();
         $bill_spp = $user->billerSPP;
         $bill_another = $user->billerAnother;
-        $keringanan = $bill_spp->hitung_keringanan + $bill_another->sum('hitung_keringanan');
+        $keringanan = ($bill_spp->hitung_keringanan ?? 0) + ($bill_another->sum('hitung_keringanan') ?? 0);
         $spp = ($bill_spp->amount ?? 0) - ($bill_spp->cumulative_payment_amount ?? 0);
         $another = $bill_another->sum('amount') - $bill_another->sum('cumulative_payment_amount');
         $this->total_amount = $spp + $another - $keringanan;
