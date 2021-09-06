@@ -38,7 +38,7 @@ class CallbackController extends BaseController
                     // UpdateBalance::dispatch($billing->user, $data['payment_amount']);
                     $currentAmount_from_last = $billing->user->balance->current_amount ?? 0;
                     $current_amount = $currentAmount_from_last + $data['payment_amount'];
-                    $billing->user()->create([
+                    $billing->user()->balance()->create([
                         'user_id' => $billing->user->id,
                         'last_amount' => $currentAmount_from_last,
                         'type' => 'plus',
