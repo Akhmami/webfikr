@@ -24,8 +24,7 @@
                         </div>
                     </div>
                     <div class="mt-5 flex justify-center sm:mt-0">
-                        <button type="button"
-                            onclick="Livewire.emit('openModal', 'user.rincian-tagihan', {{ json_encode(['user' => auth()->user()->id ]) }})"
+                        <button type="button" onclick="Livewire.emit('openModal', 'user.rincian-tagihan')"
                             class="flex justify-center items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-gradient-to-r from-indigo-600 to-blue-600 hover:from-indigo-700 hover:to-blue-700">
                             Rincian Tagihan
                         </button>

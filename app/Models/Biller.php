@@ -50,13 +50,8 @@ class Biller extends Model
         return $query->where('is_active', 'Y');
     }
 
-    public function getSumCostReductionsAttribute()
+    public function getHitungKeringananAttribute()
     {
-        $sum = 0;
-        foreach ($this->billerDetails as $item) {
-            $sum += $item->costReduction->nominal ?? 0;
-        }
-
-        return $sum;
+        return $this->billerDetails()->sum('keringanan');
     }
 }

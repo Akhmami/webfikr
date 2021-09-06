@@ -4,18 +4,17 @@ namespace App\Http\Livewire\User;
 
 use LivewireUI\Modal\ModalComponent;
 use App\Jobs\UserActivity;
-use App\Libraries\VA;
-use App\Models\User;
 use App\Models\Biller;
 use App\Models\Billing;
 
 class RincianTagihan extends ModalComponent
 {
-    public $user;
+    public $activeBillers;
 
-    public function mount($user)
+    public function mount()
     {
-        $this->user = User::with('activeBillers')->findOrFail($user);
+        $user = auth()->user();
+        $this->activeBillers = $user->activeBillers;
         UserActivity::dispatch(auth()->user(), 'mengklik tombaol Rincian Tagihan');
     }
 

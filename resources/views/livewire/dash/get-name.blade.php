@@ -1,5 +1,5 @@
 <div>
-    <x-modal action="create">
+    <x-modal action="get">
         <x-slot name="title">
             {{ $title }}
         </x-slot>
@@ -39,7 +39,7 @@
                                         </button>
                                     </h3>
                                     <p class="mt-1 text-sm text-gray-600 line-clamp-2">
-                                        Username: {{ $user->name }}, Email: {{ $user->email }}
+                                        Username: {{ $user->username }}, Email: {{ $user->email }}
                                     </p>
                                 </div>
                             </li>

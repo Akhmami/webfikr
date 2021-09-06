@@ -16,7 +16,6 @@ class Cicilan extends ModalComponent
     public $options;
     public $user;
     public $cost_reduction;
-    public $keringanan;
     public $balance;
     public $total_pay;
     public $saldo_terpakai;
@@ -27,29 +26,31 @@ class Cicilan extends ModalComponent
         $this->biller = $biller;
 
         $qty = $this->biller->qty_spp;
+        $keringanan = $this->biller->billerDetails()->sum('keringanan');
         if ($this->biller->type === 'SPP') {
             $divider = $this->user->setSpp->nominal;
-            $this->keringanan = $this->user->costReductions()
-                ->unused()->where('type', 'SPP')->first()->nominal ?? 0;
-        } else {
-            $divider = $biller->amount / $qty;
-            $this->keringanan = $this->user->costReductions()
-                ->unused()->where('type', '<>', 'SPP')->first()->nominal ?? 0;
-        }
-
-        $this->max_amount = $biller->amount - $biller->cumulative_payment_amount - $this->keringanan;
-
-        for ($i = 1; $i <= $qty; $i++) {
-            $val = ($i * $divider) - $this->keringanan;
-            if ($val > $this->max_amount) {
-                break;
+            $i = 1;
+            $val = 0;
+            foreach ($this->biller->billerDetails as $item) {
+                $val = $val + $item->nominal_setelah_keringanan;
+                $this->options[$i] = [
+                    'value' => $val,
+                    'description' => $i . ' Bulan '
+                ];
+                $i++;
             }
-
-            $this->options[$i] = [
-                'value' => $val,
-                'description' => $i . ' Bulan '
-            ];
+        } else {
+            $divider = ($biller->amount - $biller->hitung_keringanan) / $qty;
+            for ($i = 1; $i <= $qty; $i++) {
+                $val = ($i * $divider);
+                $this->options[$i] = [
+                    'value' => $val,
+                    'description' => $i . ' Bulan '
+                ];
+            }
         }
+
+        $this->max_amount = $biller->amount - $biller->cumulative_payment_amount - $keringanan;
     }
 
     public function render()

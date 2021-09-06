@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\Search;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -14,6 +15,9 @@ use Laravel\Sanctum\HasApiTokens;
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable, SoftDeletes, HasRoles, Search;
+
+    // Optional properties
+    protected $search = ['name', 'username', 'email'];
 
     /**
      * The attributes that are mass assignable.
@@ -50,12 +54,6 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    protected $searchable = [
-        'name',
-        'username',
-        'email'
-    ];
-
     // public function setSlugAttribute($value)
     // {
     //     if (static::whereSlug($slug = str_slug($value))->exists()) {
@@ -76,11 +74,6 @@ class User extends Authenticatable
     public function getVerifiedAttribute($value)
     {
         return is_null($this->email_verified_at) ? false : true;
-    }
-
-    public function getRouteKeyName()
-    {
-        return 'slug';
     }
 
     public function posts()
@@ -188,10 +181,10 @@ class User extends Authenticatable
         return $this->hasMany(BalanceUsage::class);
     }
 
-    public function costReductions()
-    {
-        return $this->hasMany(CostReduction::class);
-    }
+    // public function costReductions()
+    // {
+    //     return $this->hasMany(CostReduction::class);
+    // }
 
     public function getTempatTanggalLahirAttribute()
     {

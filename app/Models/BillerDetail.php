@@ -16,7 +16,8 @@ class BillerDetail extends Model
      */
     protected $fillable = [
         'nama',
-        'nominal'
+        'nominal',
+        'keringanan'
     ];
 
     public function biller()
@@ -27,5 +28,10 @@ class BillerDetail extends Model
     public function costReduction()
     {
         return $this->hasOne(CostReduction::class);
+    }
+
+    public function getNominalSetelahKeringananAttribute()
+    {
+        return $this->nominal - $this->keringanan;
     }
 }

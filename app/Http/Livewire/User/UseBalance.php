@@ -12,7 +12,6 @@ class UseBalance extends ModalComponent
     public $max_amount;
     public $biller;
     public $user;
-    public $keringanan;
     public $balance;
     public $total_pay;
     public $saldo_terpakai;
@@ -21,16 +20,7 @@ class UseBalance extends ModalComponent
     {
         $this->user = auth()->user();
         $this->biller = $biller;
-
-        if ($this->biller->type === 'SPP') {
-            $this->keringanan = $this->user->costReductions()
-                ->unused()->where('type', 'SPP')->first()->nominal ?? 0;
-        } else {
-            $this->keringanan = $this->user->costReductions()
-                ->unused()->where('type', '<>', 'SPP')->first()->nominal ?? 0;
-        }
-
-        $this->max_amount = $biller->amount - $biller->cumulative_payment_amount - $this->keringanan;
+        $this->max_amount = $biller->amount - $biller->cumulative_payment_amount - $this->biller->hitung_keringanan;
     }
 
     public function render()
