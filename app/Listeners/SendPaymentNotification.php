@@ -31,7 +31,7 @@ class SendPaymentNotification
         $data = $event->data;
 
         // Send WA & SMS Notification
-        // $wa = new WA($billing->user);
-        // $wa->notifyPayment($data);
+        $wa = new WA($billing->user);
+        $wa->notifyPayment($data);
     }
 }
