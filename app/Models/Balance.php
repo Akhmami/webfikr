@@ -17,4 +17,9 @@ class Balance extends Model
         'current_amount',
         'description'
     ];
+
+    public function paymentHistories()
+    {
+        return $this->morphMany(PaymentHistory::class, 'payment_history');
+    }
 }

@@ -10,6 +10,10 @@ class Bill extends Component
     public $total_amount;
     public $description;
 
+    protected $listeners = [
+        'closeBalanceAlertModal' => 'indexBill'
+    ];
+
     public function render()
     {
         $user = auth()->user();
@@ -34,5 +38,10 @@ class Bill extends Component
         }
 
         return view('livewire.user.bill');
+    }
+
+    public function indexBill()
+    {
+        # code...
     }
 }

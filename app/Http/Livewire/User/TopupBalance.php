@@ -8,6 +8,10 @@ class TopupBalance extends Component
 {
     public $balance;
 
+    protected $listeners = [
+        'closeBalanceAlertModal' => 'indexBalance'
+    ];
+
     public function render()
     {
         $total_balance = auth()->user()->balance->current_amount ?? 0;
@@ -15,5 +19,10 @@ class TopupBalance extends Component
         $this->balance = $total_balance - $used_balance;
 
         return view('livewire.user.topup-balance');
+    }
+
+    public function indexBalance()
+    {
+        # code...
     }
 }

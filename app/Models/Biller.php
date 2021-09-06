@@ -40,10 +40,10 @@ class Biller extends Model
         return $this->billings()->active();
     }
 
-    public function paymentHistories()
-    {
-        return $this->hasManyThrough(PaymentHistory::class, Billing::class);
-    }
+    // public function paymentHistories()
+    // {
+    //     return $this->hasManyThrough(PaymentHistory::class, Billing::class);
+    // }
 
     public function scopeActive($query)
     {

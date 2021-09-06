@@ -13,8 +13,10 @@
                         <span class="text-sm text-gray-500">Batas Akhir Pembayaran</span>
                         <h2 class="text-lg font-semibold mb-4">{{ $payment->date_expired }}</h2>
 
-                        <a href="#" wire:click.prevent="batal" class="text-indigo-600 text-sm hover:underline">Batalkan
+                        <a href="#" wire:click.prevent="batal" wire:loading.remove
+                            class="text-indigo-600 text-sm hover:underline">Batalkan
                             Pembayaran</a>
+                        <span wire:loading wire:target="batal" class="text-sm text-gray-600">Loading...</span>
                     </div>
 
                     <div class="w-2/3 mx-auto border rounded-md mt-8">
