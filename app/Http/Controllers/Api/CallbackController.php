@@ -18,6 +18,7 @@ class CallbackController extends BaseController
         if ($data['status'] !== '000') {
             // handling jika gagal
             echo $data['message'];
+            exit;
         } else {
             // check to DB
             $billing = Billing::with(['user', 'biller'])->where('trx_id', $data['trx_id'])->first();
@@ -27,9 +28,6 @@ class CallbackController extends BaseController
                 echo '{"status":"999", "message":"Trx_id tidak tersedia"}';
                 exit;
             } else {
-                $biller_cpa = $billing->biller->cumulative_payment_amount ?? 0;
-                $cpa_now = $biller_cpa + $data['cumulative_payment_amount'];
-
                 // update billing
                 $billing->update([
                     'is_paid' => ($data['cumulative_payment_amount'] === $data['trx_amount'] ? 'Y' : 'N'),
@@ -39,6 +37,9 @@ class CallbackController extends BaseController
                 if ($type === 'TOP') {
                     UpdateBalance::dispatch($billing->user()->balance->id, $data['payment_amount']);
                 } else {
+                    $biller_cpa = $billing->biller->cumulative_payment_amount ?? 0;
+                    $cpa_now = $biller_cpa + $data['cumulative_payment_amount'];
+
                     // Update Biller
                     $billing->biller()->update([
                         'cumulative_payment_amount' => $cpa_now,
