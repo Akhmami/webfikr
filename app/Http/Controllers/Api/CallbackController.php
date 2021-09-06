@@ -27,7 +27,7 @@ class CallbackController extends BaseController
                 echo '{"status":"999", "message":"Trx_id tidak tersedia"}';
                 exit;
             } else {
-                $biller_cpa = $billing->biller->cumulative_payment_amount;
+                $biller_cpa = $billing->biller->cumulative_payment_amount ?? 0;
                 $cpa_now = $biller_cpa + $data['cumulative_payment_amount'];
 
                 // update billing
