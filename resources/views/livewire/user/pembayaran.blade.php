@@ -19,7 +19,7 @@
                         <span wire:loading wire:target="batal" class="text-sm text-gray-600">Loading...</span>
                     </div>
 
-                    <div class="w-2/3 mx-auto border rounded-md mt-8">
+                    <div class="md:w-2/3 w-full mx-auto border rounded-md mt-8">
                         <div class="flex border-b py-4 justify-between">
                             <div class="pl-4">BSI Virtual Account</div>
                             <div class="pr-4">
@@ -40,7 +40,8 @@
                                     <button type="button" onclick="copyToClipboard({{$payment->virtual_account}})"
                                         class="inline-flex space-x-1 text-sm leading-5 font-medium text-indigo-600
                                                                                     hover:underline">
-                                        Salin <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
+                                        <span class="hidden sm:block">Salin</span> <svg
+                                            xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
                                             viewBox="0 0 24 24" stroke="currentColor">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                                 d="M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2" />
@@ -63,7 +64,8 @@
                                     <button type="button" onclick="copyToClipboard({{$payment->full_virtual_account}})"
                                         class="inline-flex space-x-1 text-sm leading-5 font-medium text-indigo-600
                                                             hover:underline">
-                                        Salin <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
+                                        <span class="hidden sm:block">Salin</span> <svg
+                                            xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
                                             viewBox="0 0 24 24" stroke="currentColor">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                                 d="M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2" />
@@ -107,15 +109,22 @@
                                     </p>
                                 </div>
                                 <div>
-                                    <a href="#" class="text-sm leading-5 font-medium text-indigo-600 hover:underline">
-                                        Lihat Rincian
-                                    </a>
+                                    <button type="button" onclick="copyToClipboard({{($payment->trx_amount + 2000)}})"
+                                        class="inline-flex space-x-1 text-sm leading-5 font-medium text-indigo-600
+                                                                                                hover:underline">
+                                        <span class="hidden sm:block">Salin</span> <svg
+                                            xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
+                                            viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2" />
+                                        </svg>
+                                    </button>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="prose w-2/3 mx-auto mt-6">
+                    <div class="prose md:w-2/3 w-full mx-auto mt-6">
                         <h4>Cara Pembayaran</h4>
                         <ul class="text-sm">
                             <li class="font-semibold">Menggunakan Metode Transfer BSI Mobile Banking</li>
