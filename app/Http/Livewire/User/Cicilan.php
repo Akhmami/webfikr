@@ -31,7 +31,7 @@ class Cicilan extends ModalComponent
             $divider = $this->user->setSpp->nominal;
             $i = 1;
             $val = 0;
-            $bd = $this->biller->billerDetails()->where('is_paid', '<>', 'Y')->get();
+            $bd = $this->biller->billerDetails()->whereNull('is_paid')->get();
             foreach ($bd as $item) {
                 $val = $val + $item->nominal_setelah_keringanan;
                 $this->options[$i] = [
