@@ -27,6 +27,7 @@ class CreatePaymentHistory
     public function handle(Paymented $event)
     {
         $billing = $event->billing;
+        $biller = $billing->biller;
         $data = $event->data;
 
         // create payment history
@@ -47,6 +48,10 @@ class CreatePaymentHistory
 
             // create spp
             foreach ($spp_billing as $spp) {
+                $biller->billerDetails()->first()->update([
+                    'is_paid' => 'Y'
+                ]);
+
                 $paymentHistory->spps()->updateOrCreate([
                     'grade_id' => $grade->id,
                     'bulan' => $spp

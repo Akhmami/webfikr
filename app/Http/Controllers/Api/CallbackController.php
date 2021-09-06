@@ -36,7 +36,6 @@ class CallbackController extends BaseController
 
                 $type = substr($billing->trx_id, 0, 3);
                 if ($type === 'TOP') {
-                    // UpdateBalance::dispatch($billing->user, $data['payment_amount']);
                     $currentAmount_from_last = $billing->user->balance->current_amount ?? 0;
                     $current_amount = $currentAmount_from_last + $data['payment_amount'];
                     Balance::create([
