@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\BaseController;
 use App\Events\Paymented;
 use App\Libraries\VA;
 use App\Models\Billing;
+use App\Models\Balance;
 
 class CallbackController extends BaseController
 {
@@ -38,7 +39,7 @@ class CallbackController extends BaseController
                     // UpdateBalance::dispatch($billing->user, $data['payment_amount']);
                     $currentAmount_from_last = $billing->user->balance->current_amount ?? 0;
                     $current_amount = $currentAmount_from_last + $data['payment_amount'];
-                    $billing->user()->balance()->create([
+                    Balance::create([
                         'user_id' => $billing->user->id,
                         'last_amount' => $currentAmount_from_last,
                         'type' => 'plus',
