@@ -53,7 +53,7 @@ class CallbackController extends BaseController
                     // Update Biller
                     $billing->biller()->update([
                         'cumulative_payment_amount' => $cpa_now,
-                        'is_active' => ($cpa_now < $billing->biller->amount ? 'Y' : 'N')
+                        'is_active' => ($cpa_now >= $billing->biller->amount ? 'Y' : 'N')
                     ]);
                 }
 
