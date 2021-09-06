@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Api\BaseController;
-use App\Jobs\UpdateBalance;
+// use App\Jobs\UpdateBalance;
 use App\Events\Paymented;
 use App\Libraries\VA;
 use App\Models\Billing;
@@ -35,7 +35,17 @@ class CallbackController extends BaseController
 
                 $type = substr($billing->trx_id, 0, 3);
                 if ($type === 'TOP') {
-                    UpdateBalance::dispatch($billing->user, $data['payment_amount']);
+                    // UpdateBalance::dispatch($billing->user, $data['payment_amount']);
+                    $currentAmount_from_last = $billing->user->balance->current_amount ?? 0;
+                    $current_amount = $currentAmount_from_last + $data['payment_amount'];
+                    $billing->user()->create([
+                        'user_id' => $billing->user->id,
+                        'last_amount' => $currentAmount_from_last,
+                        'type' => 'plus',
+                        'nominal' => $data['payment_amount'],
+                        'current_amount' => $current_amount,
+                        'description' => 'Tambah saldo'
+                    ]);
                 } else {
                     $biller_cpa = $billing->biller->cumulative_payment_amount ?? 0;
                     $cpa_now = $biller_cpa + $data['cumulative_payment_amount'];
