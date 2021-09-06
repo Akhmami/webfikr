@@ -17,7 +17,8 @@ class BillerDetail extends Model
     protected $fillable = [
         'nama',
         'nominal',
-        'keringanan'
+        'keringanan',
+        'is_paid'
     ];
 
     public function biller()
