@@ -34,6 +34,9 @@
                         $id++;
                         @endphp
                         @endforeach
+                        @error('option_id')
+                        <span class="text-red-500">{{ $message }}</span>
+                        @enderror
                     </div>
 
                     @if ($total_balance > 0)
