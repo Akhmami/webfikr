@@ -33,6 +33,6 @@ class BillerDetail extends Model
 
     public function getNominalSetelahKeringananAttribute()
     {
-        return $this->nominal - $this->keringanan;
+        return ($this->nominal - $this->keringanan) ?? 0;
     }
 }

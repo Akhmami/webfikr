@@ -52,6 +52,6 @@ class Biller extends Model
 
     public function getHitungKeringananAttribute()
     {
-        return $this->billerDetails()->sum('keringanan');
+        return $this->billerDetails()->sum('keringanan') ?? 0;
     }
 }
