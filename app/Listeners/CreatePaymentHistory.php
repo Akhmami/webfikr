@@ -48,7 +48,7 @@ class CreatePaymentHistory
 
             // create spp
             foreach ($spp_billing as $spp) {
-                $biller->billerDetails()->first()->update([
+                $biller->billerDetails()->whereNull('is_paid')->first()->update([
                     'is_paid' => 'Y'
                 ]);
 
