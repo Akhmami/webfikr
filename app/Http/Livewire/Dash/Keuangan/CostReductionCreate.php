@@ -44,10 +44,11 @@ class CostReductionCreate extends ModalComponent
         $validatedData['type'] = $this->type;
         $cost = $this->item->biller->cost_reduction + $validatedData['nominal'];
 
+        $this->item->update(['keringanan' => $validatedData['nominal']]);
         $this->item->costReduction()->create($validatedData);
-        $this->item->biller()->update([
-            'cost_reduction' => $cost
-        ]);
+        // $this->item->biller()->update([
+        //     'cost_reduction' => $cost
+        // ]);
 
         $this->emit('openModal', 'alert-modal', [
             'status' => 'success',
