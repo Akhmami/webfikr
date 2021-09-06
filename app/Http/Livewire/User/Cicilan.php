@@ -18,10 +18,6 @@ class Cicilan extends ModalComponent
     public $balance;
     public $total_pay;
 
-    protected $rules = ['option_id' => 'required'];
-
-    protected $messages = ['option_id.required' => 'Pilihan pembayaran belum dipilih'];
-
     public function mount(Biller $biller)
     {
         $this->user = auth()->user();
@@ -71,6 +67,10 @@ class Cicilan extends ModalComponent
 
     public function bayar()
     {
+        $this->validate([
+            'option_id' => 'required'
+        ]);
+
         $jenjang = $this->user->userDetail->jenjang;
         $trx_id = $this->biller->type . $jenjang . date('YmdHis');
         $payment_amount = $this->total_pay;
