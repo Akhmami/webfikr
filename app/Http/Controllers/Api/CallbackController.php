@@ -47,7 +47,7 @@ class CallbackController extends BaseController
                         'description' => 'Tambah saldo'
                     ]);
                 } else {
-                    $biller_cpa = $billing->biller->cumulative_payment_amount ?? 0;
+                    $biller_cpa = $billing->biller->cumulative_payment_amount + $billing->biller->cost_reduction;
                     $cpa_now = $biller_cpa + $data['cumulative_payment_amount'];
 
                     // Update Biller
