@@ -2,7 +2,7 @@
 
 namespace App\Jobs;
 
-use App\Models\Balance;
+use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -14,7 +14,7 @@ class UpdateBalance implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    public $balance;
+    public $user;
     public $payment_amount;
 
     /**
@@ -22,9 +22,9 @@ class UpdateBalance implements ShouldQueue
      *
      * @return void
      */
-    public function __construct(Balance $balance, $payment_amount)
+    public function __construct(User $user, $payment_amount)
     {
-        $this->balance = $balance;
+        $this->user = $user;
         $this->payment_amount = $payment_amount;
     }
 
@@ -35,9 +35,9 @@ class UpdateBalance implements ShouldQueue
      */
     public function handle()
     {
-        $currentAmount_from_last = $this->balance->current_amount ?? 0;
+        $currentAmount_from_last = $this->user->balance->current_amount ?? 0;
         $current_amount = $currentAmount_from_last + $this->payment_amount;
-        Balance::create([
+        $this->user()->create([
             'user_id' => $this->balance->user_id,
             'last_amount' => $currentAmount_from_last,
             'type' => 'plus',

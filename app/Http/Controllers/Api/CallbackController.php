@@ -35,7 +35,7 @@ class CallbackController extends BaseController
 
                 $type = substr($billing->trx_id, 0, 3);
                 if ($type === 'TOP') {
-                    UpdateBalance::dispatch($billing->user()->balance->id, $data['payment_amount']);
+                    UpdateBalance::dispatch($billing->user, $data['payment_amount']);
                 } else {
                     $biller_cpa = $billing->biller->cumulative_payment_amount ?? 0;
                     $cpa_now = $biller_cpa + $data['cumulative_payment_amount'];

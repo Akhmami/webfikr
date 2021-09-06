@@ -46,10 +46,11 @@ class CreatePaymentHistory
 
             // create spp
             foreach ($spp_billing as $spp) {
-                $paymentHistory->spps()->create([
-                    'user_id' => $billing->user->id,
+                $paymentHistory->spps()->updateOrCreate([
                     'grade_id' => $grade->id,
                     'bulan' => $spp
+                ], [
+                    'user_id' => $billing->user->id,
                 ]);
             }
         }
