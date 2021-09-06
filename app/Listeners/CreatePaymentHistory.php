@@ -40,7 +40,8 @@ class CreatePaymentHistory
             'datetime_payment' => $data['datetime_payment']
         ]);
 
-        if ($billing->biller->type === 'SPP') {
+        $type = $billing->biller->type ?? null;
+        if ($type === 'SPP') {
             $grade = $billing->user->activeGrade()->first();
             $spp_billing = json_decode($billing->spp_pay_month);
 
