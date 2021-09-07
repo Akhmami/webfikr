@@ -23,9 +23,7 @@
                         <div class="flex items-center">
                             <div class="flex-shrink-0 inline-block rounded-full overflow-hidden h-12 w-12"
                                 aria-hidden="true">
-                                <img class="rounded-full h-full w-full"
-                                    src="https://images.unsplash.com/photo-1517365830460-955ce3ccd263?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=320&h=320&q=80"
-                                    alt="">
+                                <img class="rounded-full h-full w-full" src="{{ asset('images/user.png') }}" alt="">
                             </div>
                             <div class="ml-5 rounded-md shadow-sm">
                                 <div
