@@ -17,6 +17,7 @@ use App\Http\Controllers\PostController;
 |
 */
 
+# nfbs.or.id
 Route::domain(config('app.domain'))
     ->group(function () {
         # Dashboard
@@ -30,13 +31,15 @@ Route::domain(config('app.domain'))
                     ->name('users.index');
                 Route::get('/users/{id}', [UserController::class, 'detail'])->name('users.show');
                 Route::get('/users/{id}/user-page', [UserController::class, 'userPage'])->name('users.user-page');
+
                 Route::get('/keuangan', [KeuanganController::class, 'index'])
                     ->middleware('permission:lihat billing|edit billing|hapus billing|buat billing')
                     ->name('keuangan.index');
+
+                Route::view('/website', 'dash.website.index')->name('website.index');
             });
 
         // Route::view('/', 'welcome')->name('home');
-        // Route::get('sitemap.xml', 'SitemapController@index');
         Route::post('/payments/callback/spp', [CallbackController::class, 'index']);
 
         Route::get('/', [PostController::class, 'index'])->name('home');
@@ -50,6 +53,7 @@ Route::domain(config('app.domain'))
         Route::get('/facility/{facility}/get-more', [PostController::class, 'subfacilities'])->name('post.subfacility');
     });
 
+# apps.nfbs.or.id
 Route::domain('apps.' . config('app.domain'))
     ->name('user.')
     ->middleware(['auth', 'role:user'])
@@ -65,6 +69,7 @@ Route::domain('apps.' . config('app.domain'))
             });
     });
 
+# psb.nfbs.or.id
 Route::domain('psb.' . config('app.domain'))
     ->name('psb.')
     ->group(function () {

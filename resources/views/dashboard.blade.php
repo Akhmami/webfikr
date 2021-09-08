@@ -10,20 +10,13 @@
             <div class="md:w-4/6 flex flex-col px-4 md:px-0">
                 <!-- Stat here -->
                 <div>
-                    <div class="mb-2 flex items-center justify-between">
-                        <div class="text-md font-medium uppercase text-gray-700">
-                            Dashboard
-                        </div>
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500" viewBox="0 0 20 20"
-                            fill="currentColor">
-                            <path
-                                d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z" />
-                        </svg>
+                    <div class="text-md font-medium uppercase text-gray-700 mb-2">
+                        Dashboard
                     </div>
-                    <div class="mb-6 bg-white rounded shadow py-4">
+                    <div class="mb-6 bg-white rounded-xl py-4">
                         <div class="flex items-center justify-around">
                             <div class="flex items-center space-x-4">
-                                <div class="rounded-full bg-blue-500 p-4">
+                                <div class="rounded-xl bg-blue-500 p-4">
                                     <svg class="h-6 w-6 text-white" xmlns="http://www.w3.org/2000/svg"
                                         viewBox="0 0 20 20" fill="currentColor">
                                         <path
@@ -37,7 +30,7 @@
                             </div>
 
                             <div class="flex items-center space-x-4">
-                                <div class="rounded-full bg-green-500 p-4">
+                                <div class="rounded-xl bg-green-500 p-4">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white"
                                         viewBox="0 0 20 20" fill="currentColor">
                                         <path
@@ -51,7 +44,7 @@
                             </div>
 
                             <div class="flex items-center space-x-4">
-                                <div class="rounded-full bg-red-500 p-4">
+                                <div class="rounded-xl bg-red-500 p-4">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white"
                                         viewBox="0 0 20 20" fill="currentColor">
                                         <path
@@ -66,7 +59,7 @@
                             </div>
 
                             <div class="flex items-center space-x-4">
-                                <div class="rounded-full bg-yellow-500 p-4">
+                                <div class="rounded-xl bg-yellow-500 p-4">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white"
                                         viewBox="0 0 20 20" fill="currentColor">
                                         <path
@@ -87,20 +80,13 @@
 
                 <!-- Grafik -->
                 <div class="flex-1">
-                    <div class="mb-2 flex items-center justify-between">
-                        <div class="text-md font-medium uppercase text-gray-700">
-                            Statistik Pengunjung
-                        </div>
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500" viewBox="0 0 20 20"
-                            fill="currentColor">
-                            <path
-                                d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z" />
-                        </svg>
+                    <div class="text-md font-medium uppercase text-gray-700 mb-2">
+                        Statistik Pengunjung
                     </div>
-                    <div class="bg-white rounded shadow flex items-center h-auto">
+                    <div class="bg-white rounded-xl flex items-center h-auto">
                         <div class="overflow-hidden w-full md:flex" style="max-width:900px"
                             x-data="{stockTicker:stockTicker()}" x-init="stockTicker.renderChart()">
-                            <div class="flex flex-col w-full md:w-3/4 pl-6 py-6 bg-white text-white">
+                            <div class="flex flex-col w-full md:w-3/4 pl-6 py-6 bg-white text-white rounded-xl">
                                 <div class="flex justify-between pr-4 pl-1 mb-4">
                                     <div class="flex items-center space-x-2">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500"
@@ -120,7 +106,7 @@
                             </div>
                             <div class="w-full md:w-1/4 py-6 pr-6 pl-3 text-gray-600">
                                 <div
-                                    class="w-full h-full bg-blue-500 rounded flex flex-col items-center justify-center space-y-2">
+                                    class="w-full h-full bg-blue-500 rounded-xl flex flex-col items-center justify-center space-y-2">
                                     <h3 class="text-lg font-semibold leading-tight text-gray-100">Hari ini</h3>
                                     <div class="text-gray-100 text-4xl font-bold">123</div>
                                     <div class="text-gray-100 text-sm">Pengunjung</div>
@@ -133,18 +119,11 @@
 
             <div class="md:w-2/6 mt-6 pr-4 md:pr-0 md:mt-0 flex flex-col">
                 <div class="flex-1">
-                    <div class="mb-2 flex items-center justify-between">
-                        <div class="text-md font-medium uppercase text-gray-700">
-                            Reports
-                        </div>
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500" viewBox="0 0 20 20"
-                            fill="currentColor">
-                            <path
-                                d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z" />
-                        </svg>
+                    <div class="text-md font-medium uppercase text-gray-700 mb-2">
+                        Reports
                     </div>
                     <div class="flex flex-col space-y-4">
-                        <div class="bg-white rounded shadow">
+                        <div class="bg-white rounded-xl">
                             <div class="flex items-center space-x-4 p-4">
                                 <div class="rounded-full bg-green-100 p-4">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500"
@@ -172,7 +151,7 @@
                             </div>
                         </div>
 
-                        <div class="bg-white rounded shadow">
+                        <div class="bg-white rounded-xl">
                             <div class="flex items-center space-x-4 p-4">
                                 <div class="rounded-full bg-blue-100 p-4">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-500"
@@ -201,7 +180,7 @@
                             </div>
                         </div>
 
-                        <div class="bg-white rounded shadow">
+                        <div class="bg-white rounded-xl">
                             <div class="flex items-center space-x-4 p-4">
                                 <div class="rounded-full bg-red-100 p-4">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-red-500"
@@ -230,7 +209,7 @@
                         </div>
 
                         <div class="pt-4 hidden lg:block">
-                            <button class="bg-blue-500 rounded shadow py-4 text-white font-semibold uppercase w-full">
+                            <button class="bg-blue-500 rounded-xl py-4 text-white font-semibold uppercase w-full">
                                 lainnya
                             </button>
                         </div>
@@ -243,21 +222,14 @@
             <div class="w-4/6">
                 <!-- Tabel -->
                 <div>
-                    <div class="mb-2 flex items-center justify-between">
-                        <div class="text-md font-medium uppercase text-gray-700">
-                            Aktifitas User
-                        </div>
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500" viewBox="0 0 20 20"
-                            fill="currentColor">
-                            <path
-                                d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z" />
-                        </svg>
+                    <div class="text-md font-medium uppercase text-gray-700 mb-2">
+                        Aktifitas User
                     </div>
                     <div class="flex flex-col">
                         <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                             <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-                                <div class="shadow overflow-hidden border-b border-gray-200 rounded">
-                                    <table class="min-w-full divide-y divide-gray-200">
+                                <div class="overflow-hidden rounded-xl">
+                                    <table class="min-w-full">
                                         <thead class="bg-gray-50">
                                             <tr>
                                                 <th scope="col"
@@ -334,19 +306,12 @@
 
             <div class="w-2/6">
                 <div class="mb-6">
-                    <div class="mb-2 flex items-center justify-between">
-                        <div class="text-md font-medium uppercase text-gray-700">
-                            Kelas Aktif
-                        </div>
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500" viewBox="0 0 20 20"
-                            fill="currentColor">
-                            <path
-                                d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z" />
-                        </svg>
+                    <div class="text-md font-medium uppercase text-gray-700 mb-2">
+                        Kelas Aktif
                     </div>
-                    <div class="bg-white rounded shadow">
+                    <div class="bg-white rounded-xl">
                         <div class="flex flex-col space-y-4 p-4 text-gray-500 font-light mb-4">
-                            <div class="p-4 shadow rounded flex items-center justify-between">
+                            <div class="p-4 shadow rounded-xl flex items-center justify-between">
                                 <span>IPA 1</span>
                                 <div class="flex items-center space-x-4">
                                     <div class="flex flex-1 items-center space-x-1">
@@ -367,7 +332,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="p-4 shadow rounded flex items-center justify-between">
+                            <div class="p-4 shadow rounded-xl flex items-center justify-between">
                                 <span>IPA 2</span>
                                 <div class="flex items-center space-x-4">
                                     <div class="flex flex-1 items-center space-x-1">
@@ -388,7 +353,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="p-4 shadow rounded flex items-center justify-between">
+                            <div class="p-4 shadow rounded-xl flex items-center justify-between">
                                 <span>IPS 1</span>
                                 <div class="flex items-center space-x-4">
                                     <div class="flex flex-1 items-center space-x-1">
@@ -414,17 +379,10 @@
                 </div>
 
                 <div>
-                    <div class="mb-2 flex items-center justify-between">
-                        <div class="text-md font-medium uppercase text-gray-700">
-                            Balance
-                        </div>
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500" viewBox="0 0 20 20"
-                            fill="currentColor">
-                            <path
-                                d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z" />
-                        </svg>
+                    <div class="text-md font-medium uppercase text-gray-700 mb-2">
+                        Balance
                     </div>
-                    <div class="bg-white rounded shadow">
+                    <div class="bg-white rounded-xl">
                         <div class="flex items-center space-x-4 p-4">
                             <div class="rounded-full bg-green-100 p-4">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500"

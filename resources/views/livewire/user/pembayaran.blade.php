@@ -61,7 +61,8 @@
                                     </p>
                                 </div>
                                 <div>
-                                    <button type="button" onclick="copyToClipboard({{$payment->full_virtual_account}})"
+                                    <button type="button"
+                                        onclick="copyToClipboard({{str_replace(' ', '', $payment->full_virtual_account)}})"
                                         class="inline-flex space-x-1 text-sm leading-5 font-medium text-indigo-600
                                                             hover:underline">
                                         <span class="hidden sm:block">Salin</span> <svg
