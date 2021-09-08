@@ -41,7 +41,6 @@ class OldStudent extends Command
     public function handle()
     {
         foreach ($this->generator() as $item) {
-            dd($item);
             // USE DB::TRANSACTIONS
             DB::beginTransaction();
             try {
@@ -61,7 +60,7 @@ class OldStudent extends Command
                     // GIVE ROLES
                     $user->assignRole('user');
 
-                    $angkatan = ['8' => '22', '9' => '21', '11' => '19', '12' => '18'];
+                    $angkatan = ['7' => '23', '8' => '22', '9' => '21', '10' => '20', '11' => '19', '12' => '18'];
 
                     // CREATE USER DETAIL
                     $user->userDetail()->create([
