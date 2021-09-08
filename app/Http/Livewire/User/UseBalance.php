@@ -20,7 +20,7 @@ class UseBalance extends ModalComponent
     {
         $this->user = auth()->user();
         $this->biller = $biller;
-        $this->max_amount = $biller->amount - $biller->cumulative_payment_amount - $this->biller->hitung_keringanan;
+        $this->max_amount = $biller->amount - ($biller->cumulative_payment_amount + $this->biller->hitung_keringanan + $this->biller->balance_used);
     }
 
     public function render()
