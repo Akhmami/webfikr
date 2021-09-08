@@ -27,10 +27,8 @@ class BillersTable extends DataTableComponent
                 ->asHtml(),
             Column::make('Saldo')
                 ->format(function ($value, $column, $row) {
-                    return !empty($row->balance) ?
-                        '<a href="' . route('dash.users.show', $row->balance->id) . '" class="text-grey-900 font-semibold hover:underline cursor-pointer">' . $row->balance->current_amount . '</a>' : 0;
-                })
-                ->asHtml(),
+                    return view('livewire.dash.keuangan.kolom-saldo')->withData($row);
+                }),
             Column::make('Kelas')
                 ->format(function ($value, $column, $row) {
                     return view('livewire.dash.keuangan.kelas')->withData($row);
