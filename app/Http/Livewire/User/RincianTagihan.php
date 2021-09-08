@@ -34,7 +34,11 @@ class RincianTagihan extends ModalComponent
             if (!$cek_billing) {
                 // kalo pembayaran lebih dari 1 bln/cicilan
                 if ($biller->is_installment === 'Y') {
-                    $this->emit('openModal', 'user.cicilan', ['biller' => $biller]);
+                    if ($biller->type == 'SPP' && ($biller->billerDetails()->count() != $biller->qty_spp)) {
+                        $this->emit('openModal', 'user.alert-modal', ['message' => 'Pilihan pembayaran tidak sesuai, mohon untuk menghubungi admin!']);
+                    } else {
+                        $this->emit('openModal', 'user.cicilan', ['biller' => $biller]);
+                    }
                 } else {
                     $this->emit('openModal', 'user.use-balance', ['biller' => $biller]);
                 }
