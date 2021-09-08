@@ -76,7 +76,7 @@ class CallbackController extends BaseController
                     ]);
 
                     if ($balance_used > 0) {
-                        $billing->user->balance()->decrement('current_amount', $billing->use_balance);
+                        $billing->user->balance()->decrement('current_amount', ($billing->use_balance ?? 0));
                     }
                 }
 
