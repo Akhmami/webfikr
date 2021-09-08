@@ -132,7 +132,7 @@ class OldStudent extends Command
 
                     ]);
 
-                    $grades = ['8' => 2, '9' => 3, '11' => 5, '12' => 6];
+                    $grades = ['7' => 1, '8' => 2, '9' => 3, '10' => 4, '11' => 5, '12' => 6];
 
                     // GIVE GRADES
                     // $grade_id = $item->jenjang === 'SMP' ? 1 : 4;
