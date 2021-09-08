@@ -12,6 +12,8 @@ class Biller extends Model
     protected $fillable = [
         'amount',
         'cumulative_payment_amount',
+        'cost_reduction',
+        'balance_used',
         'type',
         'is_installment',
         'is_active',
