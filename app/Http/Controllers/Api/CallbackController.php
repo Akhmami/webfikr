@@ -57,6 +57,10 @@ class CallbackController extends BaseController
                         'is_active' => ($cpa_now >= $billing->biller->amount ? 'N' : 'Y'),
                         'balance_used' => $balance_used
                     ]);
+
+                    if ($balance_used > 0) {
+                        $billing->user->balance()->decrement('current_amount', $balance_used);
+                    }
                 }
 
                 Paymented::dispatch($billing, $data);
