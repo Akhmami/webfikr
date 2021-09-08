@@ -168,7 +168,7 @@ class User extends Authenticatable
 
     public function firstMobilePhone()
     {
-        return $this->hasOne(MobilePhone::class)->where('is_first', 'Y')->latestOfMany();
+        return $this->hasOne(MobilePhone::class)->where('is_first', 'Y');
     }
 
     public function balance()
