@@ -136,6 +136,7 @@ class OldStudent extends Command
 
                     // GIVE GRADES
                     // $grade_id = $item->jenjang === 'SMP' ? 1 : 4;
+                    dd($grades[$item->kelas]);
                     $user->grades()->attach($grades[$item->kelas]);
 
                     // SET SPP
