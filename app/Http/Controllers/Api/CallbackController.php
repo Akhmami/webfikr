@@ -8,6 +8,7 @@ use App\Events\Paymented;
 use App\Libraries\VA;
 use App\Models\Billing;
 use App\Models\Balance;
+use App\Models\PaymentHistory;
 
 class CallbackController extends BaseController
 {
@@ -21,9 +22,15 @@ class CallbackController extends BaseController
             echo $data['message'];
             exit;
         } else {
+            // check history pembayaran
+            $history = PaymentHistory::where('payment_ntb', $data['payment_ntb'])->first();
+            if ($history) {
+                echo '{"status":"999", "message":"riwayat pembayaran sudah tersedia"}';
+                exit;
+            }
+
             // check to DB
             $billing = Billing::with(['user', 'biller'])->where('trx_id', $data['trx_id'])->first();
-
             if (!$billing) {
                 // Kalo gk ada, kembalikan response 999
                 echo '{"status":"999", "message":"Trx_id tidak tersedia"}';
