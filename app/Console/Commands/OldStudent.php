@@ -41,6 +41,7 @@ class OldStudent extends Command
     public function handle()
     {
         foreach ($this->generator() as $item) {
+            dd($item);
             // USE DB::TRANSACTIONS
             DB::beginTransaction();
             try {
@@ -136,7 +137,6 @@ class OldStudent extends Command
 
                     // GIVE GRADES
                     // $grade_id = $item->jenjang === 'SMP' ? 1 : 4;
-                    dd($grades[$item->kelas]);
                     $user->grades()->attach($grades[$item->kelas]);
 
                     // SET SPP
