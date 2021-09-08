@@ -1,7 +1,10 @@
 @if (!empty($data->balance))
 <div class="flex items-center space-x-1">
-    <span class="text-grey-900 font-semibold hover:underline cursor-pointer">{{ $data->balance->current_amount }}</span>
-    <a href="#" class="p-1 rounded-md hover:bg-yellow-500">
+    <span
+        class="text-grey-900 font-semibold hover:underline cursor-pointer">{{ rupiah($data->balance->current_amount) }}</span>
+    <a href="#"
+        onclick="Livewire.emit('openModal', 'dash.keuangan.edit-saldo', {{ json_encode(['balance' => $data->balance->id]) }})"
+        class="p-1 rounded-md hover:bg-yellow-500">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-500 hover:text-gray-900" viewBox="0 0 20 20"
             fill="currentColor">
             <path

@@ -12,7 +12,8 @@ use Rappasoft\LaravelLivewireTables\Views\Filter;
 class BillersTable extends DataTableComponent
 {
     protected $listeners = [
-        'closeBillerAlertModal' => 'indexBilling'
+        'closeBillerAlertModal' => 'indexBilling',
+        'closeAlertBalance' => 'indexBilling'
     ];
 
     public function columns(): array
