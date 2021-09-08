@@ -51,7 +51,7 @@ class Cicilan extends ModalComponent
             }
         }
 
-        $this->max_amount = $biller->amount - $biller->cumulative_payment_amount - $keringanan;
+        $this->max_amount = $biller->amount - ($biller->cumulative_payment_amount + $keringanan + $biller->balance_used);
     }
 
     public function render()
