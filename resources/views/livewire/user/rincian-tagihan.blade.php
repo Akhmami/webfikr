@@ -14,7 +14,7 @@
                     <div class="flex items-center space-x-4">
                         <div class="flex-1 min-w-0">
                             <p class="text-md font-semibold text-gray-900 truncate">
-                                {{ rupiah(($biller->amount - $biller->cumulative_payment_amount - $biller->hitung_keringanan)) }}
+                                {{ rupiah(($biller->amount - ($biller->cumulative_payment_amount + $biller->cost_reduction + $biller->balance_used))) }}
                             </p>
                             <p class="text-sm text-gray-500 truncate">
                                 {{ $biller->description }}
