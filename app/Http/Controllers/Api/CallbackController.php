@@ -55,7 +55,7 @@ class CallbackController extends BaseController
                     ]);
                 } else {
                     $biller_cpa = $billing->biller->cumulative_payment_amount;
-                    $balance_used = $billing->use_balance ?? 0;
+                    $balance_used = $billing->biller->balance_used + $billing->use_balance;
                     $cpa_now = $biller_cpa + $data['cumulative_payment_amount'];
                     $paymented = $cpa_now + $balance_used + $billing->biller->cost_reduction;
 
