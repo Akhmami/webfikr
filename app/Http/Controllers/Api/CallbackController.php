@@ -45,14 +45,23 @@ class CallbackController extends BaseController
                 if ($type === 'TOP') {
                     $currentAmount_from_last = $billing->user->balance->current_amount ?? 0;
                     $current_amount = $currentAmount_from_last + $data['payment_amount'];
-                    Balance::create([
-                        'user_id' => $billing->user->id,
+                    $billing->user->balance()->updateOrCreate([
+                        'user_id' => $billing->user->id
+                    ], [
                         'last_amount' => $currentAmount_from_last,
                         'type' => 'plus',
                         'nominal' => $data['payment_amount'],
                         'current_amount' => $current_amount,
                         'description' => 'Tambah saldo'
                     ]);
+                    // Balance::create([
+                    //     'user_id' => $billing->user->id,
+                    //     'last_amount' => $currentAmount_from_last,
+                    //     'type' => 'plus',
+                    //     'nominal' => $data['payment_amount'],
+                    //     'current_amount' => $current_amount,
+                    //     'description' => 'Tambah saldo'
+                    // ]);
                 } else {
                     $biller_cpa = $billing->biller->cumulative_payment_amount;
                     $balance_used = $billing->biller->balance_used + $billing->use_balance;
@@ -67,7 +76,7 @@ class CallbackController extends BaseController
                     ]);
 
                     if ($balance_used > 0) {
-                        $billing->user->balance()->decrement('current_amount', $balance_used);
+                        $billing->user->balance()->decrement('current_amount', $billing->use_balance);
                     }
                 }
 
