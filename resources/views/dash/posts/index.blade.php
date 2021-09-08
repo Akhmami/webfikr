@@ -1,6 +1,6 @@
 <x-dash-layout>
     <x-slot name="breadtitle">
-        Website
+        Posts
     </x-slot>
 
     <main class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
@@ -121,9 +121,7 @@
                             <div class="text-md font-medium uppercase text-gray-700">
                                 Daftar Artikel
                             </div>
-                            <button type="button"
-                                onclick="Livewire.emit('openModal', 'dash.get-name', {{ json_encode(['title' => 'Tambah Virtual Account', 'path' => 'dash.keuangan.billing-create']) }})"
-                                class="inline-flex items-center pl-3 pr-4 py-1.5 text-xs
+                            <a href="{{ route('dash.posts.create') }}" class="inline-flex items-center pl-3 pr-4 py-1.5 text-xs
                             font-medium rounded-lg text-white bg-blue-600 hover:bg-blue-700 focus:outline-none
                             focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
@@ -133,7 +131,7 @@
                                         clip-rule="evenodd" />
                                 </svg>
                                 <span>NEW</span>
-                            </button>
+                            </a>
                         </div>
                         <div class="rounded-b flex flex-col px-4 py-4">
                             <livewire:dash.website.posts-table />

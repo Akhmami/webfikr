@@ -36,7 +36,8 @@ Route::domain(config('app.domain'))
                     ->middleware('permission:lihat billing|edit billing|hapus billing|buat billing')
                     ->name('keuangan.index');
 
-                Route::view('/website', 'dash.website.index')->name('website.index');
+                Route::view('/posts', 'dash.posts.index')->name('posts.index');
+                Route::view('/posts/create', 'dash.posts.create')->name('posts.create');
             });
 
         // Route::view('/', 'welcome')->name('home');

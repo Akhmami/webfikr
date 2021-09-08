@@ -17,12 +17,17 @@ class Bill extends Component
     public function render()
     {
         $user = auth()->user();
+        $amount = $user->billers()->active()->sum('amount');
+        $cpa = $user->billers()->active()->sum('cumulative_payment_amount');
+        $cost_reduction = $user->billers()->active()->sum('cost_reduction');
+        $balance_used = $user->billers()->active()->sum('balance_used');
         $bill_spp = $user->billerSPP;
         $bill_another = $user->billerAnother;
-        $keringanan = ($bill_spp->hitung_keringanan ?? 0) + ($bill_another->sum('hitung_keringanan') ?? 0);
-        $spp = ($bill_spp->amount ?? 0) - ($bill_spp->cumulative_payment_amount ?? 0);
-        $another = $bill_another->sum('amount') - $bill_another->sum('cumulative_payment_amount');
-        $this->total_amount = $spp + $another - $keringanan;
+        // $keringanan = ($bill_spp->hitung_keringanan ?? 0) + ($bill_another->sum('hitung_keringanan') ?? 0);
+        // $spp = ($bill_spp->amount ?? 0) - ($bill_spp->cumulative_payment_amount ?? 0);
+        // $another = $bill_another->sum('amount') - $bill_another->sum('cumulative_payment_amount');
+        // $this->total_amount = $spp + $another - $keringanan;
+        $this->total_amount = $amount - ($cpa + $cost_reduction + $balance_used);
         $this->description = 'Tagihan belum tersedia';
 
         if (!empty($bill_spp) && $bill_another->sum('amount') > 0) {
