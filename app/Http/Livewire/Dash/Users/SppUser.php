@@ -21,12 +21,11 @@ class SppUser extends Component
             ->with('spps')
             ->latest('nama')
             ->get();
-
-        $this->komitmen = rupiah($user->setSpp->nominal);
     }
 
     public function render()
     {
+        $this->komitmen = rupiah($this->user->setSpp->nominal);
         return view('livewire.dash.users.spp-user');
     }
 
