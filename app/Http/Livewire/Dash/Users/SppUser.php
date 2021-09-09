@@ -8,9 +8,15 @@ class SppUser extends Component
 {
     public $grades;
     public $komitmen;
+    public $user;
+
+    protected $listeners = [
+        'closeAlertValue' => 'index'
+    ];
 
     public function mount($user)
     {
+        $this->user = $user;
         $this->grades = $user->grades()
             ->with('spps')
             ->latest('nama')
@@ -22,5 +28,10 @@ class SppUser extends Component
     public function render()
     {
         return view('livewire.dash.users.spp-user');
+    }
+
+    public function index()
+    {
+        # code...
     }
 }
