@@ -5,7 +5,9 @@
         </div>
         <div class="mb-6 flex space-x-2">
             <div class="text-yellow-600 font-semibold">{{ $komitmen }}</div>
-            <a href="#" class="p-1 rounded-md hover:bg-yellow-500">
+            <a href="#"
+                onclick="Livewire.emit('openModal', 'dash.edit-value', {{ json_encode(['model' => 'SetSpp', 'id' => $user->userDetail->id, 'column' => 'nominal']) }})"
+                class="p-1 rounded-md hover:bg-yellow-500">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-500 hover:text-gray-900"
                     viewBox="0 0 20 20" fill="currentColor">
                     <path
