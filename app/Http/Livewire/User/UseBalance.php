@@ -57,7 +57,7 @@ class UseBalance extends ModalComponent
                 'billing_type' => 'c',
                 'customer_name' => auth()->user()->name,
                 'description' => 'Pembayaran ' . $biller->type,
-                'datetime_expired' => date('c', strtotime('2 days'))
+                'datetime_expired' => date('c', strtotime('5 days'))
             );
 
             $va = new VA;
@@ -72,7 +72,7 @@ class UseBalance extends ModalComponent
                 }
 
                 $data['use_balance'] = $this->balance ?? 0;
-                $data['datetime_expired'] = date('Y-m-d H:i:s', strtotime('2 days'));
+                $data['datetime_expired'] = date('Y-m-d H:i:s', strtotime('5 days'));
                 $biller->billings()->create($data);
                 return redirect()->to(route('user.pembayaran'));
             }

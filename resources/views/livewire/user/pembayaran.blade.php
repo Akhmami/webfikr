@@ -153,7 +153,7 @@
                             <li class="font-semibold">Menggunakan Metode Transfer Dari Bank Lain</li>
                             <ol class="pl-6 pb-4">
                                 <li>Pilih menu "Transfer antar bank" atau "Transfer online antarbank".</li>
-                                <li>Masukkan kode bank BNI (451) atau pilih bank yang dituju yaitu BSI.</li>
+                                <li>Masukkan kode bank BSI (451) atau pilih bank yang dituju yaitu BSI.</li>
                                 <li>Masukkan nomor Virtual Account Anda
                                     <strong>{{ $payment->full_virtual_account }}</strong>
                                     pada rekening tujuan.</li>

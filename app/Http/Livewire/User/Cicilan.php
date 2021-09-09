@@ -93,7 +93,7 @@ class Cicilan extends ModalComponent
                 'billing_type' => 'c',
                 'customer_name' => $this->user->name,
                 'description' => 'Pembayaran ' . $this->biller->type,
-                'datetime_expired' => date('c', strtotime('2 days'))
+                'datetime_expired' => date('c', strtotime('5 days'))
             );
 
             $va = new VA;
@@ -112,7 +112,7 @@ class Cicilan extends ModalComponent
                 }
 
                 $data['use_balance'] = $this->saldo_terpakai;
-                $data['datetime_expired'] = date('Y-m-d H:i:s', strtotime('2 days'));
+                $data['datetime_expired'] = date('Y-m-d H:i:s', strtotime('5 days'));
                 $this->user->billings()->create($data);
                 return redirect()->to(route('user.pembayaran'));
             }

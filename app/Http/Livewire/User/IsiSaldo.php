@@ -41,7 +41,7 @@ class IsiSaldo extends ModalComponent
                 'billing_type' => 'c',
                 'customer_name' => auth()->user()->name,
                 'description' => 'Isi Saldo',
-                'datetime_expired' => date('c', strtotime('2 days'))
+                'datetime_expired' => date('c', strtotime('5 days'))
             );
 
             $va = new VA;
@@ -50,7 +50,7 @@ class IsiSaldo extends ModalComponent
             if ($result['status'] !== '000') {
                 $this->emit('openModal', 'user.alert-modal', ['message' => 'Gagal memproses permintaan, silahkan coba lagi jika masih berlanjut hubungi kami. #' . $result['status']]);
             } else {
-                $data['datetime_expired'] = date('Y-m-d H:i:s', strtotime('2 days'));
+                $data['datetime_expired'] = date('Y-m-d H:i:s', strtotime('5 days'));
                 $data['is_balance'] = 'Y';
                 auth()->user()->billings()->create($data);
 
