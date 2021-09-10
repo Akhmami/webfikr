@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use App\Models\Billing;
 use App\Models\Post;
+use App\Models\SetSpp;
 use App\Models\User;
 use Illuminate\Console\Command;
 
@@ -40,6 +41,10 @@ class Testing extends Command
      */
     public function handle()
     {
-        $users = Billing::active()->update(['datetime_expired' => date('Y-m-d H:i:s')]);
+        $spps = SetSpp::cursor();
+
+        foreach ($spps as $item) {
+            $item->update(['current' => $item->nominal]);
+        }
     }
 }

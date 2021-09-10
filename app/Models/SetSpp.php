@@ -10,6 +10,7 @@ class SetSpp extends Model
     use HasFactory;
 
     protected $fillable = [
-        'nominal'
+        'nominal',
+        'current'
     ];
 }

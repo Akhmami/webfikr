@@ -28,7 +28,7 @@ class Cicilan extends ModalComponent
         $qty = $this->biller->qty_spp;
         $keringanan = $this->biller->billerDetails()->sum('keringanan');
         if ($this->biller->type === 'SPP') {
-            $divider = $this->user->setSpp->nominal;
+            $divider = $this->user->setSpp->current;
             $i = 1;
             $val = 0;
             $bd = $this->biller->billerDetails()->whereNull('is_paid')->get();
