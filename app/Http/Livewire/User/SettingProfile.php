@@ -18,6 +18,7 @@ class SettingProfile extends Component
 
     protected $messages = [
         'username.required' => 'Username tidak boleh kosong',
+        'username.alpha_dash' => 'Username hanya boleh huruf, angka, dash, underscore',
         'username.min' => 'Username mininal 6 karakter',
         'username.max' => 'Username maksimal 100 karakter',
         'username.unique' => 'Username sudah terpakai, gunakan yang lain',
@@ -68,7 +69,7 @@ class SettingProfile extends Component
     public function rules()
     {
         return [
-            'username' => 'required|string|min:6|max:100|unique:users,username,' . $this->user_id,
+            'username' => 'required|alpha_dash|min:6|max:100|unique:users,username,' . $this->user_id,
             'bio' => 'nullable|max:250',
             'name' => 'required|string|min:3|max:150',
             'gender' => 'required',

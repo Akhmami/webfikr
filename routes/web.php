@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Dash\KeuanganController;
 use App\Http\Controllers\Api\CallbackController;
 use App\Http\Controllers\Dash\UserController;
+use App\Http\Controllers\Dash\WebsiteController;
 use App\Http\Controllers\PostController;
 
 /*
@@ -36,8 +37,10 @@ Route::domain(config('app.domain'))
                     ->middleware('permission:lihat billing|edit billing|hapus billing|buat billing')
                     ->name('keuangan.index');
 
-                Route::view('/posts', 'dash.posts.index')->name('posts.index');
-                Route::view('/posts/create', 'dash.posts.create')->name('posts.create');
+                Route::get('/website', [WebsiteController::class, 'index'])->name('webiste.index');
+                Route::get('/website/{item}', [WebsiteController::class, 'views'])->name('webiste.views');
+                Route::get('/website/{item}/create', [WebsiteController::class, 'create'])->name('webiste.create');
+                Route::get('/website/{item}/{id}/edit', [WebsiteController::class, 'edit'])->name('webiste.edit');
             });
 
         // Route::view('/', 'welcome')->name('home');
