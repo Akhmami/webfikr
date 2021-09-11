@@ -39,19 +39,29 @@
                             </div>
                         </div>
                     </div>
+                    <div class="grid grid-cols-2">
+                        <x-select label="Kategori" name="category" :list="$categories" livewire />
+                        <div class="space-x-4">
+                            <div class="mb-7"></div>
+                            <button
+                                class="inline-flex items-center pl-3 pr-4 py-1.5 text-xs font-medium rounded-lg text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
+                                    fill="currentColor">
+                                    <path fill-rule="evenodd"
+                                        d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                                <span>NEW</span>
+                            </button>
+                        </div>
+                    </div>
+                    <x-date-picker />
                 </div>
             </div>
             <div class="mt-5 md:mt-0 md:col-span-2">
                 <div class="space-y-6">
                     <x-input label="Judul" name="title" livewire />
                     <x-input label="Slug" name="slug" livewire />
-                    @php
-                    $lists = [
-                    'info' => 'Info',
-                    'event' => 'Event'
-                    ];
-                    @endphp
-                    <x-select label="Kategori" name="category" livewire />
                     <div id="editor" class="rounded"></div>
                 </div>
             </div>

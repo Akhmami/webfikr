@@ -13,7 +13,7 @@
 'label',
 'name',
 'value',
-'options' => "{dateFormat:'Y-m-d', altFormat:'F j, Y', altInput:true, }"
+'options' => "{dateFormat:'Y-m-d', altFormat:'Y-m-d', altInput:true, }"
 ])
 
 <div wire:ignore>
