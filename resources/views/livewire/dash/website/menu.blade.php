@@ -10,7 +10,7 @@
                     </svg>
                 </div>
                 <div>
-                    <p class="text-gray-700">125 Artikel</p>
+                    <p class="text-gray-700">{{ $articles }} Artikel</p>
                 </div>
             </div>
         </a>
@@ -24,7 +24,7 @@
                     </svg>
                 </div>
                 <div>
-                    <p class="text-gray-700">5 Slideshow</p>
+                    <p class="text-gray-700">{{ $slideshows }} Slideshow</p>
                 </div>
             </div>
         </a>
@@ -38,7 +38,7 @@
                     </svg>
                 </div>
                 <div>
-                    <p class="text-gray-700">12 Kategori</p>
+                    <p class="text-gray-700">{{ $categories }} Kategori</p>
                 </div>
             </div>
         </a>
@@ -52,7 +52,7 @@
                     </svg>
                 </div>
                 <div>
-                    <p class="text-gray-700">2 Info Penting</p>
+                    <p class="text-gray-700">{{ $info }} Info Penting</p>
                 </div>
             </div>
         </a>
@@ -100,7 +100,7 @@
                     </svg>
                 </div>
                 <div>
-                    <p class="text-gray-700">Prestasi</p>
+                    <p class="text-gray-700">Lainnya</p>
                 </div>
             </div>
         </a>
