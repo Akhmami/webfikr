@@ -193,7 +193,7 @@
 
                 <div class="text-sm font-medium truncate w-40 md:w-auto">{{ $f->getClientOriginalName() }}</div>
                 <div class="flex items-center space-x-1">
-                    <div class="text-xs text-gray-500">{{ Str::bytesToHuman($f->getSize()) }}</div>
+                    <div class="text-xs text-gray-500">{{ human_filesize($f->getSize()) }}</div>
                     <div class="text-gray-400 text-xs">&bull;</div>
                     <div class="text-xs text-gray-500 uppercase">{{ $f->getClientOriginalExtension() }}</div>
                 </div>
@@ -233,7 +233,7 @@
 
                 <div class="text-sm font-medium truncate w-40 md:w-auto">{{ $file->getClientOriginalName() }}</div>
                 <div class="flex items-center space-x-1">
-                    <div class="text-xs text-gray-500">{{ Str::bytesToHuman($file->getSize()) }}</div>
+                    <div class="text-xs text-gray-500">{{ human_filesize($file->getSize()) }}</div>
                     <div class="text-gray-400 text-xs">&bull;</div>
                     <div class="text-xs text-gray-500 uppercase">{{ $file->getClientOriginalExtension() }}</div>
                 </div>

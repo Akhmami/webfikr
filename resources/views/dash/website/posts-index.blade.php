@@ -15,7 +15,7 @@
                             <div class="text-md font-medium uppercase text-gray-700">
                                 Daftar Artikel
                             </div>
-                            <a href="#" class="inline-flex items-center pl-3 pr-4 py-1.5 text-xs
+                            <a href="{{ route('dash.webiste.create', 'posts') }}" class="inline-flex items-center pl-3 pr-4 py-1.5 text-xs
                                                     font-medium rounded-lg text-white bg-blue-600 hover:bg-blue-700 focus:outline-none
                                                     focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"

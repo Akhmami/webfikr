@@ -1,7 +1,7 @@
 @extends('layouts.base')
 
 @section('meta')
-@stack('style')
+{{-- @stack('style') --}}
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-YYKBQJG9V9"></script>
 <script>
@@ -27,5 +27,5 @@
 <livewire:toaster />
 
 @livewire('livewire-ui-modal')
-@stack('script')
+{{-- @stack('script') --}}
 @endsection

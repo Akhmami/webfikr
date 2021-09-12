@@ -60,5 +60,5 @@
 <livewire:toaster />
 
 @livewire('livewire-ui-modal')
-@stack('script')
+{{-- @stack('script') --}}
 @endsection

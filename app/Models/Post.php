@@ -91,11 +91,11 @@ class Post extends Model
     public function publicationLabel()
     {
         if (!$this->published_at) {
-            return '<span class="badge badge-warning">Draft</span>';
+            return '<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800">Draft</span>';
         } elseif ($this->published_at && $this->published_at->isFuture()) {
-            return '<span class="badge badge-info">Schedule</span>';
+            return '<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">Schedule</span>';
         } else {
-            return '<span class="badge badge-success">Published</span>';
+            return '<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">Published</span>';
         }
     }
 

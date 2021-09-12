@@ -2,7 +2,6 @@
 
 namespace App\Http\Livewire\User;
 
-use App\Jobs\PaymentJob;
 use LivewireUI\Modal\ModalComponent;
 use App\Libraries\VA;
 use App\Models\Biller;

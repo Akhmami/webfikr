@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Dash\KeuanganController;
 use App\Http\Controllers\Api\CallbackController;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Dash\UserController;
 use App\Http\Controllers\Dash\WebsiteController;
 use App\Http\Controllers\PostController;
@@ -43,7 +44,9 @@ Route::domain(config('app.domain'))
                 Route::get('/website/{item}/{id}/edit', [WebsiteController::class, 'edit'])->name('webiste.edit');
             });
 
-        // Route::view('/', 'welcome')->name('home');
+
+        Route::post('/send-email-reset', [AuthController::class, 'store'])->name('password.username');
+        Route::post('/reset-new-password', [AuthController::class, 'update'])->name('password.new');
         Route::post('/payments/callback/spp', [CallbackController::class, 'index']);
 
         Route::get('/', [PostController::class, 'index'])->name('home');

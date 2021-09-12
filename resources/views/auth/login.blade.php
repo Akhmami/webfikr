@@ -9,6 +9,11 @@
             <div class="mt-10 px-12 sm:px-24 md:px-48 lg:px-12 lg:mt-16 xl:px-24 xl:max-w-2xl">
                 <h2 class="text-center text-4xl text-indigo-900 font-display font-semibold lg:text-left xl:text-5xl
               xl:text-bold">Login</h2>
+                @if (session('status'))
+                <div class="mt-2 px-4 py-2 bg-green-200 rounded-md" role="alert">
+                    {{ session('status') }}
+                </div>
+                @endif
                 <div class="mt-12">
                     <form method="POST" action="{{ route('login') }}">
                         @csrf

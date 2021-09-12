@@ -119,8 +119,6 @@ class UseBalance extends ModalComponent
                     ]);
                 }
 
-                // PaymentJob::dispatch($this->biller, $this->saldo_terpakai);
-
                 $this->emit('openModal', 'alert-modal', [
                     'status' => 'success',
                     'emit' => 'closeBalanceAlertModal',

@@ -22,6 +22,7 @@
     @livewireStyles
 
     @yield('meta')
+    @stack('style')
 
     <!-- Scripts -->
     <script src="{{ url(mix('js/app.js')) }}" defer></script>
@@ -34,6 +35,7 @@
     @yield('body')
 
     @livewireScripts
+    @stack('script')
 </body>
 
 </html>

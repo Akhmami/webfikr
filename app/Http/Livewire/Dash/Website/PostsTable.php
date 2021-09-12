@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Dash\Website;
 
+use App\Models\Category;
 use App\Models\Post;
 use Illuminate\Database\Eloquent\Builder;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
@@ -15,36 +16,44 @@ class PostsTable extends DataTableComponent
         return [
             Column::make('Image')
                 ->format(function ($value, $column, $row) {
-                    return '<img src="' . $row->image_thumb_url . '" class="h-14 w-auto rounded" />';
+                    return '<img src="' . $row->image_thumb_url . '" class="h-auto w-28 rounded" />';
                 })->asHtml(),
             Column::make('Judul', 'title')
                 ->sortable()
-                ->searchable(),
-            Column::make('Viewer')
+                ->searchable()
+                ->format(function ($value, $column, $row) {
+                    return '<a href="' . route('post.show', $row->slug) . '" target="_blank" class="text-blue-700 font-semibold break-words hover:underline">' . $value . '</a>';
+                })->asHtml(),
+            Column::make('Viewer', 'view_count')
                 ->sortable()
                 ->searchable(),
             Column::make('Author')
                 ->sortable()
                 ->searchable()
                 ->format(function ($value, $column, $row) {
-                    return $row->user->name;
+                    return '<a href="#" class="text-gray-600">' . $row->user->name . '</a>';
+                })->asHtml(),
+            Column::make('Status')
+                ->sortable()
+                ->searchable()
+                ->format(function ($value, $column, $row) {
+                    return $row->publicationLabel();
                 })->asHtml(),
             Column::make('Actions')
                 ->format(function ($value, $column, $row) {
-                    return view('livewire.dash.keuangan.billing-actions', ['data' => $row]);
+                    return view('livewire.dash.website.actions', ['data' => $row]);
                 }),
         ];
     }
 
     public function filters(): array
     {
+        $init = ['' => 'Semua'];
+        $categories = Category::pluck('title', 'id')->toArray();
+        $category_arr = $init + $categories;
         return [
-            'status' => Filter::make('Status Pembayaran')
-                ->select([
-                    '' => 'Semua',
-                    'paid' => 'Terbayar',
-                    'unpaid' => 'Belum',
-                ])
+            'category_id' => Filter::make('Kategori')
+                ->select($category_arr)
         ];
     }
 
@@ -53,6 +62,6 @@ class PostsTable extends DataTableComponent
     {
         return Post::query()
             ->latest()
-            ->when($this->getFilter('status'), fn ($query, $status) => $query->where('status', $status));
+            ->when($this->getFilter('category_id'), fn ($query, $category_id) => $query->where('category_id', $category_id));
     }
 }
