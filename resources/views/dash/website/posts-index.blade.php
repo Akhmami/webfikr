@@ -4,7 +4,7 @@
     </x-slot>
 
     <main class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
-        <div class="flex overflow-x-auto mb-4">
+        <div class="flex overflow-x-auto mb-6">
             <livewire:dash.website.menu />
         </div>
         <div class="flex space-x-4">

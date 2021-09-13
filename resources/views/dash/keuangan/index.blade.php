@@ -4,6 +4,9 @@
     </x-slot>
 
     <main class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
+        <div class="flex overflow-x-auto mb-6">
+            <livewire:dash.keuangan.menu />
+        </div>
         <div x-data="{isClose : true}" class="flex space-x-4">
             <div class="w-full">
 

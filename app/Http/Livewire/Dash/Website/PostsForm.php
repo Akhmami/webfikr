@@ -25,16 +25,6 @@ class PostsForm extends Component
     public $image_edit;
     public $categories;
 
-    protected $rules = [
-        'title' => 'required',
-        'slug' => 'required|unique:posts',
-        // 'excerpt' => 'required',
-        'body' => 'required',
-        'published_at' => 'nullable|date_format:Y-m-d',
-        'category_id' => 'required',
-        'image' => 'nullable|mimes:jpg,jpeg,bmp,png'
-    ];
-
     public function mount($postId)
     {
         if (!is_null($postId)) {
@@ -43,7 +33,7 @@ class PostsForm extends Component
             $this->title = $this->post->title;
             $this->slug = $this->post->slug;
             $this->body = $this->post->body;
-            $this->published_at = $this->post->published_at->format('Y-m-d');
+            $this->published_at = !is_null($this->post->published_at) ? $this->post->published_at->format('Y-m-d') : null;
             $this->category_id = $this->post->category_id;
             $this->image_edit = $this->post->image_url;
         }
@@ -85,10 +75,20 @@ class PostsForm extends Component
         }
 
         if (!is_null($this->postId)) {
-            $oldImage = $this->post->image;
-            $post = tap($this->post)->update($validatedData);
-            if ($oldImage !== $validatedData['image']) {
-                RemoveImage::dispatch($oldImage, $data);
+            if (!is_null($this->image)) {
+                $oldImage = $this->post->image;
+                $post = tap($this->post)->update($validatedData);
+
+                if ($oldImage !== $post->image) {
+                    RemoveImage::dispatch($oldImage, $data);
+                }
+            } else {
+                $this->post->title = $validatedData['title'];
+                $this->post->slug = $validatedData['slug'];
+                $this->post->body = $validatedData['body'];
+                $this->post->category_id = $validatedData['category_id'];
+                $this->post->published_at = $validatedData['published_at'];
+                $post = $this->post->save();
             }
         } else {
             $post = auth()->user()->posts()->create($validatedData);
@@ -99,5 +99,18 @@ class PostsForm extends Component
         }
 
         return redirect()->route('dash.webiste.index');
+    }
+
+    protected function rules()
+    {
+        return [
+            'title' => 'required',
+            'slug' => 'required|unique:posts,slug,' . $this->postId,
+            // 'excerpt' => 'required',
+            'body' => 'required',
+            'published_at' => 'nullable|date_format:Y-m-d',
+            'category_id' => 'required',
+            'image' => 'nullable|mimes:jpg,jpeg,bmp,png'
+        ];
     }
 }
