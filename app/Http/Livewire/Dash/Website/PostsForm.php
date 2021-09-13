@@ -4,9 +4,9 @@ namespace App\Http\Livewire\Dash\Website;
 
 use App\Models\Post;
 use App\Models\Category;
-use App\Jobs\ProcessImageThumbnails;
-use App\Jobs\RemoveImage;
 use Cviebrock\EloquentSluggable\Services\SlugService;
+use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -63,14 +63,9 @@ class PostsForm extends Component
             $extension = $this->image->getClientOriginalExtension();
             $validatedData['image'] = 'nfbs-' . time() . '.' . $extension;
             $destination = config('cms.image.directory');
+            $width = config('cms.image.thumbnail.width');
+            $height = config('cms.image.thumbnail.height');
             $this->image->storeAs($destination, $validatedData['image']);
-            $data = array(
-                'file_name' => $validatedData['image'],
-                'extension' => $extension,
-                'width' => config('cms.image.thumbnail.width'),
-                'height' => config('cms.image.thumbnail.height'),
-                'destination' => config('cms.image.directory')
-            );
             // }
         }
 
@@ -80,7 +75,17 @@ class PostsForm extends Component
                 $post = tap($this->post)->update($validatedData);
 
                 if ($oldImage !== $post->image) {
-                    RemoveImage::dispatch($oldImage, $data);
+                    $imagePath = $destination . '/' . $oldImage;
+                    $ext = substr(strrchr($oldImage, '.'), 1);
+                    $thumbnail = str_replace(".{$ext}", "_thumb.{$ext}", $oldImage);
+                    $thumbnailPath = $destination . '/' . $thumbnail;
+
+                    if (Storage::exists($imagePath)) {
+                        Storage::delete($imagePath);
+                    }
+                    if (Storage::exists($thumbnailPath)) {
+                        Storage::delete($thumbnailPath);
+                    }
                 }
             } else {
                 $this->post->title = $validatedData['title'];
@@ -95,7 +100,10 @@ class PostsForm extends Component
         }
 
         if (!is_null($this->image)) {
-            ProcessImageThumbnails::dispatch($post->image_url, $data);
+            $thumbnail = str_replace(".{$extension}", "_thumb.{$extension}", $validatedData['image']);
+            Image::make($this->image->getRealPath())
+                ->resize($width, $height)
+                ->save(storage_path('app/' . $destination . '/' . $thumbnail));
         }
 
         return redirect()->route('dash.webiste.index');
