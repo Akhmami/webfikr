@@ -43,7 +43,8 @@
                 <div class="bg-white p-6">
                     <div class="flex-1">
                         <p class="text-sm font-medium text-gray-500 flex items-center space-x-2">
-                            <a href="" class="bg-blue-600 text-xs text-white py-1 px-2 rounded-full">event</a>
+                            <a href=""
+                                class="bg-blue-600 text-xs text-white py-1 px-2 rounded-full">{{ $post->category->title }}</a>
                             <a href="#" class="hover:underline font-light">
                                 {{ $post->pinned > 0 ? 'Disematkan' : $post->date }}
                             </a>
