@@ -12,8 +12,8 @@
                     <a href="#" wire:click.prevent="$emit('popular')"
                         class="px-4 py-2 border-b-2 border-white hover:bg-gray-100 hover:border-blue-500">Populer</a>
                     <a href="#" wire:click.prevent="$emit('teacherNote')"
-                        class="px-4 py-2 border-b-2 border-white hover:bg-gray-100 hover:border-blue-500">Catatan
-                        Guru</a>
+                        class="px-4 py-2 border-b-2 border-white hover:bg-gray-100 hover:border-blue-500">Pena Nurul
+                        Fikri</a>
                 </div>
             </div>
 

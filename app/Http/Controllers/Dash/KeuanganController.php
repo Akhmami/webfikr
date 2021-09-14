@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Dash;
 
+use App\Exports\KeuanganExport;
 use App\Http\Controllers\Controller;
 use Carbon\Carbon;
 use App\Models\Billing;
@@ -21,5 +22,10 @@ class KeuanganController extends Controller
             'tagihan' => $tagihan,
             'history' => $history
         ]);
+    }
+
+    public function export()
+    {
+        return (new KeuanganExport(2021, 9))->download('data-keuangan.xlsx');
     }
 }

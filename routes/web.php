@@ -37,13 +37,13 @@ Route::domain(config('app.domain'))
                 Route::get('/keuangan', [KeuanganController::class, 'index'])
                     ->middleware('permission:lihat billing|edit billing|hapus billing|buat billing')
                     ->name('keuangan.index');
+                Route::get('/keuangan/exports/data', [KeuanganController::class, 'export'])->name('keuangan.export');
 
                 Route::get('/website', [WebsiteController::class, 'index'])->name('webiste.index');
                 Route::get('/website/{item}', [WebsiteController::class, 'views'])->name('webiste.views');
                 Route::get('/website/{item}/create', [WebsiteController::class, 'create'])->name('webiste.create');
                 Route::get('/website/{item}/{id}/edit', [WebsiteController::class, 'edit'])->name('webiste.edit');
             });
-
 
         Route::post('/send-email-reset', [AuthController::class, 'store'])->name('password.username');
         Route::post('/reset-new-password', [AuthController::class, 'update'])->name('password.new');

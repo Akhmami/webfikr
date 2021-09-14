@@ -21,6 +21,11 @@ class Grade extends Model
         return $this->belongsToMany(User::class);
     }
 
+    public function gradeUsers()
+    {
+        return $this->hasMany(GradeUser::class);
+    }
+
     public function spps()
     {
         return $this->hasMany(Spp::class);
