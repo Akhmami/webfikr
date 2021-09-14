@@ -27,12 +27,12 @@ class Posts extends Component
 
     public function popular()
     {
-        $this->posts = Post::with('author')->published()->popular()->take(6)->get();
+        $this->posts = Post::with('user')->published()->popular()->take(6)->get();
     }
 
     public function teacherNote()
     {
-        $this->posts = Post::with('author')->published()->teacherNote()->latestFirst()->take(6)->get();
+        $this->posts = Post::with('user')->published()->teacherNote()->latestFirst()->take(6)->get();
     }
 
     public function newest()
