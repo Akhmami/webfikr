@@ -83,8 +83,16 @@
                     @enderror
                 </div>
                 @if ($biller->cumulative_payment_amount > 0)
-                <x-input label="Bayar transfer sebanyak" value="{{ rupiah($biller->cumulative_payment_amount, false) }}"
-                    disabled />
+                <div>
+                    <span>Sudah bayar transfer sebanyak</span>
+                    <div class="font-semibold">{{ rupiah($biller->cumulative_payment_amount) }}</div>
+                </div>
+                @endif
+                @if ($biller->balance_used > 0)
+                <div>
+                    <span>Saldo terpakai</span>
+                    <div class="font-semibold">{{ rupiah($biller->balance_used) }}</div>
+                </div>
                 @endif
             </div>
         </x-slot>

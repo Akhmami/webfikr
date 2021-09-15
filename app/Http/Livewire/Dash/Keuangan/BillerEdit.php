@@ -90,7 +90,7 @@ class BillerEdit extends ModalComponent
         } else {
             $validatedData = $this->validate();
             $this->biller->update($validatedData);
-            $newBiller = $this->biller->billerDetails()->delete();
+            $this->biller->billerDetails()->delete(); //memory big
 
             foreach ($this->nama as $key => $value) {
                 $this->biller->billerDetails()->create([
