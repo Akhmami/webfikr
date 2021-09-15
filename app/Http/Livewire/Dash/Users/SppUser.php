@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Dash\Users;
 
+use App\Models\Spp;
 use Livewire\Component;
 
 class SppUser extends Component
@@ -11,7 +12,7 @@ class SppUser extends Component
     public $user;
 
     protected $listeners = [
-        'closeAlertValue' => 'index'
+        'closeAlertValue' => '$refresh'
     ];
 
     public function mount($user)
@@ -29,8 +30,37 @@ class SppUser extends Component
         return view('livewire.dash.users.spp-user');
     }
 
-    public function index()
+    public function minus($gradeId)
     {
-        # code...
+        $spp = Spp::where('user_id', $this->user->id)
+            ->where('grade_id', $gradeId)
+            ->latest('id')->first();
+        if (!empty($spp)) {
+            $spp->delete();
+        }
+    }
+
+    public function plus($gradeId)
+    {
+        $spp = Spp::where('user_id', $this->user->id)
+            ->where('grade_id', $gradeId)
+            ->latest('id')->first();
+
+        if (!empty($spp)) {
+            if (date('m', strtotime($spp->bulan)) != 6) {
+                $bln = date('Y-m-d', strtotime('+1 month', strtotime($spp->bulan)));
+                Spp::create([
+                    'user_id' => $this->user->id,
+                    'grade_id' => $gradeId,
+                    'bulan' => $bln
+                ]);
+            }
+        } else {
+            Spp::create([
+                'user_id' => $this->user->id,
+                'grade_id' => $gradeId,
+                'bulan' => date('Y-07-01')
+            ]);
+        }
     }
 }

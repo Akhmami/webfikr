@@ -23,13 +23,36 @@
         <div class="flex flex-col space-y-4">
             @foreach ($grades as $grade)
             <div class="bg-white overflow-hidden shadow rounded-lg divide-y divide-gray-200">
-                <div class="px-4 py-5 sm:px-6">
-                    Kelas {!! $grade->nama !!}
+                <div class="flex justify-between items-center">
+                    <div class="px-4 py-5 sm:px-6">
+                        Kelas {!! $grade->nama !!}
+                    </div>
+                    <div class="px-4 py-5 sm:px-6">
+                        <button type="button" wire:click="minus({{ $grade->id }})"
+                            class="inline-flex items-center p-1 border border-transparent rounded-full shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                            <!-- Heroicon name: solid/minus-sm -->
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
+                                fill="currentColor">
+                                <path fill-rule="evenodd" d="M5 10a1 1 0 011-1h8a1 1 0 110 2H6a1 1 0 01-1-1z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                        </button>
+                        <button type="button" wire:click="plus({{ $grade->id }})"
+                            class="inline-flex items-center p-1 border border-transparent rounded-full shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                            <!-- Heroicon name: solid/plus-sm -->
+                            <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                                fill="currentColor" aria-hidden="true">
+                                <path fill-rule="evenodd"
+                                    d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                        </button>
+                    </div>
                 </div>
                 <div class="px-4 py-5 sm:p-6">
-                    @if ($grade->spps()->where('user_id', auth()->user()->id)->count() > 0)
+                    @if ($grade->spps()->where('user_id', $user->id)->count() > 0)
                     <div class="flex space-x-4">
-                        @foreach ($grade->spps()->where('user_id', auth()->user()->id)->get()->chunk(4) as
+                        @foreach ($grade->spps()->where('user_id', $user->id)->get()->chunk(4) as
                         $chunk)
                         <div class="flex flex-col space-y-2 flex-1">
                             @foreach ($chunk as $bln)

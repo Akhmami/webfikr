@@ -16,6 +16,7 @@ class BillerEdit extends ModalComponent
     public $biller_details = [0];
     public $is_installment;
     public $qty_spp;
+    public $spps;
 
     protected $rules = [
         'nama.0' => 'required',
