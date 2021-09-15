@@ -68,8 +68,8 @@ class BillerEdit extends ModalComponent
     public function remove($key)
     {
         unset($this->biller_details[$key]);
-        $this->nama[$key] = '';
-        $this->nominal[$key] = '';
+        unset($this->nama[$key]);
+        unset($this->nominal[$key]);
     }
 
     public function update()

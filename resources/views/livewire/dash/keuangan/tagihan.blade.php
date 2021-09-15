@@ -1,7 +1,7 @@
 <div>
     <ul class="divide-y divide-gray-200">
         @if ($data->billers->count() > 0)
-        @foreach ($data->billers()->limit(3)->get() as $biller)
+        @foreach ($data->billers()->latest('id')->limit(3)->get() as $biller)
         <li>
             <div class="flex justify-between py-2">
                 <div class="text-sm text-gray-900">{{ $biller->type }}</div>
