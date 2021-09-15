@@ -88,7 +88,7 @@ class UsersExport implements
 
         if ($this->sheet == 'mobilePhones') {
             $array = [
-                $user->user->no_pendaftaran,
+                $user->user->username,
                 $user->user->name,
                 $user->name,
                 $user->full_number
