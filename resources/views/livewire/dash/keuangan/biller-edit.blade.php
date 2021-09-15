@@ -82,6 +82,10 @@
                     <p class="mt-2 text-xs font-semibold text-red-600">{{ $message }}</p>
                     @enderror
                 </div>
+                @if ($biller->cumulative_payment_amount > 0)
+                <x-input label="Bayar transfer sebanyak" value="{{ rupiah($biller->cumulative_payment_amount, false) }}"
+                    disabled />
+                @endif
             </div>
         </x-slot>
 
