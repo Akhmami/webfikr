@@ -25,7 +25,7 @@ class KeuanganExport implements WithMultipleSheets
     public function sheets(): array
     {
         $sheets = [];
-        $relations = ['userDetail', 'mobilePhones', 'paidBilling'];
+        $relations = ['userDetail', 'mobilePhones', 'billers', 'paidBilling'];
 
         foreach ($relations as $item) {
             $sheets[] = new UsersExport($item, $this->year, $this->month);
