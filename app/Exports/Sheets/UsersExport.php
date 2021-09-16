@@ -52,6 +52,9 @@ class UsersExport implements
 
         if ($this->sheet === 'billers') {
             $users = User::query()->with(['billers', 'userDetail', 'activeGrade']);
+            $users->whereHas('roles', function ($q) {
+                $q->where('name', 'user');
+            });
         }
 
         if ($this->sheet === 'paidBilling') {
