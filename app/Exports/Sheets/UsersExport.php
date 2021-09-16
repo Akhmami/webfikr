@@ -36,7 +36,7 @@ class UsersExport implements
     public function query()
     {
         if ($this->sheet === 'userDetail') {
-            $users = User::query()->with(['roles', 'userDetail']);
+            $users = User::query()->with(['userDetail']);
             $users->whereHas('roles', function ($q) {
                 $q->where('name', 'user');
             });
@@ -48,6 +48,10 @@ class UsersExport implements
                     $query->where('is_active', 'Y');
                 });
             });
+        }
+
+        if ($this->sheet === 'billers') {
+            $users = User::query()->with(['billers', 'userDetail', 'activeGrade']);
         }
 
         if ($this->sheet === 'paidBilling') {
@@ -95,6 +99,18 @@ class UsersExport implements
             ];
         }
 
+        if ($this->sheet == 'billers') {
+            $array = [
+                $user->userDetail->no_pendaftaran,
+                $user->name,
+                $user->activeGrade()->first()->nama ?? null,
+                $user->billers()->active()->sum('amount'),
+                $user->billers()->active()->sum('cumulative_payment_amount'),
+                $user->billers()->active()->sum('cost_reduction'),
+                $user->billers()->active()->sum('balance_used'),
+            ];
+        }
+
         if ($this->sheet == 'paidBilling') {
             $array = [
                 $user->user->username,
@@ -139,6 +155,18 @@ class UsersExport implements
             ];
         }
 
+        if ($this->sheet === 'billers') {
+            $heading = [
+                'No Pendaftaran',
+                'Nama Lengkap',
+                'Kelas',
+                'Total Tagihan',
+                'Total Transfer',
+                'Total Keringanan',
+                'Saldo terpakai'
+            ];
+        }
+
         if ($this->sheet === 'paidBilling') {
             $heading = [
                 'Username',
@@ -164,6 +192,10 @@ class UsersExport implements
 
         if ($this->sheet === 'mobilePhones') {
             $sheetName = 'No HP';
+        }
+
+        if ($this->sheet === 'billers') {
+            $sheetName = 'Tagihan';
         }
 
         if ($this->sheet === 'paidBilling') {
