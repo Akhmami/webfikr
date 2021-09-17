@@ -11,9 +11,9 @@
                     <li class="cursor-pointer hover:text-blue-500 hover:underline"
                         onclick="Livewire.emit('openModal', 'dash.keuangan.cost-reduction-create', {{ json_encode(['item_id' => $item->id, 'user_id' => $user->id]) }})">
                         {{ $item->nama .' (' . rupiah($item->nominal) . ')' }}
-                        {{-- @if ($item->keringanan > 0)
+                        @if ($item->keringanan > 0)
                         <span class="text-red-500">ada keringanan ({{rupiah($item->nominal)}})</span>
-                        @endif --}}
+                        @endif
                     </li>
                     @endforeach
                 </ul>
