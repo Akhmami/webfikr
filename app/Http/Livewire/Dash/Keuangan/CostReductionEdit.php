@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Dash\Keuangan;
 
+use App\Models\Biller;
 use App\Models\CostReduction;
 use LivewireUI\Modal\ModalComponent;
 
@@ -29,6 +30,10 @@ class CostReductionEdit extends ModalComponent
             'nominal' => 'required',
             'keterangan' => 'required'
         ]);
+
+        $this->reduction->billerDetail()->update(['keringanan' => $validatedData['nominal']]);
+        $this->item->costReduction()->create($validatedData);
+
 
         $this->reduction->update($validatedData);
 

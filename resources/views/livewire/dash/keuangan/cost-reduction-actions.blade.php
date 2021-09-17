@@ -21,10 +21,10 @@
                     onclick="Livewire.emit('openModal', 'dash.keuangan.cost-reduction-edit', {{ json_encode(['reduction' => $data->id]) }})"
                     class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100" role="menuitem" tabindex="-1"
                     id="menu-item-1">edit</a>
-                <a href="#"
+                {{-- <a href="#"
                     onclick="Livewire.emit('openModal', 'dash.keuangan.cost-reduction-delete', {{ json_encode(['reduction' => $data->id]) }})"
-                    class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100" role="menuitem" tabindex="-1"
-                    id="menu-item-1">hapus</a>
+                class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100" role="menuitem" tabindex="-1"
+                id="menu-item-1">hapus</a> --}}
             </div>
         </div>
     </div>
