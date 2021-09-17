@@ -23,8 +23,8 @@ class CostReductionDelete extends ModalComponent
     public function delete()
     {
         $this->reduction->billerDetail()->update(['keringanan' => 0]);
-        Biller::find($this->reduction->billerDetail->biller_id)
-            ->decrement('cost_reduction', $this->reduction->nominal);
+        $biller = Biller::find($this->reduction->billerDetail->biller_id);
+        $biller->decrement('cost_reduction', $biller->cost_reduction > $this->reduction->nominal ? $this->reduction->nominal : $biller->cost_reduction);
         $this->reduction->delete();
 
         $this->emit('openModal', 'alert-modal', [
