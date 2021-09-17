@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Dash\Keuangan;
 
+use App\Models\Biller;
 use App\Models\CostReduction;
 use LivewireUI\Modal\ModalComponent;
 
@@ -21,6 +22,9 @@ class CostReductionDelete extends ModalComponent
 
     public function delete()
     {
+        $this->reduction->billerDetail()->update(['keringanan' => 0]);
+        Biller::find($this->reduction->billerDetail->biller_id)
+            ->decrement('cost_reduction', $this->reduction->nominal);
         $this->reduction->delete();
 
         $this->emit('openModal', 'alert-modal', [
