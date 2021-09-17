@@ -1,8 +1,8 @@
 <div>
     <div class="prose px-10 py-6">
-        <h4>Pilih Biaya Yang Ingin Dikurangi!</h4>
         <div class="divide-y divide-gray-200">
             @if ($user->activeBillers->count() > 0)
+            <h4>Pilih Biaya Yang Ingin Dikurangi!</h4>
             @foreach ($user->activeBillers as $biller)
             <div class="py-2">
                 <p class="text-sm font-medium text-gray-900">{{ $biller->type .' (' . $biller->description . ')' }}
