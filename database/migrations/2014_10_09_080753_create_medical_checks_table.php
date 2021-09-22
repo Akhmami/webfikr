@@ -15,8 +15,9 @@ class CreateMedicalChecksTable extends Migration
     {
         Schema::create('medical_checks', function (Blueprint $table) {
             $table->id();
-            $table->string('nama');
-            $table->text('deskripsi')->nullable();
+            $table->string('title');
+            $table->text('description')->nullable();
+            $table->enum('is_active', ['Y', 'N'])->default('Y');
             $table->timestamps();
         });
     }

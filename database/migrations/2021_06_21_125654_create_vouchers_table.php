@@ -17,9 +17,8 @@ class CreateVouchersTable extends Migration
             $table->id();
             $table->string('name');
             $table->enum('type', ['decimal', 'percent']);
-            $table->decimal('value', 14,2);
+            $table->decimal('value', 14, 2)->default(0);
             $table->tinyInteger('quota');
-            $table->string('available')->nullable();
             $table->timestamp('datetime_expired')->nullable();
             $table->timestamps();
         });

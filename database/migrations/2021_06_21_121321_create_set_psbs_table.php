@@ -17,7 +17,7 @@ class CreateSetPsbsTable extends Migration
             $table->id();
             $table->string('nama', 25);
             $table->char('tahun_pendaftaran', 4);
-            $table->decimal('biaya', 14,0)->default(0);
+            $table->decimal('biaya', 14, 0)->default(0);
             $table->char('angkatan_smp', 2)->default('00');
             $table->char('angkatan_sma', 2)->default('00');
             $table->char('gelombang', 2);

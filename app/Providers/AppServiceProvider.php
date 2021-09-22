@@ -31,6 +31,7 @@ class AppServiceProvider extends ServiceProvider
         $_SERVER["SERVER_NAME"] = config('app.domain');
         View::composer('layouts.dash', BreadcrumbComposer::class);
         View::composer('layouts.web', NavbarComposer::class);
+        View::composer('layouts.psb', NavbarComposer::class);
         View::composer('layouts.web', PopupComposer::class);
     }
 }

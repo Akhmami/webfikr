@@ -17,6 +17,7 @@ class CreateLokasiTestsTable extends Migration
             $table->id();
             $table->string('lokasi', 25);
             $table->text('deskripsi');
+            $table->enum('is_active', ['Y', 'N'])->default('Y');
             $table->timestamps();
         });
     }

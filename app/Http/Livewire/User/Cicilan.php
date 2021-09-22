@@ -123,8 +123,8 @@ class Cicilan extends ModalComponent
                 $cpa_now = $biller_cpa + $this->saldo_terpakai;
                 $paymented = $cpa_now + $this->biller->cost_reduction;
                 $is_active = ($paymented < $this->biller->amount) ? 'Y' : 'N';
-
-                auth()->user()->billers()->where('id', $this->biller->id)->update([
+                $biller = auth()->user()->billers()->find($this->biller->id);
+                $biller->update([
                     'balance_used' => $cpa_now,
                     'is_active' => $is_active
                 ]);

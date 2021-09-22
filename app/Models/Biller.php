@@ -37,6 +37,11 @@ class Biller extends Model
         return $this->hasMany(Billing::class);
     }
 
+    public function billing()
+    {
+        return $this->hasOne(Billing::class)->latest('id');
+    }
+
     public function activeBillings()
     {
         return $this->billings()->active();

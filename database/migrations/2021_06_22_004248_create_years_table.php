@@ -16,7 +16,9 @@ class CreateYearsTable extends Migration
         Schema::create('years', function (Blueprint $table) {
             $table->id();
             $table->char('periode', 4);
-            $table->enum('status', ['1', '2']);
+            $table->string('angkatan_smp', 4)->default(00);
+            $table->string('angkatan_sma', 4)->default(00);
+            $table->enum('is_active', ['Y', 'N']);
             $table->timestamps();
         });
     }

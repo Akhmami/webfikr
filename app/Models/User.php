@@ -126,6 +126,11 @@ class User extends Authenticatable
             ->where('is_active', 'Y');
     }
 
+    public function billerPsb()
+    {
+        return $this->hasOne(Biller::class)->where('type', 'PSB')->latest('id');
+    }
+
     public function billings()
     {
         return $this->hasMany(Billing::class);
@@ -189,5 +194,10 @@ class User extends Authenticatable
     public function getTempatTanggalLahirAttribute()
     {
         return $this->birth_place . ', ' . tanggal($this->birth_date);
+    }
+
+    public function vouchers()
+    {
+        return $this->belongsToMany(Voucher::class);
     }
 }

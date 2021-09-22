@@ -60,11 +60,6 @@ class CreateUserDetailsTable extends Migration
             $table->string('haji_umroh_ibu', 25)->nullable();
             $table->string('organisasi_islam_ibu')->nullable();
             $table->string('buku_bacaan_islam_ibu')->nullable();
-            $table->enum('jalur_masuk', ['psb', 'mutasi'])->default('psb');
-            $table->char('gelombang', 2)->nullable();
-            $table->char('tahun_pendaftaran', 4)->nullable();
-            $table->char('tahun_ajaran', 4)->nullable();
-            $table->enum('status', ['santri', 'keluar'])->nullable();
             $table->timestamps();
         });
     }

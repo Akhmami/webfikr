@@ -16,7 +16,7 @@ class CreateStatusPsbsTable extends Migration
         Schema::create('status_psbs', function (Blueprint $table) {
             $table->id();
             $table->string('status', 25);
-            $table->text('deskripsi');
+            $table->text('description');
             $table->timestamps();
         });
     }

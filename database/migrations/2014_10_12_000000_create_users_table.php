@@ -27,7 +27,6 @@ class CreateUsersTable extends Migration
             $table->date('birth_date')->nullable();
             $table->foreignId('status_psb_id')->nullable()->constrained();
             $table->foreignId('lokasi_test_id')->nullable()->constrained();
-            $table->foreignId('test_date_id')->nullable()->constrained();
             $table->foreignId('medical_check_id')->nullable()->constrained();
             $table->string('bio', 250)->nullable();
             $table->rememberToken();

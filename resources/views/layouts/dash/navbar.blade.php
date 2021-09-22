@@ -11,13 +11,13 @@
                         <a href="{{ route('dash.index') }}"
                             class="bg-blue-700 text-white px-3 py-2 rounded-md text-sm font-medium">Dashboard</a>
 
-                        <a href="{{ route('dash.webiste.index') }}"
+                        <a href="{{ route('dash.website.index') }}"
                             class="text-white hover:bg-blue-500 hover:bg-opacity-75 px-3 py-2 rounded-md text-sm font-medium">Website</a>
 
                         <a href="{{ route('dash.index') }}"
                             class="text-white hover:bg-blue-500 hover:bg-opacity-75 px-3 py-2 rounded-md text-sm font-medium">Santri</a>
 
-                        <a href="{{ route('dash.index') }}"
+                        <a href="{{ route('dash.psb.index') }}"
                             class="text-white hover:bg-blue-500 hover:bg-opacity-75 px-3 py-2 rounded-md text-sm font-medium">PSB</a>
 
                         <a href="{{ route('dash.keuangan.index') }}"
@@ -206,10 +206,10 @@
             <a href="{{ route('dash.index') }}"
                 class="bg-blue-700 text-white block px-3 py-2 rounded-md text-base font-medium">Dashboard</a>
 
-            <a href="#"
+            <a href="{{ route('dash.website.index') }}"
                 class="text-white hover:bg-blue-500 hover:bg-opacity-75 block px-3 py-2 rounded-md text-base font-medium">Website</a>
 
-            <a href="#"
+            <a href="{{ route('dash.psb.index') }}"
                 class="text-white hover:bg-blue-500 hover:bg-opacity-75 block px-3 py-2 rounded-md text-base font-medium">PSB</a>
 
             <a href="{{ route('dash.keuangan.index') }}"

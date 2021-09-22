@@ -7,6 +7,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Dash\UserController;
 use App\Http\Controllers\Dash\WebsiteController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\PsbController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,15 +35,21 @@ Route::domain(config('app.domain'))
                 Route::get('/users/{id}', [UserController::class, 'detail'])->name('users.show');
                 Route::get('/users/{id}/user-page', [UserController::class, 'userPage'])->name('users.user-page');
 
+                # Keuangan
                 Route::get('/keuangan', [KeuanganController::class, 'index'])
                     ->middleware('permission:lihat billing|edit billing|hapus billing|buat billing')
                     ->name('keuangan.index');
                 Route::get('/keuangan/exports/data', [KeuanganController::class, 'export'])->name('keuangan.export');
 
-                Route::get('/website', [WebsiteController::class, 'index'])->name('webiste.index');
-                Route::get('/website/{item}', [WebsiteController::class, 'views'])->name('webiste.views');
-                Route::get('/website/{item}/create', [WebsiteController::class, 'create'])->name('webiste.create');
-                Route::get('/website/{item}/{id}/edit', [WebsiteController::class, 'edit'])->name('webiste.edit');
+                # PSB
+                Route::view('/psb', 'dash.psb.index')->name('psb.index');
+                Route::view('/psb/status-psb', 'dash.psb.status-psb-index')->name('psb.status-psb-index');
+
+                # Website
+                Route::get('/website', [WebsiteController::class, 'index'])->name('website.index');
+                Route::get('/website/{item}', [WebsiteController::class, 'views'])->name('website.views');
+                Route::get('/website/{item}/create', [WebsiteController::class, 'create'])->name('website.create');
+                Route::get('/website/{item}/{id}/edit', [WebsiteController::class, 'edit'])->name('website.edit');
             });
 
         Route::post('/send-email-reset', [AuthController::class, 'store'])->name('password.username');
@@ -80,5 +87,10 @@ Route::domain('apps.' . config('app.domain'))
 Route::domain('psb.' . config('app.domain'))
     ->name('psb.')
     ->group(function () {
-        Route::view('/', 'psb.index')->name('index');
+        Route::get('/', [PsbController::class, 'index'])->name('index');
+        Route::get('/{title}', [PsbController::class, 'show'])->name('show');
+        // Route::post('daftar', [PsbController::class, 'store'])->name('psb.store');
+
+        // Route::get('ensb0w6p5vqylbdd0xvpj24i3', 'PsbController@gelombangTertutup')->name('psb.tertutup');
+        Route::get('users/d/{string}', [PsbController::class, 'verify'])->name('verify');
     });
