@@ -12,8 +12,8 @@ use Rappasoft\LaravelLivewireTables\Views\Filter;
 class BillersTable extends DataTableComponent
 {
     protected $listeners = [
-        'closeBillerAlertModal' => 'indexBilling',
-        'closeAlertBalance' => 'indexBilling'
+        'closeBillerAlertModal' => '$refresh',
+        'closeAlertBalance' => '$refresh'
     ];
 
     public function columns(): array
@@ -61,8 +61,9 @@ class BillersTable extends DataTableComponent
     public function query(): Builder
     {
         return User::query()
-            ->with(['billers', 'activeGrade', 'balance'])
+            ->has('grades')
             ->whereHas('roles', fn ($query) => $query->where('name', 'user'))
+            ->with(['billers', 'activeGrade', 'balance'])
             ->latest()
             ->when($this->getFilter('kelas'), fn ($query, $kelas) => $query->whereHas(
                 'grades',
@@ -72,10 +73,5 @@ class BillersTable extends DataTableComponent
                 'billers',
                 fn ($query) => $query->where('is_active', $is_active)
             ));
-    }
-
-    public function indexBilling()
-    {
-        # code...
     }
 }

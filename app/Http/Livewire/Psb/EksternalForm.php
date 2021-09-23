@@ -39,14 +39,16 @@ class EksternalForm extends Component
     public $pendidikan_ayah;
     public $pekerjaan_ayah;
     public $tempat_kerja_ayah;
+    public $country_code_ayah;
+    public $no_wa_ayah;
     public $nama_ibu;
     public $tanggal_lahir_ibu;
     public $pendidikan_ibu;
     public $pekerjaan_ibu;
     public $tempat_kerja_ibu;
-    public $email;
-    public $no_wa_ayah;
+    public $country_code_ibu;
     public $no_wa_ibu;
+    public $email;
     public $lokasi_test_id;
     public $medical_check_id;
     public $diskon = null;
@@ -157,7 +159,7 @@ class EksternalForm extends Component
                         $this->voucher = '';
                         session()->flash('vouchererr', 'Mohon maaf, masa berlaku voucher sudah habis klik daftar sekarang untuk melanjutkan!');
                     } else {
-                        if (!$voucher->remaining) {
+                        if ($voucher->available < 1) {
                             $this->voucher = '';
                             session()->flash('vouchererr', 'Mohon maaf, kuota voucher sudah habis klik daftar sekarang untuk melanjutkan!');
                         } else {
@@ -203,7 +205,7 @@ class EksternalForm extends Component
                 }
 
                 DB::commit();
-                PsbEvent::dispatch($request);
+                // PsbEvent::dispatch($request);
                 $this->dispatchBrowserEvent('swal:modal', [
                     'type' => 'success',
                     'title' => 'Terima Kasih',
@@ -212,6 +214,7 @@ class EksternalForm extends Component
                 $this->reset();
             } catch (\Throwable $th) {
                 DB::rollback();
+                dd('error ' . $th->getMessage());
                 $this->emit('showFlash', 'error', 'Pendaftaran gagal, #' . $th->getMessage());
             }
 
@@ -276,8 +279,10 @@ class EksternalForm extends Component
             $trx_id = 'PSBSMP' . $nopeserta;
         }
 
+        $data['name'] = $data['nama_lengkap'];
         $data['status_psb_id'] = 1;
         $data['gelombang_id'] = $gel->id;
+        $data['username'] = $nopeserta;
         $data['no_pendaftaran'] = $nopeserta;
         $data['provinsi'] = $this->prov[$this->provinsi];
         $data['kabupaten'] = $this->kab[$this->kabupaten];

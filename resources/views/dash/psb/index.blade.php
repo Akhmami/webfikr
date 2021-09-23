@@ -15,16 +15,7 @@
                             <div class="text-md font-medium uppercase text-gray-700">
                                 Data Pendaftar
                             </div>
-                            <div class="flex items-center justify-center space-x-4">
-                                <div class="flex items-center space-x-1">
-                                    <span>SMP</span>
-                                    <x-badge color="blue" text="123" />
-                                </div>
-                                <div class="flex items-center space-x-1">
-                                    <span>SMA</span>
-                                    <x-badge color="blue" text="123" />
-                                </div>
-                            </div>
+                            <livewire:dash.psb.psb-stat-count type="pendaftar" />
                         </div>
                         <div class="rounded-b flex flex-col px-4 py-4">
                             <livewire:dash.psb.registered-table />

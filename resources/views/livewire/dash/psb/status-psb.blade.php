@@ -27,7 +27,7 @@
         @foreach ($status_psb as $item)
         <div x-show="tab == '#tab{{$item->id}}'" class="p-8" x-cloak>
             <div class="flex mb-4">
-                <a href="#" title="edit"
+                <a href="{{ route('dash.psb.status-psb-edit', $item->id) }}" title="edit"
                     class="flex items-center group px-4 py-2 border border-transparent rounded-xl shadow-sm text-white bg-yellow-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400">
                     <!-- Heroicon name: solid/edit-alt -->
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">

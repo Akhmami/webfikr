@@ -29,7 +29,7 @@
             <!-- Sidebar component, swap this element with another sidebar if you like -->
             <nav class="pt-16 pb-4 flex flex-col flex-grow overflow-y-auto">
                 <div class="px-4 grid grid-cols-2 gap-4 justify-center">
-                    <div
+                    <a href="{{ url('alur-pendaftaran') }}"
                         class="flex flex-col space-y-2 items-center p-4 rounded-xl text-white bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-300 hover:to-blue-400">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12" fill="none" viewBox="0 0 24 24"
                             stroke="currentColor">
@@ -37,8 +37,8 @@
                                 d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
                         </svg>
                         <div class="text-sm text-center">Alur Pendaftaran</div>
-                    </div>
-                    <div
+                    </a>
+                    <a href="{{ route('psb.internal') }}"
                         class="flex flex-col space-y-2 items-center p-4 rounded-xl text-white bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-300 hover:to-blue-400">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12" fill="none" viewBox="0 0 24 24"
                             stroke="currentColor">
@@ -46,8 +46,8 @@
                                 d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
                         </svg>
                         <div class="text-sm text-center">Santri Internal</div>
-                    </div>
-                    <div
+                    </a>
+                    <a href="{{ url('persyaratan') }}"
                         class="flex flex-col space-y-2 items-center p-4 rounded-xl text-white bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-300 hover:to-blue-400">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12" fill="none" viewBox="0 0 24 24"
                             stroke="currentColor">
@@ -55,8 +55,8 @@
                                 d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                         </svg>
                         <div class="text-sm text-center">Persyaratan</div>
-                    </div>
-                    <div
+                    </a>
+                    <a href="{{ url('biaya-pendidikan') }}"
                         class="flex flex-col space-y-2 items-center p-4 rounded-xl text-white bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-300 hover:to-blue-400">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12" fill="none" viewBox="0 0 24 24"
                             stroke="currentColor">
@@ -64,8 +64,8 @@
                                 d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" />
                         </svg>
                         <div class="text-sm text-center">Biaya Pendidikan</div>
-                    </div>
-                    <div
+                    </a>
+                    <a href="{{ url('asrama') }}"
                         class="flex flex-col space-y-2 items-center p-4 rounded-xl text-white bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-300 hover:to-blue-400">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12" fill="none" viewBox="0 0 24 24"
                             stroke="currentColor">
@@ -73,8 +73,8 @@
                                 d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
                         </svg>
                         <div class="text-sm text-center">Asrama</div>
-                    </div>
-                    <div
+                    </a>
+                    <a href="{{ url('berkas-kesehatan') }}"
                         class="flex flex-col space-y-2 items-center p-4 rounded-xl text-white bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-300 hover:to-blue-400">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12" fill="none" viewBox="0 0 24 24"
                             stroke="currentColor">
@@ -82,8 +82,8 @@
                                 d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                         </svg>
                         <div class="text-sm text-center">Berkas Kesehatan</div>
-                    </div>
-                    <div
+                    </a>
+                    <a href="{{ url('tanggal-penting') }}"
                         class="flex flex-col space-y-2 items-center p-4 rounded-xl text-white bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-300 hover:to-blue-400">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12" fill="none" viewBox="0 0 24 24"
                             stroke="currentColor">
@@ -91,8 +91,8 @@
                                 d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                         </svg>
                         <div class="text-sm text-center">Tanggal Penting</div>
-                    </div>
-                    <div
+                    </a>
+                    <a href="{{ url('brosur-online') }}"
                         class="flex flex-col space-y-2 items-center p-4 rounded-xl text-white bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-300 hover:to-blue-400">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12" fill="none" viewBox="0 0 24 24"
                             stroke="currentColor">
@@ -100,7 +100,7 @@
                                 d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
                         </svg>
                         <div class="text-sm text-center">Brosur Online</div>
-                    </div>
+                    </a>
                 </div>
             </nav>
         </div>
@@ -211,9 +211,33 @@
                         <img class="rounded-xl" src="https://source.unsplash.com/q10VITrVYUM/900x200" alt="banner">
                     </div>
                     @if (Route::is('psb.index'))
+                    @if (!$expired)
                     <livewire:psb.eksternal-form />
                     @else
+                    <div class="bg-white rounded-xl">
+                        <div class="text-center py-12 px-4 sm:px-6 lg:py-16 lg:px-8">
+                            <h2 class="tracking-tight text-gray-900 sm:text-4xl">
+                                <span class="block text-3xl font-extrabold">Pendaftaran Ditutup</span>
+                                <span class="block text-xl text-gray-500 font-light">Silahkan login untuk melihat
+                                    hasil.</span>
+                            </h2>
+                            <div class="mt-4 flex justify-center">
+                                <div class="inline-flex rounded-md shadow">
+                                    <a href="{{ route('user.home') }}"
+                                        class="inline-flex items-center justify-center px-6 py-2 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700">
+                                        login
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @endif
+                    @else
+                    @if (Route::is('psb.internal'))
+                    <livewire:psb.internal-form />
+                    @else
                     @include('psb.show')
+                    @endif
                     @endif
                 </div>
             </div>

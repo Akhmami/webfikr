@@ -18,7 +18,6 @@ class CreatePostPsbsTable extends Migration
             $table->string('title');
             $table->string('slug')->unique();
             $table->text('content');
-            $table->enum('type', ['Y', 'N'])->nullable();
             $table->tinyInteger('pinned')->nullable();
             $table->timestamps();
         });

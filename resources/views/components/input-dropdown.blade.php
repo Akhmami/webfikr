@@ -2,8 +2,10 @@
 'disabled' => false,
 'livewire' => false,
 'type' => 'text',
+'selected' => '',
 'label',
 'name',
+'dropdown_name',
 'value',
 'dropdown' => []
 ])
@@ -23,12 +25,12 @@
     <div class="mt-1 relative rounded-md shadow-sm">
         <div class="absolute inset-y-0 left-0 flex items-center w-20">
             <label for="country" class="sr-only">Country</label>
-            <select id="country" wire:model="country_code"
+            <select id="country" wire:model="{{ $dropdown_name }}"
                 class="focus:ring-indigo-500 focus:border-indigo-500 h-full py-0 pl-3 pr-5 border-transparent bg-transparent text-gray-500 sm:text-sm rounded-md"
                 required>
                 <option value="">Pilih</option>
-                @forelse ($dropdown as $key => $value)
-                <option value="{{ $key }}" @if($selected==$key) selected @endif>{{ $value }}</option>
+                @forelse ($dropdown as $key => $val)
+                <option value="{{ $key }}" @if($selected==$key) selected @endif>{{ $val }}</option>
                 @empty
 
                 @endforelse

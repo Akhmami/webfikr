@@ -14,7 +14,7 @@ class VerifyInternalJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    protected $student;
+    protected $user;
     protected $diskon;
 
     /**
@@ -22,10 +22,10 @@ class VerifyInternalJob implements ShouldQueue
      *
      * @return void
      */
-    public function __construct($student)
+    public function __construct($user)
     {
-        $this->student = $student;
-        $this->diskon = $this->student->diskon;
+        $this->user = $user;
+        $this->diskon = $this->user->diskon;
     }
 
     /**
@@ -36,14 +36,14 @@ class VerifyInternalJob implements ShouldQueue
     public function handle()
     {
         $data = [
-            'id' => $this->student->user->id,
-            'no_unik' => substr($this->student->no_pendaftaran, -4),
-            'nama' => $this->student->nama_lengkap,
-            'email' => $this->student->user->email,
+            'id' => $this->user->id,
+            'no_unik' => substr($this->user->userDetail->no_pendaftaran, -4),
+            'nama' => $this->user->name,
+            'email' => $this->user->email,
             'diskon' => $this->diskon,
             'datetime_expired' => date('Y-m-d H:i:s', strtotime('+1 day')),
         ];
 
-        Mail::to($this->student->user->email)->send(new VerifyInternal($data));
+        Mail::to($this->user->email)->send(new VerifyInternal($data));
     }
 }

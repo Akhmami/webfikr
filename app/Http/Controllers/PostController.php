@@ -128,4 +128,9 @@ class PostController extends Controller
     {
         return redirect()->away('https://forms.gle/H48KZE6xAzYe6dN28');
     }
+
+    public function faq()
+    {
+        return view('posts.faq');
+    }
 }

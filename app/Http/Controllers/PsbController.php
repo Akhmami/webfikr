@@ -5,8 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Contracts\Encryption\DecryptException;
 use App\Events\PsbEvent;
-use App\Models\Post;
-use App\Models\SetPsb;
+use App\Models\Gelombang;
+use App\Models\Internal;
 use App\Models\PostPsb;
 use App\Models\User;
 
@@ -14,7 +14,7 @@ class PsbController extends Controller
 {
     public function index()
     {
-        $conf = SetPsb::findOrFail(1);
+        $conf = Gelombang::active()->first();
         $today = strtotime('today');
         $expiry = strtotime($conf->datetime_expired);
         $expired = false;
@@ -27,22 +27,41 @@ class PsbController extends Controller
             $expired = true;
         }
 
-        $posts = PostPsb::all();
-        $items = [];
-
-        foreach ($posts as $post) {
-            $items[$post->type] = $post->content;
-        }
-
         return view('psb.index', [
-            'expired' => $expired,
-            'items' => $items
+            'expired' => $expired
         ]);
     }
 
     public function show($title)
     {
-        return view('psb.index');
+        $post = PostPsb::where('slug', $title)->first();
+        if (!$post) {
+            abort(404);
+        }
+
+        return view('psb.index', [
+            'post' => $post
+        ]);
+    }
+
+    public function internal()
+    {
+        $conf = Internal::findOrFail(1);
+        $today = strtotime('today');
+        $expiry = strtotime($conf->datetime_expired);
+        $expired = false;
+
+        if (is_null($conf->datetime_expired)) {
+            return view('psb.comingsoon');
+        }
+
+        if ($today >= $expiry) {
+            $expired = true;
+        }
+
+        return view('psb.index', [
+            'expired' => $expired
+        ]);
     }
 
     public function verify($string)
@@ -69,7 +88,7 @@ class PsbController extends Controller
                 ]
             ]);
         } else {
-            $conf = SetPsb::findOrFail(1);
+            $conf = Internal::findOrFail(1);
             $new_nopes = $conf->ta . $decrypted['no_unik'];
             $check = User::where('username', $new_nopes)->exists();
             if ($check) {

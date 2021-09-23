@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Dash\KeuanganController;
 use App\Http\Controllers\Api\CallbackController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\Dash\PostPsbController;
+use App\Http\Controllers\Dash\StatusPsbController;
 use App\Http\Controllers\Dash\UserController;
 use App\Http\Controllers\Dash\WebsiteController;
 use App\Http\Controllers\PostController;
@@ -44,6 +46,10 @@ Route::domain(config('app.domain'))
                 # PSB
                 Route::view('/psb', 'dash.psb.index')->name('psb.index');
                 Route::view('/psb/status-psb', 'dash.psb.status-psb-index')->name('psb.status-psb-index');
+                Route::get('/psb/status-psb/{id}/edit', [StatusPsbController::class, 'edit'])->name('psb.status-psb-edit');
+                Route::put('/psb/status-psb/{id}', [StatusPsbController::class, 'update'])->name('psb.status-psb-update');
+                Route::get('/psb/posts', [PostPsbController::class, 'index'])->name('psb.posts-index');
+                Route::put('/psb/posts/{id}', [PostPsbController::class, 'update'])->name('psb.posts-update');
 
                 # Website
                 Route::get('/website', [WebsiteController::class, 'index'])->name('website.index');
@@ -54,9 +60,9 @@ Route::domain(config('app.domain'))
 
         Route::post('/send-email-reset', [AuthController::class, 'store'])->name('password.username');
         Route::post('/reset-new-password', [AuthController::class, 'update'])->name('password.new');
-        Route::post('/payments/callback/spp', [CallbackController::class, 'index']);
-
+        // Route::post('/payments/callback/spp', [CallbackController::class, 'index']);
         Route::get('/', [PostController::class, 'index'])->name('home');
+        Route::get('/faq', [PostController::class, 'faq'])->name('faq');
         Route::get('/videos', [PostController::class, 'videos'])->name('post.videos');
         Route::get('/fasilitas', [PostController::class, 'facilities'])->name('post.facilities');
         Route::get('/artikel', [PostController::class, 'articles'])->name('post.articles');
@@ -88,8 +94,8 @@ Route::domain('psb.' . config('app.domain'))
     ->name('psb.')
     ->group(function () {
         Route::get('/', [PsbController::class, 'index'])->name('index');
+        Route::get('/internal', [PsbController::class, 'internal'])->name('internal');
         Route::get('/{title}', [PsbController::class, 'show'])->name('show');
-        // Route::post('daftar', [PsbController::class, 'store'])->name('psb.store');
 
         // Route::get('ensb0w6p5vqylbdd0xvpj24i3', 'PsbController@gelombangTertutup')->name('psb.tertutup');
         Route::get('users/d/{string}', [PsbController::class, 'verify'])->name('verify');

@@ -9,7 +9,7 @@
                             Formulir Pendaftaran
                         </h3>
                         <p class="max-w-2xl text-sm text-gray-500">
-                            Pendaftar dari SMP Islam Nurul Fikri Serang? <a href="#"
+                            Pendaftar dari SMP Islam Nurul Fikri Serang? <a href="{{ route('psb.internal') }}"
                                 class="text-red-600 font-semibold animate-pulse">KLIK DISINI!</a>
                         </p>
                     </div>
@@ -28,36 +28,32 @@
                         <ol role="list" class="ml-8 flex items-center space-x-5">
                             <li>
                                 <!-- Personal Step -->
-                                <a href="#" wire:click.prevent="changeStep(1)"
+                                <button wire:click.prevent="changeStep(1)"
                                     class="{{ $currentStep >= 1 ? 'bg-indigo-600 hover:bg-indigo-900' : '' }} block w-2.5 h-2.5 rounded-full">
                                     <span class="sr-only">Step 1</span>
-                                </a>
+                                </button>
                             </li>
 
                             <li>
                                 <!-- Parent Step -->
-                                <a href="#" wire:click.prevent="changeStep(2)"
+                                <button wire:click.prevent="changeStep(2)"
                                     class="{{ $currentStep >= 2 ? 'bg-indigo-600 hover:bg-indigo-900' : 'bg-gray-200 hover:bg-gray-400' }} block w-2.5 h-2.5 rounded-full"
                                     {{ $maxStep < 2 ? ' disabled' : '' }}>
                                     <span class="sr-only">Step 2</span>
-                                </a>
+                                </button>
                             </li>
 
                             <li>
                                 <!-- Contact Step -->
-                                <a href="#" wire:click.prevent="changeStep(3)"
+                                <button wire:click.prevent="changeStep(3)"
                                     class="{{ $currentStep >= 3 ? 'bg-indigo-600 hover:bg-indigo-900' : 'bg-gray-200 hover:bg-gray-400' }} block w-2.5 h-2.5 rounded-full"
                                     {{ $maxStep < 3 ? ' disabled' : '' }}>
                                     <span class="sr-only">Step 3</span>
-                                </a>
+                                </button>
                             </li>
                         </ol>
                     </nav>
-                    @if($errors->any())
-                    @foreach ($errors->all() as $error)
-                    <div>{{ $error }}</div>
-                    @endforeach
-                    @endif
+
                     <form wire:submit.prevent="store" class="mt-6 space-y-4">
                         @if ($currentStep === 1)
                         <x-input label="Nama Lengkap" name="nama_lengkap" livewire />
@@ -89,13 +85,63 @@
                         <x-select label="Pendidikan Ayah" name="pendidikan_ayah" :list="$list_pendidikan" livewire />
                         <x-input label="Pekerjaan Ayah" name="pekerjaan_ayah" livewire />
                         <x-input label="Tempat Kerja Ayah" name="tempat_kerja_ayah" livewire />
-                        <x-input-dropdown label="No WA Ayah" name="no_wa_ayah" :dropdown="$country_code" livewire />
+                        <div>
+                            <label for="number" class="block text-sm font-medium text-gray-700">No WA Ayah</label>
+                            <div class="mt-1 relative rounded-md shadow-sm">
+                                <div class="absolute inset-y-0 left-0 flex items-center w-20">
+                                    <label for="country" class="sr-only">Country</label>
+                                    <select id="country" wire:model="country_code_ayah"
+                                        class="focus:ring-indigo-500 focus:border-indigo-500 h-full py-0 pl-3 pr-5 border-transparent bg-transparent text-gray-500 sm:text-sm rounded-md"
+                                        required>
+                                        <option value="62">Pilih</option>
+                                        @foreach ($country_code as $key => $value)
+                                        <option value="{{ $key }}">{{ $value }} ({{ $key }})
+                                        </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <input type="text" wire:model="no_wa_ayah"
+                                    class="focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-20 sm:text-sm border-gray-300 rounded-md"
+                                    placeholder="877 8077 5548">
+                            </div>
+                            @error('country_code_ayah')
+                            <span class="text-xs text-red-500">{{ $message }}</span>
+                            @enderror
+                            @error('no_wa_ayah')
+                            <span class="text-xs text-red-500">{{ $message }}</span>
+                            @enderror
+                        </div>
                         <x-input label="Nama Ibu" name="nama_ibu" livewire />
                         <x-date-picker label="Tanggal Lahir Ibu" name="tanggal_lahir_ibu" livewire />
                         <x-select label="Pendidikan Ibu" name="pendidikan_ibu" :list="$list_pendidikan" livewire />
                         <x-input label="Pekerjaan Ibu" name="pekerjaan_ibu" livewire />
                         <x-input label="Tempat Kerja Ibu" name="tempat_kerja_ibu" livewire />
-                        <x-input-dropdown label="No WA Ibu" name="no_wa_ibu" :dropdown="$country_code" livewire />
+                        <div>
+                            <label for="number" class="block text-sm font-medium text-gray-700">No WA Ibu</label>
+                            <div class="mt-1 relative rounded-md shadow-sm">
+                                <div class="absolute inset-y-0 left-0 flex items-center w-20">
+                                    <label for="country" class="sr-only">Country</label>
+                                    <select id="country" wire:model="country_code_ibu"
+                                        class="focus:ring-indigo-500 focus:border-indigo-500 h-full py-0 pl-3 pr-5 border-transparent bg-transparent text-gray-500 sm:text-sm rounded-md"
+                                        required>
+                                        <option value="62">Pilih</option>
+                                        @foreach ($country_code as $key => $value)
+                                        <option value="{{ $key }}">{{ $value }} ({{ $key }})
+                                        </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <input type="text" wire:model="no_wa_ibu"
+                                    class="focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-20 sm:text-sm border-gray-300 rounded-md"
+                                    placeholder="877 8077 5548">
+                            </div>
+                            @error('country_code_ibu')
+                            <span class="text-xs text-red-500">{{ $message }}</span>
+                            @enderror
+                            @error('no_wa_ibu')
+                            <span class="text-xs text-red-500">{{ $message }}</span>
+                            @enderror
+                        </div>
                         @if (!$inputVoucher)
                         <div>
                             <a href="#" wire:click.prevent="showVoucher" class="text-blue-600">

@@ -32,7 +32,15 @@ class User extends Authenticatable
         'bio',
         'gender',
         'birth_place',
-        'birth_date'
+        'birth_date',
+        'status_psb_id',
+        'lokasi_test_id',
+        'medical_check_id',
+        'gelombang_id',
+        'jalur_masuk',
+        'tahun_pendaftaran',
+        'tahun_ajaran',
+        'status'
     ];
 
     /**
@@ -199,5 +207,10 @@ class User extends Authenticatable
     public function vouchers()
     {
         return $this->belongsToMany(Voucher::class);
+    }
+
+    public function statusPsb()
+    {
+        return $this->belongsToMany(StatusPsb::class);
     }
 }

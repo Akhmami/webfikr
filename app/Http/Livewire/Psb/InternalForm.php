@@ -4,35 +4,34 @@ namespace App\Http\Livewire\Psb;
 
 use Livewire\Component;
 use App\Jobs\VerifyInternalJob;
+use App\Models\Internal;
 use App\Models\Voucher;
-use App\Models\SetPsb;
 use App\Models\User;
 
 class InternalForm extends Component
 {
     public $nik;
     public $pilihan;
-    public $tempat_lahir;
-    public $tanggal_lahir;
+    public $birth_place;
+    public $birth_date;
     public $voucher;
     public $diskon;
+    public $list_pilihan;
+    public $inputVoucher;
+
+    public function mount()
+    {
+        $this->list_pilihan = ['nik' => 'Nomor Induk Kependudukan', 'ttl' => 'Tanggal Lahir'];
+    }
 
     public function render()
     {
-        $conf = SetPsb::find(1);
-        $expired = false;
-        $today = strtotime('today');
-        $expiry = strtotime($conf->datetime_expired);
-        if ($today >= $expiry) {
-            $expired = true;
-        }
-
-        return view('livewire.psb.internal-form', ['expired' => $expired]);
+        return view('livewire.psb.internal-form');
     }
 
     public function updated($field)
     {
-        if ($field == 'voucher') {
+        if ($field === 'voucher') {
             if (!empty($this->voucher)) {
                 $voucher = Voucher::where('name', $this->voucher)->first();
 
@@ -43,12 +42,12 @@ class InternalForm extends Component
                         $this->voucher = '';
                         session()->flash('vouchererr', 'Mohon maaf, masa berlaku voucher sudah habis klik daftar sekarang untuk melanjutkan!');
                     } else {
-                        if (!$voucher->remaining) {
+                        if ($voucher->available < 1) {
                             $this->voucher = '';
                             session()->flash('vouchererr', 'Mohon maaf, kuota voucher sudah habis klik daftar sekarang untuk melanjutkan!');
                         } else {
                             $this->diskon = $voucher;
-                            session()->flash('vouchersuc', 'Alhamdulillah dapat diskon ' . number_format($voucher->value) . ' klik daftar sekarang untuk melanjutkan!');
+                            session()->flash('vouchersuc', 'Alhamdulillah dapat diskon ' . $voucher->nominal . ' klik daftar sekarang untuk melanjutkan!');
                         }
                     }
                 } else {
@@ -56,6 +55,16 @@ class InternalForm extends Component
                 }
             }
         }
+    }
+
+    public function hydrate()
+    {
+        $this->resetValidation();
+    }
+
+    public function showVoucher()
+    {
+        $this->inputVoucher = true;
     }
 
     public function store()
@@ -66,21 +75,23 @@ class InternalForm extends Component
 
         switch ($this->pilihan) {
             case 'nik':
-                $student = User::where('nik', $this->nik)
-                    ->where('jenjang', 'SMP')->latest()->first();
+                $user = User::whereHas('userDetail', function ($query) {
+                    $query->where('nik', $this->nik)
+                        ->where('jenjang', 'SMP')->latest('id');
+                })->first();
                 break;
 
             default:
-                $student = User::where('tempat_lahir', $this->tempat_lahir)
-                    ->where('tanggal_lahir', $this->tanggal_lahir)
-                    ->where('jenjang', 'SMP')->latest()->first();
+                $user = User::where('birth_place', $this->birth_place)
+                    ->where('birth_date', $this->birth_date)
+                    ->where('jenjang', 'SMP')->latest('id')->first();
                 break;
         }
 
-        if (!empty($student)) {
-            $student['diskon'] = $this->diskon;
-            VerifyInternalJob::dispatch($student);
-            $this->emit('showFlash', 'success', 'Pendaftaran berhasil, silahkan cek email anda ' . $student->user->email);
+        if (!empty($user)) {
+            $user['diskon'] = $this->diskon;
+            VerifyInternalJob::dispatch($user);
+            $this->emit('showFlash', 'success', 'Pendaftaran berhasil, silahkan cek email anda ' . $user->email);
             $this->reset();
         } else {
             $this->emit('showFlash', 'error', 'Mohon maaf, data yang diinput tidak tersedia');

@@ -1,78 +1,86 @@
 <div>
-    @if ($expired)
-    <h3 class="text-danger">PENDAFTARAN JALUR BERIKUT TELAH DITUTUP!</h3><br><br>
-    @else
-    <form class="form-horizontal" wire:submit.prevent="store">
-        @honeypot
-        <div class="form-group">
-            <label class="control-label col-sm-3">Cari Berdasarkan:</label>
-            <div class="col-sm-9">
-                <select wire:model.lazy="pilihan" class="form-control">
-                    <option value="">Pilih</option>
-                    <option value="nik">NIK</option>
-                    <option value="ttl">Tanggal Lahir</option>
-                </select>
-                @error('pilihan') <strong class="text-danger">{{ $message }}</strong> @enderror
-            </div>
-        </div>
+    @once
+    @push('style')
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    @endpush
 
-        @if ($pilihan == 'nik')
-        <div class="form-group">
-            <label class="control-label col-sm-3"></label>
-            <div class="col-sm-9">
-                <input type="text" wire:model.lazy="nik" class="form-control" placeholder="Masukan NIK" required>
-                @error('nik') <strong class="text-danger">{{ $message }}</strong> @enderror
-            </div>
-        </div>
-        @endif
+    @push('script')
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    @endpush
+    @endonce
+    <div class="px-4 sm:px-6 bg-white rounded-xl">
+        <div class="py-6">
+            <!-- Description list with inline editing -->
+            <div class="divide-y divide-gray-200">
+                <div class="flex items-center justify-between">
+                    <div class="space-y-1">
+                        <h3 class="text-lg leading-6 font-medium text-gray-900">
+                            Formulir Pendaftaran
+                        </h3>
+                        <p class="max-w-2xl text-sm text-gray-500">
+                            Pastikan data yang diisi benar dan sesuai.
+                        </p>
+                    </div>
+                    <div class="inline-flex items-center">
+                        <span class="hidden md:block">atau</span>
+                        <a href="#"
+                            class="ml-4 whitespace-nowrap inline-flex items-center justify-center bg-gradient-to-r from-blue-600 to-indigo-600 bg-origin-border px-6 py-2 border border-transparent rounded-lg shadow-sm text-base font-medium text-white hover:from-purple-700 hover:to-indigo-700">
+                            Login
+                        </a>
+                    </div>
+                </div>
+                <div class="mt-6">
+                    @if($errors->any())
+                    @foreach ($errors->all() as $error)
+                    <div>{{ $error }}</div>
+                    @endforeach
+                    @endif
+                    <form wire:submit.prevent="store" class="mt-6 space-y-4">
+                        <x-select label="Cari Berdasarkan:" name="pilihan" :list="$list_pilihan" livewire />
 
-        @if ($pilihan == 'ttl')
-        <div class="form-group">
-            <label class="control-label col-sm-3"></label>
-            <div class="col-sm-9">
-                <div class="row">
-                    <div class="col-md-4" style="padding-right: 0;">
-                        <input type="text" wire:model.lazy="tempat_lahir" class="form-control"
-                            placeholder="Tempat Lahir" required>
-                        @error('tempat_lahir') <strong class="text-danger">{{ $message }}</strong> @enderror
-                    </div>
-                    <div class="col-md-8" style="padding-left: 0;">
-                        <input type="text" wire:model.lazy="tanggal_lahir" class="form-control"
-                            placeholder="Tanggal Lahir Ex: 2020-09-29" required>
-                        @error('tanggal_lahir') <strong class="text-danger">{{ $message }}</strong> @enderror
-                    </div>
+                        @if ($pilihan == 'nik')
+                        <x-input label="NIK (Nomor Induk Kependudukan)" type="number" name="nik" livewire />
+                        @endif
+
+                        @if ($pilihan == 'ttl')
+                        <div class="grid grid-cols-2 space-x-4">
+                            <x-input label="Tempat Lahir" name="birth_place" livewire />
+                            <x-date-picker label="Tanggal Lahir" name="birth_date" livewire />
+                        </div>
+                        @endif
+
+                        @if (!$inputVoucher)
+                        <div>
+                            <a href="#" wire:click.prevent="showVoucher" class="text-blue-600">
+                                Punya Voucher Diskon? Klik disini!
+                            </a>
+                        </div>
+                        @else
+                        <div class="flex space-x-4">
+                            <x-input label="Masukan Voucher" name="voucher" livewire />
+                            <button type="button" class="pt-5 text-blue-600 font-bold">
+                                Cek Sekarang!
+                            </button>
+                        </div>
+
+                        @if (session()->has('vouchererr'))
+                        <strong class="text-red-500 font-semibold text-sm">{{ session('vouchererr') }}</strong>
+                        @endif
+
+                        @if (session()->has('vouchersuc'))
+                        <strong class="text-green-500 font-semibold text-sm">{{ session('vouchersuc') }}</strong>
+                        @endif
+
+                        @endif
+                        <div class="text-right pt-4">
+                            <button type="submit"
+                                class="whitespace-nowrap inline-flex items-center justify-center bg-gradient-to-r from-blue-600 to-indigo-600 bg-origin-border px-6 py-2 border border-transparent rounded-lg shadow-sm text-base font-medium text-white hover:from-purple-700 hover:to-indigo-700">
+                                DAFTAR SEKARANG
+                            </button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
-        @endif
-
-        <div class="form-group has-feedback @if(session()->has('vouchererr'))has-error bg-danger @elseif(session()->has('vouchersuc'))has-success bg-success @else bg-info @endif"
-            style="margin-bottom: 0;">
-            <label class="control-label col-sm-3" for="voucher">Voucher Diskon:</label>
-            <div class="col-sm-7">
-                <input type="text" wire:model.lazy="voucher" class="form-control" placeholder="Kode Voucher">
-                <span class="form-control-feedback" wire:loading wire:target="voucher">
-                    <img src="/images/loader.gif" width="20px" height="20px">
-                </span>
-            </div>
-            <div class="col-sm-2">
-                <button type="button" class="btn btn-default btn-sm">Check</button>
-            </div>
-        </div>
-        <div class="col-sm-9 col-sm-offset-3" style="margin-bottom: 15px;">
-            @if (session()->has('vouchererr'))
-            <strong class="text-danger">{{ session('vouchererr') }}</strong>
-            @endif
-            @if (session()->has('vouchersuc'))
-            <strong class="text-success">{{ session('vouchersuc') }}</strong>
-            @endif
-        </div>
-
-        <div class="form-group">
-            <div class="col-sm-offset-3 col-sm-9">
-                <button type="submit" class="btn btn-default">Daftar Sekarang</button>
-            </div>
-        </div>
-    </form>
-    @endif
+    </div>
 </div>

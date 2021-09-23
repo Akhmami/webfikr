@@ -2,7 +2,6 @@
 
 namespace App\Http\Livewire\Dash\Psb;
 
-use App\Models\Category;
 use App\Models\User;
 use App\Models\Year;
 use Illuminate\Database\Eloquent\Builder;
@@ -24,12 +23,11 @@ class RegisteredTable extends DataTableComponent
             Column::make('JK', 'gender')
                 ->sortable()
                 ->searchable(),
-            Column::make('Jenjang', 'userDetail.jenjang')
-                ->sortable()
-                ->searchable(),
-            Column::make('Viewer', 'view_count')
-                ->sortable()
-                ->searchable(),
+            Column::make('Jenjang', 'userDetail.jenjang'),
+            Column::make('Status')
+                ->format(function ($value, $column, $row) {
+                    return view('livewire.dash.psb.status-psb-badge', ['data' => $row]);
+                }),
             Column::make('Actions')
                 ->format(function ($value, $column, $row) {
                     return view('livewire.dash.psb.actions', ['data' => $row]);
@@ -39,12 +37,15 @@ class RegisteredTable extends DataTableComponent
 
     public function filters(): array
     {
-        $init = ['' => 'Semua'];
-        $categories = Category::pluck('title', 'id')->toArray();
-        $category_arr = $init + $categories;
         return [
-            'category_id' => Filter::make('Kategori')
-                ->select($category_arr)
+            'fromDate' => Filter::make('Dari tanggal')
+                ->date([
+                    'max' => now()->format('Y-m-d')
+                ]),
+            'toDate' => Filter::make('Sampai tanggal')
+                ->date([
+                    'max' => now()->format('Y-m-d')
+                ])
         ];
     }
 
@@ -56,6 +57,7 @@ class RegisteredTable extends DataTableComponent
         return User::query()
             ->where('tahun_pendaftaran', $activeYear->periode)
             ->latest()
-            ->when($this->getFilter('category_id'), fn ($query, $category_id) => $query->where('category_id', $category_id));
+            ->when($this->getFilter('fromDate'), fn ($query, $fromDate) => $query->whereDate('created_at', '>=', $fromDate))
+            ->when($this->getFilter('toDate'), fn ($query, $toDate) => $query->whereDate('created_at', '<=', $toDate));
     }
 }
