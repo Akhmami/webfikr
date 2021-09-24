@@ -17,36 +17,37 @@
                             </div>
                         </div>
                         <div class="rounded-b flex flex-col">
-                            <div x-data="{ tab: window.location.hash ? window.location.hash : '#alur-pendaftaran' }"
+                            <div x-data="{ tab: window.location.hash ? window.location.hash : '#gelombang' }"
                                 class="divide-y divide-gray-200 lg:grid lg:grid-cols-12 lg:divide-y-0 lg:divide-x">
 
                                 @include('dash.psb.settings-menu')
 
-                                <div x-show="tab == '#{{$post->slug}}'" x-cloak
-                                    class="divide-y divide-gray-200 lg:col-span-9">
-                                    <form action="{{ route('dash.psb.posts-update', $post->id) }}" method="POST">
-                                        @csrf
-                                        @method('PUT')
-                                        <!-- Profile section -->
-                                        <div class="py-6 px-4 sm:p-6 lg:pb-8">
-                                            <div>
-                                                <h2 class="text-lg leading-6 font-medium text-gray-900">
-                                                    Gelombang
-                                                </h2>
-                                            </div>
-
-                                            <div class="mt-6">
-                                                <textarea class="editor" name="content">
-
-                                                </textarea>
-                                            </div>
+                                <div x-show="tab == '#gelombang'" x-cloak class="lg:col-span-10">
+                                    @csrf
+                                    @method('PUT')
+                                    <!-- Profile section -->
+                                    <div class="py-6 px-4 sm:p-6 lg:pb-8">
+                                        <div class="flex justify-between items-center">
+                                            <h2 class="text-lg leading-6 font-medium text-gray-900">
+                                                Gelombang
+                                            </h2>
+                                            <button type="button"
+                                                onclick="Livewire.emit('openModal', 'dash.psb.gelombang-create')"
+                                                class="inline-flex items-center pl-3 pr-4 py-1.5 border border-transparent text-xs font-medium rounded shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
+                                                    viewBox="0 0 20 20" fill="currentColor">
+                                                    <path fill-rule="evenodd"
+                                                        d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
+                                                        clip-rule="evenodd" />
+                                                </svg>
+                                                <span>NEW</span>
+                                            </button>
                                         </div>
 
-                                        <div class="py-4 px-6 float-right">
-                                            <button
-                                                class="flex justify-center items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-gradient-to-r from-indigo-600 to-blue-600 hover:from-indigo-700 hover:to-blue-700">Simpan</button>
+                                        <div class="mt-6">
+                                            <livewire:dash.psb.gelombangs-table />
                                         </div>
-                                    </form>
+                                    </div>
                                 </div>
 
                             </div>
@@ -58,7 +59,12 @@
     </main>
 
     @once
+    @push('style')
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    @endpush
+
     @push('script')
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="{{ mix('js/tinymce/tinymce.min.js') }}"></script>
     <script>
         var editor_config = {

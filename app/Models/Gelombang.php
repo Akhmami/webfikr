@@ -12,6 +12,7 @@ class Gelombang extends Model
     protected $fillable = [
         'nama',
         'tgl_tes',
+        'tgl_wawancara',
         'tgl_pengumuman',
         'batas_pembayaran',
         'biaya_pendaftaran',

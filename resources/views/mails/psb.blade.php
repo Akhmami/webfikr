@@ -872,7 +872,8 @@
                                                 style="Margin-top: 0;Margin-bottom: 20px;font-family: lato,tahoma,sans-serif;font-size: 17px;line-height: 26px;"
                                                 lang="x-size-18"><span class="font-lato">Mohon segera lakukan pembayaran
                                                     ke
-                                                    No. Virtual Account BNI Syariah berikut ini:</span></p>
+                                                    No. Virtual Account Bank Syariah Indonesia (BSI) berikut ini:</span>
+                                            </p>
                                         </div>
                                         <table width="100%" border="0" cellspacing="0" cellpadding="10"
                                             style="Margin-top: 0;Margin-bottom: 20px;font-family: lato,tahoma,sans-serif;">
@@ -897,15 +898,15 @@
                                                 <tr>
                                                     <td height="25">
                                                         <div align="center">
-                                                            <strong>{{ $user->billerPsb->billing->virtual_account }}</strong>
+                                                            <strong>{{ config('bsi.first_va_number') . $user->billerPsb->billing->virtual_account }}</strong>
                                                         </div>
                                                     </td>
                                                     <td height="25">
                                                         <div align="center">{{ $user->name }}</div>
                                                     </td>
                                                     <td>
-                                                        <div align="center"><strong>Rp.
-                                                                {{ number_format($user->billerPsb->amount) }},-</strong>
+                                                        <div align="center"><strong>
+                                                                {{ rupiah($user->billerPsb->amount) }},-</strong>
                                                         </div>
                                                     </td>
                                                 </tr>

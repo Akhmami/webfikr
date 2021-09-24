@@ -1,4 +1,4 @@
-<aside class="py-6 lg:col-span-3">
+<aside class="py-6 lg:col-span-2">
     <nav class="space-y-1">
         <a href="#" x-on:click.prevent="tab='#gelombang'"
             :class="{ 'bg-blue-50 border-blue-500 text-blue-700 hover:bg-blue-50 hover:text-blue-700' : tab === '#gelombang' }"

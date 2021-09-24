@@ -23,8 +23,7 @@
                                 @include('dash.psb.posts-menu')
 
                                 @foreach ($posts as $post)
-                                <div x-show="tab == '#{{$post->slug}}'" x-cloak
-                                    class="divide-y divide-gray-200 lg:col-span-9">
+                                <div x-show="tab == '#{{$post->slug}}'" x-cloak class="lg:col-span-9">
                                     <form action="{{ route('dash.psb.posts-update', $post->id) }}" method="POST">
                                         @csrf
                                         @method('PUT')
