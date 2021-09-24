@@ -7,9 +7,14 @@
                 <!-- Left column -->
                 <div class="grid grid-cols-1 gap-4 lg:col-span-2">
                     <!-- Welcome panel -->
+                    @if (auth()->user()->grades()->count() > 0)
                     <livewire:user.bill />
+                    @else
+                    <livewire:user.psb />
+                    @endif
 
                     <!-- Actions panel -->
+                    @if (auth()->user()->grades()->count() > 0)
                     <section aria-labelledby="quick-links-title">
                         <div
                             class="rounded-lg bg-gray-50 overflow-hidden shadow divide-y divide-gray-200 sm:divide-y-0">
@@ -60,6 +65,7 @@
                             </div>
                         </div>
                     </section>
+                    @endif
 
                     <!-- Recent Payment -->
                     <livewire:user.recent-payment />

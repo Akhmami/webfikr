@@ -211,6 +211,21 @@ class User extends Authenticatable
 
     public function statusPsb()
     {
-        return $this->belongsToMany(StatusPsb::class);
+        return $this->belongsTo(StatusPsb::class);
+    }
+
+    public function medicalCheck()
+    {
+        return $this->belongsTo(MedicalCheck::class);
+    }
+
+    public function gelombang()
+    {
+        return $this->belongsTo(Gelombang::class);
+    }
+
+    public function lokasiTest()
+    {
+        return $this->belongsTo(LokasiTest::class);
     }
 }

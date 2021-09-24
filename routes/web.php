@@ -55,6 +55,7 @@ Route::domain(config('app.domain'))
                 Route::get('/psb/posts', [PostPsbController::class, 'index'])->name('psb.posts-index');
                 Route::put('/psb/posts/{id}', [PostPsbController::class, 'update'])->name('psb.posts-update');
                 Route::view('/psb/vouchers', 'dash.psb.vouchers-index')->name('psb.vouchers-index');
+                Route::view('/psb/settings', 'dash.psb.settings-index')->name('psb.settings-index');
 
                 # Website
                 Route::get('/website', [WebsiteController::class, 'index'])->name('website.index');

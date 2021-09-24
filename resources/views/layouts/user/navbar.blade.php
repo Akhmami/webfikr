@@ -83,9 +83,10 @@
                                 Home
                             </a>
 
-                            <a href="{{ route('user.coming-soon') }}"
-                                class="text-blue-200 text-sm font-medium rounded-md bg-white bg-opacity-0 px-3 py-2 hover:bg-opacity-10">
-                                Profile
+                            {{-- <a href="{{ route('user.coming-soon') }}"
+                            class="text-blue-200 text-sm font-medium rounded-md bg-white bg-opacity-0 px-3 py-2
+                            hover:bg-opacity-10">
+                            Profile
                             </a>
 
                             <a href="{{ route('user.coming-soon') }}"
@@ -96,7 +97,7 @@
                             <a href="{{ route('user.coming-soon') }}"
                                 class="text-blue-200 text-sm font-medium rounded-md bg-white bg-opacity-0 px-3 py-2 hover:bg-opacity-10">
                                 Kehadiran
-                            </a>
+                            </a> --}}
 
                             <a href="{{ route('user.pembayaran') }}"
                                 class="{{ set_active('user.pembayaran', 'text-white', 'text-blue-200') }} text-sm font-medium rounded-md bg-white bg-opacity-0 px-3 py-2 hover:bg-opacity-10">
@@ -179,14 +180,16 @@
                         <a href="{{ route('user.home') }}"
                             class="block rounded-md px-3 py-2 text-base text-gray-900 font-medium hover:bg-gray-100 hover:text-gray-800">Home</a>
 
-                        <a href="{{ route('user.coming-soon') }}"
-                            class="block rounded-md px-3 py-2 text-base text-gray-900 font-medium hover:bg-gray-100 hover:text-gray-800">Profile</a>
+                        {{-- <a href="{{ route('user.coming-soon') }}"
+                        class="block rounded-md px-3 py-2 text-base text-gray-900 font-medium hover:bg-gray-100
+                        hover:text-gray-800">Profile</a>
 
                         <a href="{{ route('user.coming-soon') }}"
                             class="block rounded-md px-3 py-2 text-base text-gray-900 font-medium hover:bg-gray-100 hover:text-gray-800">Rapor</a>
 
                         <a href="{{ route('user.coming-soon') }}"
                             class="block rounded-md px-3 py-2 text-base text-gray-900 font-medium hover:bg-gray-100 hover:text-gray-800">Kehadiran</a>
+                        --}}
 
                         <a href="{{ route('user.pembayaran') }}"
                             class="block rounded-md px-3 py-2 text-base text-gray-900 font-medium hover:bg-gray-100 hover:text-gray-800">Pembayaran</a>

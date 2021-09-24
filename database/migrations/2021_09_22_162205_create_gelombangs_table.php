@@ -17,11 +17,12 @@ class CreateGelombangsTable extends Migration
             $table->id();
             $table->string('nama');
             $table->dateTime('tgl_tes');
+            $table->dateTime('tgl_wawancara');
             $table->dateTime('tgl_pengumuman');
             $table->dateTime('batas_pembayaran');
             $table->decimal('biaya_pendaftaran', 14, 0)->default(0);
             $table->text('deskripsi')->nullable();
-            $table->enum('is_active', ['Y', 'N'])->nullable();
+            $table->enum('is_active', ['Y', 'N', 'I'])->nullable();
             $table->dateTime('datetime_expired');
             $table->timestamps();
         });
