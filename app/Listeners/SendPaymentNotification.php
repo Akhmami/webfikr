@@ -29,9 +29,15 @@ class SendPaymentNotification
     {
         $billing = $event->billing;
         $data = $event->data;
+        $type = substr($billing->trx_id, 0, 3);
 
-        // Send WA & SMS Notification
+        // Send WA
         $wa = new WA($billing->user);
+        if ($type == 'PSB') {
+            $wa->notifyPsbPaymentCompleted($data);
+            return;
+        }
+
         $wa->notifyPayment($data);
     }
 }

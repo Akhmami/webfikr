@@ -123,4 +123,43 @@ class WA
 
         return $response;
     }
+
+    public function notifyPsbPaymentCompleted($data)
+    {
+        $base_url = $this->base_url . '/v1/broadcasts/whatsapp/direct';
+        $phone = $this->user->firstMobilePhone->full_number ?? '6287777833303';
+        $nominal = rupiah($data['payment_amount']);
+        $url = 'https://apps.' . config('app.domain');
+
+        $response = Http::withToken($this->token)->post($base_url, [
+            'to_name' => 'Abun ' . $this->user->name,
+            'to_number' => $phone,
+            'message_template_id' => $this->template_psb,
+            'channel_integration_id' => $this->channel,
+            'language' => [
+                'code' => 'id'
+            ],
+            'parameters' => [
+                'body' => [
+                    [
+                        'key' => '1',
+                        'value' => 'nama',
+                        'value_text' => $this->user->name
+                    ],
+                    [
+                        'key' => '2',
+                        'value' => 'nominal',
+                        'value_text' => $nominal
+                    ],
+                    [
+                        'key' => '3',
+                        'value' => 'url',
+                        'value_text' => $url
+                    ],
+                ]
+            ]
+        ]);
+
+        return $response;
+    }
 }
