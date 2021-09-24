@@ -56,7 +56,7 @@ class RegisteredTable extends DataTableComponent
 
         return User::query()
             ->where('tahun_pendaftaran', $activeYear->periode)
-            ->latest()
+            ->latest('id')
             ->when($this->getFilter('fromDate'), fn ($query, $fromDate) => $query->whereDate('created_at', '>=', $fromDate))
             ->when($this->getFilter('toDate'), fn ($query, $toDate) => $query->whereDate('created_at', '<=', $toDate));
     }

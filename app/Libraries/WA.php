@@ -90,7 +90,7 @@ class WA
         $base_url = $this->base_url . '/v1/broadcasts/whatsapp/direct';
         $phone = $this->user->firstMobilePhone->full_number ?? '6287777833303';
         $nominal = rupiah($data['trx_amount']);
-        $url = 'https://apps.' . config('app.domain');
+        $va = config('bsi.first_va_number') . $data['virtual_account'];
 
         $response = Http::withToken($this->token)->post($base_url, [
             'to_name' => 'Abun ' . $this->user->name,
@@ -104,8 +104,8 @@ class WA
                 'body' => [
                     [
                         'key' => '1',
-                        'value' => 'type',
-                        'value_text' => ''
+                        'value' => 'virtual_account',
+                        'value_text' => $va
                     ],
                     [
                         'key' => '2',
@@ -114,13 +114,8 @@ class WA
                     ],
                     [
                         'key' => '3',
-                        'value' => 'nominal',
+                        'value' => 'trx_amount',
                         'value_text' => $nominal
-                    ],
-                    [
-                        'key' => '4',
-                        'value' => 'url',
-                        'value_text' => $url
                     ],
                 ]
             ]

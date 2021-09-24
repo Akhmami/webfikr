@@ -69,8 +69,7 @@
         <x-input label="Judul" name="title" livewire />
         <x-input label="Slug" name="slug" livewire />
         <div wire:ignore>
-            <textarea x-data="ckeditor()" x-init="init($dispatch)" wire:key="ckEditor" x-ref="ckEditor"
-                wire:model.debounce.9999999ms="body"></textarea>
+            <textarea class="editor" wire:model.debounce.9999999ms="body"></textarea>
         </div>
     </div>
 </div>
@@ -87,54 +86,48 @@
 </div>
 </form>
 
+@once
 @push('script')
-<script src="https://cdn.ckeditor.com/ckeditor5/29.2.0/classic/ckeditor.js"></script>
+<script src="{{ mix('js/tinymce/tinymce.min.js') }}"></script>
 <script>
-    /**
-         * An alpinejs app that handles CKEditor's lifecycle
-         */
-        function ckeditor() {
-            return {
-                /**
-                 * The function creates the editor and returns its instance
-                 * @param $dispatch Alpine's magic property
-                 */
-                create: async function($dispatch) {
-                    // Create the editor with the x-ref
-                    const editor = await ClassicEditor.create(this.$refs.ckEditor);
-                    // Handle data updates
-                    editor.model.document.on('change:data', function() {
-                        $dispatch('input', editor.getData())
-                    });
-                    editor.editing.view.change( writer => {
-                        writer.setStyle('height', '500px', editor.editing.view.document.getRoot());
-                    });
-                    // return the editor
-                    return editor;
-                },
-                /**
-                 * Initilizes the editor and creates a listener to recreate it after a rerender
-                 * @param $dispatch Alpine's magic property
-                 */
-                init: async function($dispatch) {
-                    // Get an editor instance
-                    const editor = await this.create($dispatch);
-                    // Set the initial data
-                    {{--editor.setData('{{ old('description') }}')--}}
-                    // Pass Alpine context to Livewire's
-                    const $this = this;
-                    // On reinit, destroy the old instance and create a new one
-                    Livewire.on('reinit', async function(e) {
-                        editor.setData('');
-                        editor.destroy()
-                            .catch( error => {
-                                console.log( error );
-                            } );
-                        await $this.create($dispatch);
+    var editor_config = {
+                path_absolute : "/",
+                selector: '.editor',
+                height: 400,
+                relative_urls: false,
+                plugins: [
+                    "advlist autolink lists link image charmap print preview hr anchor pagebreak",
+                    "searchreplace wordcount visualblocks visualchars code fullscreen",
+                    "insertdatetime media nonbreaking save table directionality",
+                    "emoticons template paste textpattern"
+                ],
+                toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image media",
+                file_picker_callback : function(callback, value, meta) {
+                    var x = window.innerWidth || document.documentElement.clientWidth || document.getElementsByTagName('body')[0].clientWidth;
+                    var y = window.innerHeight|| document.documentElement.clientHeight|| document.getElementsByTagName('body')[0].clientHeight;
+
+                    var cmsURL = editor_config.path_absolute + 'laravel-filemanager?editor=' + meta.fieldname;
+                    if (meta.filetype == 'image') {
+                    cmsURL = cmsURL + "&type=Images";
+                    } else {
+                    cmsURL = cmsURL + "&type=Files";
+                    }
+
+                    tinyMCE.activeEditor.windowManager.openUrl({
+                    url : cmsURL,
+                    title : 'Filemanager',
+                    width : x * 0.8,
+                    height : y * 0.8,
+                    resizable : "yes",
+                    close_previous : "no",
+                    onMessage: (api, message) => {
+                        callback(message.content);
+                    }
                     });
                 }
-            }
-        }
+                };
+                tinymce.init(editor_config);
 </script>
 @endpush
+@endonce
 </div>

@@ -20,6 +20,7 @@ mix.js("resources/js/app.js", "public/js/app.js")
     .js("resources/js/psb.js", "public/js/psb.js")
     .sass("resources/sass/psb.scss", "public/css/psb.css")
     .tailwind("./tailwind.config.js")
+    .copy('node_modules/tinymce', 'public/js/tinymce')
     // .js('resources/js/web.js', 'public/js/web.js')
     // .postCss("resources/css/web.css", "public/css/web.css", [
     //     require("tailwindcss")

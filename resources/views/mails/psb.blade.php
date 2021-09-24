@@ -847,7 +847,8 @@
                                             <p class="size-20"
                                                 style="Margin-top: 0;Margin-bottom: 20px;font-family: lato,tahoma,sans-serif;font-size: 17px;line-height: 26px;"
                                                 lang="x-size-20"><span class="font-lato"><strong>Terima kasih telah
-                                                        melakukan pendaftaran santri baru untuk tahun ajaran 2021/2022
+                                                        melakukan pendaftaran santri baru untuk tahun ajaran
+                                                        20{{substr($user->tahun_pendaftaran, 0, 2)}}/20{{substr($user->tahun_pendaftaran, -2, 2)}}
                                                     </strong></span></p>
                                         </div>
                                     </div>

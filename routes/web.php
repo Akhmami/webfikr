@@ -22,6 +22,10 @@ use App\Http\Controllers\PsbController;
 |
 */
 
+Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
+    \UniSharp\LaravelFilemanager\Lfm::routes();
+});
+
 # nfbs.or.id
 Route::domain(config('app.domain'))
     ->group(function () {
@@ -50,6 +54,7 @@ Route::domain(config('app.domain'))
                 Route::put('/psb/status-psb/{id}', [StatusPsbController::class, 'update'])->name('psb.status-psb-update');
                 Route::get('/psb/posts', [PostPsbController::class, 'index'])->name('psb.posts-index');
                 Route::put('/psb/posts/{id}', [PostPsbController::class, 'update'])->name('psb.posts-update');
+                Route::view('/psb/vouchers', 'dash.psb.vouchers-index')->name('psb.vouchers-index');
 
                 # Website
                 Route::get('/website', [WebsiteController::class, 'index'])->name('website.index');

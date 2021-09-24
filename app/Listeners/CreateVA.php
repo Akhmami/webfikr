@@ -47,6 +47,7 @@ class CreateVA
                     ->subject("PSB Gagal create VA");
             });
         }
+
         return $result;
     }
 }

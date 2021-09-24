@@ -2,17 +2,14 @@
 
 namespace App\Providers;
 
-use Illuminate\Auth\Events\Registered;
-use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
-use Illuminate\Support\Facades\Event;
 use App\Events\Paymented;
-use App\Events\PsbEvent;
+use App\Events\Registered;
 use App\Listeners\CreatePaymentHistory;
-use App\Listeners\CreateVA;
+use App\Listeners\CreateVirtualAccount;
+use App\Listeners\SendRegistrationNotification;
 use App\Listeners\SendPaymentNotification;
 use App\Listeners\DatabasePaymentNotification;
-use App\Listeners\SendPsbPaymentNotification;
 use App\Observers\BillerObserver;
 use App\Models\Biller;
 
@@ -25,17 +22,14 @@ class EventServiceProvider extends ServiceProvider
      */
     protected $listen = [
         Registered::class => [
-            SendEmailVerificationNotification::class,
+            CreateVirtualAccount::class,
+            SendRegistrationNotification::class,
         ],
         Paymented::class => [
             CreatePaymentHistory::class,
             SendPaymentNotification::class,
             DatabasePaymentNotification::class,
         ],
-        PsbEvent::class => [
-            CreateVA::class,
-            SendPsbPaymentNotification::class,
-        ]
     ];
 
     /**

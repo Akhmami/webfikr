@@ -4,7 +4,7 @@ namespace App\Http\Livewire\Psb;
 
 use Livewire\Component;
 use Illuminate\Support\Facades\DB;
-use App\Events\PsbEvent;
+use App\Events\Registered;
 use App\Models\CountryCode;
 use App\Models\Gelombang;
 use App\Models\LokasiTest;
@@ -195,6 +195,19 @@ class EksternalForm extends Component
 
             try {
                 $user = $this->createUser($request);
+                $user->mobilePhones()->createMany([
+                    [
+                        'name' => $request['nama_ayah'],
+                        'country_code' => $request['country_code_ayah'],
+                        'number' => $request['no_wa_ayah'],
+                    ],
+                    [
+                        'name' => $request['nama_ibu'],
+                        'country_code' => $request['country_code_ibu'],
+                        'number' => $request['no_wa_ibu'],
+                        'is_first' => 'Y'
+                    ],
+                ]);
                 $user->userDetail()->create($request);
                 $biller = $user->billers()->create($request);
                 $request['user_id'] = $user->id;
@@ -205,7 +218,7 @@ class EksternalForm extends Component
                 }
 
                 DB::commit();
-                // PsbEvent::dispatch($request);
+                Registered::dispatch($request);
                 $this->dispatchBrowserEvent('swal:modal', [
                     'type' => 'success',
                     'title' => 'Terima Kasih',
@@ -276,7 +289,7 @@ class EksternalForm extends Component
             ];
 
             $nopeserta = $nopes_array[$this->gender];
-            $trx_id = 'PSBSMP' . $nopeserta;
+            $trx_id = 'PSBSMA' . $nopeserta;
         }
 
         $data['name'] = $data['nama_lengkap'];
@@ -285,7 +298,7 @@ class EksternalForm extends Component
         $data['username'] = $nopeserta;
         $data['no_pendaftaran'] = $nopeserta;
         $data['provinsi'] = $this->prov[$this->provinsi];
-        $data['kabupaten'] = $this->kab[$this->kabupaten];
+        $data['kota'] = $this->kab[$this->kabupaten];
         $data['kecamatan'] = $this->kec[$this->kecamatan];
         $data['kelurahan'] = $this->kel[$this->kelurahan];
         $data['password'] = bcrypt(date('dmY', strtotime($this->birth_date)));
@@ -304,6 +317,8 @@ class EksternalForm extends Component
         $data['description'] = 'invoice psb';
         $data['customer_name'] = $this->nama_lengkap;
         $data['billing_type'] = 'c';
+        $data['country_code_ayah'] = $this->country_code_ayah;
+        $data['country_code_ibu'] = $this->country_code_ibu;
 
         return $data;
     }

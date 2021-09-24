@@ -1,5 +1,7 @@
 <div class="flex items-center space-x-1">
-    <a href="{{ route('dash.website.edit', ['item' => 'posts', 'id' => $data->id]) }}" title="edit"
+    <a href="#"
+        onclick="Livewire.emit('openModal', 'dash.psb.pendaftar-edit', {{ json_encode(['user' => $data->id]) }})"
+        title="edit"
         class="group p-2 border border-transparent rounded-full shadow-sm text-white bg-gray-200 hover:bg-yellow-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400">
         <!-- Heroicon name: solid/edit-alt -->
         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-500 group-hover:text-white" viewBox="0 0 20 20"
@@ -29,10 +31,10 @@
             class="z-10 origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
             role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
             <div class="py-1" role="none">
-                {{-- <a href="#"
-                    onclick="Livewire.emit('openModal', 'dash.keuangan.billing-detail', {{ json_encode(['billing' => $data->id]) }})"
-                class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100" role="menuitem" tabindex="-1"
-                id="menu-item-1">Detail</a> --}}
+                <a href="#"
+                    onclick="Livewire.emit('openModal', 'dash.psb.pendaftar-detail', {{ json_encode(['user' => $data->id]) }})"
+                    class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100" role="menuitem" tabindex="-1"
+                    id="menu-item-1">Detail</a>
             </div>
         </div>
     </div>

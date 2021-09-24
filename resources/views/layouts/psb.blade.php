@@ -216,11 +216,11 @@
 
                 <!-- primary nav -->
                 <div class="hidden md:flex items-center space-x-6 text-gray-600 font-semibold text-lg">
-                    <a href="{{ url('/') }}"
+                    <a href="{{ route('home')}}"
                         class="py-5 hover:text-gray-900 border-b border-white hover:border-blue-500">
                         Website
                     </a>
-                    <a href="{{ url('/') }}"
+                    <a href="{{ route('faq')}}"
                         class="py-5 hover:text-gray-900 border-b border-white hover:border-blue-500">
                         FAQ
                     </a>
@@ -261,8 +261,8 @@
 
         <!-- mobile menu -->
         <div class="mobile-menu hidden md:hidden">
-            <a href="{{ url('/') }}" class="block py-2 px-4 text-sm hover:bg-gray-200">Website</a>
-            <a href="{{ url('/') }}" class="block py-2 px-4 text-sm hover:bg-gray-200">FAQ</a>
+            <a href="{{ route('home') }}" class="block py-2 px-4 text-sm hover:bg-gray-200">Website</a>
+            <a href="{{ route('faq') }}" class="block py-2 px-4 text-sm hover:bg-gray-200">FAQ</a>
         </div>
     </nav>
 
@@ -414,6 +414,7 @@
                 title: event.detail.title,
                 text: event.detail.text,
                 icon: event.detail.type,
+                button: false,
             });
         });
         window.addEventListener('swal:confirm', event => {

@@ -6,7 +6,6 @@ use Illuminate\Support\Facades\Crypt;
 use Illuminate\Contracts\Encryption\DecryptException;
 use App\Events\PsbEvent;
 use App\Models\Gelombang;
-use App\Models\Internal;
 use App\Models\PostPsb;
 use App\Models\User;
 
@@ -46,7 +45,7 @@ class PsbController extends Controller
 
     public function internal()
     {
-        $conf = Internal::findOrFail(1);
+        $conf = Gelombang::findOrFail(1);
         $today = strtotime('today');
         $expiry = strtotime($conf->datetime_expired);
         $expired = false;
@@ -88,7 +87,7 @@ class PsbController extends Controller
                 ]
             ]);
         } else {
-            $conf = Internal::findOrFail(1);
+            $conf = Gelombang::findOrFail(1);
             $new_nopes = $conf->ta . $decrypted['no_unik'];
             $check = User::where('username', $new_nopes)->exists();
             if ($check) {
