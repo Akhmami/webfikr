@@ -218,7 +218,6 @@ class InternalForm extends Component
             $this->pekerjaan_ibu = $this->user->userDetail->pekerjaan_ibu;
             $this->tempat_kerja_ibu = $this->user->userDetail->tempat_kerja_ibu;
             $this->negara = $this->user->userDetail->negara;
-            $this->provinsi = $this->user->userDetail->provinsi;
             $this->email = $this->user->email;
             $this->mobilePhones = $this->user->mobilePhones->toArray();
         } else {
