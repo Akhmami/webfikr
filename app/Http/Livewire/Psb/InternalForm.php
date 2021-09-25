@@ -54,8 +54,6 @@ class InternalForm extends Component
     public $medical_check_id;
     public $diskon;
     public $voucher;
-    public $currentStep = 1;
-    public $maxStep = 1;
     public $inputVoucher;
     public $list_jk;
     public $list_jenjang;

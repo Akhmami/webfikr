@@ -53,8 +53,8 @@ class EksternalForm extends Component
     public $medical_check_id;
     public $diskon;
     public $voucher;
-    public $currentStep = 1;
-    public $maxStep = 1;
+    public $currentStep;
+    public $maxStep;
     public $inputVoucher;
     public $list_jk;
     public $list_jenjang;
@@ -116,6 +116,8 @@ class EksternalForm extends Component
         $this->lokasi_test = LokasiTest::pluck('lokasi', 'id');
         $this->medical_check = MedicalCheck::pluck('title', 'id');
         $this->inputVoucher = false;
+        $this->currentStep = 1;
+        $this->maxStep = 1;
     }
 
     public function render()
