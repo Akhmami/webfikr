@@ -94,10 +94,12 @@
                                         class="focus:ring-indigo-500 focus:border-indigo-500 h-full py-0 pl-3 pr-5 border-transparent bg-transparent text-gray-500 sm:text-sm rounded-md"
                                         required>
                                         <option value="62">Pilih</option>
-                                        @foreach ($country_code as $key => $value)
+                                        @forelse ($country_code as $key => $value)
                                         <option value="{{ $key }}">{{ $value }} ({{ $key }})
                                         </option>
-                                        @endforeach
+                                        @empty
+                                        Gagal mengambil data, silahkan reload browser
+                                        @endforelse
                                     </select>
                                 </div>
                                 <input type="text" wire:model="no_wa_ayah"
