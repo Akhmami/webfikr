@@ -51,7 +51,7 @@ class EksternalForm extends Component
     public $email;
     public $lokasi_test_id;
     public $medical_check_id;
-    public $diskon = null;
+    public $diskon;
     public $voucher;
     public $currentStep = 1;
     public $maxStep = 1;
