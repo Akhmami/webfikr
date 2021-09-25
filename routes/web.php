@@ -36,7 +36,7 @@ Route::domain(config('app.domain'))
             ->group(function () {
                 Route::view('/', 'dashboard')->name('index');
                 Route::view('/users', 'dash.users.index')
-                    ->middleware('role:super-admin|admin')
+                    ->middleware(['role:super-admin|admin'])
                     ->name('users.index');
                 Route::get('/users/{id}', [UserController::class, 'detail'])->name('users.show');
                 Route::get('/users/{id}/user-page', [UserController::class, 'userPage'])->name('users.user-page');
@@ -49,7 +49,7 @@ Route::domain(config('app.domain'))
 
                 # PSB
                 Route::prefix('psb')
-                    ->middleware('role:psb')
+                    ->middleware(['role:psb'])
                     ->group(function () {
                         Route::view('/', 'dash.psb.index')->name('psb.index');
                         Route::view('/status-psb', 'dash.psb.status-psb-index')->name('psb.status-psb-index');
