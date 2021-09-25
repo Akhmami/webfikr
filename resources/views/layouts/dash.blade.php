@@ -67,6 +67,7 @@
                 title: event.detail.title,
                 text: event.detail.text,
                 icon: event.detail.type,
+                button: false,
             });
         });
         window.addEventListener('swal:confirm', event => {
@@ -79,7 +80,7 @@
             })
                 .then((willDelete) => {
                     if (willDelete) {
-                        window.livewire.emit('delete', event.detail.id);
+                        window.livewire.emit(event.detail.method, event.detail.id);
                     }
                 });
         });

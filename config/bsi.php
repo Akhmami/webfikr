@@ -6,5 +6,6 @@ return [
     'url' => env('BSI_URL', ''),
     'bpi_code' => env('BSI_BPI_CODE', '900'),
     'institute_code' => '9194',
-    'first_va_number' => '9009194'
+    'first_va_number' => '9009194',
+    'biaya_admin' => 2000
 ];

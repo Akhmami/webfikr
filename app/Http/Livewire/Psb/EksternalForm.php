@@ -309,7 +309,7 @@ class EksternalForm extends Component
         $data['angkatan'] = $angkatan;
         $data['jenis_pendaftaran'] = 'eksternal';
         $data['tahun_pendaftaran'] = $conf->periode;
-        $data['biaya'] = $gel->biaya_pendaftaran;
+        $data['biaya'] = $gel->biaya_pendaftaran + config('bsi.biaya_admin');
         $data['datetime_expired'] = $gel->tgl_tes;
         $data['virtual_account'] = $nopeserta;
         $data['trx_id'] = $trx_id;
