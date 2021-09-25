@@ -112,9 +112,9 @@ class EksternalForm extends Component
         $this->list_jurusan = ['IPA' => 'IPA', 'IPS' => 'IPS', 'IPC' => 'IPA/IPS'];
         $this->list_pendidikan = ['SD' => 'SD', 'SMP' => 'SMP', 'SMA' => 'SMA', 'D3' => 'D3', 'S1' => 'S1', 'S2' =>
         'S2', 'S3' => 'S3'];
-        $this->country_code = CountryCode::pluck('iso', 'phonecode');
-        $this->lokasi_test = LokasiTest::pluck('lokasi', 'id');
-        $this->medical_check = MedicalCheck::pluck('title', 'id');
+        $this->country_code = CountryCode::pluck('iso', 'phonecode')->toArray();
+        $this->lokasi_test = LokasiTest::pluck('lokasi', 'id')->toArray();
+        $this->medical_check = MedicalCheck::pluck('title', 'id')->toArray();
         $this->inputVoucher = false;
         $this->currentStep = 1;
         $this->maxStep = 1;
@@ -127,7 +127,7 @@ class EksternalForm extends Component
                 ->whereRaw('LEFT(kode, 2) = ' . $this->provinsi)
                 ->whereRaw('CHAR_LENGTH(kode) = 5')
                 ->orderBy('nama')
-                ->pluck('nama', 'kode');
+                ->pluck('nama', 'kode')->toArray();
         }
 
         if (!empty($this->kabupaten)) {
@@ -135,7 +135,7 @@ class EksternalForm extends Component
                 ->whereRaw('LEFT(kode, 5) = ' . $this->kabupaten)
                 ->whereRaw('CHAR_LENGTH(kode) = 8')
                 ->orderBy('nama')
-                ->pluck('nama', 'kode');
+                ->pluck('nama', 'kode')->toArray();
         }
 
         if (!empty($this->kecamatan)) {
@@ -143,7 +143,7 @@ class EksternalForm extends Component
                 ->where('kode', 'like', '%' . $this->kecamatan . '%')
                 ->whereRaw('CHAR_LENGTH(kode) = 13')
                 ->orderBy('nama')
-                ->pluck('nama', 'kode');
+                ->pluck('nama', 'kode')->toArray();
         }
 
         return view('livewire.psb.eksternal-form');
