@@ -63,6 +63,28 @@ class RegisteredTable extends DataTableComponent
             ->when($this->getFilter('toDate'), fn ($query, $toDate) => $query->whereDate('created_at', '<=', $toDate));
     }
 
+    public function setTerbayar(User $user)
+    {
+        $user->update(['status_psb_id' => 2]);
+
+        $this->dispatchBrowserEvent('swal:modal', [
+            'type' => 'success',
+            'title' => 'Updated!',
+            'text' => 'Status PSB Pendaftar berhasil diubah.',
+        ]);
+    }
+
+    public function setMenunggu(User $user)
+    {
+        $user->update(['status_psb_id' => 1]);
+
+        $this->dispatchBrowserEvent('swal:modal', [
+            'type' => 'success',
+            'title' => 'Updated!',
+            'text' => 'Status PSB Pendaftar berhasil diubah.',
+        ]);
+    }
+
     public function deleteConfirm($id)
     {
         $this->dispatchBrowserEvent('swal:confirm', [
