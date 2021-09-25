@@ -63,6 +63,8 @@ class InternalForm extends Component
     public $lokasi_test;
     public $medical_check;
     public $mobilePhones;
+    public $gel;
+    public $conf;
 
     protected $rules = [
         'name' => 'required|min:3|max:200',
@@ -93,12 +95,14 @@ class InternalForm extends Component
 
     public function mount()
     {
-        $this->list_pilihan = ['nik' => 'Nomor Induk Kependudukan', 'ttl' => 'Tanggal Lahir'];
         $this->prov = DB::table('wilayah')
             ->whereRaw('CHAR_LENGTH(kode) = 2')
             ->pluck('nama', 'kode')
             ->toArray();
+        $this->gel = Gelombang::active()->first();
+        $this->conf = Year::active()->first();
 
+        $this->list_pilihan = ['nik' => 'Nomor Induk Kependudukan', 'ttl' => 'Tanggal Lahir'];
         $this->list_jk = ['L' => 'Laki-laki', 'P' => 'Perempuan'];
         $this->list_jenjang = ['SMP' => 'SMP Islam Nurul Fikri Serang', 'SMA' => 'SMA Islam Nurul Fikri Serang'];
         $this->list_jurusan = ['IPA' => 'IPA', 'IPS' => 'IPS', 'IPC' => 'IPA/IPS'];
@@ -237,6 +241,16 @@ class InternalForm extends Component
         DB::beginTransaction();
         try {
             $user = $this->createUser($request);
+            if ($user === false) {
+                $this->dispatchBrowserEvent('swal:modal', [
+                    'type' => 'error',
+                    'title' => 'Oops...!',
+                    'text' => 'Data yang diinput sepertinya sudah tersedia, silahkan hubungi admin.',
+                ]);
+
+                return;
+            }
+
             $user->mobilePhones()->createMany($this->mobilePhones);
             $user->userDetail()->create($request);
             $biller = $user->billers()->create($request);
@@ -286,19 +300,16 @@ class InternalForm extends Component
 
     private function handleRequest($data)
     {
-        $gel = Gelombang::active()->first();
-        $conf = Year::active()->first();
-
-        $angkatan = $conf->angkatan_sma;
+        $angkatan = $this->conf->angkatan_sma;
         $nopes_array = [
-            'L' => ($conf->periode . '5' . mt_rand(100, 999)),
-            'P' => ($conf->periode . '6' . mt_rand(100, 999))
+            'L' => ($this->conf->periode . '5' . mt_rand(100, 999)),
+            'P' => ($this->conf->periode . '6' . mt_rand(100, 999))
         ];
         $nopeserta = $nopes_array[$this->gender];
         $trx_id = 'PSBSMA' . $nopeserta;
 
         $data['status_psb_id'] = 1;
-        $data['gelombang_id'] = $gel->id;
+        $data['gelombang_id'] = $this->gel->id;
         $data['username'] = $nopeserta;
         $data['no_pendaftaran'] = $nopeserta;
         $data['provinsi'] = $this->prov[$this->provinsi];
@@ -312,14 +323,14 @@ class InternalForm extends Component
         $data['asal_sekolah'] = 'SMP Islam Nurul Fikri Serang';
         $data['angkatan'] = $angkatan;
         $data['jenis_pendaftaran'] = 'internal';
-        $data['tahun_pendaftaran'] = $conf->periode;
-        $data['biaya'] = $gel->biaya_pendaftaran;
-        $data['datetime_expired'] = $gel->tgl_tes;
+        $data['tahun_pendaftaran'] = $this->conf->periode;
+        $data['biaya'] = $this->gel->biaya_pendaftaran;
+        $data['datetime_expired'] = $this->tgl_tes;
         $data['virtual_account'] = $nopeserta;
         $data['trx_id'] = $trx_id;
         $data['diskon'] = $this->diskon;
-        $data['trx_amount'] = $gel->biaya_pendaftaran - ($this->diskon ? $this->diskon->value : 0);
-        $data['amount'] = $gel->biaya_pendaftaran - ($this->diskon ? $this->diskon->value : 0);
+        $data['trx_amount'] = $this->gel->biaya_pendaftaran - ($this->diskon ? $this->diskon->value : 0);
+        $data['amount'] = $this->gel->biaya_pendaftaran - ($this->diskon ? $this->diskon->value : 0);
         $data['type'] = 'PSB';
         $data['description'] = 'invoice psb';
         $data['customer_name'] = $this->name;
