@@ -165,7 +165,7 @@ class EksternalForm extends Component
                             session()->flash('vouchererr', 'Mohon maaf, kuota voucher sudah habis klik daftar sekarang untuk melanjutkan!');
                         } else {
                             $this->diskon = $voucher;
-                            session()->flash('vouchersuc', 'Alhamdulillah dapat diskon ' . $voucher->nominal . ' klik daftar sekarang untuk melanjutkan!');
+                            session()->flash('vouchersuc', 'Yeay! diskon sebesar ' . rupiah($voucher->nominal, false) . ' masih tersedia, DAFTAR SEKARANG untuk mendapatkan diskon!');
                         }
                     }
                 } else {
