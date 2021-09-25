@@ -67,13 +67,13 @@ class EksternalForm extends Component
     protected $stepRules = [
         1 => [
             'nama_lengkap' => 'required|min:3|max:200',
-            'nisn' => 'required|numeric|min:10|max:10',
+            'nisn' => 'required|min:10|max:10',
             'gender' => 'required',
             'birth_place' => 'required|min:3|max:100',
             'birth_date' => 'required|date_format:Y-m-d',
-            'nik' => 'required|numeric|min:16|max:16',
+            'nik' => 'required|min:16|max:16',
             'jenjang' => 'required',
-            'npsn' => 'required|numeric|min:6|max:8'
+            'npsn' => 'required|min:6|max:8'
         ],
         2 => [
             'negara' => 'required|min:3|max:150',
