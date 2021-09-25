@@ -287,6 +287,7 @@ class InternalForm extends Component
             ->whereHas('userDetail', function ($query) {
                 $query->where('jenjang', 'SMA');
             })
+            ->where('tahun_pendaftaran', $this->conf->periode)
             ->first();
 
         if ($user) {
