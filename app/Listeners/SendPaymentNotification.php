@@ -34,6 +34,8 @@ class SendPaymentNotification
         // Send WA
         $wa = new WA($billing->user);
         if ($type == 'PSB') {
+            $billing->user()->update(['status_psb_id' => 2]);
+
             $wa->notifyPsbPaymentCompleted($data);
             return;
         }
