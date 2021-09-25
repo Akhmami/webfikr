@@ -21,6 +21,7 @@ class WA
         $this->channel = config('wa.channel');
         $this->template = config('wa.template');
         $this->template_psb = config('wa.template_psb');
+        $this->template_psb_terbayar = config('wa.template_psb_terbayar');
         $this->user = $user;
     }
 

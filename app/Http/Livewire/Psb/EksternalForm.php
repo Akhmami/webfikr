@@ -230,7 +230,6 @@ class EksternalForm extends Component
                 $this->reset();
             } catch (\Throwable $th) {
                 DB::rollback();
-                dd('error ' . $th->getMessage());
                 $this->emit('showFlash', 'error', 'Pendaftaran gagal, #' . $th->getMessage());
             }
 
