@@ -49,13 +49,13 @@ Route::domain(config('app.domain'))
 
                 # PSB
                 Route::view('/psb', 'dash.psb.index')->middleware('permission:lihat psb')->name('psb.index');
-                Route::view('/psb/status-psb', 'dash.psb.status-psb-index')->name('psb.status-psb-index');
-                Route::get('/psb/status-psb/{id}/edit', [StatusPsbController::class, 'edit'])->name('psb.status-psb-edit');
-                Route::put('/psb/status-psb/{id}', [StatusPsbController::class, 'update'])->name('psb.status-psb-update');
-                Route::get('/psb/posts', [PostPsbController::class, 'index'])->name('psb.posts-index');
-                Route::put('/psb/posts/{id}', [PostPsbController::class, 'update'])->name('psb.posts-update');
-                Route::view('/psb/vouchers', 'dash.psb.vouchers-index')->name('psb.vouchers-index');
-                Route::view('/psb/settings', 'dash.psb.settings-index')->name('psb.settings-index');
+                Route::view('/psb/status-psb', 'dash.psb.status-psb-index')->middleware('permission:lihat psb')->name('psb.status-psb-index');
+                Route::get('/psb/status-psb/{id}/edit', [StatusPsbController::class, 'edit'])->middleware('permission:lihat psb')->name('psb.status-psb-edit');
+                Route::put('/psb/status-psb/{id}', [StatusPsbController::class, 'update'])->middleware('permission:lihat psb')->name('psb.status-psb-update');
+                Route::get('/psb/posts', [PostPsbController::class, 'index'])->middleware('permission:lihat psb')->name('psb.posts-index');
+                Route::put('/psb/posts/{id}', [PostPsbController::class, 'update'])->middleware('permission:lihat psb')->name('psb.posts-update');
+                Route::view('/psb/vouchers', 'dash.psb.vouchers-index')->middleware('permission:lihat psb')->name('psb.vouchers-index');
+                Route::view('/psb/settings', 'dash.psb.settings-index')->middleware('permission:lihat psb')->name('psb.settings-index');
 
                 # Website
                 Route::get('/website', [WebsiteController::class, 'index'])->name('website.index');
