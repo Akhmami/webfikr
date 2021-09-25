@@ -51,14 +51,14 @@ Route::domain(config('app.domain'))
                 Route::prefix('psb')
                     ->middleware('role:psb')
                     ->group(function () {
-                        Route::view('/psb', 'dash.psb.index')->name('psb.index');
-                        Route::view('/psb/status-psb', 'dash.psb.status-psb-index')->name('psb.status-psb-index');
-                        Route::get('/psb/status-psb/{id}/edit', [StatusPsbController::class, 'edit'])->name('psb.status-psb-edit');
-                        Route::put('/psb/status-psb/{id}', [StatusPsbController::class, 'update'])->name('psb.status-psb-update');
-                        Route::get('/psb/posts', [PostPsbController::class, 'index'])->name('psb.posts-index');
-                        Route::put('/psb/posts/{id}', [PostPsbController::class, 'update'])->name('psb.posts-update');
-                        Route::view('/psb/vouchers', 'dash.psb.vouchers-index')->name('psb.vouchers-index');
-                        Route::view('/psb/settings', 'dash.psb.settings-index')->name('psb.settings-index');
+                        Route::view('/', 'dash.psb.index')->name('psb.index');
+                        Route::view('/status-psb', 'dash.psb.status-psb-index')->name('psb.status-psb-index');
+                        Route::get('/status-psb/{id}/edit', [StatusPsbController::class, 'edit'])->name('psb.status-psb-edit');
+                        Route::put('/status-psb/{id}', [StatusPsbController::class, 'update'])->name('psb.status-psb-update');
+                        Route::get('/posts', [PostPsbController::class, 'index'])->name('psb.posts-index');
+                        Route::put('/posts/{id}', [PostPsbController::class, 'update'])->name('psb.posts-update');
+                        Route::view('/vouchers', 'dash.psb.vouchers-index')->name('psb.vouchers-index');
+                        Route::view('/settings', 'dash.psb.settings-index')->name('psb.settings-index');
                     });
 
                 # Website
