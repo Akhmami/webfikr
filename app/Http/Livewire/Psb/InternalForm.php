@@ -54,7 +54,7 @@ class InternalForm extends Component
     public $medical_check_id;
     public $diskon;
     public $voucher;
-    public $inputVoucher;
+    public $inputVoucher = false;
     public $list_jk;
     public $list_jenjang;
     public $list_jurusan;
@@ -104,10 +104,6 @@ class InternalForm extends Component
         $this->list_jurusan = ['IPA' => 'IPA', 'IPS' => 'IPS', 'IPC' => 'IPA/IPS'];
         $this->list_pendidikan = ['SD' => 'SD', 'SMP' => 'SMP', 'SMA' => 'SMA', 'D3' => 'D3', 'S1' => 'S1', 'S2' =>
         'S2', 'S3' => 'S3'];
-        $this->country_code = CountryCode::pluck('iso', 'phonecode')->toArray();
-        $this->lokasi_test = LokasiTest::pluck('lokasi', 'id')->toArray();
-        $this->medical_check = MedicalCheck::pluck('title', 'id')->toArray();
-        $this->inputVoucher = false;
     }
 
     public function render()
@@ -135,6 +131,10 @@ class InternalForm extends Component
                 ->orderBy('nama')
                 ->pluck('nama', 'kode')->toArray();
         }
+
+        $this->country_code = CountryCode::pluck('iso', 'phonecode')->toArray();
+        $this->lokasi_test = LokasiTest::pluck('lokasi', 'id')->toArray();
+        $this->medical_check = MedicalCheck::pluck('title', 'id')->toArray();
 
         return view('livewire.psb.internal-form');
     }
