@@ -11,6 +11,8 @@ use Rappasoft\LaravelLivewireTables\Views\Filter;
 
 class RegisteredTable extends DataTableComponent
 {
+    protected $listeners = ['delete'];
+
     public function columns(): array
     {
         return [
@@ -59,5 +61,20 @@ class RegisteredTable extends DataTableComponent
             ->latest('id')
             ->when($this->getFilter('fromDate'), fn ($query, $fromDate) => $query->whereDate('created_at', '>=', $fromDate))
             ->when($this->getFilter('toDate'), fn ($query, $toDate) => $query->whereDate('created_at', '<=', $toDate));
+    }
+
+    public function deleteConfirm($id)
+    {
+        $this->dispatchBrowserEvent('swal:confirm', [
+            'type' => 'warning',
+            'title' => 'Yakin ingin menghapus?',
+            'text' => '',
+            'id' => $id
+        ]);
+    }
+
+    public function delete($id)
+    {
+        User::findOrFail($id)->delete();
     }
 }

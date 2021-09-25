@@ -35,6 +35,9 @@
                     onclick="Livewire.emit('openModal', 'dash.psb.pendaftar-detail', {{ json_encode(['user' => $data->id]) }})"
                     class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100" role="menuitem" tabindex="-1"
                     id="menu-item-1">Detail</a>
+                <a href="#" wire:click.prevent="deleteConfirm({{ $data->id }})"
+                    class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100" role="menuitem" tabindex="-1"
+                    id="menu-item-1">Hapus</a>
             </div>
         </div>
     </div>

@@ -80,7 +80,7 @@
             })
                 .then((willDelete) => {
                     if (willDelete) {
-                        window.livewire.emit(event.detail.method, event.detail.id);
+                        window.livewire.emit('delete', event.detail.id);
                     }
                 });
         });
