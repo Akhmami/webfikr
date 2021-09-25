@@ -16,7 +16,7 @@ class VoucherCreate extends ModalComponent
     protected $rules = [
         'name' => 'required',
         'value' => 'required',
-        'quota' => 'required',
+        'quota' => 'required|max:4',
         'datetime_expired' => 'required'
     ];
 
