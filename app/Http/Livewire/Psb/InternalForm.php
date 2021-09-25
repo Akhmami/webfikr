@@ -56,7 +56,7 @@ class InternalForm extends Component
     public $voucher;
     public $currentStep = 1;
     public $maxStep = 1;
-    public $inputVoucher = false;
+    public $inputVoucher;
     public $list_jk;
     public $list_jenjang;
     public $list_jurusan;
@@ -109,6 +109,7 @@ class InternalForm extends Component
         $this->country_code = CountryCode::pluck('iso', 'phonecode');
         $this->lokasi_test = LokasiTest::pluck('lokasi', 'id');
         $this->medical_check = MedicalCheck::pluck('title', 'id');
+        $this->inputVoucher = false;
     }
 
     public function render()
