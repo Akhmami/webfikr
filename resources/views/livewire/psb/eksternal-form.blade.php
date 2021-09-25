@@ -156,7 +156,7 @@
                         <div class="flex space-x-4">
                             <x-input label="Masukan Voucher" name="voucher" livewire />
                             <button type="button" class="pt-5 text-blue-600 font-bold">
-                                Cek Sekarang!
+                                Cek Voucher!
                             </button>
                         </div>
                         @if (session()->has('vouchererr'))
