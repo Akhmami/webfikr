@@ -15,7 +15,7 @@
                     </div>
                     <div class="inline-flex items-center">
                         <span class="hidden md:block">atau</span>
-                        <a href="#"
+                        <a href="{{ route('user.home') }}"
                             class="ml-4 whitespace-nowrap inline-flex items-center justify-center bg-gradient-to-r from-blue-600 to-indigo-600 bg-origin-border px-6 py-2 border border-transparent rounded-lg shadow-sm text-base font-medium text-white hover:from-purple-700 hover:to-indigo-700">
                             Login
                         </a>
