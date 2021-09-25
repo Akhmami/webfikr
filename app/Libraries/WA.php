@@ -160,7 +160,7 @@ class WA
                     [
                         'key' => '3',
                         'value' => 'username',
-                        'value_text' => $this->user->name
+                        'value_text' => $this->user->username
                     ],
                     [
                         'key' => '4',
