@@ -146,7 +146,7 @@ class InternalForm extends Component
                 $voucher = Voucher::where('name', $this->voucher)->first();
 
                 if ($voucher) {
-                    $today = strtotime('today');
+                    $today = strtotime(date('Y-m-d H:i:s'));
                     $expired = strtotime($voucher->datetime_expired);
                     if ($today >= $expired) {
                         $this->voucher = '';
