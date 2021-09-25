@@ -48,7 +48,7 @@ Route::domain(config('app.domain'))
                 Route::get('/keuangan/exports/data', [KeuanganController::class, 'export'])->name('keuangan.export');
 
                 # PSB
-                Route::view('/psb', 'dash.psb.index')->middleware('role:psb')->name('psb.index');
+                Route::view('/psb', 'dash.psb.index')->middleware('permission:lihat psb')->name('psb.index');
                 Route::view('/psb/status-psb', 'dash.psb.status-psb-index')->name('psb.status-psb-index');
                 Route::get('/psb/status-psb/{id}/edit', [StatusPsbController::class, 'edit'])->name('psb.status-psb-edit');
                 Route::put('/psb/status-psb/{id}', [StatusPsbController::class, 'update'])->name('psb.status-psb-update');
