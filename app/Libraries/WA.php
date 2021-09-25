@@ -140,7 +140,7 @@ class WA
         $response = Http::withToken($this->token)->post($base_url, [
             'to_name' => 'Abun ' . $this->user->name,
             'to_number' => $phone,
-            'message_template_id' => $this->template_psb,
+            'message_template_id' => $this->template_psb_terbayar,
             'channel_integration_id' => $this->channel,
             'language' => [
                 'code' => 'id'
@@ -159,6 +159,16 @@ class WA
                     ],
                     [
                         'key' => '3',
+                        'value' => 'username',
+                        'value_text' => $this->user->name
+                    ],
+                    [
+                        'key' => '4',
+                        'value' => 'password',
+                        'value_text' => '8 angka Tgl lahir ananda'
+                    ],
+                    [
+                        'key' => '5',
                         'value' => 'url',
                         'value_text' => $url
                     ],
