@@ -187,14 +187,16 @@ class InternalForm extends Component
             case 'nik':
                 $this->user = User::with('mobilePhones')->whereHas('userDetail', function ($query) {
                     $query->where('nik', $this->nik)
-                        ->where('jenjang', 'SMP')->latest('id');
+                        ->where('jenjang', 'SMP');
                 })->first();
                 break;
 
             default:
-                $this->user = User::with(['userDetail', 'mobilePhones'])->where('birth_place', $this->birth_place)
-                    ->where('birth_date', $this->birth_date)
-                    ->where('jenjang', 'SMP')->latest('id')->first();
+                $this->user = User::with('mobilePhones')->where('birth_place', $this->birth_place)
+                    ->where('birth_date', $this->birth_date)->whereHas('userDetail', function ($query) {
+                        $query->where('nik', $this->nik)
+                            ->where('jenjang', 'SMP');
+                    })->first();
                 break;
         }
 
