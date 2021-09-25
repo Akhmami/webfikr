@@ -325,7 +325,7 @@ class InternalForm extends Component
         $data['jenis_pendaftaran'] = 'internal';
         $data['tahun_pendaftaran'] = $this->conf->periode;
         $data['biaya'] = $this->gel->biaya_pendaftaran;
-        $data['datetime_expired'] = $this->tgl_tes;
+        $data['datetime_expired'] = $this->gel->tgl_tes;
         $data['virtual_account'] = $nopeserta;
         $data['trx_id'] = $trx_id;
         $data['diskon'] = $this->diskon;
