@@ -6,4 +6,5 @@ return [
     'channel' => env('WA_CHANNEL', ''),
     'template' => env('WA_TEMPLATE', ''),
     'template_psb' => env('WA_TEMPLATE_PSB', ''),
+    'template_psb_terbayar' => env('WA_TEMPLATE_PSB_TERBAYAR', ''),
 ];

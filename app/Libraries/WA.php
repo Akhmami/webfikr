@@ -117,6 +117,11 @@ class WA
                         'value' => 'trx_amount',
                         'value_text' => $nominal
                     ],
+                    [
+                        'key' => '4',
+                        'value' => 'kode_bayar',
+                        'value_text' => $data['virtual_account']
+                    ],
                 ]
             ]
         ]);
