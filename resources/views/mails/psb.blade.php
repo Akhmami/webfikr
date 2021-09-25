@@ -906,7 +906,7 @@
                                                     </td>
                                                     <td>
                                                         <div align="center"><strong>
-                                                                {{ rupiah($user->billerPsb->amount) }},-</strong>
+                                                                {{ rupiah(($user->billerPsb->amount + config('bsi.biaya_admin'))) }},-</strong>
                                                         </div>
                                                     </td>
                                                 </tr>

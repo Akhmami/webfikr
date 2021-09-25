@@ -90,7 +90,7 @@ class WA
     {
         $base_url = $this->base_url . '/v1/broadcasts/whatsapp/direct';
         $phone = $this->user->firstMobilePhone->full_number ?? '6287777833303';
-        $nominal = rupiah($data['trx_amount']);
+        $nominal = rupiah(($data['trx_amount'] + config('bsi.biaya_admin')));
         $va = config('bsi.first_va_number') . $data['virtual_account'];
 
         $response = Http::withToken($this->token)->post($base_url, [
