@@ -241,12 +241,16 @@ class EksternalForm extends Component
                     'text' => 'Pendaftaran berhasil, silahkan cek email atau WA anda',
                 ]);
                 $this->reset();
+                return;
             } catch (\Throwable $th) {
                 DB::rollback();
-                $this->emit('showFlash', 'error', 'Pendaftaran gagal, #' . $th->getMessage());
+                $this->dispatchBrowserEvent('swal:modal', [
+                    'type' => 'error',
+                    'title' => 'Oops...!',
+                    'text' => 'Pendaftaran gagal, #' . $th->getMessage(),
+                ]);
+                return;
             }
-
-            return;
         }
 
         $this->currentStep = $this->currentStep + 1;

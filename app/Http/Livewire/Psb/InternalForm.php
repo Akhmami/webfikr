@@ -271,7 +271,6 @@ class InternalForm extends Component
             $this->reset();
         } catch (\Throwable $th) {
             DB::rollback();
-            // dd('error ' . $th->getMessage());
             $this->dispatchBrowserEvent('swal:modal', [
                 'type' => 'error',
                 'title' => 'Oops...!',
