@@ -164,10 +164,12 @@
                         @endif
                         @endif
                         <div class="text-right pt-4">
-                            <button type="submit"
+                            <button type="submit" wire:loading.remove wire:target="store"
                                 class="whitespace-nowrap inline-flex items-center justify-center bg-gradient-to-r from-blue-600 to-indigo-600 bg-origin-border px-6 py-2 border border-transparent rounded-lg shadow-sm text-base font-medium text-white hover:from-purple-700 hover:to-indigo-700">
                                 {{ $currentStep < 3 ? 'SELANJUTNYA' : 'DAFTAR SEKARANG' }}
                             </button>
+                            <span wire:loading wire:target="store"
+                                class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 text-base font-medium sm:ml-3 sm:w-auto sm:text-sm">Processing...</span>
                         </div>
                     </form>
                 </div>

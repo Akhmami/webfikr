@@ -10,7 +10,7 @@ use App\Models\MedicalCheck;
 use App\Models\Voucher;
 use App\Models\User;
 use App\Models\Year;
-use Illuminate\Auth\Events\Registered;
+use App\Events\Registered;
 use Illuminate\Support\Facades\DB;
 
 class InternalForm extends Component
@@ -199,26 +199,34 @@ class InternalForm extends Component
                 break;
         }
 
-        $this->name = $this->user->name;
-        $this->nik = $this->user->userDetail->nik;
-        $this->nisn = $this->user->userDetail->nisn;
-        $this->gender = $this->user->gender;
-        $this->birth_place = $this->user->birth_place;
-        $this->birth_date = $this->user->birth_date;
-        $this->nama_ayah = $this->user->userDetail->nama_ayah;
-        $this->tanggal_lahir_ayah = $this->user->userDetail->tanggal_lahir_ayah;
-        $this->pendidikan_ayah = $this->user->userDetail->pendidikan_ayah;
-        $this->pekerjaan_ayah = $this->user->userDetail->pekerjaan_ayah;
-        $this->tempat_kerja_ayah = $this->user->userDetail->tempat_kerja_ayah;
-        $this->nama_ibu = $this->user->userDetail->nama_ibu;
-        $this->tanggal_lahir_ibu = $this->user->userDetail->tanggal_lahir_ibu;
-        $this->pendidikan_ibu = $this->user->userDetail->pendidikan_ibu;
-        $this->pekerjaan_ibu = $this->user->userDetail->pekerjaan_ibu;
-        $this->tempat_kerja_ibu = $this->user->userDetail->tempat_kerja_ibu;
-        $this->negara = $this->user->userDetail->negara;
-        $this->provinsi = $this->user->userDetail->provinsi;
-        $this->email = $this->user->email;
-        $this->mobilePhones = $this->user->mobilePhones->toArray();
+        if (!empty($this->user)) {
+            $this->name = $this->user->name;
+            $this->nik = $this->user->userDetail->nik;
+            $this->nisn = $this->user->userDetail->nisn;
+            $this->gender = $this->user->gender;
+            $this->birth_place = $this->user->birth_place;
+            $this->birth_date = $this->user->birth_date;
+            $this->nama_ayah = $this->user->userDetail->nama_ayah;
+            $this->tanggal_lahir_ayah = $this->user->userDetail->tanggal_lahir_ayah;
+            $this->pendidikan_ayah = $this->user->userDetail->pendidikan_ayah;
+            $this->pekerjaan_ayah = $this->user->userDetail->pekerjaan_ayah;
+            $this->tempat_kerja_ayah = $this->user->userDetail->tempat_kerja_ayah;
+            $this->nama_ibu = $this->user->userDetail->nama_ibu;
+            $this->tanggal_lahir_ibu = $this->user->userDetail->tanggal_lahir_ibu;
+            $this->pendidikan_ibu = $this->user->userDetail->pendidikan_ibu;
+            $this->pekerjaan_ibu = $this->user->userDetail->pekerjaan_ibu;
+            $this->tempat_kerja_ibu = $this->user->userDetail->tempat_kerja_ibu;
+            $this->negara = $this->user->userDetail->negara;
+            $this->provinsi = $this->user->userDetail->provinsi;
+            $this->email = $this->user->email;
+            $this->mobilePhones = $this->user->mobilePhones->toArray();
+        } else {
+            $this->dispatchBrowserEvent('swal:modal', [
+                'type' => 'error',
+                'title' => 'Oops...!',
+                'text' => 'Mohon maaf, data yang diminta tidak ditemukan',
+            ]);
+        }
     }
 
     public function store()
@@ -249,7 +257,7 @@ class InternalForm extends Component
             $this->reset();
         } catch (\Throwable $th) {
             DB::rollback();
-            dd('error ' . $th->getMessage());
+            // dd('error ' . $th->getMessage());
             $this->dispatchBrowserEvent('swal:modal', [
                 'type' => 'error',
                 'title' => 'Oops...!',
@@ -262,6 +270,9 @@ class InternalForm extends Component
     {
         $user = User::where('name', 'like', '%' . $data['name'] . '%')
             ->where('email', $data['email'])
+            ->whereHas('userDetail', function ($query) {
+                $query->where('jenjang', 'SMA');
+            })
             ->first();
 
         if ($user) {

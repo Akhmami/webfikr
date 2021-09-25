@@ -30,11 +30,6 @@
                     </div>
                 </div>
                 <div class="mt-6">
-                    @if($errors->any())
-                    @foreach ($errors->all() as $error)
-                    <div>{{ $error }}</div>
-                    @endforeach
-                    @endif
 
                     @if (empty($user))
                     <form wire:submit.prevent="check" class="mt-6 space-y-4">
@@ -75,10 +70,12 @@
 
                         @endif
                         <div class="text-right pt-4">
-                            <button type="submit"
+                            <button type="submit" wire:loading.remove wire:target="check"
                                 class="whitespace-nowrap inline-flex items-center justify-center bg-gradient-to-r from-blue-600 to-indigo-600 bg-origin-border px-6 py-2 border border-transparent rounded-lg shadow-sm text-base font-medium text-white hover:from-purple-700 hover:to-indigo-700">
                                 SELANJUTNYA
                             </button>
+                            <span wire:loading wire:target="check"
+                                class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 text-base font-medium sm:ml-3 sm:w-auto sm:text-sm">Processing...</span>
                         </div>
                     </form>
                     @else
@@ -113,10 +110,12 @@
                         <x-select label="Lokasi Tes" name="lokasi_test_id" :list="$lokasi_test" livewire />
                         <x-select label="Medical Check" name="medical_check_id" :list="$medical_check" livewire />
                         <div class="text-right pt-4">
-                            <button type="submit"
+                            <button type="submit" wire:loading.remove wire:target="store"
                                 class="whitespace-nowrap inline-flex items-center justify-center bg-gradient-to-r from-blue-600 to-indigo-600 bg-origin-border px-6 py-2 border border-transparent rounded-lg shadow-sm text-base font-medium text-white hover:from-purple-700 hover:to-indigo-700">
                                 DAFTAR SEKARANG
                             </button>
+                            <span wire:loading wire:target="store"
+                                class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 text-base font-medium sm:ml-3 sm:w-auto sm:text-sm">Processing...</span>
                         </div>
                     </form>
                     @endif
