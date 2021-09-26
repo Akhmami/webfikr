@@ -44,7 +44,7 @@
                             <li class="p-3 flex items-center justify-between text-sm">
                                 <div class="w-0 flex-1 flex items-center">
                                     <span class="flex-1 w-0 truncate">
-                                        VA: {{ $user->billerPsb->billing->virtual_account ?? null }}
+                                        VA: {{ $user->billerPsb->billing->full_virtual_account ?? null }}
                                     </span>
                                 </div>
                                 <div class="ml-4 flex-shrink-0">

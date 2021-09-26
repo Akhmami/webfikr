@@ -73,6 +73,9 @@ class Billing extends Model
 
     public function getFullVirtualAccountAttribute()
     {
-        return config('bsi.bpi_code') . config('bsi.institute_code') . ' ' . $this->virtual_account;
+        if (!empty($this->virtual_account)) {
+            return config('bsi.bpi_code') . config('bsi.institute_code') . ' ' . $this->virtual_account;
+        }
+        return null;
     }
 }
