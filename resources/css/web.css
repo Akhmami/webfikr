@@ -4,8 +4,18 @@
 
 /* Font */
 @import url("https://fonts.googleapis.com/css2?family=Inter&display=swap");
-
 @import "~@splidejs/splide/dist/css/splide.min.css";
+@import "~intl-tel-input/build/css/intlTelInput.css";
+
+/* .iti__flag {
+    background-image: url("~intl-tel-input/build/img/flags.png");
+}
+
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .iti__flag {
+        background-image: url("~intl-tel-input/build/img/flags@2x.png");
+    }
+} */
 
 [x-cloak] {
     display: none !important;

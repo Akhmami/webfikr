@@ -181,6 +181,12 @@ class InternalForm extends Component
         $this->inputVoucher = true;
     }
 
+    // public function countryData($value)
+    // {
+    //     if (!is_null($value))
+    //         $this->country_data = $value;
+    // }
+
     public function check()
     {
         $this->validate([

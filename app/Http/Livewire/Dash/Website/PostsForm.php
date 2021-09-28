@@ -106,7 +106,7 @@ class PostsForm extends Component
                 ->save(storage_path('app/' . $destination . '/' . $thumbnail));
         }
 
-        return redirect()->route('dash.webiste.index');
+        return redirect()->route('dash.website.index');
     }
 
     protected function rules()
