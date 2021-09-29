@@ -20,6 +20,20 @@
 <meta property="robots" content="all" />
 @endsection
 
+@push('style')
+<style>
+    .swal-wide {
+        @apply w-10/12;
+    }
+
+    @media (min-width: 768px) {
+        .swal-wide {
+            min-width: 60%;
+        }
+    }
+</style>
+@endpush
+
 @section('content')
 
 @include('partials.slideshow', ['data' => $sliders])
@@ -35,9 +49,13 @@
 @include('partials.alumni')
 {{-- @include('partials.testimonial') --}}
 
+<div class="hidden">
+    <img id="popup" src="{{ asset('images/popup.jpeg') }}" class="w-full rounded">
+</div>
 @endsection
 
 @push('script')
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
     new Splide('#image-slider', {
         type: 'loop',
@@ -45,5 +63,14 @@
         autoplay: true,
         interval: 4000,
     }).mount();
+</script>
+<script>
+    var image = document.querySelector("#popup");
+    swal({
+    button: false,
+    className: "swal-wide",
+    content: image
+    ,
+    });
 </script>
 @endpush
