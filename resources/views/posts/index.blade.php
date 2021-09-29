@@ -50,7 +50,7 @@
 {{-- @include('partials.testimonial') --}}
 
 <div class="hidden">
-    <img id="popup" src="{{ asset('images/popup.jpeg') }}" class="w-full rounded">
+    <a id="popup" href="//psb.nfbs.or.id"><img src="{{ asset('images/popup.jpeg') }}" class="w-full rounded"></a>
 </div>
 @endsection
 
