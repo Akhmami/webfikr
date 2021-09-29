@@ -80,6 +80,7 @@ class UsersExport implements
         if ($this->sheet === 'userDetail') {
             $array = [
                 $user->userDetail->no_pendaftaran,
+                $user->userDetail->nik,
                 $user->name,
                 $user->userDetail->nisn,
                 $user->email,
@@ -136,6 +137,7 @@ class UsersExport implements
         if ($this->sheet === 'userDetail') {
             $heading = [
                 'No Pendaftaran',
+                'NIK',
                 'Nama Lengkap',
                 'NISN',
                 'Email',
