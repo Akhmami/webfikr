@@ -15,6 +15,7 @@ class BillerEdit extends ModalComponent
     public $i = 0;
     public $biller_details = [0];
     public $is_installment;
+    public $balance_used;
     public $qty_spp;
     public $spps;
 
@@ -25,7 +26,8 @@ class BillerEdit extends ModalComponent
         'nominal.*' => 'required|max:14',
         'amount' => 'nullable',
         'is_installment' => 'required',
-        'qty_spp' => 'nullable'
+        'qty_spp' => 'nullable',
+        'balance_used' => 'nullable'
     ];
 
     protected $messages = [
@@ -45,6 +47,7 @@ class BillerEdit extends ModalComponent
         $this->amount = $biller->amount;
         $this->is_installment = $biller->is_installment;
         $this->qty_spp = $biller->qty_spp;
+        $this->balance_used = $biller->balance_used;
         $this->i = $biller->billerDetails()->count() - 1;
         foreach ($biller->billerDetails as $key => $value) {
             $this->biller_details[$key] = $value;

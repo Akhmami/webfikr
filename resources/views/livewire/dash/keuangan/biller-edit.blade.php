@@ -82,16 +82,11 @@
                     <p class="mt-2 text-xs font-semibold text-red-600">{{ $message }}</p>
                     @enderror
                 </div>
+                <x-input label="Saldo terpakai" name="balance_used" livewire />
                 @if ($biller->cumulative_payment_amount > 0)
                 <div>
                     <span>Sudah bayar transfer sebanyak</span>
                     <div class="font-semibold">{{ rupiah($biller->cumulative_payment_amount) }}</div>
-                </div>
-                @endif
-                @if ($biller->balance_used > 0)
-                <div>
-                    <span>Saldo terpakai</span>
-                    <div class="font-semibold">{{ rupiah($biller->balance_used) }}</div>
                 </div>
                 @endif
             </div>
