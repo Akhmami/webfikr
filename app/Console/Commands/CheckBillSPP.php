@@ -65,7 +65,7 @@ class CheckBillSPP extends Command
                 $addMonth = date('Y-m-d', strtotime($adder, strtotime($user->latestSpp->bulan)));
                 $month_only = tanggal($month[date('m', strtotime($addMonth))], 'bulan');
 
-                $latest_biller = $user->billers()->latest()->first();
+                $latest_biller = $user->billers()->latest('id')->first();
                 if (date('Y-m', strtotime($latest_biller->created_at)) !== date('Y-m')) {
                     // $biller = $user->billers()->where('type', 'SPP')
                     //     ->active()->get();
