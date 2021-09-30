@@ -42,13 +42,13 @@ class BillerEdit extends ModalComponent
 
     public function mount(Biller $biller)
     {
-        $this->biller = $biller;
+        $this->biller = $biller->load('user', 'billerDetails');
         $this->type = $biller->type;
         $this->amount = $biller->amount;
         $this->is_installment = $biller->is_installment;
         $this->qty_spp = $biller->qty_spp;
         $this->balance_used = $biller->balance_used;
-        $this->i = $biller->billerDetails()->count() - 1;
+        $this->i = $biller->billerDetails->count() - 1;
         foreach ($biller->billerDetails as $key => $value) {
             $this->biller_details[$key] = $value;
             $this->nama[$key] = $value->nama;
@@ -79,7 +79,7 @@ class BillerEdit extends ModalComponent
     public function update()
     {
         $user = $this->biller->user;
-        $detail_id = $this->biller->billerDetails()->pluck('id')->toArray();
+        $detail_id = $this->biller->billerDetails->pluck('id')->toArray();
         $check = $user->costReductions()
             ->whereIn('biller_detail_id', $detail_id)->count();
 
