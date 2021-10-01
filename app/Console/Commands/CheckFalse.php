@@ -38,7 +38,7 @@ class CheckFalse extends Command
      */
     public function handle()
     {
-        $users = User::has('billerSpp')->cursor();
+        $users = User::has('billerSpp', 'balance')->cursor();
 
         foreach ($users as $user) {
             $amount = $user->billerSpp->amount;
@@ -46,11 +46,10 @@ class CheckFalse extends Command
             $cost_reduction = $user->billerSpp->cost_reduction;
             $balance_used = $user->billerSpp->balance_used;
             $total_amount = $amount - ($cpa + $cost_reduction + $balance_used);
+            $balance = $user->balance->current_amount;
 
-            if ($total_amount == 0) {
-                $user->billerSpp()->update([
-                    'is_active' => 'N'
-                ]);
+            if ($total_amount == $balance) {
+                $this->error($user->name);
             }
         }
     }
