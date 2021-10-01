@@ -8,7 +8,7 @@
             <div class="flex flex-col space-y-4">
                 @php
                 $type = [
-                'SPP' => 'SPP',
+                // 'SPP' => 'SPP',
                 'DKT' => 'DKT',
                 'PSB' => 'PSB',
                 'DUPSB' => 'Daftar Ulang PSB',
@@ -110,7 +110,7 @@
                     @enderror
                 </div>
             </div>
-            <div class="mt-6 prose prose-sm text-gray-600">
+            {{-- <div class="mt-6 prose prose-sm text-gray-600">
                 <p>
                     <strong>Keterangan:</strong>
                     <ul>
@@ -120,7 +120,7 @@
                             bulan isi dengan banyaknya bulan yang akan dibayar.</li>
                     </ul>
                 </p>
-            </div>
+            </div> --}}
         </x-slot>
 
         <x-slot name="buttons">
