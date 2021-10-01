@@ -1,6 +1,7 @@
 <div>
     <div class="font-medium text-gray-900">
-        {{ $user->name }}
+        <a href="{{ route('dash.users.show', $user->id) }}"
+            class="text-indigo-600 font-semibold hover:underline cursor-pointer">{{ $user->name }}</a>
     </div>
     <div class="flex items-center space-x-0.5 text-sm text-gray-500">
         <div>{{ $user->email }}</div>
