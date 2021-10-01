@@ -62,7 +62,7 @@ class GelombangsTable extends DataTableComponent
     public function query(): Builder
     {
         return Gelombang::query()
-            ->where('is_active', '<>', 'I')
+            ->where('id', '<>', 1)
             ->latest('id')
             ->when($this->getFilter('fromDate'), fn ($query, $fromDate) => $query->whereDate('created_at', '>=', $fromDate))
             ->when($this->getFilter('toDate'), fn ($query, $toDate) => $query->whereDate('created_at', '<=', $toDate));
