@@ -81,6 +81,7 @@ class CheckBillSPP extends Command
                                 $user->billerSPP()->update([
                                     'amount' => ($spp_active->amount + $spp_perbulan),
                                     'qty_spp' => ($spp_active->qty_spp + 1),
+                                    'is_installment' => 'Y',
                                     'is_active' => 'Y',
                                     'description' => 'Tagihan SPP hingga bulan ' . $month_only
                                 ]);
