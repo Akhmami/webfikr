@@ -161,6 +161,10 @@ class Cicilan extends ModalComponent
                             'payment_history_id' => $payment->id,
                             'bulan' => date('Y-m-d', strtotime($adder, strtotime($this->user->latestSpp->bulan)))
                         ]);
+
+                        $biller->billerDetails()->whereNull('is_paid')->first()->update([
+                            'is_paid' => 'Y'
+                        ]);
                     }
                 }
 
