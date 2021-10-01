@@ -202,7 +202,7 @@ class InternalForm extends Component
                 break;
 
             default:
-                $this->user = User::with('mobilePhones')->where('birth_place', $this->birth_place)
+                $this->user = User::with('mobilePhones')->where('birth_place', 'like', $this->birth_place)
                     ->where('birth_date', $this->birth_date)->whereHas('userDetail', function ($query) {
                         $query->where('nik', $this->nik)
                             ->where('jenjang', 'SMP');
