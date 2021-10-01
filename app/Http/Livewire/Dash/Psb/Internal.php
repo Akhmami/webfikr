@@ -7,6 +7,10 @@ use Livewire\Component;
 
 class Internal extends Component
 {
+    protected $listeners = [
+        'gelombangIndex' => '$refresh'
+    ];
+
     public function render()
     {
         return view('livewire.dash.psb.internal', [
