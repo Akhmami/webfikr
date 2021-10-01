@@ -38,7 +38,7 @@ class CheckFalse extends Command
      */
     public function handle()
     {
-        $users = User::has('billerSpp', 'balance')->cursor();
+        $users = User::has('activeGrade')->with('billerSpp', 'balance')->cursor();
 
         foreach ($users as $user) {
             $amount = $user->billerSpp->amount ?? 0;
