@@ -41,15 +41,17 @@ class CheckFalse extends Command
         $users = User::has('billerSpp', 'balance')->cursor();
 
         foreach ($users as $user) {
-            $amount = $user->billerSpp->amount;
-            $cpa = $user->billerSpp->cumulative_payment_amount;
-            $cost_reduction = $user->billerSpp->cost_reduction;
-            $balance_used = $user->billerSpp->balance_used;
+            $amount = $user->billerSpp->amount ?? 0;
+            $cpa = $user->billerSpp->cumulative_payment_amount ?? 0;
+            $cost_reduction = $user->billerSpp->cost_reduction ?? 0;
+            $balance_used = $user->billerSpp->balance_used ?? 0;
             $total_amount = $amount - ($cpa + $cost_reduction + $balance_used);
-            $balance = $user->balance->current_amount;
+            $balance = $user->balance->current_amount ?? 0;
 
-            if ($total_amount == $balance) {
-                $this->error($user->name);
+            if ($total_amount != 0 && $balance != 0) {
+                if ($total_amount == $balance) {
+                    $this->error($user->name);
+                }
             }
         }
     }
