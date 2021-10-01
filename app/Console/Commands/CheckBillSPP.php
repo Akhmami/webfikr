@@ -140,7 +140,7 @@ class CheckBillSPP extends Command
                         FailedSppBiller::create([
                             'user_id' => $user->id,
                             'name' => $user->name,
-                            'exception' => "{$th->getMessage()} #Trace {$th->getTrace()}"
+                            'exception' => "{$th->getMessage()} #Trace {json_encode($th->getTrace())}"
                         ]);
                     }
                 }
