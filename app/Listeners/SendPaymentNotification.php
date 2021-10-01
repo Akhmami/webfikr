@@ -40,6 +40,6 @@ class SendPaymentNotification
             return;
         }
 
-        $wa->notifyPayment($data);
+        // $wa->notifyPayment($data);
     }
 }

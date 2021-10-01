@@ -38,18 +38,15 @@ class CheckFalse extends Command
      */
     public function handle()
     {
-        $users = User::has('activeGrade')->with('billerSpp', 'balance')->cursor();
+        $users = User::has('activeGrade')->with('billerSPP')->cursor();
 
         foreach ($users as $user) {
-            $amount = $user->billerSpp->amount ?? 0;
-            $cpa = $user->billerSpp->cumulative_payment_amount ?? 0;
-            $cost_reduction = $user->billerSpp->cost_reduction ?? 0;
-            $balance_used = $user->billerSpp->balance_used ?? 0;
-            $total_amount = $amount - ($cpa + $cost_reduction + $balance_used);
-            $balance = $user->balance->current_amount ?? 0;
+            $spp = $user->billerSPP;
+            if (!empty($spp)) {
+                $qty = $spp->qty_spp;
+                $count = $spp->billerDetails->count();
 
-            if ($total_amount != 0 && $balance != 0) {
-                if ($total_amount == $balance) {
+                if ($qty != $count) {
                     $this->error($user->name);
                 }
             }
