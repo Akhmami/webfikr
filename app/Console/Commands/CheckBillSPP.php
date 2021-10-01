@@ -91,27 +91,28 @@ class CheckBillSPP extends Command
                                 ]);
                             }
 
-                            // # Tagihan aktif, tp jumlah tagihan 0
-                            // if ($range == 1) {
-                            //     $user->billers()->where('type', 'SPP')
-                            //         ->active()->update(['is_active', 'N']);
+                            # Tagihan aktif, tp jumlah tagihan 0
+                            if ($range == 1) {
+                                $user->billerSpp()->update([
+                                    'is_active' => 'N'
+                                ]);
 
-                            //     # buat biller baru
-                            //     $newBiller = $user->billers()->create([
-                            //         'amount' => $spp_perbulan,
-                            //         'type' => 'SPP',
-                            //         'is_installment' => 'N',
-                            //         'is_active' => 'Y',
-                            //         'qty_spp' => $range,
-                            //         'previous_spp_date' => $user->latestSpp->bulan,
-                            //         'description' => 'Tagihan SPP hingga bulan ' . $month_only
-                            //     ]);
+                                # buat biller baru
+                                $newBiller = $user->billers()->create([
+                                    'amount' => $spp_perbulan,
+                                    'type' => 'SPP',
+                                    'is_installment' => 'N',
+                                    'is_active' => 'Y',
+                                    'qty_spp' => $range,
+                                    'previous_spp_date' => $user->latestSpp->bulan,
+                                    'description' => 'Tagihan SPP hingga bulan ' . $month_only
+                                ]);
 
-                            //     $newBiller->billerDetails()->create([
-                            //         'nama' => 'SPP Bulan ' . $month_only,
-                            //         'nominal' => $spp_perbulan
-                            //     ]);
-                            // }
+                                $newBiller->billerDetails()->create([
+                                    'nama' => 'SPP Bulan ' . $month_only,
+                                    'nominal' => $spp_perbulan
+                                ]);
+                            }
                         } else {
                             # buat biller baru
                             $newBiller = $user->billers()->create([
