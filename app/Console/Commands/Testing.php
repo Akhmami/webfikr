@@ -104,16 +104,15 @@ class Testing extends Command
                             ]);
                         }
 
-                        if (!empty($item->saldo)) {
-                            Balance::updateOrCreate([
-                                'user_id' => $user->id
-                            ], [
-                                'last_amount' => 0,
-                                'type' => 'plus',
-                                'nominal' => $item->saldo,
-                                'current_amount' => $item->saldo
-                            ]);
-                        }
+
+                        Balance::updateOrCreate([
+                            'user_id' => $user->id
+                        ], [
+                            'last_amount' => 0,
+                            'type' => 'plus',
+                            'nominal' => (!empty($item->saldo) ? $item->saldo : 0),
+                            'current_amount' => (!empty($item->saldo) ? $item->saldo : 0)
+                        ]);
 
                         DB::commit();
                     } catch (\Throwable $th) {
@@ -146,16 +145,14 @@ class Testing extends Command
                         'nominal' => $item->new_komitmen
                     ]);
 
-                    if (!empty($item->saldo)) {
-                        Balance::updateOrCreate([
-                            'user_id' => $user->id
-                        ], [
-                            'last_amount' => 0,
-                            'type' => 'plus',
-                            'nominal' => $item->saldo,
-                            'current_amount' => $item->saldo
-                        ]);
-                    }
+                    Balance::updateOrCreate([
+                        'user_id' => $user->id
+                    ], [
+                        'last_amount' => 0,
+                        'type' => 'plus',
+                        'nominal' => (!empty($item->saldo) ? $item->saldo : 0),
+                        'current_amount' => (!empty($item->saldo) ? $item->saldo : 0)
+                    ]);
 
                     DB::commit();
                 } catch (\Throwable $th) {
