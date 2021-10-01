@@ -21,8 +21,11 @@
                     onclick="Livewire.emit('openModal', 'dash.keuangan.biller-edit', {{ json_encode(['biller' => $biller->id]) }})"
                     class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100" role="menuitem" tabindex="-1"
                     id="menu-item-0">Edit</a>
-                {{-- <a href="#" class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100" role="menuitem"
-                    tabindex="-1" id="menu-item-0">Kirim pesan WA</a> --}}
+                @if ($biller->is_active === 'N' && $biller->type === 'SPP')
+                <a href="#" wire:click.prevent="activationConfirm({{ $biller->id }})"
+                    class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100" role="menuitem" tabindex="-1"
+                    id="menu-item-0">Aktifkan Tagihan</a>
+                @endif
                 <a href="#"
                     onclick="Livewire.emit('openModal', 'dash.keuangan.biller-detail', {{ json_encode(['biller' => $biller->id]) }})"
                     class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100" role="menuitem" tabindex="-1"

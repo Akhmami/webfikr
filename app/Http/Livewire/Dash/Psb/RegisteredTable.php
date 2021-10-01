@@ -91,7 +91,8 @@ class RegisteredTable extends DataTableComponent
             'type' => 'warning',
             'title' => 'Yakin ingin menghapus?',
             'text' => '',
-            'id' => $id
+            'id' => $id,
+            'method' => 'activation'
         ]);
     }
 

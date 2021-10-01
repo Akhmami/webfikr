@@ -8,7 +8,7 @@
             <div class="flex flex-col space-y-4">
                 @php
                 $type = [
-                // 'SPP' => 'SPP',
+                'SPP' => 'SPP',
                 'DKT' => 'DKT',
                 'PSB' => 'PSB',
                 'DUPSB' => 'Daftar Ulang PSB',
@@ -110,21 +110,17 @@
                     @enderror
                 </div>
             </div>
-            {{-- <div class="mt-4">Role/Jenis Pengguna:</div>
-            <div>
-                <div class="flex items-start">
-                    <div class="h-5 flex items-center">
-                        <input wire:model="roles" type="checkbox" value=""
-                            class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded">
-                    </div>
-                    <div class="ml-3 text-sm">
-                        <label for="candidates" class="font-medium text-gray-700">label</label>
-                        <p class="text-gray-500">
-                            Deskripsi
-                        </p>
-                    </div>
-                </div>
-            </div> --}}
+            <div class="mt-6 prose prose-sm text-gray-600">
+                <p>
+                    <strong>Keterangan:</strong>
+                    <ul>
+                        <li><strong>Apakah bisa diangsur</strong> pilih TIDAK untuk sekali bayar atau YA untuk beberapa
+                            kali bayar, jika tagihan SPP dan lebih dari 1 bulan pilih YA</li>
+                        <li><strong>Berapa kali diangsur</strong> isi jumlah angsuran, jika tagihan SPP dan lebih dari 1
+                            bulan isi dengan banyaknya bulan yang akan dibayar.</li>
+                    </ul>
+                </p>
+            </div>
         </x-slot>
 
         <x-slot name="buttons">
