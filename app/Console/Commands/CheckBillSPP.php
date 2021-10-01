@@ -78,13 +78,13 @@ class CheckBillSPP extends Command
                         if (!empty($spp_active)) {
                             # tagihan SPP lebih dari 1 bulan, update
                             if ($range > 1) {
-                                $update_spp_active = Biller::find($spp_active->id);
-                                $update_spp_active->update([
+                                $user->billerSPP()->update([
                                     'amount' => ($spp_active->amount + $spp_perbulan),
                                     'qty_spp' => ($spp_active->qty_spp + 1),
                                     'description' => 'Tagihan SPP hingga bulan ' . $month_only
                                 ]);
-                                $update_spp_active->billerDetails()->create([
+
+                                $spp_active->billerDetails()->create([
                                     'nama' => 'SPP Bulan ' . $month_only,
                                     'nominal' => $spp_perbulan
                                 ]);
