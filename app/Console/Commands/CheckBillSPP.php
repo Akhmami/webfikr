@@ -2,8 +2,10 @@
 
 namespace App\Console\Commands;
 
+use App\Models\FailedSppBiller;
 use Illuminate\Console\Command;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
 
 class CheckBillSPP extends Command
 {
@@ -38,7 +40,9 @@ class CheckBillSPP extends Command
      */
     public function handle()
     {
-        $users = User::has('activeGrade')->get();
+        $users = User::has('activeGrade')
+            ->with('setSpp', 'latestSpp')
+            ->cursor();
 
         foreach ($users as $user) {
             $range = date_range($user->latestSpp->bulan);
@@ -59,37 +63,44 @@ class CheckBillSPP extends Command
 
             if ($range > 0) {
                 # buat tagihan
-                $spp_perbulan = $user->setSpp->current;
+                $spp_perbulan = $user->setSpp->nominal;
                 # dapatkan bulan tunggakan hingga
-                $adder = '+' . $range . ' month';
-                $addMonth = date('Y-m-d', strtotime($adder, strtotime($user->latestSpp->bulan)));
+                $addMonth = date('Y-m-d', strtotime("+ {$range} month", strtotime($user->latestSpp->bulan)));
                 $month_only = tanggal($month[date('m', strtotime($addMonth))], 'bulan');
 
                 $latest_biller = $user->billers()->latest('id')->first();
                 if (date('Y-m', strtotime($latest_biller->created_at)) !== date('Y-m')) {
-                    // $biller = $user->billers()->where('type', 'SPP')
-                    //     ->active()->get();
-                    // $tunggakan = $biller->sum('amount') - $biller->sum('cumulative_payment_amount');
-                    $user->billers()->where('type', 'SPP')
-                        ->active()->update(['is_active' => 'N']);
+                    DB::beginTransaction();
+                    try {
+                        $user->billers()->where('type', 'SPP')
+                            ->active()->update(['is_active' => 'N']);
 
-                    $newBiller = $user->billers()->create([
-                        'amount' => ($spp_perbulan * $range),
-                        'type' => 'SPP',
-                        'is_installment' => ($range > 1 ? 'Y' : 'N'),
-                        'is_active' => 'Y',
-                        'qty_spp' => $range,
-                        'previous_spp_date' => $user->latestSpp->bulan,
-                        'description' => 'Tagihan SPP hingga bulan ' . $month_only
-                    ]);
+                        $newBiller = $user->billers()->create([
+                            'amount' => ($spp_perbulan * $range),
+                            'type' => 'SPP',
+                            'is_installment' => ($range > 1 ? 'Y' : 'N'),
+                            'is_active' => 'Y',
+                            'qty_spp' => $range,
+                            'previous_spp_date' => $user->latestSpp->bulan,
+                            'description' => 'Tagihan SPP hingga bulan ' . $month_only
+                        ]);
 
-                    for ($i = 1; $i <= $range; $i++) {
-                        $adder = '+' . $i . ' month';
-                        $addMonth = date('Y-m-d', strtotime($adder, strtotime($user->latestSpp->bulan)));
-                        $month_only = tanggal($month[date('m', strtotime($addMonth))], 'bulan');
-                        $newBiller->billerDetails()->create([
-                            'nama' => 'SPP Bulan ' . $month_only,
-                            'nominal' => $spp_perbulan
+                        for ($i = 1; $i <= $range; $i++) {
+                            $addMonth = date('Y-m-d', strtotime("+ {$i} month", strtotime($user->latestSpp->bulan)));
+                            $month_only = tanggal($month[date('m', strtotime($addMonth))], 'bulan');
+                            $newBiller->billerDetails()->create([
+                                'nama' => 'SPP Bulan ' . $month_only,
+                                'nominal' => $spp_perbulan
+                            ]);
+                        }
+
+                        DB::commit();
+                    } catch (\Throwable $th) {
+                        DB::rollBack();
+                        FailedSppBiller::create([
+                            'user_id' => $user->id,
+                            'name' => $user->name,
+                            'exception' => $th->getMessage()
                         ]);
                     }
                 }

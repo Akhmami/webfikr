@@ -191,7 +191,7 @@ class User extends Authenticatable
 
     public function balance()
     {
-        return $this->hasOne(Balance::class)->latest('id');
+        return $this->hasOne(Balance::class);
     }
 
     public function balanceUsages()
