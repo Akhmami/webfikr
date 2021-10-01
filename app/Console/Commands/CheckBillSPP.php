@@ -81,6 +81,7 @@ class CheckBillSPP extends Command
                                 $user->billerSPP()->update([
                                     'amount' => ($spp_active->amount + $spp_perbulan),
                                     'qty_spp' => ($spp_active->qty_spp + 1),
+                                    'is_active' => 'Y',
                                     'description' => 'Tagihan SPP hingga bulan ' . $month_only
                                 ]);
 
@@ -139,7 +140,7 @@ class CheckBillSPP extends Command
                         FailedSppBiller::create([
                             'user_id' => $user->id,
                             'name' => $user->name,
-                            'exception' => $th->getMessage()
+                            'exception' => "{$th->getMessage()} #Trace {$th->getTrace()}"
                         ]);
                     }
                 }
