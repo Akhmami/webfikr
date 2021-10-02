@@ -31,15 +31,17 @@ class SendPaymentNotification
         $data = $event->data;
         $type = substr($billing->trx_id, 0, 3);
 
-        // Send WA
-        $wa = new WA($billing->user);
-        if ($type == 'PSB') {
-            $billing->user()->update(['status_psb_id' => 2]);
+        if (config('app.env') === 'production') {
+            // Send WA
+            $wa = new WA($billing->user);
+            if ($type == 'PSB') {
+                $billing->user()->update(['status_psb_id' => 2]);
 
-            $wa->notifyPsbPaymentCompleted($data);
-            return;
+                $wa->notifyPsbPaymentCompleted($data);
+                return;
+            }
+
+            $wa->notifyPayment($data);
         }
-
-        $wa->notifyPayment($data);
     }
 }
