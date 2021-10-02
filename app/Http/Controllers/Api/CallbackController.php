@@ -50,7 +50,7 @@ class CallbackController extends BaseController
                         'type' => 'plus',
                         'nominal' => $data['payment_amount'],
                         'current_amount' => $current_amount,
-                        'description' => 'Tambah saldo'
+                        'description' => 'Isi saldo'
                     ]);
                 } else {
                     $biller_cpa = $billing->biller->cumulative_payment_amount;
