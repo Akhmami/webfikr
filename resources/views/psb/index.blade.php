@@ -220,7 +220,7 @@
             <div class="relative max-w-4xl mx-auto md:px-8 xl:px-0">
                 <div class="pt-16 pb-16 space-y-4">
                     <div class="px-4 sm:px-6 md:px-0">
-                        <img class="rounded-xl" src="https://source.unsplash.com/q10VITrVYUM/900x200" alt="banner">
+                        <img class="rounded-xl" src="{{ asset('images/header-psb.jpeg') }}" alt="banner">
                     </div>
                     @if (Route::is('psb.index'))
                     @if (!$expired)
