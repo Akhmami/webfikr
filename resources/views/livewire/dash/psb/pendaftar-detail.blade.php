@@ -76,6 +76,9 @@
                                     <span class="font-medium text-indigo-600">
                                         {{ $mobile->full_number }}
                                     </span>
+                                    <a href="#"
+                                        onclick="Livewire.emit('openModal', 'user.setting-edit-phone', {{ json_encode(['phone' => $mobile->id ]) }})"
+                                        class="text-sm text-gray-600 hover:text-blue-900">Edit</a>
                                 </div>
                             </li>
                             @empty
