@@ -72,5 +72,7 @@ class EditVa extends ModalComponent
                 'text' => 'Gagal mengupdate VA. #' . $th->getMessage()
             ]);
         }
+
+        $this->closeModal();
     }
 }
