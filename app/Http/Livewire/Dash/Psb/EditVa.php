@@ -58,6 +58,8 @@ class EditVa extends ModalComponent
                     'text' => 'Gagal mengupdate VA. #status code: ' . $result['status']
                 ]);
             } else {
+                $this->emit('pendaftarDetail');
+
                 $this->dispatchBrowserEvent('swal:modal', [
                     'type' => 'success',
                     'title' => 'VA Updated!',

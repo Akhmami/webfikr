@@ -9,6 +9,10 @@ class PendaftarDetail extends ModalComponent
 {
     public $user;
 
+    protected $listeners = [
+        'pendaftarDetail' => '$refresh'
+    ];
+
     public function mount($user)
     {
         $this->user = User::with(['billerPsb', 'mobilePhones'])->findOrFail($user);
