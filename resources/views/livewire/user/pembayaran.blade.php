@@ -128,18 +128,6 @@
                     <div class="prose md:w-2/3 w-full mx-auto mt-6">
                         <h4>Cara Pembayaran</h4>
                         <ul class="text-sm">
-                            <li class="font-semibold">Menggunakan Metode Transfer BSI Mobile Banking</li>
-                            <ol class="pl-6 pb-4">
-                                <li>Akses BSI Mobile Banking dari handphone kemudian pilih "Tansfer".</li>
-                                <li>Pilih "Transfer antar Rekening BSI"</li>
-                                <li>Masukkan nomor Virtual Account Anda
-                                    <strong>{{ $payment->full_virtual_account }}</strong>
-                                    pada input "Masukan no rekening tujuan".</li>
-                                <li>Masukan nominal <strong>{{ rupiah(($payment->trx_amount + 2000), false) }}</strong>
-                                </li>
-                                <li>Klik "SELANJUTNYA" dan selesaikan pembayaran</li>
-                            </ol>
-
                             <li class="font-semibold">Menggunakan Pembayaran Akademik BSI Mobile Banking</li>
                             <ol class="pl-6 pb-4">
                                 <li>Akses BSI Mobile Banking dari handphone kemudian pilih "Bayar".</li>
