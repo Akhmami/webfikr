@@ -64,6 +64,8 @@ class EditVa extends ModalComponent
                     'text' => 'VA berhasil di update '
                 ]);
             }
+
+            DB::commit();
         } catch (\Throwable $th) {
             DB::rollback();
             $this->dispatchBrowserEvent('swal:modal', [
