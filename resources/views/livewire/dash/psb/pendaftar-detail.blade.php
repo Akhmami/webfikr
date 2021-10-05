@@ -51,6 +51,16 @@
                                     <span class="font-medium text-indigo-600">
                                         {{ rupiah($user->billerPsb->billing->trx_amount ?? 0) }}
                                     </span>
+                                    @if ($user->status_psb_id === 1)
+                                    <a href="#"
+                                        onclick="Livewire.emit('openModal', 'dash.psb.edit-va', {{ json_encode(['billing' => $user->billerPsb->billing->id ]) }})"
+                                        class="text-sm text-gray-600 hover:text-blue-900">Edit</a>
+                                    @else
+                                    <span
+                                        class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                                        terbayar
+                                    </span>
+                                    @endif
                                 </div>
                             </li>
                         </ul>

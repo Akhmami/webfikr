@@ -25,4 +25,14 @@
             </div>
         </div>
     </main>
+
+    @once
+    @push('style')
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    @endpush
+
+    @push('script')
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    @endpush
+    @endonce
 </x-dash-layout>
