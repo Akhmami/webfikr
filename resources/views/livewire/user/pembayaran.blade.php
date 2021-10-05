@@ -135,6 +135,10 @@
                                 <li>Dibagian "Nama Akademik" cari <strong>9194 - NFBS SERANG</strong></li>
                                 <li>Dibagian "Masukan ID Pelanggan/Kode Bayar" masukan
                                     <strong>{{ $payment->virtual_account }}</strong></li>
+                                <li>Klik "SELANJUTNYA"</li>
+                                <li>Masukan nominal
+                                    <strong>{{ rupiah(($payment->trx_amount + 2000), false) }}</strong>
+                                </li>
                                 <li>Klik "SELANJUTNYA" dan selesaikan pembayaran</li>
                             </ol>
 
