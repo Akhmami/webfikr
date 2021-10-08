@@ -2,16 +2,19 @@
 
 namespace App\Http\Livewire\Dash\Psb;
 
+use App\Libraries\WA;
+use App\Mail\SendMailPsb;
 use App\Models\User;
 use App\Models\Year;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Mail;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 use Rappasoft\LaravelLivewireTables\Views\Filter;
 
 class RegisteredTable extends DataTableComponent
 {
-    protected $listeners = ['delete'];
+    protected $listeners = ['delete', 'resend'];
 
     public function columns(): array
     {
@@ -85,6 +88,35 @@ class RegisteredTable extends DataTableComponent
         ]);
     }
 
+    public function resendConfirm($id)
+    {
+        $this->dispatchBrowserEvent('swal:confirm', [
+            'type' => 'warning',
+            'title' => 'Kirim ulang WA dan Email?',
+            'text' => '',
+            'id' => $id,
+            'method' => 'resend'
+        ]);
+    }
+
+    public function resend($id)
+    {
+        $user = User::find($id);
+        $user->load('billerPsb');
+        Mail::to($user->email)->send(new SendMailPsb($user));
+        // Send WA Notification
+        $wa = new WA($user);
+        $data['trx_amount'] = $user->billerPsb->amount;
+        $data['virtual_account'] = $user->billerPsb->billing->virtual_account;
+        $wa->notifyPsbRegistration($data);
+
+        $this->dispatchBrowserEvent('swal:modal', [
+            'type' => 'success',
+            'title' => 'Terkirim!',
+            'text' => 'Notifikasi WA dan Email berhasil dikirim ulang',
+        ]);
+    }
+
     public function deleteConfirm($id)
     {
         $this->dispatchBrowserEvent('swal:confirm', [
@@ -92,7 +124,7 @@ class RegisteredTable extends DataTableComponent
             'title' => 'Yakin ingin menghapus?',
             'text' => '',
             'id' => $id,
-            'method' => 'activation'
+            'method' => 'delete'
         ]);
     }
 
