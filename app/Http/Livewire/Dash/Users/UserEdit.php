@@ -49,10 +49,12 @@ class UserEdit extends ModalComponent
         $user->update($validatedData);
         $user->syncRoles($this->roles);
 
-        $this->emit('openModal', 'alert-modal', [
-            'emit' => 'closeUserAlertModal',
+        $this->dispatchBrowserEvent('swal:modal', [
+            'type' => 'success',
             'title' => 'User Updated',
-            'description' => 'Data user yang dipilih berhasil diupdate!'
+            'text' => 'Data user yang dipilih berhasil diupdate!',
         ]);
+
+        $this->forceClose()->closeModal();
     }
 }
