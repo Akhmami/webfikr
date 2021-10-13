@@ -42,7 +42,9 @@ class Bill extends Component
             $this->description = $bill_spp->description;
         }
 
-        return view('livewire.user.bill');
+        return view('livewire.user.bill', [
+            'user' => $user
+        ]);
     }
 
     public function indexBill()
