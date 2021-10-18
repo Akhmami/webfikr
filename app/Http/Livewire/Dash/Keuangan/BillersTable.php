@@ -20,6 +20,9 @@ class BillersTable extends DataTableComponent
     public function columns(): array
     {
         return [
+            Column::make('No Pendaftaran', 'userDetail.no_pendaftaran')
+                ->sortable()
+                ->searchable(),
             Column::make('Nama Lengkap', 'name')
                 ->sortable()
                 ->searchable()
@@ -64,7 +67,7 @@ class BillersTable extends DataTableComponent
         return User::query()
             ->has('grades')
             ->whereHas('roles', fn ($query) => $query->where('name', 'user'))
-            ->with(['billers', 'activeGrade', 'balance'])
+            ->with('userDetail', 'billers', 'activeGrade', 'balance')
             ->latest()
             ->when($this->getFilter('kelas'), fn ($query, $kelas) => $query->whereHas(
                 'grades',

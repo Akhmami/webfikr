@@ -24,8 +24,8 @@ class KeuanganController extends Controller
         ]);
     }
 
-    public function export()
+    public function report()
     {
-        return (new KeuanganExport(2021, 9))->download('data-keuangan.xlsx');
+        return view('dash.keuangan.report');
     }
 }

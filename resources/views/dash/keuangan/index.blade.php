@@ -74,7 +74,7 @@
                     </div>
                     <!-- Tab Tagihan -->
                     <div class="divide-y" x-show="tab == '#tagihan'" x-cloak>
-                        <div class="flex items-center justify-between px-2 py-4">
+                        <div class="flex items-center justify-between px-4 py-4">
                             <div class="text-md font-medium uppercase text-gray-700">
                                 Daftar Tagihan
                             </div>
@@ -90,7 +90,7 @@
                                 <span>NEW</span>
                             </button>
                         </div>
-                        <div class="rounded-b flex flex-col px-2 py-4">
+                        <div class="rounded-b flex flex-col px-4 py-4">
                             <livewire:dash.keuangan.billers-table />
                         </div>
                     </div>
@@ -102,16 +102,16 @@
                             </div>
                             {{-- <button type="button"
                                 onclick="Livewire.emit('openModal', 'dash.get-name', {{ json_encode(['title' => 'Tambah Virtual Account', 'path' => 'dash.keuangan.billing-create']) }})"
-                            class="inline-flex items-center pl-3 pr-4 py-1.5 border border-transparent text-xs
+                                class="inline-flex items-center pl-3 pr-4 py-1.5 border border-transparent text-xs
                             font-medium rounded shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none
                             focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
-                                fill="currentColor">
-                                <path fill-rule="evenodd"
-                                    d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
-                                    clip-rule="evenodd" />
-                            </svg>
-                            <span>NEW</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
+                                    fill="currentColor">
+                                    <path fill-rule="evenodd"
+                                        d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                                <span>NEW</span>
                             </button> --}}
                         </div>
                         <div class="rounded-b flex flex-col px-2 py-4">
@@ -152,38 +152,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
-
-            <div x-show="isClose" class="w-2/6">
-                <livewire:dash.keuangan.balance />
-                {{-- <div>
-                    <div class="mb-2 flex items-center justify-between py-1">
-                        <div class="text-md font-medium uppercase text-gray-700">
-                            Riwayat Pembayaran Terbaru
-                        </div>
-                    </div>
-                    <div class="flex flex-col space-y-2">
-                        <div class="bg-white rounded shadow">
-                            <div class="flex items-center space-x-4 p-4">
-                                <div class="rounded-full bg-green-100 p-4">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500"
-                                        viewBox="0 0 20 20" fill="currentColor">
-                                        <path fill-rule="evenodd"
-                                            d="M16.707 10.293a1 1 0 010 1.414l-6 6a1 1 0 01-1.414 0l-6-6a1 1 0 111.414-1.414L9 14.586V3a1 1 0 012 0v11.586l4.293-4.293a1 1 0 011.414 0z"
-                                            clip-rule="evenodd" />
-                                    </svg>
-                                </div>
-                                <div>
-                                    <p class="text-xs text-gray-500">
-                                        <x-badge color="gray" text="dfg" />
-                                        Fulan Ahmad
-                                    </p>
-                                    <p class="text-xl text-gray-700 font-semibold">1.000.000</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div> --}}
             </div>
         </div>
     </main>

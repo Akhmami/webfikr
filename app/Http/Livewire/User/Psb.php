@@ -12,7 +12,7 @@ class Psb extends Component
         $data = [];
         $user = User::with([
             'statusPsb', 'lokasiTest', 'medicalCheck',
-            'billerPsb', 'gelombang'
+            'billerPsb', 'gelombang', 'userDetail'
         ])->findOrFail(auth()->id());
 
         $status_psb = $user->statusPsb;
@@ -20,6 +20,27 @@ class Psb extends Component
         $tes_kesehatan = $user->medicalCheck;
         $billing = $user->billerPsb->billing;
         $gel = $user->gelombang;
+
+        $smp = 'hidden';
+        $sma = 'hidden';
+        $internal = 'hidden';
+        $eksternal = 'hidden';
+        if ($user->userDetail->jenjang === 'SMP') {
+            $smp = 'block';
+        }
+
+        if ($user->userDetail->jenjang === 'SMA') {
+            $sma = 'block';
+        }
+
+        if ($user->userDetail->jenis_pendaftaran === 'internal') {
+            $internal = 'block';
+        }
+
+        if ($user->userDetail->jenis_pendaftaran === 'eksternal') {
+            $eksternal = 'block';
+        }
+
 
         $vars = array(
             '{nama}' => $user->name ?? null,
@@ -33,7 +54,14 @@ class Psb extends Component
             '{tgl_pengumuman}' => $gel->tgl_pengumuman ?? null,
             '{tgl_wawancara}' => $gel->tgl_wawancara ?? null,
             '{batas_pembayaran_dupsb}' => $gel->batas_pembayaran ?? null,
-
+            '{if_smp}' => '<div class="' . $smp . '">',
+            '{end_smp}' => '</div>',
+            '{if_sma}' => '<div class="' . $sma . '">',
+            '{end_sma}' => '</div>',
+            '{if_internal}' => '<div class="' . $internal . '">',
+            '{end_internal}' => '</div>',
+            '{if_eksternal}' => '<div class="' . $eksternal . '">',
+            '{end_eksternal}' => '</div>'
         );
 
         $data['description'] = strtr($status_psb->description, $vars);

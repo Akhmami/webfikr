@@ -45,7 +45,7 @@ Route::domain(config('app.domain'))
                 Route::get('/keuangan', [KeuanganController::class, 'index'])
                     ->middleware('permission:lihat billing|edit billing|hapus billing|buat billing')
                     ->name('keuangan.index');
-                Route::get('/keuangan/exports/data', [KeuanganController::class, 'export'])->name('keuangan.export');
+                Route::get('/keuangan/report', [KeuanganController::class, 'report'])->name('keuangan.report');
 
                 # PSB
                 Route::view('/psb', 'dash.psb.index')->middleware('permission:lihat psb')->name('psb.index');
