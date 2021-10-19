@@ -45,7 +45,9 @@ class Psb extends Component
         $vars = array(
             '{nama}' => $user->name ?? null,
             '{no_pendaftaran}' => $user->userDetail->no_pendaftaran ?? null,
-            '{va_psb}' => config('bsi.first_va_number') . ($billing->virtual_account ?? null),
+            '{jenjang}' => $user->userDetail->jenjang,
+            '{jurusan}' => $user->userDetail->jurusan,
+            '{va_psb}' => $billing->virtual_account ?? null,
             '{tagihan_psb}' => rupiah($billing->trx_amount ?? 0),
             '{tahun_pendaftaran}' => $user->tahun_pendaftaran ?? null,
             '{deskripsi_lokasi_tes}' => $lokasi_tes->deskripsi ?? null,
