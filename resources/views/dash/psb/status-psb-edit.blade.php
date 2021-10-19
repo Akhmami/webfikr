@@ -21,7 +21,7 @@
                                 @csrf
                                 @method('PUT')
                                 <div wire:ignore>
-                                    <textarea id="editor" name="description">{!! $stat->description !!}</textarea>
+                                    <textarea class="editor" name="description">{!! $stat->description !!}</textarea>
                                 </div>
                                 <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
                                     <button type="submit"
@@ -39,6 +39,51 @@
 
     @once
     @push('script')
+    <script src="{{ mix('js/tinymce/tinymce.min.js') }}"></script>
+    <script>
+        var editor_config = {
+            path_absolute : "/",
+            selector: '.editor',
+            height: 400,
+            relative_urls: false,
+            plugins: [
+                "advlist autolink lists link image charmap print preview hr anchor pagebreak",
+                "searchreplace wordcount visualblocks visualchars code fullscreen",
+                "insertdatetime media nonbreaking save table directionality",
+                "emoticons template paste textpattern"
+            ],
+            toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image media",
+            file_picker_callback : function(callback, value, meta) {
+                var x = window.innerWidth || document.documentElement.clientWidth || document.getElementsByTagName('body')[0].clientWidth;
+                var y = window.innerHeight|| document.documentElement.clientHeight|| document.getElementsByTagName('body')[0].clientHeight;
+
+                var cmsURL = editor_config.path_absolute + 'laravel-filemanager?editor=' + meta.fieldname;
+                if (meta.filetype == 'image') {
+                    cmsURL = cmsURL + "&type=Images";
+                } else {
+                    cmsURL = cmsURL + "&type=Files";
+                }
+
+                tinyMCE.activeEditor.windowManager.openUrl({
+                    url : cmsURL,
+                    title : 'Filemanager',
+                    width : x * 0.8,
+                    height : y * 0.8,
+                    resizable : "yes",
+                    close_previous : "no",
+                    onMessage: (api, message) => {
+                        callback(message.content);
+                    }
+                });
+            }
+        };
+        tinymce.init(editor_config);
+    </script>
+    @endpush
+    @endonce
+
+    {{-- @once
+    @push('script')
     <script src="https://cdn.ckeditor.com/ckeditor5/29.2.0/classic/ckeditor.js"></script>
     <script>
         ClassicEditor
@@ -53,5 +98,5 @@
             });
     </script>
     @endpush
-    @endonce
+    @endonce --}}
 </x-dash-layout>
