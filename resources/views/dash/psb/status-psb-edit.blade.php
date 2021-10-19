@@ -44,7 +44,7 @@
         var editor_config = {
             path_absolute : "/",
             selector: '.editor',
-            height: 400,
+            height: 500,
             relative_urls: false,
             plugins: [
                 "advlist autolink lists link image charmap print preview hr anchor pagebreak",
