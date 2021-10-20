@@ -80,17 +80,17 @@ class UsersExport implements
         if ($this->sheet === 'userDetail') {
             $array = [
                 $user->userDetail->no_pendaftaran ?? null,
-                $user->userDetail->nik,
-                $user->name,
-                $user->userDetail->nisn,
-                $user->email,
-                $user->gender,
-                $user->birth_place,
-                $user->birth_date,
-                $user->userDetail->jenjang,
-                $user->userDetail->angkatan,
-                $user->userDetail->nama_ayah,
-                $user->userDetail->nama_ibu
+                $user->userDetail->nik ?? null,
+                $user->name ?? null,
+                $user->userDetail->nisn ?? null,
+                $user->email ?? null,
+                $user->gender ?? null,
+                $user->birth_place ?? null,
+                $user->birth_date ?? null,
+                $user->userDetail->jenjang ?? null,
+                $user->userDetail->angkatan ?? null,
+                $user->userDetail->nama_ayah ?? null,
+                $user->userDetail->nama_ibu ?? null
             ];
         }
 
