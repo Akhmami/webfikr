@@ -51,7 +51,7 @@ class UsersExport implements
         }
 
         if ($this->sheet === 'billers') {
-            $users = User::query()->with(['billers', 'userDetail', 'activeGrade']);
+            $users = User::query()->with(['billers', 'userDetail', 'activeGrade', 'latestSpp']);
             $users->whereHas('roles', function ($q) {
                 $q->where('name', 'user');
             });
@@ -112,6 +112,7 @@ class UsersExport implements
                 $user->billers()->active()->sum('cumulative_payment_amount'),
                 $user->billers()->active()->sum('cost_reduction'),
                 $user->billers()->active()->sum('balance_used'),
+                $user->latestSpp->bulan
             ];
         }
 
@@ -168,7 +169,8 @@ class UsersExport implements
                 'Total Tagihan',
                 'Total Transfer',
                 'Total Keringanan',
-                'Saldo terpakai'
+                'Saldo terpakai',
+                'SPP Terbayar'
             ];
         }
 

@@ -44,6 +44,7 @@ class Psb extends Component
 
         $vars = array(
             '{nama}' => $user->name ?? null,
+            '{username}' => $user->username,
             '{no_pendaftaran}' => $user->userDetail->no_pendaftaran ?? null,
             '{jenjang}' => $user->userDetail->jenjang,
             '{jurusan}' => $user->userDetail->jurusan,
