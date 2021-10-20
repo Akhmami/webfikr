@@ -110,7 +110,7 @@ class UsersExport implements
                 $user->billers()->active()->sum('cost_reduction'),
                 $user->billers()->active()->sum('balance_used'),
                 $sisa_tagihan,
-                'Lunas ' . tanggal($user->latestSpp->bulan, 'bulan')
+                'Lunas ' . tanggal(date('m', strtotime($user->latestSpp->bulan)), 'bulan')
             ];
         }
 
