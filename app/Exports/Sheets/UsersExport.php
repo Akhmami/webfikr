@@ -105,7 +105,7 @@ class UsersExport implements
 
         if ($this->sheet == 'billers') {
             $array = [
-                $user->userDetail->no_pendaftaran,
+                $user->userDetail->no_pendaftaran ?? null,
                 $user->name,
                 $user->activeGrade()->first()->nama ?? null,
                 $user->billers()->active()->sum('amount'),
