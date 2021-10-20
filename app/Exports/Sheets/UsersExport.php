@@ -36,10 +36,8 @@ class UsersExport implements
     public function query()
     {
         if ($this->sheet === 'userDetail') {
-            $users = User::query()->with(['userDetail']);
-            $users->whereHas('roles', function ($q) {
-                $q->where('name', 'user');
-            });
+            $users = User::query()->has('activeGrade');
+            $users->load(['userDetail']);
         }
 
         if ($this->sheet === 'mobilePhones') {
@@ -51,10 +49,8 @@ class UsersExport implements
         }
 
         if ($this->sheet === 'billers') {
-            $users = User::query()->with(['billers', 'userDetail', 'activeGrade', 'latestSpp']);
-            $users->whereHas('roles', function ($q) {
-                $q->where('name', 'user');
-            });
+            $users = User::query()->has('activeGrade');
+            $users->load(['billers', 'userDetail', 'latestSpp']);
         }
 
         if ($this->sheet === 'paidBilling') {
