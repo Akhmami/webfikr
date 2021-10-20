@@ -37,7 +37,7 @@ class UsersExport implements
     {
         if ($this->sheet === 'userDetail') {
             $users = User::query()->has('activeGrade');
-            $users->load(['userDetail']);
+            $users->with('userDetail');
         }
 
         if ($this->sheet === 'mobilePhones') {
@@ -50,7 +50,7 @@ class UsersExport implements
 
         if ($this->sheet === 'billers') {
             $users = User::query()->has('activeGrade');
-            $users->load(['billers', 'userDetail', 'latestSpp']);
+            $users->with(['billers', 'userDetail', 'latestSpp']);
         }
 
         if ($this->sheet === 'paidBilling') {
