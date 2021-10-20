@@ -7,8 +7,8 @@
                     @if (!empty($payment))
                     <div class="text-center">
                         <h2 class="text-lg font-semibold">Selesaikan Pembayaran dalam</h2>
-                        <span class="sr-only"
-                            id="date">{{ date('M j, Y H:i:s', strtotime($payment->datetime_expired)) }}</span>
+                        <span class="sr-only" id="date">{{ date('M j, Y H:i:s', strtotime($payment->datetime_expired))
+                            }}</span>
                         <div class="py-2 text-xl font-bold text-red-500" id="demo"></div>
                         <span class="text-sm text-gray-500">Batas Akhir Pembayaran</span>
                         <h2 class="text-lg font-semibold mb-4">{{ $payment->date_expired }}</h2>
@@ -54,7 +54,7 @@
                             <div class="flex items-center space-x-4">
                                 <div class="flex-1 min-w-0">
                                     <p class="text-sm text-gray-500 truncate">
-                                        Nomor Virtual Account <span class="text-xs">(Transfer Bank Lain)</span>
+                                        Nomor Rekening <span class="text-xs">(Transfer Bank Lain)</span>
                                     </p>
                                     <p class="text-lg font-bold truncate">
                                         {{ $payment->full_virtual_account }}
@@ -134,7 +134,8 @@
                                 <li>Pilih "Akademik"</li>
                                 <li>Dibagian "Nama Akademik" cari <strong>9194 - NFBS SERANG</strong></li>
                                 <li>Dibagian "Masukan ID Pelanggan/Kode Bayar" masukan
-                                    <strong>{{ $payment->virtual_account }}</strong></li>
+                                    <strong>{{ $payment->virtual_account }}</strong>
+                                </li>
                                 <li>Klik "SELANJUTNYA"</li>
                                 <li>Masukan nominal
                                     <strong>{{ rupiah(($payment->trx_amount + 2000), false) }}</strong>
@@ -148,7 +149,8 @@
                                 <li>Masukkan kode bank BSI (451) atau pilih bank yang dituju yaitu BSI.</li>
                                 <li>Masukkan nomor Virtual Account Anda
                                     <strong>{{ $payment->full_virtual_account }}</strong>
-                                    pada rekening tujuan.</li>
+                                    pada rekening tujuan.
+                                </li>
                                 <li>Masukan nominal transfer
                                     <strong>{{ rupiah(($payment->trx_amount + 2000), false) }}</strong>
                                 </li>
