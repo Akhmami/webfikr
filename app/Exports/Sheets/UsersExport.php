@@ -100,6 +100,7 @@ class UsersExport implements
         }
 
         if ($this->sheet == 'billers') {
+            $sisa_tagihan = $user->billers()->active()->sum('amount') - ($user->billers()->active()->sum('cumulative_payment_amount') + $user->billers()->active()->sum('cost_reduction') + $user->billers()->active()->sum('balance_used'));
             $array = [
                 $user->userDetail->no_pendaftaran ?? null,
                 $user->name,
@@ -108,7 +109,8 @@ class UsersExport implements
                 $user->billers()->active()->sum('cumulative_payment_amount'),
                 $user->billers()->active()->sum('cost_reduction'),
                 $user->billers()->active()->sum('balance_used'),
-                $user->latestSpp->bulan
+                $sisa_tagihan,
+                'Lunas ' . tanggal($user->latestSpp->bulan, 'bulan')
             ];
         }
 
@@ -166,6 +168,7 @@ class UsersExport implements
                 'Total Transfer',
                 'Total Keringanan',
                 'Saldo terpakai',
+                'Sisa Tagihan',
                 'SPP Terbayar'
             ];
         }
