@@ -311,6 +311,7 @@ class EksternalForm extends Component
         $data['name'] = $data['nama_lengkap'];
         $data['status_psb_id'] = 1;
         $data['gelombang_id'] = $this->gel->id;
+        $data['medical_check_id'] = $this->medical_check_id;
         $data['username'] = $nopeserta;
         $data['no_pendaftaran'] = $nopeserta;
         $data['provinsi'] = $this->prov[$this->provinsi];
