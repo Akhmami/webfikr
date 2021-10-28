@@ -65,9 +65,8 @@ class BillersTable extends DataTableComponent
     public function query(): Builder
     {
         return User::query()
-            ->has('grades')
-            ->whereHas('roles', fn ($query) => $query->where('name', 'user'))
             ->with('userDetail', 'billers', 'activeGrade', 'balance')
+            ->where('status', 'santri')
             ->latest()
             ->when($this->getFilter('kelas'), fn ($query, $kelas) => $query->whereHas(
                 'grades',
