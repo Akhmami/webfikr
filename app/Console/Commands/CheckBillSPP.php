@@ -41,8 +41,8 @@ class CheckBillSPP extends Command
      */
     public function handle()
     {
-        $users = User::has('activeGrade')
-            ->with('setSpp', 'latestSpp', 'billerSPP')
+        $users = User::with('setSpp', 'latestSpp', 'billerSPP')
+            ->where('status', 'santri')
             ->cursor();
 
         foreach ($users as $user) {

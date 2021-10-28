@@ -119,13 +119,9 @@ class Cicilan extends ModalComponent
             DB::beginTransaction();
             try {
                 # Update Biller
-                $biller_cpa = $this->biller->balance_used ?? 0;
-                $cpa_now = $biller_cpa + $this->saldo_terpakai;
-                $paymented = $cpa_now + $this->biller->cost_reduction;
+                $paymented = $this->biller->balance_used + $this->saldo_terpakai + $this->biller->cost_reduction;
                 $is_active = ($paymented < $this->biller->amount) ? 'Y' : 'N';
-                $biller = auth()->user()->billers()->find($this->biller->id);
-                $biller->update([
-                    'balance_used' => $cpa_now,
+                $this->biller->increment('balance_used', $this->saldo_terpakai, [
                     'is_active' => $is_active
                 ]);
 
@@ -162,7 +158,7 @@ class Cicilan extends ModalComponent
                             'bulan' => date('Y-m-d', strtotime($adder, strtotime($this->user->latestSpp->bulan)))
                         ]);
 
-                        $biller->billerDetails()->whereNull('is_paid')->first()->update([
+                        $this->biller->billerDetails()->whereNull('is_paid')->first()->update([
                             'is_paid' => 'Y'
                         ]);
                     }

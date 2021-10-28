@@ -43,6 +43,7 @@ class UseBalance extends ModalComponent
 
     public function bayar()
     {
+        # kalo saldo kurang, bayar sisa tagihan
         if ($this->total_pay > 0) {
             $biller = $this->biller;
             $no_pendaftaran = $biller->user->userDetail->no_pendaftaran;
@@ -80,25 +81,24 @@ class UseBalance extends ModalComponent
             DB::beginTransaction();
             try {
                 # Update Biller
-                $biller_cpa = $this->biller->cumulative_payment_amount ?? 0;
-                $cpa_now = $biller_cpa + $this->saldo_terpakai;
-                $is_active = ($cpa_now < $this->biller->amount) ? 'Y' : 'N';
-
-                auth()->user()->billers()->where('id', $this->biller->id)->update([
-                    'cumulative_payment_amount' => $cpa_now,
+                $paymented = $this->biller->balance_used + $this->saldo_terpakai + $this->biller->cost_reduction;
+                $is_active = ($paymented < $this->biller->amount) ? 'Y' : 'N';
+                $this->biller->increment('balance_used', $this->saldo_terpakai, [
                     'is_active' => $is_active
                 ]);
 
                 # update saldo
                 $currentAmount_from_last = $this->user->balance->current_amount ?? 0;
-                $current_amount = $currentAmount_from_last - $this->saldo_terpakai;
-                $this->user->balance()->update([
-                    'last_amount' => $currentAmount_from_last,
-                    'type' => 'minus',
-                    'nominal' => $this->saldo_terpakai,
-                    'current_amount' => $current_amount,
-                    'description' => 'Saldo terpakai ' . $this->biller->type
-                ]);
+                $this->user->balance()->decrement(
+                    'current_amount',
+                    $this->saldo_terpakai,
+                    [
+                        'last_amount' => $currentAmount_from_last,
+                        'type' => 'minus',
+                        'nominal' => $this->saldo_terpakai,
+                        'description' => 'Saldo terpakai ' . $this->biller->type
+                    ]
+                );
 
                 # buat riwayat pembayaran oleh saldo
                 $payment = $this->user->balance->paymentHistories()->create([
