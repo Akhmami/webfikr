@@ -75,7 +75,8 @@ class EksternalForm extends Component
             'birth_date' => 'required|date_format:Y-m-d',
             'nik' => 'required|min:16|max:16',
             'jenjang' => 'required',
-            'npsn' => 'required|min:6|max:8'
+            'npsn' => 'required|min:6|max:8',
+            'jurusan_pilihan' => 'nullable'
         ],
         2 => [
             'negara' => 'required|min:3|max:150',
@@ -84,7 +85,8 @@ class EksternalForm extends Component
             'kecamatan' => 'required',
             'kelurahan' => 'required',
             'alamat' => 'required|min:10|max:250',
-            'email' => 'required|email'
+            'email' => 'required|email',
+            'medical_check_id' => 'required'
         ],
         3 => [
             'nama_ayah' => 'required',
@@ -311,7 +313,6 @@ class EksternalForm extends Component
         $data['name'] = $data['nama_lengkap'];
         $data['status_psb_id'] = 1;
         $data['gelombang_id'] = $this->gel->id;
-        $data['medical_check_id'] = $this->medical_check_id;
         $data['username'] = $nopeserta;
         $data['no_pendaftaran'] = $nopeserta;
         $data['provinsi'] = $this->prov[$this->provinsi];

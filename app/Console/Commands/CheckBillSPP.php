@@ -47,7 +47,6 @@ class CheckBillSPP extends Command
 
         foreach ($users as $user) {
             $range = date_range($user->latestSpp->bulan);
-            $range = $range + 1; // jangan lupa dihapus
             $month = [
                 '01' => 1,
                 '02' => 2,
@@ -70,52 +69,49 @@ class CheckBillSPP extends Command
                 $addMonth = date('Y-m-d', strtotime("+ {$range} month", strtotime($user->latestSpp->bulan)));
                 $month_only = tanggal($month[date('m', strtotime($addMonth))], 'bulan');
 
-                $latest_biller = $user->billers()->latest('id')->first();
-                if (!empty($latest_biller)) {
+                DB::beginTransaction();
+                try {
+                    $latest_biller = $user->billers()->latest('id')->first();
+                    # Klo tagihan bulan ini belum ada
                     if (date('Y-m', strtotime($latest_biller->created_at)) !== date('Y-m')) {
-                        DB::beginTransaction();
-                        try {
-                            $spp_active = $user->billerSPP;
-                            # masih ada tagihan SPP
-                            if (!empty($spp_active)) {
-                                # set inactive
-                                $user->billerSPP()->update([
-                                    'is_active' => 'N',
-                                ]);
-                            }
-
-                            # buat biller baru
-                            $newBiller = $user->billers()->create([
-                                'amount' => ($spp_perbulan * $range),
-                                'type' => 'SPP',
-                                'is_installment' => ($range > 1 ? 'Y' : 'N'),
-                                'is_active' => 'Y',
-                                'qty_spp' => $range,
-                                'previous_spp_date' => $user->latestSpp->bulan,
-                                'description' => 'Tagihan SPP hingga bulan ' . $month_only
-                            ]);
-
-                            for ($i = 1; $i <= $range; $i++) {
-                                $addMonth = date('Y-m-d', strtotime("+ {$i} month", strtotime($user->latestSpp->bulan)));
-                                $month_only = tanggal($month[date('m', strtotime($addMonth))], 'bulan');
-                                $newBiller->billerDetails()->create([
-                                    'nama' => 'SPP Bulan ' . $month_only,
-                                    'nominal' => $spp_perbulan
-                                ]);
-                            }
-
-                            DB::commit();
-                        } catch (\Throwable $th) {
-                            DB::rollBack();
-                            FailedSppBiller::create([
-                                'user_id' => $user->id,
-                                'name' => $user->name,
-                                'exception' => $th->getMessage()
+                        $spp_active = $user->billerSPP;
+                        # masih ada tagihan SPP
+                        if (!empty($spp_active)) {
+                            # set inactive
+                            $user->billerSPP()->update([
+                                'is_active' => 'N',
                             ]);
                         }
+
+                        # buat biller baru
+                        $newBiller = $user->billers()->create([
+                            'amount' => ($spp_perbulan * $range),
+                            'type' => 'SPP',
+                            'is_installment' => ($range > 1 ? 'Y' : 'N'),
+                            'is_active' => 'Y',
+                            'qty_spp' => $range,
+                            'previous_spp_date' => $user->latestSpp->bulan,
+                            'description' => 'Tagihan SPP hingga bulan ' . $month_only
+                        ]);
+
+                        for ($i = 1; $i <= $range; $i++) {
+                            $addMonth = date('Y-m-d', strtotime("+ {$i} month", strtotime($user->latestSpp->bulan)));
+                            $month_only = tanggal($month[date('m', strtotime($addMonth))], 'bulan');
+                            $newBiller->billerDetails()->create([
+                                'nama' => 'SPP Bulan ' . $month_only,
+                                'nominal' => $spp_perbulan
+                            ]);
+                        }
+
+                        DB::commit();
                     }
-                } else {
-                    $this->info('Error : ' . $user->name);
+                } catch (\Throwable $th) {
+                    DB::rollBack();
+                    FailedSppBiller::create([
+                        'user_id' => $user->id,
+                        'name' => $user->name,
+                        'exception' => $th->getMessage()
+                    ]);
                 }
             }
         }

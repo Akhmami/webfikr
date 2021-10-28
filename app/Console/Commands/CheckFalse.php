@@ -40,12 +40,13 @@ class CheckFalse extends Command
      */
     public function handle()
     {
-        foreach ($this->generator() as $item) {
-            $userDetail = UserDetail::where('no_pendaftaran', $item->no_pendaftaran)->first();
-            if ($userDetail) {
-                $userDetail->jenis_pendaftaran = 'internal';
-                $userDetail->save();
-            }
+        $users = User::has('activeGrade')
+            ->with('setSpp', 'latestSpp', 'billerSPP')
+            ->cursor();
+
+        foreach ($users as $user) {
+            $user->status = 'santri';
+            $user->save();
         }
     }
 
