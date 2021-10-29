@@ -27,7 +27,6 @@ class Cicilan extends ModalComponent
         $qty = $this->biller->qty_spp;
         $keringanan = $this->biller->billerDetails()->sum('keringanan');
         if ($this->biller->type === 'SPP') {
-            $divider = $this->user->setSpp->current;
             $i = 1;
             $val = 0;
             $bd = $this->biller->billerDetails()->whereNull('is_paid')->get();
@@ -119,7 +118,12 @@ class Cicilan extends ModalComponent
             DB::beginTransaction();
             try {
                 # Update Biller
-                $paymented = $this->biller->balance_used + $this->saldo_terpakai + $this->biller->cost_reduction;
+                $paymented = array_sum([
+                    $this->saldo_terpakai,
+                    $this->biller->cumulative_payment_amount,
+                    $this->biller->balance_used,
+                    $this->biller->cost_reduction
+                ]);
                 $is_active = ($paymented < $this->biller->amount) ? 'Y' : 'N';
                 $this->biller->increment('balance_used', $this->saldo_terpakai, [
                     'is_active' => $is_active

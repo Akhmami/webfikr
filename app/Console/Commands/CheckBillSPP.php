@@ -109,7 +109,7 @@ class CheckBillSPP extends Command
                     DB::rollBack();
                     FailedSppBiller::create([
                         'user_id' => $user->id,
-                        'name' => $user->name,
+                        'name' => $user->name . ' => Gagal membuat Tagihan SPP',
                         'exception' => $th->getMessage()
                     ]);
                 }

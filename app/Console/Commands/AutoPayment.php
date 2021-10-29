@@ -2,8 +2,10 @@
 
 namespace App\Console\Commands;
 
+use App\Models\FailedSppBiller;
 use App\Models\User;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\DB;
 
 class AutoPayment extends Command
 {
@@ -38,20 +40,81 @@ class AutoPayment extends Command
      */
     public function handle()
     {
-        $users = User::with('latestSpp', 'billerSPP')
+        $users = User::with('balance', 'latestSpp', 'billerSPP')
             ->whereHas('balance', function ($query) {
                 $query->where('current_amount', '>', 0);
             })
             ->where('status', 'santri')
             ->cursor();
 
+        // dd($users->count());
+
         foreach ($users as $user) {
-            # Get Biller SPP
-            $amount = $user->billerSPP()->sum('amount');
-            $cpa = $user->billerSPP()->sum('cumulative_payment_amount');
-            $cost_reduction = $user->billerSPP()->sum('cost_reduction');
-            $balance_used = $user->billerSPP()->sum('balance_used');
-            $total_amount = $amount - ($cpa + $cost_reduction + $balance_used);
+            if (!empty($user->billerSPP)) {
+                # Get Biller SPP
+                $amount = $user->billerSPP->amount;
+                $cpa = $user->billerSPP->cumulative_payment_amount;
+                $cost_reduction = $user->billerSPP->cost_reduction;
+                $balance_used = $user->billerSPP->balance_used;
+                $sisa_tagihan = $amount - ($cpa + $cost_reduction + $balance_used);
+                $balance = $user->balance->current_amount;
+                $unpaid = $user->billerSPP->billerDetails()->whereNull('is_paid')->first();
+
+                if ($balance >= $unpaid->nominal_setelah_keringanan) {
+                    DB::beginTransaction();
+                    try {
+                        # Update Biller
+                        $paymented = $sisa_tagihan - $unpaid->nominal_setelah_keringanan;
+                        $is_active = ($paymented < $amount) ? 'Y' : 'N';
+                        $user->billerSPP->increment('balance_used', $unpaid->nominal_setelah_keringanan, [
+                            'is_active' => $is_active
+                        ]);
+
+                        # update saldo
+                        $currentAmount_from_last = $balance;
+                        $user->balance()->decrement(
+                            'current_amount',
+                            $unpaid->nominal_setelah_keringanan,
+                            [
+                                'last_amount' => $currentAmount_from_last,
+                                'type' => 'minus',
+                                'nominal' => $unpaid->nominal_setelah_keringanan,
+                                'description' => 'Saldo terpakai ' . $user->billerSPP->type
+                            ]
+                        );
+
+                        # buat riwayat pembayaran oleh saldo
+                        $payment = $user->balance->paymentHistories()->create([
+                            'user_id' => $user->id,
+                            'payment_ntb' => time(),
+                            'customer_name' => $user->name,
+                            'virtual_account' => $user->userDetail->no_pendaftaran,
+                            'payment_amount' => preg_replace('/\D/', '', $unpaid->nominal_setelah_keringanan),
+                            'datetime_payment' => date('Y-m-d H:i:s')
+                        ]);
+
+                        // SPP PAID
+                        $user->spps()->create([
+                            'grade_id' => $user->activeGrade()->first()->id,
+                            'payment_history_id' => $payment->id,
+                            'bulan' => date('Y-m-d', strtotime('+1 month', strtotime($user->latestSpp->bulan)))
+                        ]);
+
+                        $user->billerSPP->billerDetails()->whereNull('is_paid')->first()->update([
+                            'is_paid' => 'Y'
+                        ]);
+
+                        DB::commit();
+                    } catch (\Throwable $th) {
+                        DB::rollBack();
+                        FailedSppBiller::create([
+                            'user_id' => $user->id,
+                            'name' => $user->name . ' => Autopay saldo gagal',
+                            'exception' => $th->getMessage()
+                        ]);
+                    }
+                }
+            }
         }
     }
 }

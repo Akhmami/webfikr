@@ -81,7 +81,12 @@ class UseBalance extends ModalComponent
             DB::beginTransaction();
             try {
                 # Update Biller
-                $paymented = $this->biller->balance_used + $this->saldo_terpakai + $this->biller->cost_reduction;
+                $paymented = array_sum([
+                    $this->saldo_terpakai,
+                    $this->biller->cumulative_payment_amount,
+                    $this->biller->balance_used,
+                    $this->biller->cost_reduction
+                ]);
                 $is_active = ($paymented < $this->biller->amount) ? 'Y' : 'N';
                 $this->biller->increment('balance_used', $this->saldo_terpakai, [
                     'is_active' => $is_active
@@ -116,6 +121,10 @@ class UseBalance extends ModalComponent
                         'grade_id' => $this->user->activeGrade()->first()->id,
                         'payment_history_id' => $payment->id,
                         'bulan' => date('Y-m-d', strtotime('+1 month', strtotime($this->user->latestSpp->bulan)))
+                    ]);
+
+                    $this->biller->billerDetails()->whereNull('is_paid')->first()->update([
+                        'is_paid' => 'Y'
                     ]);
                 }
 
