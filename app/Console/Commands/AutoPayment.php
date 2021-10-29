@@ -53,19 +53,21 @@ class AutoPayment extends Command
             if (!empty($user->billerSPP)) {
                 # Get Biller SPP
                 $amount = $user->billerSPP->amount;
-                $cpa = $user->billerSPP->cumulative_payment_amount;
-                $cost_reduction = $user->billerSPP->cost_reduction;
-                $balance_used = $user->billerSPP->balance_used;
-                $sisa_tagihan = $amount - ($cpa + $cost_reduction + $balance_used);
-                $balance = $user->balance->current_amount;
                 $unpaid = $user->billerSPP->billerDetails()->whereNull('is_paid')->first();
+                $balance = $user->balance->current_amount;
+                # dibayar
+                $paymented = array_sum([
+                    $unpaid->nominal_setelah_keringanan,
+                    $user->billerSPP->cumulative_payment_amount,
+                    $user->billerSPP->balance_used,
+                    $user->billerSPP->cost_reduction
+                ]);
 
                 if ($balance >= $unpaid->nominal_setelah_keringanan) {
                     DB::beginTransaction();
                     try {
                         # Update Biller
-                        $paymented = $sisa_tagihan - $unpaid->nominal_setelah_keringanan;
-                        $is_active = ($paymented < $amount) ? 'Y' : 'N';
+                        $is_active = $paymented < $amount ? 'Y' : 'N';
                         $user->billerSPP->increment('balance_used', $unpaid->nominal_setelah_keringanan, [
                             'is_active' => $is_active
                         ]);

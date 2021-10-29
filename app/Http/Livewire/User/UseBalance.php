@@ -87,7 +87,7 @@ class UseBalance extends ModalComponent
                     $this->biller->balance_used,
                     $this->biller->cost_reduction
                 ]);
-                $is_active = ($paymented < $this->biller->amount) ? 'Y' : 'N';
+                $is_active = $paymented < $this->biller->amount ? 'Y' : 'N';
                 $this->biller->increment('balance_used', $this->saldo_terpakai, [
                     'is_active' => $is_active
                 ]);
