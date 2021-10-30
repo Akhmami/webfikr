@@ -95,7 +95,8 @@ class UsersExport implements
                 $user->user->username,
                 $user->user->name,
                 $user->name,
-                $user->full_number
+                $user->full_number,
+                ($user->is_first == 'Y' ? 'Nomor Utama' : '')
             ];
         }
 
@@ -155,7 +156,8 @@ class UsersExport implements
                 'No Pendaftaran',
                 'Nama Lengkap',
                 'Pemilik Nomor',
-                'Nomor HP'
+                'Nomor HP',
+                'Staus'
             ];
         }
 
