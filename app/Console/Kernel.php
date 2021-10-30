@@ -13,7 +13,8 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        //
+        Commands\AutoPayment::class,
+        Commands\CheckBillSPP::class,
     ];
 
     /**
@@ -24,7 +25,8 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')->hourly();
+        $schedule->command('app:billspp')->monthlyOn(2, '01:00');
+        $schedule->command('app:autopay')->monthlyOn(2, '05:00');
     }
 
     /**
