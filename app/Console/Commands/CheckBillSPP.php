@@ -47,7 +47,6 @@ class CheckBillSPP extends Command
 
         foreach ($users as $user) {
             $range = date_range($user->latestSpp->bulan);
-            $range = $range + 1; // jangan lupa hapus
             $month = [
                 '01' => 1,
                 '02' => 2,
