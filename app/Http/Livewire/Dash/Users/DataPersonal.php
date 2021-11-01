@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Dash\Users;
 
+use App\Models\MobilePhone;
 use Livewire\Component;
 
 class DataPersonal extends Component
@@ -9,8 +10,8 @@ class DataPersonal extends Component
     public $user;
 
     protected $listeners = [
-        'closeAlertValue' => 'index',
-        'closePhoneAlertModal' => 'index'
+        'closeAlertValue' => '$refresh',
+        'closePhoneAlertModal' => '$refresh'
     ];
 
     public function mount($user)
@@ -23,8 +24,17 @@ class DataPersonal extends Component
         return view('livewire.dash.users.data-personal');
     }
 
-    public function index()
+    public function setPrimary(MobilePhone $phone)
     {
-        # code...
+        $this->user->mobilePhones()->update(['is_first' => 'N']);
+        $phone->update(['is_first' => 'Y']);
+
+        $this->dispatchBrowserEvent('swal:modal', [
+            'type' => 'success',
+            'title' => '',
+            'text' => 'Nomor utama berhasil diubah',
+        ]);
+
+        $this->emit('closeAlertValue');
     }
 }

@@ -8,7 +8,7 @@ use Livewire\Component;
 class SettingPhones extends Component
 {
     protected $listeners = [
-        'closePhoneAlertModal' => 'indexPhone'
+        'closePhoneAlertModal' => '$refresh'
     ];
 
     public function render()
@@ -22,10 +22,5 @@ class SettingPhones extends Component
     {
         auth()->user()->mobilePhones()->update(['is_first' => 'N']);
         $phone->update(['is_first' => 'Y']);
-    }
-
-    public function indexPhone()
-    {
-        # code...
     }
 }
