@@ -9,6 +9,7 @@ use App\Libraries\VA;
 use App\Models\Billing;
 use App\Models\Balance;
 use App\Models\PaymentHistory;
+use Illuminate\Support\Facades\Mail;
 
 class CallbackController extends BaseController
 {
@@ -20,6 +21,10 @@ class CallbackController extends BaseController
         if ($data['status'] !== '000') {
             // handling jika gagal
             echo $data['message'];
+            Mail::raw(json_encode($data), function ($message) {
+                $message->to('akhmami@gmail.com')
+                    ->subject('handling gagl');
+            });
             exit;
         } else {
             // check history pembayaran
@@ -28,6 +33,11 @@ class CallbackController extends BaseController
                 echo '{"status":"999", "message":"riwayat pembayaran sudah tersedia"}';
                 exit;
             }
+
+            Mail::raw(json_encode($data), function ($message) {
+                $message->to('akhmami@gmail.com')
+                    ->subject('udah masuk PaymentHistory');
+            });
 
             // check to DB
             $billing = Billing::with(['user', 'biller'])->where('trx_id', $data['trx_id'])->first();
