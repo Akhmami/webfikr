@@ -41,9 +41,7 @@ class RegisteredExport implements
 
         if ($this->sheet === 'mobilePhones') {
             $users = MobilePhone::query()->whereHas('user', function ($q) {
-                $q->whereHas('grades.gradeUsers', function ($query) {
-                    $query->where('is_active', 'Y');
-                });
+                $q->where('tahun_pendaftaran', $this->tahun_pendaftaran);
             });
         }
 
@@ -82,6 +80,8 @@ class RegisteredExport implements
             $array = [
                 $user->user->username,
                 $user->user->name,
+                $user->user->userDetail->jenjang,
+                $user->user->userDetail->jenis_pendaftaran,
                 $user->name,
                 $user->full_number
             ];
@@ -121,6 +121,8 @@ class RegisteredExport implements
             $heading = [
                 'No Pendaftaran',
                 'Nama Lengkap',
+                'Jenjang',
+                'Jenis Pendaftaran',
                 'Pemilik Nomor',
                 'Nomor HP'
             ];

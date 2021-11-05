@@ -8,7 +8,7 @@
             <div class="flex flex-col space-y-4">
 
                 <x-input label="Nama Questionnaire" name="name" livewire />
-                <x-input-addon label="URI" addon="apps.nfbs.or.id/survey/" name="uri" livewire />
+                <x-input-addon label="URI" addon="nfbs.or.id/survey/" name="uri" livewire />
 
             </div>
         </x-slot>

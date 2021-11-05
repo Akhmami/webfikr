@@ -16,14 +16,15 @@ class QuestionnairesTable extends DataTableComponent
     public function columns(): array
     {
         return [
-            Column::make('Nama Questionnaire', 'name')
-                ->sortable()
-                ->searchable(),
+            Column::make('Nama Questionnaire')
+                ->format(function ($value, $column, $row) {
+                    return view('livewire.dash.questionnaire-name', ['data' => $row]);
+                }),
             Column::make('Link')
                 ->sortable()
                 ->searchable()
                 ->format(function ($value, $column, $row) {
-                    return '<a href="' . route('dash.users.show', $row->id) . '" class="text-indigo-600 font-semibold hover:underline cursor-pointer">' . route('dash.users.show', $row->id) . '</a>';
+                    return '<a href="' . route('survey', $row->uri) . '" class="text-indigo-600 font-semibold hover:underline cursor-pointer">' . route('survey', $row->uri) . '</a>';
                 })
                 ->asHtml(),
             Column::make('Actions')
@@ -37,6 +38,7 @@ class QuestionnairesTable extends DataTableComponent
     {
         return Questionnaire::query()
             ->with('questions')
+            ->where('status', 1)
             ->latest();
     }
 }

@@ -1,5 +1,7 @@
 <div>
-    <button type="button" onclick="Livewire.emit('openModal', 'dash.question-create')" title="tambah pertanyaan"
+    <button type="button"
+        onclick="Livewire.emit('openModal', 'dash.question-create', {{ json_encode(['questionnaire' => $data->id]) }})"
+        title="tambah pertanyaan"
         class="group inline-flex items-center p-2 border border-transparent rounded-full shadow-sm text-white bg-gray-200 hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-500 group-hover:text-white" fill="none"
             viewBox="0 0 24 24" stroke="currentColor">
@@ -7,7 +9,9 @@
         </svg>
     </button>
 
-    <button type="button" onclick="" title="daftar pertanyaan"
+    <button type="button"
+        onclick="Livewire.emit('openModal', 'dash.question-list', {{ json_encode(['questionnaire' => $data->id]) }})"
+        title="daftar pertanyaan"
         class="group inline-flex items-center p-2 border border-transparent rounded-full shadow-sm text-white bg-gray-200 hover:bg-green-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-500 group-hover:text-white" fill="none"
             viewBox="0 0 24 24" stroke="currentColor">

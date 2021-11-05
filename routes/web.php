@@ -10,6 +10,7 @@ use App\Http\Controllers\Dash\UserController;
 use App\Http\Controllers\Dash\WebsiteController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\PsbController;
+use App\Http\Controllers\SurveyController;
 
 /*
 |--------------------------------------------------------------------------
@@ -75,6 +76,8 @@ Route::domain(config('app.domain'))
         Route::get('/{slug}', [PostController::class, 'show'])->name('post.show');
         Route::get('/category/{category}', [PostController::class, 'category'])->name('category');
         Route::get('/author/{author}', [PostController::class, 'author'])->name('author');
+        # Survey
+        Route::get('/survey/{uri}', [SurveyController::class, 'index'])->name('survey');
         // ajax
         Route::get('/facility/{facility}/get-more', [PostController::class, 'subfacilities'])->name('post.subfacility');
     });
