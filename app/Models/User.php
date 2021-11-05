@@ -228,4 +228,9 @@ class User extends Authenticatable
     {
         return $this->belongsTo(LokasiTest::class);
     }
+
+    public function questionnaires()
+    {
+        return $this->hasMany(Questionnaire::class);
+    }
 }

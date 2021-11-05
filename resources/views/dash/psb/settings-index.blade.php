@@ -23,8 +23,6 @@
                                 @include('dash.psb.settings-menu')
 
                                 <div x-show="tab == '#gelombang'" x-cloak class="lg:col-span-10">
-                                    @csrf
-                                    @method('PUT')
                                     <!-- Profile section -->
                                     <div class="py-6 px-4 sm:p-6 lg:pb-8">
                                         <div class="flex justify-between items-center">
@@ -51,8 +49,6 @@
                                 </div>
 
                                 <div x-show="tab == '#internal'" x-cloak class="lg:col-span-10">
-                                    @csrf
-                                    @method('PUT')
                                     <!-- Profile section -->
                                     <div class="py-6 px-4 sm:p-6 lg:pb-8">
                                         <div class="flex justify-between items-center">
@@ -74,6 +70,59 @@
 
                                         <div class="mt-6">
                                             <livewire:dash.psb.internal />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div x-show="tab == '#medical'" x-cloak class="lg:col-span-10">
+                                    <!-- Profile section -->
+                                    <div class="py-6 px-4 sm:p-6 lg:pb-8">
+                                        <div class="flex justify-between items-center">
+                                            <h2 class="text-lg leading-6 font-medium text-gray-900">
+                                                Medical Check
+                                            </h2>
+                                            <button type="button"
+                                                onclick="Livewire.emit('openModal', 'dash.psb.gelombang-create')"
+                                                class="inline-flex items-center pl-3 pr-4 py-1.5 border border-transparent text-xs font-medium rounded shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
+                                                    viewBox="0 0 20 20" fill="currentColor">
+                                                    <path fill-rule="evenodd"
+                                                        d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
+                                                        clip-rule="evenodd" />
+                                                </svg>
+                                                <span>NEW</span>
+                                            </button>
+                                        </div>
+
+                                        <div class="mt-6">
+                                            {{--
+                                            <livewire:dash.psb.internal /> --}}
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div x-show="tab == '#questionnaire'" x-cloak class="lg:col-span-10">
+                                    <!-- Profile section -->
+                                    <div class="py-6 px-4 sm:p-6 lg:pb-8">
+                                        <div class="flex justify-between items-center">
+                                            <h2 class="text-lg leading-6 font-medium text-gray-900">
+                                                Questionnaire
+                                            </h2>
+                                            <button type="button"
+                                                onclick="Livewire.emit('openModal', 'dash.questionnaire-create')"
+                                                class="inline-flex items-center pl-3 pr-4 py-1.5 border border-transparent text-xs font-medium rounded shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
+                                                    viewBox="0 0 20 20" fill="currentColor">
+                                                    <path fill-rule="evenodd"
+                                                        d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
+                                                        clip-rule="evenodd" />
+                                                </svg>
+                                                <span>NEW</span>
+                                            </button>
+                                        </div>
+
+                                        <div class="mt-6">
+                                            <livewire:dash.questionnaires-table />
                                         </div>
                                     </div>
                                 </div>
