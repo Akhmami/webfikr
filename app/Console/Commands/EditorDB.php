@@ -40,7 +40,7 @@ class EditorDB extends Command
     public function handle()
     {
         foreach ($this->generator() as $item) {
-            $user = UserDetail::where('no_pendaftaran', $item->no_pendaftaran)->fitst();
+            $user = UserDetail::where('no_pendaftaran', $item->no_pendaftaran)->first();
             $user->jenis_pendaftaran = 'internal';
             $user->save();
             $this->info('OK');
