@@ -16,7 +16,8 @@ class CreateQuestionnairesTable extends Migration
         Schema::create('questionnaires', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->string('name');
+            $table->string('title');
+            $table->text('description')->nullable();
             $table->enum('role', ['guest', 'user']);
             $table->tinyInteger('status')->default(0); // 1 == psb
             $table->string('uri')->unique();

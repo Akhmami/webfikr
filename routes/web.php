@@ -78,6 +78,7 @@ Route::domain(config('app.domain'))
         Route::get('/author/{author}', [PostController::class, 'author'])->name('author');
         # Survey
         Route::get('/survey/{uri}', [SurveyController::class, 'index'])->name('survey');
+        Route::post('/survey/{id}', [SurveyController::class, 'store'])->name('survey.store');
         // ajax
         Route::get('/facility/{facility}/get-more', [PostController::class, 'subfacilities'])->name('post.subfacility');
     });

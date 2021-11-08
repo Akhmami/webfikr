@@ -7,7 +7,7 @@
         <x-slot name="content">
             <div class="flex flex-col space-y-4">
 
-                <x-input label="Nama Questionnaire" name="name" livewire />
+                <x-input label="Judul Questionnaire" name="title" livewire />
                 <x-input-addon label="URI" addon="nfbs.or.id/survey/" name="uri" livewire />
 
             </div>

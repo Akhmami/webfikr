@@ -11,7 +11,7 @@ class Questionnaire extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name', 'role', 'status', 'uri'
+        'title', 'description', 'role', 'status', 'uri'
     ];
 
     public function questions()

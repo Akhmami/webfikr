@@ -16,7 +16,7 @@ class QuestionnairesTable extends DataTableComponent
     public function columns(): array
     {
         return [
-            Column::make('Nama Questionnaire')
+            Column::make('Judul Questionnaire')
                 ->format(function ($value, $column, $row) {
                     return view('livewire.dash.questionnaire-name', ['data' => $row]);
                 }),
@@ -40,5 +40,10 @@ class QuestionnairesTable extends DataTableComponent
             ->with('questions')
             ->where('status', 1)
             ->latest();
+    }
+
+    public function destroy()
+    {
+        # code...
     }
 }

@@ -7,13 +7,14 @@ use LivewireUI\Modal\ModalComponent;
 class QuestionnaireCreate extends ModalComponent
 {
     public $user;
-    public $name;
+    public $title;
     public $uri;
     public $role = 'user';
     public $status = 1;
 
     protected $rules = [
-        'name' => 'required|min:3',
+        'title' => 'required|min:3',
+        'description' => 'nullable',
         'uri' => 'required|unique:questionnaires|min:3',
         'role' => 'nullable',
         'status' => 'nullable'
