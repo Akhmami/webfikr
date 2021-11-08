@@ -8,6 +8,7 @@ class QuestionnaireCreate extends ModalComponent
 {
     public $user;
     public $title;
+    public $description;
     public $uri;
     public $role = 'user';
     public $status = 1;

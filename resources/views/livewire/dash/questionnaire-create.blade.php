@@ -9,6 +9,7 @@
 
                 <x-input label="Judul Questionnaire" name="title" livewire />
                 <x-input-addon label="URI" addon="nfbs.or.id/survey/" name="uri" livewire />
+                <x-textarea label="Deskripsi" name="description" livewire />
 
             </div>
         </x-slot>
