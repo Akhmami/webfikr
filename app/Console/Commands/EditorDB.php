@@ -49,7 +49,7 @@ class EditorDB extends Command
 
     private function generator()
     {
-        $sheets = SheetDB::get('https://sheetdb.io/api/v1/n8q4yb5v6rps1');
+        $sheets = SheetDB::get('https://sheetdb.io/api/v1/7keosobjqp252');
 
         foreach ($sheets as $sheet) {
             yield $sheet;
