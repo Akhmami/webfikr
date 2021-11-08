@@ -51,10 +51,10 @@
                         </div>
                     </div>
                     <div class="hidden lg:flex lg:items-center lg:space-x-6">
-                        <a href="#"
+                        {{-- <a href="#"
                             class="py-2 px-6 bg-warm-gray-100 border border-transparent rounded-md text-base font-medium text-warm-gray-900 hover:bg-warm-gray-200">
                             Login
-                        </a>
+                        </a> --}}
                     </div>
                 </nav>
             </div>
