@@ -12,4 +12,9 @@ class QuestionnaireQuestion extends Model
     protected $fillable = [
         'question', 'questionnaire_question_type_id'
     ];
+
+    public function answerFirst()
+    {
+        return $this->hasOne(QuestionnaireAnswer::class)->latest();
+    }
 }

@@ -26,10 +26,10 @@ class SurveyController extends Controller
     public function store(Request $request, $id)
     {
         $request->validate([
-            'answer.*' => 'required|max:250'
+            'answers.*' => 'required|max:500'
         ], [
-            'answer.*.required' => 'Jawaban harus diisi!',
-            'answer.*.max' => 'Maksimal 250 karakter'
+            'answers.*.required' => 'Jawaban harus diisi!',
+            'answers.*.max' => 'Maksimal 500 karakter'
         ]);
 
         DB::beginTransaction();

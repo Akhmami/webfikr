@@ -205,7 +205,8 @@
                                 <div class="mt-2 border-b border-gray-300 focus-within:border-indigo-600">
                                     <input type="text" name="answers[{{$question->id}}]"
                                         class="block w-full border-0 border-b border-transparent bg-gray-50 focus:border-indigo-600 focus:ring-0 sm:text-sm"
-                                        placeholder="Masukan jawaban" value="{{ old('answers.'.$question->id) }}">
+                                        placeholder="Masukan jawaban"
+                                        value="{{ old('answers.'.$question->id) ?? ($question->answerFirst->answer ?? null) }}">
                                 </div>
                                 @error ('answers.'.$question->id)
                                 <p class="mt-2 text-xs font-semibold text-red-600">{{ $message }}</p>
