@@ -15,6 +15,6 @@ class QuestionnaireQuestion extends Model
 
     public function answerFirst()
     {
-        return $this->hasOne(QuestionnaireAnswer::class)->latest();
+        return $this->hasOne(QuestionnaireAnswer::class)->where('user_id', auth()->id())->latest();
     }
 }

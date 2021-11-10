@@ -43,7 +43,7 @@ class AuthController extends BaseController
 
     public function me(Request $request)
     {
-        return $request->user();
+        return $request->user()->with('userDetail');
     }
 
     /**
