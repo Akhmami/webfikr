@@ -13,6 +13,11 @@ class QuestionnaireQuestion extends Model
         'question', 'questionnaire_question_type_id'
     ];
 
+    public function answers()
+    {
+        return $this->hasMany(QuestionnaireAnswer::class);
+    }
+
     public function answerFirst()
     {
         return $this->hasOne(QuestionnaireAnswer::class)->where('user_id', auth()->id())->latest();

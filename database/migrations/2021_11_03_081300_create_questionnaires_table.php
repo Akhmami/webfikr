@@ -21,6 +21,7 @@ class CreateQuestionnairesTable extends Migration
             $table->enum('role', ['guest', 'user']);
             $table->tinyInteger('status')->default(0); // 1 == psb
             $table->string('uri')->unique();
+            $table->char('tahun_psb', 4)->nullable();
             $table->timestamps();
         });
     }

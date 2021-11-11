@@ -12,4 +12,9 @@ class QuestionnaireAnswer extends Model
     protected $fillable = [
         'user_id', 'questionnaire_question_id', 'answer'
     ];
+
+    public function scopeAnswerApiFirst($query, $value)
+    {
+        return $query->where('user_id', $value);
+    }
 }
