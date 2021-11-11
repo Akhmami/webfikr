@@ -3,6 +3,8 @@
 namespace App\Console\Commands;
 
 use App\Libraries\SheetDB;
+use App\Models\QuestionnaireAnswer;
+use App\Models\User;
 use App\Models\UserDetail;
 use Illuminate\Console\Command;
 
@@ -39,10 +41,16 @@ class EditorDB extends Command
      */
     public function handle()
     {
-        foreach ($this->generator() as $item) {
-            $user = UserDetail::where('no_pendaftaran', $item->no_pendaftaran)->first();
-            $user->jenis_pendaftaran = 'internal';
-            $user->save();
+        // foreach ($this->generator() as $item) {
+        //     $user = UserDetail::where('no_pendaftaran', $item->no_pendaftaran)->first();
+        //     $user->jenis_pendaftaran = 'internal';
+        //     $user->save();
+        //     $this->info('OK');
+        // }
+
+        $answers = QuestionnaireAnswer::get()->groupBy('user_id');
+        foreach ($answers as $answer) {
+            User::find($answer->user_id)->update(['questionnaire_psb' => 1]);
             $this->info('OK');
         }
     }
