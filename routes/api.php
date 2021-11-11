@@ -30,6 +30,8 @@ Route::post('/callback/payments', [CallbackController::class, 'index']);
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('/me', [AuthController::class, 'me']);
     Route::post('/logout', [AuthController::class, 'logout']);
-    Route::post('/user', [UserController::class, 'user']);
-    Route::post('/survey/psb', [SurveyController::class, 'psb']);
+    Route::middleware('role:super-admin|admin')->group(function () {
+        Route::post('/user', [UserController::class, 'user']);
+        Route::post('/survey/psb', [SurveyController::class, 'psb']);
+    });
 });
