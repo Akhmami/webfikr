@@ -40,7 +40,8 @@ class User extends Authenticatable
         'jalur_masuk',
         'tahun_pendaftaran',
         'tahun_ajaran',
-        'status'
+        'status',
+        'questionnaire_psb'
     ];
 
     /**

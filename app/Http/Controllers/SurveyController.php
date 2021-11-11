@@ -42,6 +42,8 @@ class SurveyController extends Controller
                 ]);
             }
 
+            auth()->user()->update(['questionnaire_psb' => 1]);
+
             DB::commit();
 
             return back()->with('success', 'Questionnaire telah terisi, terima kasih atas waktunya.');
