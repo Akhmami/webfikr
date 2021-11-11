@@ -24,7 +24,7 @@ $text = [
         {{ $text[$data->status_psb_id] }}
     </span>
 
-    @if ($data->questionnaire_psb !== null)
+    @if ($data->questionnaire_psb === 1)
     <a href="#" title="Questionnaire terisi">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500" viewBox="0 0 20 20" fill="currentColor">
             <path fill-rule="evenodd"

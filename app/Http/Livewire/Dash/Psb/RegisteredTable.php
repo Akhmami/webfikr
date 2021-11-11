@@ -50,6 +50,12 @@ class RegisteredTable extends DataTableComponent
             'toDate' => Filter::make('Sampai tanggal')
                 ->date([
                     'max' => now()->format('Y-m-d')
+                ]),
+            'questionnairePsb' => Filter::make('Questionnaire')
+                ->select([
+                    '' => 'Semua',
+                    1 => 'Terisi',
+                    0 => 'Belum terisi',
                 ])
         ];
     }
@@ -63,7 +69,8 @@ class RegisteredTable extends DataTableComponent
             ->where('tahun_pendaftaran', $activeYear->periode)
             ->latest('id')
             ->when($this->getFilter('fromDate'), fn ($query, $fromDate) => $query->whereDate('created_at', '>=', $fromDate))
-            ->when($this->getFilter('toDate'), fn ($query, $toDate) => $query->whereDate('created_at', '<=', $toDate));
+            ->when($this->getFilter('toDate'), fn ($query, $toDate) => $query->whereDate('created_at', '<=', $toDate))
+            ->when($this->getFilter('questionnairePsb'), fn ($query, $questionnairePsb) => $query->where('questionnaire_psb', $questionnairePsb));
     }
 
     public function setTerbayar(User $user)
