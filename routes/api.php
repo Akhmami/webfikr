@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\CallbackController;
@@ -32,6 +31,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::middleware('role:super-admin|admin')->group(function () {
         Route::post('/user', [UserController::class, 'user']);
+        Route::post('/user/psb', [UserController::class, 'psb']);
         Route::post('/survey/psb', [SurveyController::class, 'psb']);
     });
 });
