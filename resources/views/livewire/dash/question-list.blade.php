@@ -8,7 +8,7 @@
         <div class="px-4 border-t border-gray-200">
             <dl>
                 @foreach ($questions as $question)
-                <div class="py-4 sm:py-5 sm:flex items-center justify-between">
+                <div class="py-4 sm:py-5 sm:flex items-center justify-between space-x-4">
                     <dt class="text-sm font-medium text-gray-500">
                         {{ $question->question }}
                     </dt>
