@@ -43,7 +43,8 @@ module.exports = {
         safelist: [
             'sm:max-w-2xl',
             'sm:max-w-sm',
-            'hidden'
+            'hidden',
+            'break-words'
         ]
     },
     plugins: [
