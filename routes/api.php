@@ -33,5 +33,6 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::post('/user', [UserController::class, 'user']);
         Route::post('/user/psb', [UserController::class, 'psb']);
         Route::post('/survey/psb', [SurveyController::class, 'psb']);
+        Route::get('/user/administrasi', [UserController::class, 'administrasi']);
     });
 });
