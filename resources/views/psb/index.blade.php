@@ -246,7 +246,9 @@
                     @endif
                     @else
                     @if (Route::is('psb.internal'))
+                    @if (!$expired)
                     <livewire:psb.internal-form />
+                    @endif
                     @else
                     @include('psb.show')
                     @endif
