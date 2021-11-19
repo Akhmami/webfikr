@@ -91,6 +91,7 @@ Route::domain('apps.' . config('app.domain'))
         Route::view('/', 'user.index')->name('home');
         Route::view('/pembayaran', 'user.pembayaran')->name('pembayaran');
         Route::view('/spp', 'user.spp')->name('spp');
+        Route::view('/pas', 'user.pas')->name('pas');
         # Survey
         Route::get('/survey/{uri}', [SurveyController::class, 'index'])->name('survey');
         Route::post('/survey/{id}', [SurveyController::class, 'store'])->name('survey.store');
