@@ -248,6 +248,24 @@
                     @if (Route::is('psb.internal'))
                     @if (!$expired)
                     <livewire:psb.internal-form />
+                    @else
+                    <div class="bg-white rounded-xl">
+                        <div class="text-center py-12 px-4 sm:px-6 lg:py-16 lg:px-8">
+                            <h2 class="tracking-tight text-gray-900 sm:text-4xl">
+                                <span class="block text-3xl font-extrabold">Pendaftaran Ditutup</span>
+                                <span class="block text-xl text-gray-500 font-light">Silahkan login untuk melihat
+                                    hasil.</span>
+                            </h2>
+                            <div class="mt-4 flex justify-center">
+                                <div class="inline-flex rounded-md shadow">
+                                    <a href="{{ route('user.home') }}"
+                                        class="inline-flex items-center justify-center px-6 py-2 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700">
+                                        login
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     @endif
                     @else
                     @include('psb.show')
