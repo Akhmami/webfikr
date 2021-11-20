@@ -82,7 +82,7 @@
             </div>
             <div class="w-1/5 bg-gray-200 text-gray-400 text-center">Photo</div>
         </div>
-        <div class="pt-8">
+        <div class="pt-4">
             @if ($user->userDetail->jenjang === 'SMP')
             <table class="text-sm w-full border-collapse border">
                 <tr>
@@ -173,22 +173,108 @@
                     </td>
                 </tr>
             </table>
-            <div class="flex justify-between items-center pt-4">
-                <div class="flex flex-col items-start p-2 text-sm space-y-2 border-2">
-                    <div>Akses Aplikasi: https://cbt.nfbsnet.edu</div>
-                    <div>Username: {{ $cbt->data->username }}</div>
-                    <div>Password: {{ $cbt->data->password }}</div>
-                </div>
-                <div class="">
-                    <div>Kepala Sekolah</div>
-                    <br><br>
-                    <div class="font-bold">
-                        Irmawati, S.Pd.
-                    </div>
-                </div>
-            </div>
             @else
-            <img class="w-full h-auto" src="{{ asset('images/pas-sma.png') }}" alt="Jadwal SMA">
+            <table class="text-sm w-full border-collapse border">
+                <tr>
+                    <th rowspan="2" class="border">No.</th>
+                    <th rowspan="2" class="border w-2/12">Hari/Tgl</th>
+                    <th rowspan="2" class="border">Waktu</th>
+                    <th colspan="2" class="border">Mata Pelajaran</th>
+                    <th rowspan="2" class="w-2/12 border">Paraf</th>
+                </tr>
+                <tr>
+                    <th class="border text-center">IPA</th>
+                    <th class="border text-center">IPS</th>
+                </tr>
+
+                <tr>
+                    <td rowspan="2" class="border text-center">1</td>
+                    <td rowspan="2" class="border w-2/12 text-center">Senin,
+                        6 Desember 2021</td>
+                    <td class="border text-center">07.30 – 09.00</td>
+                    <td class="border text-center">MATEMATIKA WAJIB</td>
+                    <td class="border text-center">MATEMATIKA WAJIB</td>
+                    <td class="p-1">1.</td>
+                </tr>
+                <tr>
+                    <td class="border text-center">09.30 – 11.00</td>
+                    <td class="border text-center">SEJARAH WAJIB</td>
+                    <td class="border text-center">SEJARAH WAJIB</td>
+                    <td class="p-1">2.</td>
+                </tr>
+
+                <tr>
+                    <td rowspan="2" class="border text-center">2</td>
+                    <td rowspan="2" class="border w-2/12 text-center">Selasa,
+                        7 Desember 2021</td>
+                    <td class="border text-center">07.30 – 09.00</td>
+                    <td class="border text-center">KIMIA</td>
+                    <td class="border text-center">SOSIOLOGI</td>
+                    <td class="p-1">3.</td>
+                </tr>
+                <tr>
+                    <td class="border text-center">09.30 – 11.00</td>
+                    <td class="border text-center">BAHASA ARAB</td>
+                    <td class="border text-center">BAHASA ARAB</td>
+                    <td class="p-1">4.</td>
+                </tr>
+
+                <tr>
+                    <td rowspan="2" class="border text-center">3</td>
+                    <td rowspan="2" class="border w-2/12 text-center">Rabu,
+                        8 Desember 2021</td>
+                    <td class="border text-center">07.30 – 09.00</td>
+                    <td class="border text-center">FISIKA</td>
+                    <td class="border text-center">EKONOMI</td>
+                    <td class="p-1">5.</td>
+                </tr>
+                <tr>
+                    <td class="border text-center">09.30 – 11.00</td>
+                    <td class="border text-center">BAHASA INDONESIA</td>
+                    <td class="border text-center">BAHASA INDONESIA</td>
+                    <td class="p-1">6.</td>
+                </tr>
+
+                <tr>
+                    <td rowspan="2" class="border text-center">4</td>
+                    <td rowspan="2" class="border w-2/12 text-center">Kamis,
+                        9 Desember 2021</td>
+                    <td class="border text-center">07.30 – 09.00</td>
+                    <td class="border text-center">BIOLOGI</td>
+                    <td class="border text-center">GEOGRAFI</td>
+                    <td class="p-1">7.</td>
+                </tr>
+                <tr>
+                    <td class="border text-center">09.30 – 11.00</td>
+                    <td class="border text-center">BAHASA INGGRIS</td>
+                    <td class="border text-center">BAHASA INGGRIS</td>
+                    <td class="p-1">8.</td>
+                </tr>
+
+                <tr>
+                    <td rowspan="2" class="border text-center">5</td>
+                    <td rowspan="2" class="border w-2/12 text-center">Jum'at,
+                        10 Desember 2021</td>
+                    <td class="border text-center">07.30 – 09.00</td>
+                    <td class="border text-center">MATEMATIKA PEMINATAN</td>
+                    <td class="border text-center">SEJARAH PEMINATAN</td>
+                    <td class="p-1">9.</td>
+                </tr>
+                <tr>
+                    <td class="border text-center">09.30 – 11.00</td>
+                    <td class="border text-center">PENDIDIKAN AGAMA ISLAM</td>
+                    <td class="border text-center">PENDIDIKAN AGAMA ISLAM</td>
+                    <td class="p-1">10.</td>
+                </tr>
+
+                <tr>
+                    <td rowspan="2" class="border text-center">6</td>
+                    <td rowspan="2" class="border w-2/12 text-center">Sabtu,
+                        11 Desember 2021</td>
+                    <td colspan="4" rowspan="2" class="border text-center">PAS SUSULAN</td>
+                </tr>
+            </table>
+            @endif
             <div class="flex justify-between items-center pt-4">
                 <div class="flex flex-col items-start p-2 text-sm space-y-2 border-2">
                     <div>Akses Aplikasi: https://cbt.nfbsnet.edu</div>
@@ -199,11 +285,14 @@
                     <div>Kepala Sekolah</div>
                     <br><br>
                     <div class="font-bold">
+                        @if ($user->userDetail->jenjang === 'SMP')
+                        Irmawati, S.Pd.
+                        @else
                         Hari Untung Maulana, M.Pd.
+                        @endif
                     </div>
                 </div>
             </div>
-            @endif
         </div>
 
         <div class="pt-14">
