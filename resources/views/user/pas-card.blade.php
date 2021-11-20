@@ -183,16 +183,26 @@
                     <div>Kepala Sekolah</div>
                     <br><br>
                     <div class="font-bold">
-                        @if ($user->userDetail->jenjang === 'SMP')
                         Irmawati, S.Pd.
-                        @else
-                        Hari Untung Maulana, M.Pd.
-                        @endif
                     </div>
                 </div>
             </div>
             @else
-            Jadwal Tersesia disekolah
+            <img class="w-full h-auto" src="{{ asset('images/pas-sma.png') }}" alt="Jadwal SMA">
+            <div class="flex justify-between items-center pt-4">
+                <div class="flex flex-col items-start p-2 text-sm space-y-2 border-2">
+                    <div>Akses Aplikasi: https://cbt.nfbsnet.edu</div>
+                    <div>Username: {{ $cbt->data->username }}</div>
+                    <div>Password: {{ $cbt->data->password }}</div>
+                </div>
+                <div class="">
+                    <div>Kepala Sekolah</div>
+                    <br><br>
+                    <div class="font-bold">
+                        Hari Untung Maulana, M.Pd.
+                    </div>
+                </div>
+            </div>
             @endif
         </div>
 
