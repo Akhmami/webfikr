@@ -48,11 +48,11 @@ class EditorDB extends Command
         //     $this->info('OK');
         // }
 
-        $answers = QuestionnaireAnswer::get();
-        foreach ($answers as $answer) {
-            User::find($answer->user_id)->update(['questionnaire_psb' => 1]);
-            $this->info('OK');
-        }
+        // $answers = QuestionnaireAnswer::get();
+        // foreach ($answers as $answer) {
+        //     User::find($answer->user_id)->update(['questionnaire_psb' => 1]);
+        //     $this->info('OK');
+        // }
     }
 
     private function generator()
