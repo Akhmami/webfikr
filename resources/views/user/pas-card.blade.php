@@ -208,6 +208,15 @@
             </button>
         </div>
     </div>
+
+    <script type="text/javascript">
+        // <![CDATA[
+            document.body.onload = function() {
+                document.body.offsetHeight;
+                window.print()
+            };
+            // ]]>
+    </script>
 </body>
 
 </html>
