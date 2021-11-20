@@ -43,7 +43,7 @@
                                         <div class="text-xl font-semibold">{{ $cbt->data->nama }}</div>
                                         <div>Kelas {{ $cbt->data->kelas }}</div>
                                         <div class="flex flex-col items-start pt-4 text-sm space-y-2">
-                                            <div>Akses Aplikasi: https://cbt.nfbsnet.edu</div>
+                                            <div>Akses Aplikasi: https://cbt.nfbsnet.edu (Lokal Server)</div>
                                             <div>Username: {{ $cbt->data->username }}</div>
                                             <div>Password: {{ $cbt->data->password }}</div>
                                         </div>
