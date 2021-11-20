@@ -51,7 +51,8 @@
                                 </div>
                             </div>
                         </div>
-                        <a href="#" class="mt-2 block text-sm text-blue-500 font-medium hover:underline">
+                        <a href="{{ route('user.pas.print', auth()->id()) }}"
+                            class="mt-2 block text-sm text-blue-500 font-medium hover:underline">
                             Lihat selengkapnya
                         </a>
                     </div>

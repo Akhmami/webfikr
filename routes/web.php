@@ -11,6 +11,7 @@ use App\Http\Controllers\Dash\WebsiteController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\PsbController;
 use App\Http\Controllers\SurveyController;
+use App\Http\Controllers\IDCardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -92,7 +93,7 @@ Route::domain('apps.' . config('app.domain'))
         Route::view('/pembayaran', 'user.pembayaran')->name('pembayaran');
         Route::view('/spp', 'user.spp')->name('spp');
         Route::view('/pas', 'user.pas')->name('pas');
-        Route::view('/pas/print', 'user.pas-card')->name('pas.print');
+        Route::get('/pas/print/{id}', [IDCardController::class, 'index'])->name('pas.print');
         # Survey
         Route::get('/survey/{uri}', [SurveyController::class, 'index'])->name('survey');
         Route::post('/survey/{id}', [SurveyController::class, 'store'])->name('survey.store');
