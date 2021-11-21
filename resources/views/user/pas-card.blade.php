@@ -9,6 +9,15 @@
     <link rel="stylesheet" href="{{ asset('css/pas.css') }}">
     <style>
         @media print {
+
+            html,
+            body {
+                height: 100%;
+                margin: 0 !important;
+                padding: 0 !important;
+                overflow: hidden;
+            }
+
             #button-print {
                 visibility: hidden;
             }
@@ -89,88 +98,73 @@
                     <th class="border">No.</th>
                     <th class="border w-2/12">Hari/Tgl</th>
                     <th class="border">Waktu</th>
-                    <th class="border">Pelajaran</th>
+                    <th class="border">Mata Pelajaran</th>
                     <th class="w-2/12 border">Paraf</th>
                 </tr>
+
                 <tr>
-                    <td class="border text-center p-1">1</td>
-                    <td class="border text-center p-1">Senin, 6 Desember 2021</td>
-                    <td class="border text-center p-1">
-                        <div>07.30 – 08.30</div>
-                        <div>09.00 – 10.30</div>
-                    </td>
-                    <td class="border text-center p-1">
-                        <div>PAI</div>
-                        <div>BAHASA INDONESIA</div>
-                    </td>
-                    <td class="border p-1">
-                        <div>1.</div>
-                        <div>2.</div>
-                    </td>
+                    <td rowspan="2" class="border text-center p-1">1</td>
+                    <td rowspan="2" class="border text-center p-1">Senin, 6 Desember 2021</td>
+                    <td class="border text-center p-1">07.30 – 08.30</td>
+                    <td class="border text-center p-1">PAI</td>
+                    <td class="p-1">1.</td>
                 </tr>
                 <tr>
-                    <td class="border text-center p-1">2</td>
-                    <td class="border text-center p-1">Selasa, 7 Desember 2021</td>
-                    <td class="border text-center p-1">
-                        <div>07.30 – 08.30</div>
-                        <div>09.00 – 10.30</div>
-                    </td>
-                    <td class="border text-center p-1">
-                        <div>MATEMATIKA</div>
-                        <div>SETORAN HADIST WILAYAH THALIB</div>
-                    </td>
-                    <td class="border p-1">
-                        <div>3.</div>
-                        <div>4.</div>
-                    </td>
+                    <td class="border text-center p-1">09.00 – 10.30</td>
+                    <td class="border text-center p-1">BAHASA INDONESIA</td>
+                    <td class="p-1">2.</td>
+                </tr>
+
+                <tr>
+                    <td rowspan="2" class="border text-center p-1">2</td>
+                    <td rowspan="2" class="border text-center p-1">Selasa, 7 Desember 2021</td>
+                    <td class="border text-center p-1">07.30 – 08.30</td>
+                    <td class="border text-center p-1">MATEMATIKA</td>
+                    <td class="p-1">3.</td>
                 </tr>
                 <tr>
-                    <td class="border text-center p-1">3</td>
-                    <td class="border text-center p-1">Rabu, 8 Desember 2021</td>
-                    <td class="border text-center p-1">
-                        <div>07.30 – 08.30</div>
-                        <div>09.00 – 10.30</div>
-                    </td>
-                    <td class="border text-center p-1">
-                        <div>IPS</div>
-                        <div>BAHASA ARAB</div>
-                    </td>
-                    <td class="border p-1">
-                        <div>5.</div>
-                        <div>6.</div>
-                    </td>
+                    <td class="border text-center p-1">09.00 – 10.30</td>
+                    <td class="border text-center p-1">SETORAN HADIST WILAYAH THALIB</td>
+                    <td>4.</td>
+                </tr>
+
+                <tr>
+                    <td rowspan="2" class="border text-center p-1">3</td>
+                    <td rowspan="2" class="border text-center p-1">Rabu, 8 Desember 2021</td>
+                    <td class="border text-center p-1">07.30 – 08.30</td>
+                    <td class="border text-center p-1">IPS</td>
+                    <td class="p-1">5.</td>
                 </tr>
                 <tr>
-                    <td class="border text-center p-1">4</td>
-                    <td class="border text-center p-1">Kamis, 9 Desember 2021</td>
-                    <td class="border text-center p-1">
-                        <div>07.30 – 08.30</div>
-                        <div>09.00 – 10.30</div>
-                    </td>
-                    <td class="border text-center p-1">
-                        <div>IPA</div>
-                        <div>SETORAN HADIST WILAYAH THALIBAH</div>
-                    </td>
-                    <td class="border p-1">
-                        <div>7.</div>
-                        <div>8.</div>
-                    </td>
+                    <td class="border text-center p-1">09.00 – 10.30</td>
+                    <td class="border text-center p-1">BAHASA ARAB</td>
+                    <td class="p-1">6.</td>
+                </tr>
+
+                <tr>
+                    <td rowspan="2" class="border text-center p-1">4</td>
+                    <td rowspan="2" class="border text-center p-1">Kamis, 9 Desember 2021</td>
+                    <td class="border text-center p-1">07.30 – 08.30</td>
+                    <td class="border text-center p-1">IPA</td>
+                    <td class="p-1">7.</td>
                 </tr>
                 <tr>
-                    <td class="border text-center p-1">5</td>
-                    <td class="border text-center p-1">Jumat, 10 Desember 2021</td>
-                    <td class="border text-center p-1">
-                        <div>07.30 – 08.30</div>
-                        <div>09.00 – 10.30</div>
-                    </td>
-                    <td class="border text-center p-1">
-                        <div>BAHASA INGGRIS</div>
-                        <div>UJIAN SUSULAN</div>
-                    </td>
-                    <td class="border p-1">
-                        <div>9.</div>
-                        <div>10.</div>
-                    </td>
+                    <td class="border text-center p-1">09.00 – 10.30</td>
+                    <td class="border text-center p-1">SETORAN HADIST WILAYAH THALIBAH</td>
+                    <td class="p-1">8.</td>
+                </tr>
+
+                <tr>
+                    <td rowspan="2" class="border text-center p-1">5</td>
+                    <td rowspan="2" class="border text-center p-1">Jumat, 10 Desember 2021</td>
+                    <td class="border text-center p-1">07.30 – 08.30</td>
+                    <td class="border text-center p-1">BAHASA INGGRIS</td>
+                    <td class="p-1">9.</td>
+                </tr>
+                <tr>
+                    <td class="border text-center p-1">09.00 – 10.30</td>
+                    <td class="border text-center p-1">UJIAN SUSULAN</td>
+                    <td class="p-1">10.</td>
                 </tr>
             </table>
             @else
