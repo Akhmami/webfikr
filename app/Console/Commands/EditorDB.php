@@ -3,10 +3,9 @@
 namespace App\Console\Commands;
 
 use App\Libraries\SheetDB;
-use App\Models\QuestionnaireAnswer;
 use App\Models\User;
-use App\Models\UserDetail;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\DB;
 
 class EditorDB extends Command
 {
@@ -41,23 +40,27 @@ class EditorDB extends Command
      */
     public function handle()
     {
-        // foreach ($this->generator() as $item) {
-        //     $user = UserDetail::where('no_pendaftaran', $item->no_pendaftaran)->first();
-        //     $user->jenis_pendaftaran = 'internal';
-        //     $user->save();
-        //     $this->info('OK');
-        // }
+        foreach ($this->generator() as $item) {
+            $user = User::with('billers')->where('username', $item->no_pendaftaran)->first();
 
-        // $answers = QuestionnaireAnswer::get();
-        // foreach ($answers as $answer) {
-        //     User::find($answer->user_id)->update(['questionnaire_psb' => 1]);
-        //     $this->info('OK');
-        // }
+            if ($user) {
+                $user->billers()->create([
+                    'amount' => $item->nominal,
+                    'type' => $item->jenis,
+                    'description' => $item->deskripsi,
+                    'is_installment' => ($item->cicil > 0 ? 'Y' : 'N'),
+                    'qty_spp' => $item->cicil,
+                ]);
+                $this->info('OK');
+            } else {
+                $this->error('No Pendaftaran ' . $item->no_pendaftaran . ' tidak ditemukan');
+            }
+        }
     }
 
     private function generator()
     {
-        $sheets = SheetDB::get('https://sheetdb.io/api/v1/7keosobjqp252');
+        $sheets = SheetDB::get('https://sheetdb.io/api/v1/utdka6nyj5p5n');
 
         foreach ($sheets as $sheet) {
             yield $sheet;
