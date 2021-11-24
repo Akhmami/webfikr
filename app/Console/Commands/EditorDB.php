@@ -40,22 +40,22 @@ class EditorDB extends Command
      */
     public function handle()
     {
-        foreach ($this->generator() as $item) {
-            $user = User::with('billers')->where('username', $item->no_pendaftaran)->first();
+        // foreach ($this->generator() as $item) {
+        //     $user = User::with('billers')->where('username', $item->no_pendaftaran)->first();
 
-            if ($user) {
-                $user->billers()->create([
-                    'amount' => $item->nominal,
-                    'type' => $item->jenis,
-                    'description' => $item->deskripsi,
-                    'is_installment' => ($item->cicil > 0 ? 'Y' : 'N'),
-                    'qty_spp' => $item->cicil,
-                ]);
-                $this->info('OK');
-            } else {
-                $this->error('No Pendaftaran ' . $item->no_pendaftaran . ' tidak ditemukan');
-            }
-        }
+        //     if ($user) {
+        //         $user->billers()->create([
+        //             'amount' => $item->nominal,
+        //             'type' => $item->jenis,
+        //             'description' => $item->deskripsi,
+        //             'is_installment' => ($item->cicil > 0 ? 'Y' : 'N'),
+        //             'qty_spp' => $item->cicil,
+        //         ]);
+        //         $this->info('OK');
+        //     } else {
+        //         $this->error('No Pendaftaran ' . $item->no_pendaftaran . ' tidak ditemukan');
+        //     }
+        // }
     }
 
     private function generator()

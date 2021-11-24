@@ -18,6 +18,11 @@ class CallbackController extends BaseController
         $va = new VA;
         $data = $va->callback();
 
+        activity('BSI')
+            ->byAnonymous()
+            ->withProperties($data)
+            ->log('Callback from BSI');
+
         if ($data['status'] !== '000') {
             // handling jika gagal
             Mail::raw(json_encode($data), function ($message) {
