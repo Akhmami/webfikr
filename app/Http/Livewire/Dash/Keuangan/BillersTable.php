@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Dash\Keuangan;
 
+use App\Models\Biller;
 use App\Models\User;
 use App\Models\Grade;
 use Illuminate\Database\Eloquent\Builder;
@@ -13,7 +14,8 @@ class BillersTable extends DataTableComponent
 {
     protected $listeners = [
         'closeBillerAlertModal' => '$refresh',
-        'closeAlertBalance' => '$refresh'
+        'closeAlertBalance' => '$refresh',
+        'delete'
     ];
 
     public function columns(): array
@@ -75,5 +77,30 @@ class BillersTable extends DataTableComponent
                 'billers',
                 fn ($query) => $query->where('is_active', $is_active)
             ));
+    }
+
+    public function deleteConfirm($id)
+    {
+        $this->dispatchBrowserEvent('swal:confirm', [
+            'type' => 'warning',
+            'title' => 'Yakin ingin menghapus tagihan?',
+            'text' => '',
+            'id' => $id,
+            'method' => 'delete'
+        ]);
+    }
+
+    public function delete($id)
+    {
+        $biller = Biller::findOrFail($id);
+        if ($biller->billings->count() > 0) {
+            $this->dispatchBrowserEvent('swal:modal', [
+                'type' => 'error',
+                'title' => 'Forbidden!',
+                'text' => 'Sebagian tagihan mungkin sudah dibayar atau ada billing virtual account aktif',
+            ]);
+        } else {
+            $biller->delete();
+        }
     }
 }
