@@ -8,10 +8,13 @@ use Illuminate\Http\Request;
 
 class IDCardController extends Controller
 {
-    public function index()
+    public function index($jenjang, $skip)
     {
-        $users = User::with('userDetail')
-            ->where('status', 'santri')->get();
+        $users = User::whereHas('userDetail', function ($query) use ($jenjang) {
+            $query->where('jenjang', strtoupper($jenjang));
+        })
+            ->where('status', 'santri')
+            ->skip($skip)->take(20)->get();
 
         return view('dash.keuangan.pas-card', [
             'users' => $users

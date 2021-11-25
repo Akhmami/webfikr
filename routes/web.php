@@ -49,7 +49,7 @@ Route::domain(config('app.domain'))
                     ->middleware('permission:lihat billing|edit billing|hapus billing|buat billing')
                     ->name('keuangan.index');
                 Route::get('/keuangan/report', [KeuanganController::class, 'report'])->name('keuangan.report');
-                Route::get('/keuangan/pas-card/all', [DashIDCardController::class, 'index'])->name('keuangan.pas-card');
+                Route::get('/keuangan/pas-card/{jenjang}/{skip}', [DashIDCardController::class, 'index'])->name('keuangan.pas-card');
 
                 # PSB
                 Route::view('/psb', 'dash.psb.index')->middleware('permission:lihat psb')->name('psb.index');
