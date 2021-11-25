@@ -125,7 +125,7 @@
                 <tr>
                     <td class="border text-center p-1">09.00 – 10.30</td>
                     <td class="border text-center p-1">SETORAN HADIST WILAYAH THALIB</td>
-                    <td>4.</td>
+                    <td class="p-1">4.</td>
                 </tr>
 
                 <tr>
