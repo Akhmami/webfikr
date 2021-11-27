@@ -275,9 +275,11 @@
                     <div>Username: {{ $cbt->data->username }}</div>
                     <div>Password: {{ $cbt->data->password }}</div>
                 </div>
-                <div class="">
+                <div class="relative">
                     <div>Kepala Sekolah</div>
                     <br><br>
+                    <img class="absolute inset-0 h-auto w-48 z-0" src="{{ asset('images/ttd-stempel-sma.png') }}"
+                        alt="ttd">
                     <div class="font-bold">
                         @if ($user->userDetail->jenjang === 'SMP')
                         Irmawati, S.Pd.
