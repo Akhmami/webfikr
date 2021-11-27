@@ -46,7 +46,7 @@ class SurveyController extends Controller
 
             DB::commit();
 
-            return back()->with('success', 'Questionnaire telah terisi, terima kasih atas waktunya.');
+            return redirect('/survey/' . $id)->with('success', 'Questionnaire telah terisi, terima kasih atas waktunya.');
         } catch (\Throwable $th) {
             DB::rollback();
             echo $th->getMessage();
