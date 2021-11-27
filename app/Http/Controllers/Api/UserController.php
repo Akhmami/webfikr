@@ -45,7 +45,7 @@ class UserController extends BaseController
 
     public function administrasi(Request $request)
     {
-        $user = User::with('billerAnother', 'latestSpp')
+        $user = User::with('billerAnother', 'latestSpp', 'userDetail')
             ->where('username', $request->username)->first();
 
         if (!$user) {
