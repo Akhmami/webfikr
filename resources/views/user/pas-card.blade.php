@@ -8,6 +8,13 @@
     <title>PAS Card</title>
     <link rel="stylesheet" href="{{ asset('css/pas.css') }}">
     <style>
+        @page {
+            margin-top: 1cm;
+            margin-bottom: 1cm;
+            margin-left: 1cm;
+            margin-right: 1cm;
+        }
+
         @media print {
 
             html,
