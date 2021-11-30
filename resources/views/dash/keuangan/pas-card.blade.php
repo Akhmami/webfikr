@@ -9,6 +9,12 @@
     <link rel="stylesheet" href="{{ asset('css/pas.css') }}">
     <style>
         @media print {
+            @page {
+                margin-top: 1cm;
+                margin-bottom: 1cm;
+                margin-left: 1cm;
+                margin-right: 1cm;
+            }
 
             /* html,
             body {

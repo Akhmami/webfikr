@@ -96,7 +96,9 @@
                     @endif
                 </div>
             </div>
-            <div class="w-1/5 bg-gray-200 text-gray-400 text-center">Photo</div>
+            <div class="w-1/5 bg-gray-200 text-gray-400 text-center">
+                <img src="{{ asset('images/photos/' . strtoupper($user->name) . '.JPG') }}" alt="photo">
+            </div>
         </div>
         <div class="pt-4">
             @if ($user->userDetail->jenjang === 'SMP')
