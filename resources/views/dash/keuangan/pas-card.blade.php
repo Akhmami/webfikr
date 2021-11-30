@@ -99,7 +99,9 @@
                     @endif
                 </div>
             </div>
-            <div class="w-1/5 bg-gray-200 text-gray-400 text-center">Photo</div>
+            <div class="w-1/5 text-gray-400 text-center">
+                <img src="{{ asset('images/photos/' . strtoupper($user->name) . '.JPG') }}" alt="photo">
+            </div>
         </div>
         <div class="pt-4">
             @if ($user->userDetail->jenjang === 'SMP')
@@ -285,16 +287,19 @@
                     <div>Username: {{ $cbt->data->username }}</div>
                     <div>Password: {{ $cbt->data->password }}</div>
                 </div>
-                <div class="">
-                    <div>Kepala Sekolah</div>
-                    <br><br>
-                    <div class="font-bold">
-                        @if ($user->userDetail->jenjang === 'SMP')
-                        Irmawati, S.Pd.
-                        @else
-                        Hari Untung Maulana, M.Pd.
-                        @endif
+                <div class="relative space-y-12 pl-6">
+                    <div class="pb-4">Kepala Sekolah</div>
+                    @if ($user->userDetail->jenjang === 'SMP')
+                    <div class="absolute bottom-0 left-0 pb-4">
+                        <img class="w-80 h-auto z-20" src="{{ asset('images/ttd-stempel-smp.png') }}" alt="ttd">
                     </div>
+                    <div class="font-bold">Irmawati, S.Pd.</div>
+                    @else
+                    <div class="absolute bottom-0 left-0 pb-4">
+                        <img class="w-80 h-auto z-20" src="{{ asset('images/ttd-stempel-sma.png') }}" alt="ttd">
+                    </div>
+                    <div class="font-bold">Hari Untung Maulana, M.Pd.</div>
+                    @endif
                 </div>
             </div>
         </div>
