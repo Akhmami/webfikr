@@ -69,11 +69,11 @@
                             <td class="pl-4">Nama</td>
                             <td>: {{ $user->name }}</td>
                             <td class="pl-8">No. Peserta </td>
-                            <td class="pr-4">: {{ $cbt->data->username }}</td>
+                            <td class="pr-4">: {{ $cbt->data->username ?? null }}</td>
                         </tr>
                         <tr>
                             <td class="pl-4">Kelas</td>
-                            <td>: {{ $cbt->data->kelas }}</td>
+                            <td>: {{ $cbt->data->kelas ?? null }}</td>
                             <td class="pl-8">Ruang</td>
                             <td class="pr-4"></td>
                         </tr>
@@ -91,7 +91,7 @@
                             </div>
                             <div class="ml-3">
                                 <p class="text-sm font-medium text-red-700">
-                                    {{ $cbt->message }}
+                                    {{ $cbt->message ?? null }}
                                 </p>
                             </div>
                         </div>
@@ -284,8 +284,8 @@
             <div class="flex justify-between items-center pt-4">
                 <div class="flex flex-col items-start p-2 text-sm space-y-2 border-2">
                     <div>Akses Aplikasi: https://cbt.nfbsnet.edu</div>
-                    <div>Username: {{ $cbt->data->username }}</div>
-                    <div>Password: {{ $cbt->data->password }}</div>
+                    <div>Username: {{ $cbt->data->username ?? null }}</div>
+                    <div>Password: {{ $cbt->data->password ?? null }}</div>
                 </div>
                 <div class="relative space-y-12 pl-6">
                     <div class="pb-4">Kepala Sekolah</div>
