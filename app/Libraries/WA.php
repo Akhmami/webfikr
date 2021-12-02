@@ -43,10 +43,14 @@ class WA
         ];
         $type = $types[substr($data['trx_id'], 0, 3)];
         $base_url = $this->base_url . '/v1/broadcasts/whatsapp/direct';
-        $phone = is_numeric($this->user->firstMobilePhone->number) == 1 ? $this->user->firstMobilePhone->full_number : '6287777833303';
-        // if (empty($this->user->firstMobilePhone->number)) {
-        //     # code...
-        // }
+        $phone = $this->user->firstMobilePhone->full_number;
+        if (is_numeric($this->user->firstMobilePhone->number) != 1) {
+            $getPhone = $this->user->mobilePhones()->whereNotNull('number')->first();
+            if (!$getPhone) {
+                $phone = '6287777833303';
+            }
+            $phone = $getPhone->full_number;
+        }
         $nominal = rupiah($data['payment_amount']);
         $url = 'https://apps.' . config('app.domain');
 
