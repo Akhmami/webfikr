@@ -25,10 +25,10 @@ class ReportTiles extends Component
     public function render()
     {
         $this->totalNominal = Billing::paid()
-            ->where('created_at', '>=', $this->date)->sum('trx_amount');
+            ->where('updated_at', '>=', $this->date)->sum('trx_amount');
 
         $this->totalTransaksi = Billing::paid()
-            ->where('created_at', '>=', $this->date)->count();
+            ->where('updated_at', '>=', $this->date)->count();
 
         $this->punyaTagihan = User::has('activeBillers')->count();
 
