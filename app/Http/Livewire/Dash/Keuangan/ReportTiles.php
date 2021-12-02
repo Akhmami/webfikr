@@ -30,8 +30,7 @@ class ReportTiles extends Component
         $this->totalTransaksi = Billing::paid()
             ->where('created_at', '>=', $this->date)->count();
 
-        $this->punyaTagihan = User::has('activeBillers')
-            ->where('created_at', '>=', $this->date)->count();
+        $this->punyaTagihan = User::has('activeBillers')->count();
 
         $this->tanpaTagihan = (User::where('status', 'santri')
             ->count() - $this->punyaTagihan);
