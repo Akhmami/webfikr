@@ -9,13 +9,11 @@
                 <!-- Use an "onChange" listener to redirect the user to the selected tab URL. -->
                 <select id="tabs" name="tabs"
                     class="block w-full focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md">
-                    <option selected>My Account</option>
+                    <option selected>Last day</option>
 
-                    <option>Company</option>
+                    <option>Last week</option>
 
-                    <option>Team Members</option>
-
-                    <option>Billing</option>
+                    <option>Last month</option>
                 </select>
             </div>
             <div class="hidden sm:block">
@@ -23,19 +21,19 @@
                     <a href="#"
                         class="text-gray-900 rounded-l-lg group relative overflow-hidden bg-white py-3 px-6 text-sm font-medium text-center hover:bg-gray-50 focus:z-10"
                         aria-current="page">
-                        <span>Harian</span>
+                        <span>Last day</span>
                         <span aria-hidden="true" class="bg-indigo-500 absolute inset-x-0 bottom-0 h-0.5"></span>
                     </a>
 
                     <a href="#"
                         class="text-gray-500 hover:text-gray-700 group relative overflow-hidden bg-white py-3 px-6 text-sm font-medium text-center hover:bg-gray-50 focus:z-10">
-                        <span>Mingguan</span>
+                        <span>Last week</span>
                         <span aria-hidden="true" class="bg-transparent absolute inset-x-0 bottom-0 h-0.5"></span>
                     </a>
 
                     <a href="#"
                         class="text-gray-500 hover:text-gray-700 rounded-r-lg group relative overflow-hidden bg-white py-3 px-6 text-sm font-medium text-center hover:bg-gray-50 focus:z-10">
-                        <span>Bulanan</span>
+                        <span>Last month</span>
                         <span aria-hidden="true" class="bg-transparent absolute inset-x-0 bottom-0 h-0.5"></span>
                     </a>
                 </nav>
@@ -56,7 +54,7 @@
                 </dt>
                 <dd class="ml-16 pb-6 flex items-baseline sm:pb-7">
                     <p class="text-2xl font-semibold text-gray-900">
-                        8,000,000,000
+                        {{ rupiah($totalNominal, false) }}
                     </p>
                     <div class="absolute bottom-0 inset-x-0 bg-indigo-50 px-4 py-4 sm:px-6">
                         <div class="text-sm">
@@ -79,7 +77,7 @@
                 </dt>
                 <dd class="ml-16 pb-6 flex items-baseline sm:pb-7">
                     <p class="text-2xl font-semibold text-gray-900">
-                        135
+                        {{ rupiah($totalTransaksi, false) }}
                     </p>
                     <div class="absolute bottom-0 inset-x-0 bg-blue-50 px-4 py-4 sm:px-6">
                         <div class="text-sm">
@@ -99,11 +97,11 @@
                                 d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
                         </svg>
                     </div>
-                    <p class="ml-16 text-sm font-medium text-gray-500 truncate">Belum Lunas</p>
+                    <p class="ml-16 text-sm font-medium text-gray-500 truncate">Punya Tagihan</p>
                 </dt>
                 <dd class="ml-16 pb-6 flex items-baseline sm:pb-7">
                     <p class="text-2xl font-semibold text-gray-900">
-                        135
+                        {{ $punyaTagihan }}
                     </p>
                     <div class="absolute bottom-0 inset-x-0 bg-red-50 px-4 py-4 sm:px-6">
                         <div class="text-sm">
@@ -123,11 +121,11 @@
                                 d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
                         </svg>
                     </div>
-                    <p class="ml-16 text-sm font-medium text-gray-500 truncate">Sudah Lunas</p>
+                    <p class="ml-16 text-sm font-medium text-gray-500 truncate">Tidak Punya Tagihan</p>
                 </dt>
                 <dd class="ml-16 pb-6 flex items-baseline sm:pb-7">
                     <p class="text-2xl font-semibold text-gray-900">
-                        45
+                        {{ $tanpaTagihan }}
                     </p>
                     <div class="absolute bottom-0 inset-x-0 bg-green-50 px-4 py-4 sm:px-6">
                         <div class="text-sm">

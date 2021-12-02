@@ -71,6 +71,11 @@ class Billing extends Model
             ->orWhere('is_paid', 'Y');
     }
 
+    public function scopePaid($query)
+    {
+        return $query->where('is_paid', 'Y');
+    }
+
     public function getFullVirtualAccountAttribute()
     {
         if (!empty($this->virtual_account)) {
