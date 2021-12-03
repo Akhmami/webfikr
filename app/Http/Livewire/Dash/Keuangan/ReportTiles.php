@@ -16,6 +16,7 @@ class ReportTiles extends Component
     public $totalTransaksi;
     public $punyaTagihan;
     public $tanpaTagihan;
+    public $tabActive = 'day';
 
     public function mount()
     {
@@ -41,5 +42,13 @@ class ReportTiles extends Component
     public function lastPeriode($days)
     {
         $this->date = Carbon::now()->subDays($days);
+        $this->tabActive = 'day';
+        if ($days == 7) {
+            $this->tabActive = 'week';
+        }
+
+        if ($days == 30) {
+            $this->tabActive = 'month';
+        }
     }
 }
