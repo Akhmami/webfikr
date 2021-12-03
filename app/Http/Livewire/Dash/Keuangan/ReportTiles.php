@@ -37,4 +37,9 @@ class ReportTiles extends Component
 
         return view('livewire.dash.keuangan.report-tiles');
     }
+
+    public function lastPeriode($days)
+    {
+        $this->date = Carbon::now()->subDays($days);
+    }
 }
