@@ -30,60 +30,59 @@ class CallbackController extends BaseController
                     ->subject('handling gagl');
             });
             exit;
+        }
+
+        // check history pembayaran
+        $history = PaymentHistory::where('payment_ntb', $data['payment_ntb'])->first();
+        if ($history) {
+            echo '{"status":"999", "message":"riwayat pembayaran sudah tersedia"}';
+            exit;
+        }
+
+        // check to DB
+        $billing = Billing::with(['user', 'biller'])->where('trx_id', $data['trx_id'])->first();
+        if (!$billing) {
+            // Kalo gk ada, kembalikan response 999
+            echo '{"status":"999", "message":"Trx_id tidak tersedia"}';
+            exit;
+        }
+
+        // update billing
+        $billing->update([
+            'is_paid' => ($data['cumulative_payment_amount'] === $data['trx_amount'] ? 'Y' : 'N'),
+        ]);
+
+        $type = substr($billing->trx_id, 0, 3);
+        if ($type == 'TOP') {
+            $currentAmount_from_last = $billing->user->balance->current_amount ?? 0;
+            $current_amount = $currentAmount_from_last + $data['payment_amount'];
+            $billing->user->balance()->create([
+                'last_amount' => $currentAmount_from_last,
+                'type' => 'plus',
+                'nominal' => $data['payment_amount'],
+                'current_amount' => $current_amount,
+                'description' => 'Isi saldo'
+            ]);
         } else {
-            // check history pembayaran
-            $history = PaymentHistory::where('payment_ntb', $data['payment_ntb'])->first();
-            if ($history) {
-                echo '{"status":"999", "message":"riwayat pembayaran sudah tersedia"}';
-                exit;
-            }
+            $balance_used = $billing->biller->balance_used + $billing->use_balance;
+            $cpa_now = $billing->biller()->increment('cumulative_payment_amount', $data['cumulative_payment_amount']);
+            $paymented = $cpa_now + $balance_used + $billing->biller->cost_reduction;
 
-            // check to DB
-            $billing = Billing::with(['user', 'biller'])->where('trx_id', $data['trx_id'])->first();
-            if (!$billing) {
-                // Kalo gk ada, kembalikan response 999
-                echo '{"status":"999", "message":"Trx_id tidak tersedia"}';
-                exit;
-            } else {
-                // update billing
-                $billing->update([
-                    'is_paid' => ($data['cumulative_payment_amount'] === $data['trx_amount'] ? 'Y' : 'N'),
-                ]);
+            // Update Biller
+            $billing->biller()->update([
+                'cumulative_payment_amount' => $cpa_now,
+                'is_active' => ($paymented >= $billing->biller->amount ? 'N' : 'Y'),
+                'balance_used' => $balance_used
+            ]);
 
-                $type = substr($billing->trx_id, 0, 3);
-                if ($type === 'TOP') {
-                    $currentAmount_from_last = $billing->user->balance->current_amount ?? 0;
-                    $current_amount = $currentAmount_from_last + $data['payment_amount'];
-                    $billing->user->balance()->create([
-                        'last_amount' => $currentAmount_from_last,
-                        'type' => 'plus',
-                        'nominal' => $data['payment_amount'],
-                        'current_amount' => $current_amount,
-                        'description' => 'Isi saldo'
-                    ]);
-                } else {
-                    $biller_cpa = $billing->biller->cumulative_payment_amount;
-                    $balance_used = $billing->biller->balance_used + $billing->use_balance;
-                    $cpa_now = $biller_cpa + $data['cumulative_payment_amount'];
-                    $paymented = $cpa_now + $balance_used + $billing->biller->cost_reduction;
-
-                    // Update Biller
-                    $billing->biller()->update([
-                        'cumulative_payment_amount' => $cpa_now,
-                        'is_active' => ($paymented >= $billing->biller->amount ? 'N' : 'Y'),
-                        'balance_used' => $balance_used
-                    ]);
-
-                    if ($balance_used > 0) {
-                        $billing->user->balance()->decrement('current_amount', ($billing->use_balance ?? 0));
-                    }
-                }
-
-                Paymented::dispatch($billing, $data);
-
-                echo '{"status":"000"}';
-                exit;
+            if ($balance_used > 0) {
+                $billing->user->balance()->decrement('current_amount', ($billing->use_balance ?? 0));
             }
         }
+
+        Paymented::dispatch($billing, $data);
+
+        echo '{"status":"000"}';
+        exit;
     }
 }
