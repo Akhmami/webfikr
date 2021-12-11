@@ -68,8 +68,9 @@ class CallbackController extends BaseController
 
             PaymentLog::dispatch($data, 'Saldo/TOP UP berhasil ditambahkan.');
         } else {
+            $biller_cpa = $billing->biller->cumulative_payment_amount;
             $balance_used = $billing->biller->balance_used + $billing->use_balance;
-            $cpa_now = $billing->biller()->increment('cumulative_payment_amount', $data['cumulative_payment_amount']);
+            $cpa_now = $biller_cpa + $data['cumulative_payment_amount'];
             $paymented = $cpa_now + $balance_used + $billing->biller->cost_reduction;
 
             // Update Biller
