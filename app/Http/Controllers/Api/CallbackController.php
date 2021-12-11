@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Api\BaseController;
 // use App\Jobs\UpdateBalance;
 use App\Events\Paymented;
+use App\Jobs\PaymentLog;
 use App\Libraries\VA;
 use App\Models\Billing;
 // use App\Models\Balance;
@@ -18,10 +19,7 @@ class CallbackController extends BaseController
         $va = new VA;
         $data = $va->callback();
 
-        activity('BSI')
-            ->byAnonymous()
-            ->withProperties($data)
-            ->log('Callback from BSI');
+        PaymentLog::dispatch($data, 'Callback masuk dari BSI Maja');
 
         if ($data['status'] !== '000') {
             // handling jika gagal
@@ -35,6 +33,8 @@ class CallbackController extends BaseController
         // check history pembayaran
         $history = PaymentHistory::where('payment_ntb', $data['payment_ntb'])->first();
         if ($history) {
+            PaymentLog::dispatch($data, 'riwayat pembayaran sudah tersedia, callback dihentikan.');
+
             echo '{"status":"999", "message":"riwayat pembayaran sudah tersedia"}';
             exit;
         }
@@ -43,6 +43,8 @@ class CallbackController extends BaseController
         $billing = Billing::with(['user', 'biller'])->where('trx_id', $data['trx_id'])->first();
         if (!$billing) {
             // Kalo gk ada, kembalikan response 999
+            PaymentLog::dispatch($data, 'TRX ID/No. Tagihan tidak tersedia, callback dihentikan.');
+
             echo '{"status":"999", "message":"Trx_id tidak tersedia"}';
             exit;
         }
@@ -63,6 +65,8 @@ class CallbackController extends BaseController
                 'current_amount' => $current_amount,
                 'description' => 'Isi saldo'
             ]);
+
+            PaymentLog::dispatch($data, 'Saldo/TOP UP berhasil ditambahkan.');
         } else {
             $balance_used = $billing->biller->balance_used + $billing->use_balance;
             $cpa_now = $billing->biller()->increment('cumulative_payment_amount', $data['cumulative_payment_amount']);
@@ -78,6 +82,8 @@ class CallbackController extends BaseController
             if ($balance_used > 0) {
                 $billing->user->balance()->decrement('current_amount', ($billing->use_balance ?? 0));
             }
+
+            PaymentLog::dispatch($data, 'Pembayaran Tagihan ' . $type . ' berhasil diproses. kumulatif sekarang: ' . $cpa_now);
         }
 
         Paymented::dispatch($billing, $data);
