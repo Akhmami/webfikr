@@ -89,7 +89,7 @@ class CallbackController extends BaseController
                     $billing->user->balance()->decrement('current_amount', ($billing->use_balance ?? 0));
                 }
 
-                PaymentLog::dispatch($data, 'Pembayaran Tagihan ' . $type . ' berhasil diproses. kumulatif sekarang: ' . $cpa_now);
+                PaymentLog::dispatch($data, 'Pembayaran Tagihan ' . $type . ' berhasil diproses. total kumulatif: ' . $cpa_now);
             }
         } catch (\Throwable $th) {
             $error = true;
