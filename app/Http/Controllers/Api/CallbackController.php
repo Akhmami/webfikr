@@ -10,7 +10,9 @@ use App\Libraries\VA;
 use App\Models\Billing;
 // use App\Models\Balance;
 use App\Models\PaymentHistory;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
+use PhpParser\Node\Stmt\TryCatch;
 
 class CallbackController extends BaseController
 {
@@ -49,47 +51,62 @@ class CallbackController extends BaseController
             exit;
         }
 
-        // update billing
-        $billing->update([
-            'is_paid' => ($data['cumulative_payment_amount'] === $data['trx_amount'] ? 'Y' : 'N'),
-        ]);
-
-        $type = substr($billing->trx_id, 0, 3);
-        if ($type == 'TOP') {
-            $currentAmount_from_last = $billing->user->balance->current_amount ?? 0;
-            $current_amount = $currentAmount_from_last + $data['payment_amount'];
-            $billing->user->balance()->create([
-                'last_amount' => $currentAmount_from_last,
-                'type' => 'plus',
-                'nominal' => $data['payment_amount'],
-                'current_amount' => $current_amount,
-                'description' => 'Isi saldo'
+        DB::beginTransaction();
+        $error = false;
+        try {
+            // update billing
+            $billing->update([
+                'is_paid' => ($data['cumulative_payment_amount'] === $data['trx_amount'] ? 'Y' : 'N'),
             ]);
 
-            PaymentLog::dispatch($data, 'Saldo/TOP UP berhasil ditambahkan.');
-        } else {
-            $biller_cpa = $billing->biller->cumulative_payment_amount;
-            $balance_used = $billing->biller->balance_used + $billing->use_balance;
-            $cpa_now = $biller_cpa + $data['cumulative_payment_amount'];
-            $paymented = $cpa_now + $balance_used + $billing->biller->cost_reduction;
+            $type = substr($billing->trx_id, 0, 3);
+            if ($type === 'TOP') {
+                $currentAmount_from_last = $billing->user->balance->current_amount ?? 0;
+                $current_amount = $currentAmount_from_last + $data['payment_amount'];
+                $billing->user->balance()->create([
+                    'last_amount' => $currentAmount_from_last,
+                    'type' => 'plus',
+                    'nominal' => $data['payment_amount'],
+                    'current_amount' => $current_amount,
+                    'description' => 'Isi saldo'
+                ]);
 
-            // Update Biller
-            $billing->biller()->update([
-                'cumulative_payment_amount' => $cpa_now,
-                'is_active' => ($paymented >= $billing->biller->amount ? 'N' : 'Y'),
-                'balance_used' => $balance_used
-            ]);
+                PaymentLog::dispatch($data, 'Saldo/TOP UP berhasil ditambahkan.');
+            } else {
+                $biller_cpa = $billing->biller->cumulative_payment_amount;
+                $balance_used = $billing->biller->balance_used + $billing->use_balance;
+                $cpa_now = $biller_cpa + $data['cumulative_payment_amount'];
+                $paymented = $cpa_now + $balance_used + $billing->biller->cost_reduction;
 
-            if ($balance_used > 0) {
-                $billing->user->balance()->decrement('current_amount', ($billing->use_balance ?? 0));
+                // Update Biller
+                $billing->biller()->update([
+                    'cumulative_payment_amount' => $cpa_now,
+                    'is_active' => ($paymented >= $billing->biller->amount ? 'N' : 'Y'),
+                    'balance_used' => $balance_used
+                ]);
+
+                if ($balance_used > 0) {
+                    $billing->user->balance()->decrement('current_amount', ($billing->use_balance ?? 0));
+                }
+
+                PaymentLog::dispatch($data, 'Pembayaran Tagihan ' . $type . ' berhasil diproses. kumulatif sekarang: ' . $cpa_now);
             }
+        } catch (\Throwable $th) {
+            $error = true;
+            DB::rollBack();
+            PaymentLog::dispatch($data, 'Pembayaran Tagihan ' . $type . ' GAGAL diproses. Message: ' . $th->getMessage());
 
-            PaymentLog::dispatch($data, 'Pembayaran Tagihan ' . $type . ' berhasil diproses. kumulatif sekarang: ' . $cpa_now);
+            echo '{"status":"999"}';
+            exit;
         }
 
-        Paymented::dispatch($billing, $data);
+        // klo transaksi tidak ada error
+        if (!$error) {
+            DB::commit();
+            Paymented::dispatch($billing, $data);
 
-        echo '{"status":"000"}';
-        exit;
+            echo '{"status":"000"}';
+            exit;
+        }
     }
 }
