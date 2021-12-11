@@ -44,7 +44,7 @@ class WA
         $type = $types[substr($data['trx_id'], 0, 3)];
         $base_url = $this->base_url . '/v1/broadcasts/whatsapp/direct';
         $phone = $this->user->firstMobilePhone->full_number;
-        if (is_numeric($this->user->firstMobilePhone->number) != 1) {
+        if (strlen($this->user->firstMobilePhone->number) < 5) {
             $getPhone = $this->user->mobilePhones()->whereNotNull('number')->first();
             if (!$getPhone) {
                 $phone = '6287777833303';
