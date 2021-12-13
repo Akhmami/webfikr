@@ -1,5 +1,5 @@
-<div class="align-middle w-full shadow rounded-none md:rounded-lg">
-    <table {{ $attributes->except('wire:sortable') }} class="min-w-full divide-y divide-gray-200">
+<div class="align-middle max-w-full shadow rounded-none md:rounded-lg">
+    <table {{ $attributes->except('wire:sortable') }} class="w-full divide-y divide-gray-200">
         <thead>
             <tr>
                 {{ $head }}
