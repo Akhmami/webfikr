@@ -1,7 +1,7 @@
 <div class="flex items-center space-x-1">
     <form action="{{ route('dash.keuangan.recallback') }}" method="POST">
         @csrf
-        <input type="hidden" name="data">
+        <input type="hidden" name="data" value="{{ $data->properties }}">
         <button type="submit" title="Proses Ulang"
             class="group p-2 border border-transparent rounded-full shadow-sm text-white bg-gray-200 hover:bg-yellow-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-500 group-hover:text-white" fill="none"
