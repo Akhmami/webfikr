@@ -1,4 +1,4 @@
-<p class="break-words">
+<p class="break-words max-w-md">
 <pre>
         <code>
             {{ $data }}
