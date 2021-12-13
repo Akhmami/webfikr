@@ -49,6 +49,8 @@ Route::domain(config('app.domain'))
                     ->middleware('permission:lihat billing|edit billing|hapus billing|buat billing')
                     ->name('keuangan.index');
                 Route::get('/keuangan/report', [KeuanganController::class, 'report'])->name('keuangan.report');
+                Route::get('/keuangan/riwayat-callback', [KeuanganController::class, 'callback'])->name('keuangan.callback');
+                Route::post('/keuangan/proses-ulang-callback', [KeuanganController::class, 'recallback'])->name('keuangan.recallback');
                 Route::get('/keuangan/pas-card/{jenjang}/{skip}', [DashIDCardController::class, 'index'])->name('keuangan.pas-card');
 
                 # PSB
