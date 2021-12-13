@@ -1,7 +1,7 @@
-<p class="break-words max-w-md">
-<pre>
+<div class="break-words w-3/5">
+    <pre>
         <code>
             {{ $data }}
         </code>
     </pre>
-</p>
+</div>
