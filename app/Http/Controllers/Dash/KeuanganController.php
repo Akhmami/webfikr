@@ -39,8 +39,6 @@ class KeuanganController extends Controller
     {
         $data = json_decode($request->data, true);
 
-        dd($data);
-
         // check Billing
         $billing = Billing::with(['user', 'biller'])->where('trx_id', $data['trx_id'])->first();
         if (!$billing) {
@@ -55,8 +53,10 @@ class KeuanganController extends Controller
             'customer_name' => $data['customer_name'],
             'virtual_account' => $data['virtual_account'],
             'payment_amount' => $data['payment_amount'],
-            'datetime_payment' => date('Y-m-d H:i:s', strtotime($data['datetime_payment']))
+            'datetime_payment' => $data['datetime_payment']
         ]);
+
+        dd($data['datetime_paymernt']);
 
         DB::beginTransaction();
         try {
