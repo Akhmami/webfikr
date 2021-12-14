@@ -54,9 +54,8 @@ class CreatePaymentHistory
 
                 $paymentHistory->spps()->updateOrCreate([
                     'grade_id' => $grade->id,
-                    'bulan' => $spp
-                ], [
-                    'user_id' => $billing->user->id,
+                    'bulan' => $spp,
+                    'user_id' => $billing->user->id
                 ]);
             }
         }

@@ -39,8 +39,6 @@ class KeuanganController extends Controller
     {
         $data = json_decode($request->data);
 
-        dd($data);
-
         // check Billing
         $billing = Billing::with(['user', 'biller'])->where('trx_id', $data['trx_id'])->first();
         if (!$billing) {
@@ -105,9 +103,8 @@ class KeuanganController extends Controller
 
                         $history->spps()->updateOrCreate([
                             'grade_id' => $grade->id,
-                            'bulan' => $spp
-                        ], [
-                            'user_id' => $billing->user->id,
+                            'bulan' => $spp,
+                            'user_id' => $billing->user->id
                         ]);
                     }
                 }
