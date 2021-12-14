@@ -81,7 +81,6 @@ class KeuanganController extends Controller
                 $paymented = $cpa_now + $balance_used + $billing->biller->cost_reduction;
 
                 // Update Biller
-                dd($billing->biller);
                 $billing->biller()->update([
                     'cumulative_payment_amount' => $cpa_now,
                     'is_active' => ($paymented >= $billing->biller->amount ? 'N' : 'Y'),
