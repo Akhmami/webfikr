@@ -56,8 +56,6 @@ class KeuanganController extends Controller
             'datetime_payment' => $data['datetime_payment']
         ]);
 
-        dd($data['datetime_payment']);
-
         DB::beginTransaction();
         try {
             // update billing
