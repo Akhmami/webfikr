@@ -111,11 +111,11 @@ class KeuanganController extends Controller
             }
 
             DB::commit();
-
-            return 'Proses ulang callback berhasil.';
         } catch (\Throwable $th) {
             DB::rollBack();
             return $th->getMessage();
         }
+
+        return 'Proses ulang callback berhasil.';
     }
 }
