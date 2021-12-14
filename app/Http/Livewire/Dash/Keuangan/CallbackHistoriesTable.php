@@ -13,15 +13,15 @@ class CallbackHistoriesTable extends DataTableComponent
     public function columns(): array
     {
         return [
+            Column::make('Actions')
+                ->format(function ($value, $column, $row) {
+                    return view('livewire.dash.keuangan.callback-actions', ['data' => $row]);
+                }),
             Column::make('Description')
                 ->sortable(),
             Column::make('Data', 'properties')
                 ->sortable()
                 ->searchable(),
-            Column::make('Actions')
-                ->format(function ($value, $column, $row) {
-                    return view('livewire.dash.keuangan.callback-actions', ['data' => $row]);
-                }),
         ];
     }
 
