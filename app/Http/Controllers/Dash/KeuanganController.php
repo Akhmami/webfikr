@@ -47,7 +47,7 @@ class KeuanganController extends Controller
 
         // history pembayaran
         $history = PaymentHistory::firstOrCreate([
-            'payment_ntb', $data['payment_ntb']
+            'payment_ntb' => $data['payment_ntb']
         ], [
             'user_id' => $billing->user->id,
             'customer_name' => $data['customer_name'],
@@ -56,7 +56,7 @@ class KeuanganController extends Controller
             'datetime_payment' => $data['datetime_payment']
         ]);
 
-        dd($data['datetime_paymernt']);
+        dd($data['datetime_payment']);
 
         DB::beginTransaction();
         try {
