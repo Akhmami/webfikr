@@ -53,7 +53,7 @@ class KeuanganController extends Controller
             'customer_name' => $data['customer_name'],
             'virtual_account' => $data['virtual_account'],
             'payment_amount' => $data['payment_amount'],
-            'datetime_payment' => $data['datetime_payment']
+            'datetime_payment' => date('Y-m-d H:i:s', strtotime($data['datetime_payment']))
         ]);
 
         DB::beginTransaction();
