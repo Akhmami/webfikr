@@ -37,7 +37,7 @@ class KeuanganController extends Controller
 
     public function recallback(Request $request)
     {
-        $data = json_decode($request->data);
+        $data = json_decode($request->data, true);
 
         // check Billing
         $billing = Billing::with(['user', 'biller'])->where('trx_id', $data['trx_id'])->first();
