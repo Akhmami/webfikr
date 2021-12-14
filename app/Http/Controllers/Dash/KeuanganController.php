@@ -87,27 +87,27 @@ class KeuanganController extends Controller
                     'balance_used' => $balance_used
                 ]);
 
-                if ($balance_used > 0) {
-                    $billing->user->balance()->decrement('current_amount', ($billing->use_balance ?? 0));
-                }
+                // if ($balance_used > 0) {
+                //     $billing->user->balance()->decrement('current_amount', ($billing->use_balance ?? 0));
+                // }
 
-                if ($type === 'SPP') {
-                    $grade = $billing->user->activeGrade()->first();
-                    $spp_billing = json_decode($billing->spp_pay_month);
+                // if ($type === 'SPP') {
+                //     $grade = $billing->user->activeGrade()->first();
+                //     $spp_billing = json_decode($billing->spp_pay_month);
 
-                    // create spp
-                    foreach ($spp_billing as $spp) {
-                        $billing->biller->billerDetails()->whereNull('is_paid')->first()->update([
-                            'is_paid' => 'Y'
-                        ]);
+                //     // create spp
+                //     foreach ($spp_billing as $spp) {
+                //         $billing->biller->billerDetails()->whereNull('is_paid')->first()->update([
+                //             'is_paid' => 'Y'
+                //         ]);
 
-                        $history->spps()->updateOrCreate([
-                            'grade_id' => $grade->id,
-                            'bulan' => $spp,
-                            'user_id' => $billing->user->id
-                        ]);
-                    }
-                }
+                //         $history->spps()->updateOrCreate([
+                //             'grade_id' => $grade->id,
+                //             'bulan' => $spp,
+                //             'user_id' => $billing->user->id
+                //         ]);
+                //     }
+                // }
             }
 
             DB::commit();
