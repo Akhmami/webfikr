@@ -39,6 +39,8 @@ class KeuanganController extends Controller
     {
         $data = json_decode($request->data, true);
 
+        dd($data);
+
         // check Billing
         $billing = Billing::with(['user', 'biller'])->where('trx_id', $data['trx_id'])->first();
         if (!$billing) {
