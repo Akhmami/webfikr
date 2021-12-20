@@ -50,7 +50,7 @@ class PenerimaanPsb extends Command
             ];
 
             if (!$user) {
-                return $this->error($item->no_pendaftaran . ' Tidak ditemukan');
+                $this->error($item->no_pendaftaran . ' Tidak ditemukan');
             } else {
                 DB::beginTransaction();
                 try {
