@@ -51,7 +51,7 @@ class Psb extends Component
             '{va_psb}' => $billingPsb->virtual_account ?? null,
             '{tagihan_psb}' => rupiah($billingPsb->trx_amount ?? 0),
             '{total_tagihan_dupsb}' => rupiah($billerDupsb->amount ?? 0),
-            '{rincian_tagihan_dupsb}' => $this->billerDetailHtml($billerDupsb->billerDetails->pluck('nominal', 'nama') ?? null),
+            '{rincian_tagihan_dupsb}' => (!empty($billerDupsb->billerDetails) ? $this->billerDetailHtml($billerDupsb->billerDetails->pluck('nominal', 'nama')) : 'rincian tagihan tidak tersedia'),
             '{tahun_pendaftaran}' => $user->tahun_pendaftaran ?? null,
             '{deskripsi_lokasi_tes}' => $lokasi_tes->deskripsi ?? null,
             '{deskripsi_tes_kesehatan}' => $tes_kesehatan->description ?? null,
