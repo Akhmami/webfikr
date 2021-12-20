@@ -1,1 +1,1 @@
-{{ $data->activeGrade()->first()->nama }}
+{{ $data->activeGrade()->first()->nama ?? null }}
