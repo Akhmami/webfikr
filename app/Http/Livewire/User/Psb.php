@@ -2,7 +2,6 @@
 
 namespace App\Http\Livewire\User;
 
-use App\Models\User;
 use Livewire\Component;
 
 class Psb extends Component
@@ -10,10 +9,11 @@ class Psb extends Component
     public function render()
     {
         $data = [];
-        $user = User::with([
+        $user = auth()->user();
+        $user->load([
             'statusPsb', 'lokasiTest', 'medicalCheck',
             'billerPsb', 'gelombang', 'userDetail'
-        ])->findOrFail(auth()->id());
+        ]);
 
         $status_psb = $user->statusPsb;
         $lokasi_tes = $user->lokasiTest;
@@ -42,7 +42,6 @@ class Psb extends Component
             $eksternal = 'block';
         }
 
-
         $vars = array(
             '{nama}' => $user->name ?? null,
             '{username}' => $user->username,
@@ -52,6 +51,7 @@ class Psb extends Component
             '{va_psb}' => $billingPsb->virtual_account ?? null,
             '{tagihan_psb}' => rupiah($billingPsb->trx_amount ?? 0),
             '{total_tagihan_dupsb}' => rupiah($billerDupsb->amount ?? 0),
+            '{rincian_tagihan_dupsb}' => $this->billerDetailHtml($billerDupsb->billerDetails->pluck('nominal', 'nama') ?? null),
             '{tahun_pendaftaran}' => $user->tahun_pendaftaran ?? null,
             '{deskripsi_lokasi_tes}' => $lokasi_tes->deskripsi ?? null,
             '{deskripsi_tes_kesehatan}' => $tes_kesehatan->description ?? null,
@@ -70,9 +70,56 @@ class Psb extends Component
         );
 
         $data['description'] = strtr($status_psb->description, $vars);
+        $data['status_psb_id'] = $user->status_psb_id;
+        $data['tgl_pengumuman'] = $gel->tgl_pengumuman;
 
         return view('livewire.user.psb', [
             'data' => $data
         ]);
+    }
+
+    public function billerDetailHtml($items)
+    {
+        $list = '';
+        $total = 0;
+        if (!empty($items)) {
+            foreach ($items as $key => $value) {
+                $list .= '<div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4">
+                        <dt class="text-sm font-medium text-gray-500">
+                            ' . $key . '
+                        </dt>
+                        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                            ' . rupiah($value) . '
+                        </dd>
+                    </div>';
+                $total += $value;
+            }
+
+            $result = '<div>
+                <div>
+                    <span class="leading-6 font-medium text-gray-900">
+                        Rincian Tagihan
+                    </span>
+                </div>
+                <div class="mt-5 border-t border-gray-200">
+                    <dl class="sm:divide-y sm:divide-gray-200">
+                        ' . $list . '
+                        <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4">
+                            <dt class="text-sm font-semibold text-gray-500">
+                                Total Tagihan
+                            </dt>
+                            <dd class="mt-1 text-sm font-semibold text-gray-900 sm:mt-0 sm:col-span-2">
+                                ' . rupiah($total) . '
+                            </dd>
+                        </div>
+                    </dl>
+                </div>
+            </div>';
+        } else {
+            $result = 'Oops... Rincian tagihan daftar ulang PSB belum tersedia.';
+        }
+
+
+        return $result;
     }
 }

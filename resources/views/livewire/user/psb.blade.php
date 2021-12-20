@@ -9,7 +9,18 @@
                             Home
                         </h2>
                         <div class="mt-6 prose">
+                            @if (in_array($data['status_psb_id'], [1, 2]))
                             {!! $data['description'] !!}
+                            @else
+                            @if (strtotime('now') >= strtotime($data['tgl_pengumuman']))
+                            {!! $data['description'] !!}
+                            @else
+                            <p class="text-red-600 font-semibold animate-pulse">
+                                Pengumuman penerimaan PSB akan berlangsung pada {{ tanggal(date('Y-m-d',
+                                strtotime($data['tgl_pengumuman']))) }}
+                            </p>
+                            @endif
+                            @endif
                         </div>
                     </div>
                 </div>
