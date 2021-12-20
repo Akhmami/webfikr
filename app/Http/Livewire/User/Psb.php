@@ -18,7 +18,8 @@ class Psb extends Component
         $status_psb = $user->statusPsb;
         $lokasi_tes = $user->lokasiTest;
         $tes_kesehatan = $user->medicalCheck;
-        $billing = $user->billerPsb->billing;
+        $billingPsb = $user->billerPsb->billing ?? null;
+        $billerDupsb = $user->billerDupsb ?? null;
         $gel = $user->gelombang;
 
         $smp = 'hidden';
@@ -48,8 +49,9 @@ class Psb extends Component
             '{no_pendaftaran}' => $user->userDetail->no_pendaftaran ?? null,
             '{jenjang}' => $user->userDetail->jenjang,
             '{jurusan}' => $user->userDetail->jurusan,
-            '{va_psb}' => $billing->virtual_account ?? null,
-            '{tagihan_psb}' => rupiah($billing->trx_amount ?? 0),
+            '{va_psb}' => $billingPsb->virtual_account ?? null,
+            '{tagihan_psb}' => rupiah($billingPsb->trx_amount ?? 0),
+            '{total_tagihan_dupsb}' => rupiah($billerDupsb->amount ?? 0),
             '{tahun_pendaftaran}' => $user->tahun_pendaftaran ?? null,
             '{deskripsi_lokasi_tes}' => $lokasi_tes->deskripsi ?? null,
             '{deskripsi_tes_kesehatan}' => $tes_kesehatan->description ?? null,

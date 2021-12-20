@@ -140,6 +140,11 @@ class User extends Authenticatable
         return $this->hasOne(Biller::class)->where('type', 'PSB')->latest('id');
     }
 
+    public function billerDupsb()
+    {
+        return $this->hasOne(Biller::class)->where('type', 'DUPSB')->latest('id');
+    }
+
     public function billings()
     {
         return $this->hasMany(Billing::class);

@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Dash\Psb;
 
 use App\Libraries\WA;
 use App\Mail\SendMailPsb;
+use App\Models\Gelombang;
 use App\Models\User;
 use App\Models\Year;
 use Illuminate\Database\Eloquent\Builder;
@@ -42,6 +43,10 @@ class RegisteredTable extends DataTableComponent
 
     public function filters(): array
     {
+        $init = ['' => 'Semua'];
+        $gelombang = Gelombang::pluck('nama', 'id')->toArray();
+        $gelombang = $init + $gelombang;
+
         return [
             'fromDate' => Filter::make('Dari tanggal')
                 ->date([
@@ -50,6 +55,18 @@ class RegisteredTable extends DataTableComponent
             'toDate' => Filter::make('Sampai tanggal')
                 ->date([
                     'max' => now()->format('Y-m-d')
+                ]),
+            'gelombang' => Filter::make('Gelombang')
+                ->select($gelombang),
+            'statusPsb' => Filter::make('Status Psb')
+                ->select([
+                    '' => 'Semua',
+                    1 => 'Menunggu Pembayaran',
+                    2 => 'Terbayar',
+                    3 => 'Diterima',
+                    4 => 'Cadangan',
+                    5 => 'Tidak Diterima',
+                    6 => 'Mengundurkan Diri'
                 ]),
             'questionnairePsb' => Filter::make('Questionnaire')
                 ->select([
@@ -70,6 +87,8 @@ class RegisteredTable extends DataTableComponent
             ->latest('id')
             ->when($this->getFilter('fromDate'), fn ($query, $fromDate) => $query->whereDate('created_at', '>=', $fromDate))
             ->when($this->getFilter('toDate'), fn ($query, $toDate) => $query->whereDate('created_at', '<=', $toDate))
+            ->when($this->getFilter('gelombang'), fn ($query, $gelombang) => $query->where('gelombang_id', $gelombang))
+            ->when($this->getFilter('statusPsb'), fn ($query, $statusPsb) => $query->where('status_psb_id', $statusPsb))
             ->when($this->getFilter('questionnairePsb'), fn ($query, $questionnairePsb) => $query->where('questionnaire_psb', $questionnairePsb));
     }
 
