@@ -126,69 +126,73 @@ class Psb extends Component
 
     public function progresDupsbHtml($user)
     {
-        $result = '<fieldset class="space-y-5">
-            <legend class="sr-only">Progress</legend>
-            <div class="relative flex items-start">
-                <div class="flex items-center h-5">
-                    <input type="checkbox" disabled ' . ($user->billerDupsb->amount > $user->billerDupsb->cumulative_payment_amount ? '' : 'checked') . '
-                        class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded">
-                </div>
-                <div class="ml-3 text-sm flex flex-col sm:flex-row items-start sm:items-center sm:space-x-4">
-                    <div>
-                        <label class="font-medium text-gray-700">Pembayaran Daftar Ulang</label>
-                        <p class="text-gray-500" style="margin-top: 0.25em; margin-bottom: 0;">
-                            Sudah dibayar: ' . rupiah($user->billerDupsb->cumulative_payment_amount) . '
-                        </p>
+        if (!empty($user->billerDupsb)) {
+            $result = '<fieldset class="space-y-5">
+                <legend class="sr-only">Progress</legend>
+                <div class="relative flex items-start">
+                    <div class="flex items-center h-5">
+                        <input type="checkbox" disabled ' . ($user->billerDupsb->amount > $user->billerDupsb->cumulative_payment_amount ? '' : 'checked') . '
+                            class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded">
                     </div>
-                    ' .
-            ($user->billerDupsb->amount > $user->billerDupsb->cumulative_payment_amount ? '<a href="' . route('user.pembayaran') . '" style="color: white; text-decoration: none;"
-                        class="inline-flex items-center px-3 py-1 border border-transparent shadow-sm text-sm font-medium text-white bg-gradient-to-r from-indigo-600 to-blue-600 hover:from-indigo-700 hover:to-blue-700 rounded-full">
-                        Bayar sekarang
-                    </a>' : '')
-            . '
-                </div>
-            </div>
-            <div class="relative flex items-start">
-                <div class="flex items-center h-5">
-                    <input type="checkbox" disabled ' . ($user->userDetail->jenis_pendaftaran === 'internal' ? 'checked' : '') . '
-                        class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded">
-                </div>
-                <div class="ml-3 text-sm flex flex-col sm:flex-row items-start sm:items-center sm:space-x-4">
-                    <div>
-                        <label for="candidates" class="font-medium text-gray-700">Upload Berkas</label>
-                        <p class="text-gray-500" style="margin-top: 0.25em; margin-bottom: 0;">
-                            Terupload: ' . ($user->userDetail->jenis_pendaftaran === 'internal' ? 'Tersedia disekolah' : '') . '
-                        </p>
+                    <div class="ml-3 text-sm flex flex-col sm:flex-row items-start sm:items-center sm:space-x-4">
+                        <div>
+                            <label class="font-medium text-gray-700">Pembayaran Daftar Ulang</label>
+                            <p class="text-gray-500" style="margin-top: 0.25em; margin-bottom: 0;">
+                                Sudah dibayar: ' . rupiah($user->billerDupsb->cumulative_payment_amount) . '
+                            </p>
+                        </div>
+                        ' .
+                ($user->billerDupsb->amount > $user->billerDupsb->cumulative_payment_amount ? '<a href="' . route('user.pembayaran') . '" style="color: white; text-decoration: none;"
+                            class="inline-flex items-center px-3 py-1 border border-transparent shadow-sm text-sm font-medium text-white bg-gradient-to-r from-indigo-600 to-blue-600 hover:from-indigo-700 hover:to-blue-700 rounded-full">
+                            Bayar sekarang
+                        </a>' : '')
+                . '
                     </div>
-                    ' .
-            ($user->userDetail->jenis_pendaftaran === 'internal' ? '' : '<a href="' . route('user.berkas') . '" style="color: white; text-decoration: none;"
-                        class="inline-flex items-center px-3 py-1 border border-transparent shadow-sm text-sm font-medium text-white bg-gradient-to-r from-indigo-600 to-blue-600 hover:from-indigo-700 hover:to-blue-700 rounded-full">
-                        Upload sekarang
-                    </a>')
-            . '
                 </div>
-            </div>
-            <div class="relative flex items-start">
-                <div class="flex items-center h-5">
-                    <input type="checkbox" disabled ' . ($user->userDetail->jenis_pendaftaran === 'internal' ? 'checked' : '') . '
-                        class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded">
-                </div>
-                <div class="ml-3 text-sm flex flex-col sm:flex-row items-start sm:items-center sm:space-x-4">
-                    <div>
-                        <label class="font-medium text-gray-700">Mengisi Ukuran Baju</label>
-                        <p class="text-gray-500" style="margin-top: 0.25em; margin-bottom: 0;">
-                            Keterangan: ' . ($user->userDetail->jenis_pendaftaran === 'internal' ? 'pengukuran langsung disekolah' : '') . '
-                        </p>
+                <div class="relative flex items-start">
+                    <div class="flex items-center h-5">
+                        <input type="checkbox" disabled ' . ($user->userDetail->jenis_pendaftaran === 'internal' ? 'checked' : '') . '
+                            class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded">
                     </div>
-                    ' .
-            ($user->userDetail->jenis_pendaftaran === 'internal' ? '' : '<a href="' . route('user.pembayaran') . '" style="color: white; text-decoration: none;"
-                        class="inline-flex items-center px-3 py-1 border border-transparent shadow-sm text-sm font-medium text-white bg-gradient-to-r from-indigo-600 to-blue-600 hover:from-indigo-700 hover:to-blue-700 rounded-full">
-                        Isi sekarang
-                    </a>')
-            . '
+                    <div class="ml-3 text-sm flex flex-col sm:flex-row items-start sm:items-center sm:space-x-4">
+                        <div>
+                            <label for="candidates" class="font-medium text-gray-700">Upload Berkas</label>
+                            <p class="text-gray-500" style="margin-top: 0.25em; margin-bottom: 0;">
+                                Terupload: ' . ($user->userDetail->jenis_pendaftaran === 'internal' ? 'Tersedia disekolah' : '') . '
+                            </p>
+                        </div>
+                        ' .
+                ($user->userDetail->jenis_pendaftaran === 'internal' ? '' : '<a href="' . route('user.berkas') . '" style="color: white; text-decoration: none;"
+                            class="inline-flex items-center px-3 py-1 border border-transparent shadow-sm text-sm font-medium text-white bg-gradient-to-r from-indigo-600 to-blue-600 hover:from-indigo-700 hover:to-blue-700 rounded-full">
+                            Upload sekarang
+                        </a>')
+                . '
+                    </div>
                 </div>
-            </div>
-        </fieldset>';
+                <div class="relative flex items-start">
+                    <div class="flex items-center h-5">
+                        <input type="checkbox" disabled ' . ($user->userDetail->jenis_pendaftaran === 'internal' ? 'checked' : '') . '
+                            class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded">
+                    </div>
+                    <div class="ml-3 text-sm flex flex-col sm:flex-row items-start sm:items-center sm:space-x-4">
+                        <div>
+                            <label class="font-medium text-gray-700">Mengisi Ukuran Baju</label>
+                            <p class="text-gray-500" style="margin-top: 0.25em; margin-bottom: 0;">
+                                Keterangan: ' . ($user->userDetail->jenis_pendaftaran === 'internal' ? 'pengukuran langsung disekolah' : '') . '
+                            </p>
+                        </div>
+                        ' .
+                ($user->userDetail->jenis_pendaftaran === 'internal' ? '' : '<a href="' . route('user.pembayaran') . '" style="color: white; text-decoration: none;"
+                            class="inline-flex items-center px-3 py-1 border border-transparent shadow-sm text-sm font-medium text-white bg-gradient-to-r from-indigo-600 to-blue-600 hover:from-indigo-700 hover:to-blue-700 rounded-full">
+                            Isi sekarang
+                        </a>')
+                . '
+                    </div>
+                </div>
+            </fieldset>';
+        } else {
+            $result = 'Tagihan Daftar Ulang PSB Tidak Tersedia';
+        }
 
         return $result;
     }
