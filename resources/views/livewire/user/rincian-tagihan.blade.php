@@ -14,7 +14,8 @@
                     <div class="flex items-center space-x-4">
                         <div class="flex-1 min-w-0">
                             <p class="text-md font-semibold text-gray-900 truncate">
-                                {{ rupiah(($biller->amount - ($biller->cumulative_payment_amount + $biller->cost_reduction + $biller->balance_used))) }}
+                                {{ rupiah(($biller->amount - ($biller->cumulative_payment_amount +
+                                $biller->cost_reduction + $biller->balance_used))) }}
                             </p>
                             <p class="text-sm text-gray-500 truncate">
                                 {{ $biller->description }}
@@ -29,7 +30,7 @@
                             @else
                             <button type="button" wire:click="bayar({{ $biller->id }})" wire:loading.remove
                                 wire:target="bayar({{ $biller->id }})"
-                                class="inline-flex items-center px-3 py-1 border border-transparent shadow-sm text-sm font-medium text-white bg-gradient-to-r from-indigo-600 to-blue-600 hover:from-indigo-700 hover:to-blue-700' rounded-full">
+                                class="inline-flex items-center px-3 py-1 border border-transparent shadow-sm text-sm font-medium text-white bg-gradient-to-r from-indigo-600 to-blue-600 hover:from-indigo-700 hover:to-blue-700 rounded-full">
                                 Bayar Sekarang
                             </button>
                             <span wire:loading wire:target="bayar({{ $biller->id }})"

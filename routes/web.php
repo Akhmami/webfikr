@@ -95,6 +95,7 @@ Route::domain('apps.' . config('app.domain'))
     ->group(function () {
         Route::view('/', 'user.index')->name('home');
         Route::view('/pembayaran', 'user.pembayaran')->name('pembayaran');
+        Route::view('/berkas', 'user.berkas')->name('berkas');
         Route::view('/spp', 'user.spp')->name('spp');
         Route::view('/pas', 'user.pas')->name('pas');
         Route::get('/pas/print/{id}', [IDCardController::class, 'index'])->name('pas.print');

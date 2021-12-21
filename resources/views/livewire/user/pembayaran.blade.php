@@ -163,6 +163,7 @@
                     @else
                     <!-- Tidak ada pembayaran -->
                     <div class="text-center">
+                        @if (auth()->user()->grades()->count() > 0)
                         <svg xmlns="http://www.w3.org/2000/svg" class="mx-auto h-12 w-12 text-gray-400" width="44"
                             height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#9ca3af" fill="none"
                             stroke-linecap="round" stroke-linejoin="round">
@@ -176,6 +177,13 @@
                         <p class="mt-1 text-sm text-gray-500">
                             Pastikan kamu tidak memiliki tagihan, lihat rincian tagihan.
                         </p>
+                        @else
+                        @if (!empty(auth()->user()->billerDupsb))
+                        <p>Tagihan Daftar Ulang PSB</p>
+                        <p class="font-bold text-lg mb-2">{{ rupiah(auth()->user()->billerDupsb->amount) }}</p>
+                        @endif
+                        <p class="text-sm text-gray-500">Silahkan klik rincian tagihan, untuk melakukan pembayaran</p>
+                        @endif
                         <div class="mt-6">
                             <button type="button"
                                 onclick="Livewire.emit('openModal', 'user.rincian-tagihan', {{ json_encode(['user' => auth()->user()->id ]) }})"
