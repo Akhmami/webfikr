@@ -205,6 +205,11 @@ class User extends Authenticatable
         return $this->hasMany(CostReduction::class);
     }
 
+    public function files()
+    {
+        return $this->hasMany(UserFile::class);
+    }
+
     public function getTempatTanggalLahirAttribute()
     {
         return $this->birth_place . ', ' . tanggal($this->birth_date);

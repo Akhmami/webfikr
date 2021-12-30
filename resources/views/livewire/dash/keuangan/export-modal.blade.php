@@ -5,6 +5,11 @@
         </x-slot>
 
         @php
+        $opsi = [
+        '' => 'Tagihan Umum',
+        'DUPSB' => 'DUPSB'
+        ];
+
         $month = [
         1 => "Januari",
         2 => "Februari",
@@ -26,6 +31,8 @@
         @endphp
 
         <x-slot name="content">
+            {{--
+            <x-select label="Opsi" name="opsi" :list="$opsi" livewire /> --}}
             <x-select label="Bulan" name="month" :list="$month" livewire />
             <x-select label="Tahun" name="year" :list="$year" livewire />
         </x-slot>

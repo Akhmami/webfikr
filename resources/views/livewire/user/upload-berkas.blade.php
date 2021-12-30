@@ -35,7 +35,7 @@
                                         Cover photo
                                     </label>
                                     <div class="mt-1">
-                                        <x-file-attachment wire:model="image" />
+                                        <x-file-attachment wire:model="file" />
                                     </div>
                                 </div>
                             </div>

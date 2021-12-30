@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Dash\KeuanganController;
 use App\Http\Controllers\Api\CallbackController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\BajuController;
 use App\Http\Controllers\Dash\IDCardController as DashIDCardController;
 use App\Http\Controllers\Dash\PostPsbController;
 use App\Http\Controllers\Dash\StatusPsbController;
@@ -13,6 +14,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\PsbController;
 use App\Http\Controllers\SurveyController;
 use App\Http\Controllers\IDCardController;
+use App\Http\Controllers\UploadController;
 
 /*
 |--------------------------------------------------------------------------
@@ -95,9 +97,14 @@ Route::domain('apps.' . config('app.domain'))
     ->group(function () {
         Route::view('/', 'user.index')->name('home');
         Route::view('/pembayaran', 'user.pembayaran')->name('pembayaran');
-        Route::view('/berkas', 'user.berkas')->name('berkas');
+        // Route::view('/berkas', 'user.berkas')->name('berkas');
         Route::view('/spp', 'user.spp')->name('spp');
         Route::view('/pas', 'user.pas')->name('pas');
+        Route::get('/berkas', [UploadController::class, 'index'])->name('berkas');
+        Route::post('/berkas/store', [UploadController::class, 'store'])->name('berkas.store');
+        Route::get('/berkas/{nama}', [UploadController::class, 'show'])->name('berkas.show');
+        Route::get('/ukuran-baju', [BajuController::class, 'index'])->name('baju');
+        Route::put('/baju/{id}', [BajuController::class, 'update'])->name('baju.update');
         Route::get('/pas/print/{id}', [IDCardController::class, 'index'])->name('pas.print');
         # Survey
         Route::get('/survey/{uri}', [SurveyController::class, 'index'])->name('survey');

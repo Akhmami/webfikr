@@ -57,7 +57,7 @@ class PenerimaanPsb extends Command
                     $user->update([
                         'status_psb_id' => $statusPsb[$item->status_psb],
                         'status' => ($statusPsb[$item->status_psb] === 3 ? 'santri' : null),
-                        'gelombang_id' => 1
+                        'gelombang_id' => 2
                     ]);
 
                     $user->userDetail()->update([
