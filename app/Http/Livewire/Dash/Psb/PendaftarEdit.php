@@ -54,6 +54,7 @@ class PendaftarEdit extends ModalComponent
         $this->nik = $user->userDetail->nik;
         $this->jenjang = $user->userDetail->jenjang;
         $this->jurusan_pilihan = $user->userDetail->jurusan_pilihan;
+        $this->jurusan = $user->userDetail->jurusan;
         $this->npsn = $user->userDetail->npsn;
         $this->lokasi_test_id = $user->lokasi_test_id;
         $this->medical_check_id = $user->medical_check_id;
