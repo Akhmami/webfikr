@@ -14,6 +14,17 @@
             @endphp
 
             <x-select label="Jenis kelamin" name="value" :list="$type" livewire />
+            @elseif ($type === 'status-psb')
+            @php
+            $type = [
+            3 => 'Diterima',
+            4 => 'Cadangan',
+            5 => 'Tidak Diterima',
+            6 => 'Mengundurkan Diri'
+            ]
+            @endphp
+
+            <x-select label="Jenis kelamin" name="value" :list="$type" livewire />
             @else
             <x-input label="{{ $column }}" name="value" livewire />
             @endif

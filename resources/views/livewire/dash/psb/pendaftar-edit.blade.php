@@ -15,12 +15,14 @@
                     <x-date-picker label="Tanggal Lahir" name="birth_date" livewire />
                 </div>
                 <x-select label="Jenjang Tujuan" name="jenjang" :list="$list_jenjang" livewire />
+
                 @if ($jenjang == 'SMA')
                 <x-select label="Jurusan Pilihan" name="jurusan_pilihan" :list="$list_jurusan" livewire />
                 @if ($user->status_psb_id === 3)
                 <x-select label="Jurusan Diterima" name="jurusan" :list="$list_jurusan" livewire />
                 @endif
                 @endif
+
                 <x-input label="NPSN Asal Sekolah" type="number" name="npsn" livewire />
                 <x-input label="Email" type="email" name="email" livewire />
                 <x-select label="Lokasi Tes" name="lokasi_test_id" :list="$lokasi_test" livewire />

@@ -15,7 +15,11 @@ use Rappasoft\LaravelLivewireTables\Views\Filter;
 
 class RegisteredTable extends DataTableComponent
 {
-    protected $listeners = ['delete', 'resend'];
+    protected $listeners = [
+        'delete',
+        'resend',
+        'closeAlertValue' => '$refresh',
+    ];
 
     public function columns(): array
     {
