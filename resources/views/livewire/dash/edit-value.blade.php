@@ -13,7 +13,7 @@
             ]
             @endphp
 
-            <x-select label="Jenis kelamin" name="value" :list="$type" livewire />
+            <x-select label="Status PSB" name="value" :list="$type" livewire />
             @elseif ($type === 'status-psb')
             @php
             $type = [
