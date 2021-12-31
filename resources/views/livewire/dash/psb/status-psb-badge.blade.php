@@ -24,7 +24,8 @@ $text = [
             class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-{{$color[$data->status_psb_id]}}-100 text-{{$color[$data->status_psb_id]}}-800">
             {{ $text[$data->status_psb_id] }}
         </span>
-        <a href="#" class="p-1 rounded-md hover:bg-yellow-500">
+        <a href="#" onclick="Livewire.emit('openModal', 'dash.edit-status-psb', {{ json_encode(['id' => $data->id]) }})"
+            class="p-1 rounded-md hover:bg-yellow-500">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-500 hover:text-gray-900"
                 viewBox="0 0 20 20" fill="currentColor">
                 <path

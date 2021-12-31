@@ -39,7 +39,9 @@ class PendaftarEdit extends ModalComponent
         'nisn' => 'required|min:10|max:10',
         'nik' => 'required|min:16|max:16',
         'jenjang' => 'required',
-        'npsn' => 'required|min:6|max:8'
+        'npsn' => 'required|min:6|max:8',
+        'jurusan_pilihan' => 'nullable',
+        'jurusan' => 'nullable'
     ];
 
     public function mount(User $user)
