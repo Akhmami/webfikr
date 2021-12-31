@@ -18,6 +18,7 @@ class PendaftarEdit extends ModalComponent
     public $nik;
     public $jenjang;
     public $jurusan_pilihan;
+    public $jurusan;
     public $npsn;
     public $lokasi_test_id;
     public $medical_check_id;
@@ -81,7 +82,9 @@ class PendaftarEdit extends ModalComponent
             'nisn' => $validatedData['nisn'],
             'nik' => $validatedData['nik'],
             'jenjang' => $validatedData['jenjang'],
-            'npsn' => $validatedData['npsn']
+            'npsn' => $validatedData['npsn'],
+            'jurusan_pilihan' => $validatedData['jurusan_pilihan'],
+            'jurusan' => $validatedData['jurusan'],
         ]);
 
         $this->closeModal();

@@ -39,7 +39,7 @@
                         Tagihan PSB
                     </dt>
                     <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                        @if ($user->billerPsb->count() > 0)
+                        @if (!empty($user->billerPsb))
                         <ul class="border border-gray-200 rounded-md divide-y divide-gray-200">
                             <li class="p-3 flex items-center justify-between text-sm">
                                 <div class="w-0 flex-1 flex items-center">

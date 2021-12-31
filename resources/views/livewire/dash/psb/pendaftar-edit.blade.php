@@ -8,7 +8,7 @@
             <div class="space-y-4">
                 <x-input label="Nama Lengkap" name="name" livewire />
                 <x-input label="NIK (Nomor Induk Kependudukan)" type="number" name="nik" livewire />
-                <x-input label="NISN (Nomor Induk Siswa Nasional)" type="number" name="nisn" livewire />
+                <x-input label="NISN (Nomor Induk Siswa Nasional)" type="text" name="nisn" livewire />
                 <x-select label="Jenis Kelamin" name="gender" :list="$list_jk" livewire />
                 <div class="grid grid-cols-2 space-x-4">
                     <x-input label="Tempat Lahir" name="birth_place" livewire />
