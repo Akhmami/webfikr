@@ -63,7 +63,7 @@ class PenerimaanPsb extends Command
                     $user->userDetail()->update([
                         'jenis_pendaftaran' => $item->jenis_pendaftaran,
                         'jenjang' => $item->jenjang,
-                        'jurusan' => !empty($item->jurusan) ? $item->jurusan : null
+                        'jurusan' => !empty($item->jurusan) ? $item->jurusan : $user->userDetail->jurusan_pilihan
                     ]);
 
                     if (empty($user->billerDupsb)) {
