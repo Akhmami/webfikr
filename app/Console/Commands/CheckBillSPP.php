@@ -48,8 +48,6 @@ class CheckBillSPP extends Command
             ->where('status', 'santri')
             ->cursor();
 
-        dd($users->count());
-
         foreach ($users as $user) {
             $range = date_range($user->latestSpp->bulan);
             $month = [
