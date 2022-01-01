@@ -43,9 +43,12 @@ class CheckBillSPP extends Command
     public function handle()
     {
         $billing = '';
-        $users = User::with('setSpp', 'latestSpp', 'billerSPP')
+        $users = User::has('grades')
+            ->with('setSpp', 'latestSpp', 'billerSPP')
             ->where('status', 'santri')
             ->cursor();
+
+        dd($users->count());
 
         foreach ($users as $user) {
             $range = date_range($user->latestSpp->bulan);
