@@ -2,7 +2,8 @@
 
 namespace App\Console\Commands;
 
-use App\Models\Biller;
+use App\Libraries\VA;
+use App\Models\Billing;
 use App\Models\FailedSppBiller;
 use Illuminate\Console\Command;
 use App\Models\User;
@@ -41,6 +42,7 @@ class CheckBillSPP extends Command
      */
     public function handle()
     {
+        $billing = '';
         $users = User::with('setSpp', 'latestSpp', 'billerSPP')
             ->where('status', 'santri')
             ->cursor();
@@ -75,9 +77,15 @@ class CheckBillSPP extends Command
                     # Klo tagihan bulan ini belum ada
                     if (date('Y-m', strtotime($latest_biller->created_at)) !== date('Y-m')) {
                         $spp_active = $user->billerSPP;
+
                         # masih ada tagihan SPP
                         if (!empty($spp_active)) {
-                            # set inactive
+                            $billing = $spp_active->activeBillings()->first();
+
+                            # non aktifkan billing atau VA
+                            $this->inactivingBilling($billing);
+
+                            # non aktifkan biller
                             $user->billerSPP()->update([
                                 'is_active' => 'N',
                             ]);
@@ -103,6 +111,9 @@ class CheckBillSPP extends Command
                             ]);
                         }
 
+                        # Aktifkan ulang Billing atau VA
+                        $this->activingBilling($newBiller, $billing);
+
                         DB::commit();
                     }
                 } catch (\Throwable $th) {
@@ -113,6 +124,56 @@ class CheckBillSPP extends Command
                         'exception' => $th->getMessage()
                     ]);
                 }
+            }
+        }
+    }
+
+    public function inactivingBilling($billing)
+    {
+        if (!empty($billing)) {
+            $data = array(
+                'trx_id' => $billing->trx_id,
+                'trx_amount' => $billing->trx_amount,
+                'customer_name' => $billing->customer_name,
+                'datetime_expired' => date('c', strtotime('now'))
+            );
+
+            $va = new VA;
+            $result = $va->update($data);
+            if ($result['status'] !== '000') {
+                throw new \Exception('Inactiving gagal #' . $result['status']);
+            }
+
+            $billing->update([
+                'datetime_expired' => now()
+            ]);
+        }
+    }
+
+    public function activingBilling($biller, $billing)
+    {
+        if (!empty($billing)) {
+            $data = array(
+                'trx_id' => $billing->trx_id . mt_rand(1, 9),
+                'virtual_account' => $billing->virtual_account,
+                'trx_amount' => $billing->trx_amount,
+                'billing_type' => 'c',
+                'customer_name' => $billing->customer_name,
+                'description' => $billing->description,
+                'datetime_expired' => date('c', strtotime('5 days'))
+            );
+
+            $va = new VA;
+            $result = $va->create($data);
+
+            if ($result['status'] !== '000') {
+                throw new \Exception('Activing gagal #' . $result['status']);
+            } else {
+                $data['user_id'] = $biller->user_id;
+                $data['spp_pay_month'] = $billing->spp_pay_month;
+                $data['use_balance'] = $billing->use_balance;
+                $data['datetime_expired'] = date('Y-m-d H:i:s', strtotime('5 days'));
+                $biller->billings()->create($data);
             }
         }
     }

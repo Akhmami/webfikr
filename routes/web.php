@@ -66,10 +66,18 @@ Route::domain(config('app.domain'))
                 Route::view('/psb/settings', 'dash.psb.settings-index')->middleware('permission:lihat psb')->name('psb.settings-index');
 
                 # Website
-                Route::get('/website', [WebsiteController::class, 'index'])->name('website.index');
-                Route::get('/website/{item}', [WebsiteController::class, 'views'])->name('website.views');
-                Route::get('/website/{item}/create', [WebsiteController::class, 'create'])->name('website.create');
-                Route::get('/website/{item}/{id}/edit', [WebsiteController::class, 'edit'])->name('website.edit');
+                # route: dashboard/website
+                Route::name('website.')
+                    ->prefix('website')
+                    ->group(function () {
+                        Route::get('/', [WebsiteController::class, 'index'])->name('index');
+                        Route::get('/{item}', [WebsiteController::class, 'views'])->name('views');
+                        Route::get('/{item}/create', [WebsiteController::class, 'create'])->name('create');
+                        Route::get('/{item}/{id}/edit', [WebsiteController::class, 'edit'])->name('edit');
+
+                        # slideshow
+                        Route::view('/slideshow', 'dash.website.create');
+                    });
             });
 
         Route::post('/send-email-reset', [AuthController::class, 'store'])->name('password.username');

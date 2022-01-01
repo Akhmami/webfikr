@@ -27,7 +27,7 @@ class IsiSaldo extends ModalComponent
 
     public function add()
     {
-        $validatedData = $this->validate();
+        $this->validate();
 
         $no_pendaftaran = auth()->user()->userDetail->no_pendaftaran;
         $cek_billing = Billing::where('virtual_account', $no_pendaftaran)
