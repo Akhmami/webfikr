@@ -13,7 +13,7 @@
             ]
             @endphp
 
-            <x-select label="Status PSB" name="value" :list="$type" livewire />
+            <x-select label="Jenis kelamin" name="value" :list="$type" livewire />
             @elseif ($type === 'status-psb')
             @php
             $type = [
@@ -24,7 +24,7 @@
             ]
             @endphp
 
-            <x-select label="Jenis kelamin" name="value" :list="$type" livewire />
+            <x-select label="Status PSB" name="value" :list="$type" livewire />
             @else
             <x-input label="{{ $column }}" name="value" livewire />
             @endif
