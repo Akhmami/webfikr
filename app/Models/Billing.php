@@ -54,11 +54,6 @@ class Billing extends Model
         return $this->morphMany(PaymentHistory::class, 'payment_history');
     }
 
-    public function getDateExpiredAttribute($value)
-    {
-        return tanggal(date('Y-m-d', strtotime($this->datetime_expired))) . ' ' . date('H:i', strtotime($this->datetime_expired));
-    }
-
     public function scopeActive($query)
     {
         return $query->where('datetime_expired', '>=', Carbon::now())
@@ -74,6 +69,11 @@ class Billing extends Model
     public function scopePaid($query)
     {
         return $query->where('is_paid', 'Y');
+    }
+
+    public function getDateExpiredAttribute($value)
+    {
+        return tanggal(date('Y-m-d', strtotime($this->datetime_expired))) . ' ' . date('H:i', strtotime($this->datetime_expired));
     }
 
     public function getFullVirtualAccountAttribute()
