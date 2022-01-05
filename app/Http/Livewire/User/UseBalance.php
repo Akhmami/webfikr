@@ -142,4 +142,14 @@ class UseBalance extends ModalComponent
             }
         }
     }
+
+    public static function closeModalOnEscape(): bool
+    {
+        return false;
+    }
+
+    public static function closeModalOnClickAway(): bool
+    {
+        return false;
+    }
 }

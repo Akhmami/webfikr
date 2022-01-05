@@ -11,6 +11,10 @@
                     <div class="mt-1 font-bold text-lg text-gray-700">{{ rupiah($max_amount) }}</div>
                 </div>
                 <div>
+                    @if (empty($options))
+                    <x-input label="Jumlah yang akan dibayar" id="currency" type="text" name="nominal"
+                        placeholder="Masukan disini" livewire />
+                    @else
                     <span>Pilihan Pembayaran</span>
                     <div class="flex gap-4 flex-wrap mt-2 mb-4">
                         @php
@@ -21,8 +25,8 @@
                             <div class="flex items-center text-sm">
                                 <input type="radio" wire:model.lazy="option_id" value="{{ $id }}"
                                     class="h-4 w-4 text-indigo-600 border-gray-300 focus:ring-indigo-500">
-                                <span id="pricing-plans-0-label"
-                                    class="text-gray-900 ml-3 font-medium">{{ rupiah($item['value']) }}</span>
+                                <span id="pricing-plans-0-label" class="text-gray-900 ml-3 font-medium">{{
+                                    rupiah($item['value']) }}</span>
                             </div>
                             @if ($biller['type'] === 'SPP')
                             <p id="pricing-plans-0-description-1"
@@ -38,6 +42,7 @@
                         <div class="text-sm text-red-500">{{ $message }}</div>
                         @enderror
                     </div>
+                    @endif
 
                     @if ($total_balance > 0)
                     <span>Gunakan Saldo</span>
@@ -47,8 +52,8 @@
                                 <label class="inline-flex items-center">
                                     <input type="checkbox" wire:model.lazy="balance" value="{{ $total_balance }}"
                                         class="form-checkbox rounded-md h-4 w-4 text-indigo-600 border-gray-300 focus:ring-indigo-500">
-                                    <span
-                                        class="ml-2 text-gray-700 font-semibold text-md">{{ rupiah($total_balance) }}</span>
+                                    <span class="ml-2 text-gray-700 font-semibold text-md">{{ rupiah($total_balance)
+                                        }}</span>
                                 </label>
                             </div>
                         </label>
@@ -78,4 +83,13 @@
             </button>
         </x-slot>
     </x-modal>
+
+    <script>
+        var tanpa_rupiah = document.getElementById('currency');
+        if (tanpa_rupiah) {
+            tanpa_rupiah.addEventListener('keyup', function(e) {
+                tanpa_rupiah.value = formatRupiah(this.value);
+            });
+        }
+    </script>
 </div>

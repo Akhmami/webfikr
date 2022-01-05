@@ -18,6 +18,13 @@ class Cicilan extends ModalComponent
     public $balance;
     public $total_pay;
     public $saldo_terpakai;
+    public $nominal;
+
+    protected $messages = [
+        'option_id.required' => 'Nominal pembayaran harus dipilih!',
+        'nominal.required' => 'Nominal pembayaran harus diisi!',
+        'nominal.min' => 'Nominal terlalu rendah'
+    ];
 
     public function mount(Biller $biller)
     {
@@ -26,6 +33,8 @@ class Cicilan extends ModalComponent
 
         $qty = $this->biller->qty_spp;
         $keringanan = $this->biller->billerDetails()->sum('keringanan');
+        $this->max_amount = $biller->amount - ($biller->cumulative_payment_amount + $keringanan + $biller->balance_used);
+
         if ($this->biller->type === 'SPP') {
             $i = 1;
             $val = 0;
@@ -39,23 +48,33 @@ class Cicilan extends ModalComponent
                 $i++;
             }
         } else {
-            $divider = ($biller->amount - $biller->hitung_keringanan) / $qty;
-            for ($i = 1; $i <= $qty; $i++) {
-                $val = ($i * $divider);
-                $this->options[$i] = [
-                    'value' => $val,
-                    'description' => $i . ' Bulan '
+            // $divider = ($biller->amount - $biller->hitung_keringanan) / $qty;
+            // for ($i = 1; $i <= $qty; $i++) {
+            //     $val = ($i * $divider);
+            //     $this->options[$i] = [
+            //         'value' => $val,
+            //         'description' => $i . ' Bulan '
+            //     ];
+            // }
+            $this->options = [];
+            if ($this->max_amount <= 5000000) {
+                $this->options[1] = [
+                    'value' => $this->max_amount,
+                    'description' => '1x Pembayaran '
                 ];
             }
         }
-
-        $this->max_amount = $biller->amount - ($biller->cumulative_payment_amount + $keringanan + $biller->balance_used);
     }
 
     public function render()
     {
-        $selected = (($this->options[$this->option_id]['value']) ?? 0);
-        $calculate = $selected - $this->balance;
+        if (!empty($this->options)) {
+            $selected = (($this->options[$this->option_id]['value']) ?? 0);
+        } else {
+            $selected = preg_replace('/\D/', '', $this->nominal);
+        }
+
+        $calculate = (is_numeric($selected) ? $selected : 0) - $this->balance;
 
         // klo saldonya kurang
         if ($calculate > 0) {
@@ -73,9 +92,18 @@ class Cicilan extends ModalComponent
 
     public function bayar()
     {
-        $this->validate([
-            'option_id' => 'required'
-        ]);
+        $this->validate();
+        $sisa = $this->max_amount - $this->total_pay;
+
+        if ($this->total_pay > $this->max_amount) {
+            $this->addError('nominal', 'Nominal yang diinput tidak boleh lebih dari ' . $this->max_amount);
+            return;
+        }
+
+        if ($sisa < 10000) {
+            $this->addError('nominal', 'Pastikan sisa tagihan tidak kurang dari 10000');
+            return;
+        }
 
         // kalo saldonya kurang, bayar sisa tagihan
         if ($this->total_pay > 0) {
@@ -181,5 +209,30 @@ class Cicilan extends ModalComponent
                 $this->emit('openModal', 'user.alert-modal', ['message' => 'Gagal memproses tagihan, silahkan coba lagi jika masih berlanjut hubungi kami. #' . $th->getMessage()]);
             }
         }
+    }
+
+    public static function closeModalOnEscape(): bool
+    {
+        return false;
+    }
+
+    public static function closeModalOnClickAway(): bool
+    {
+        return false;
+    }
+
+    public function rules()
+    {
+        if (empty($this->options)) {
+            $fields = [
+                'nominal' => 'required|min:5'
+            ];
+        } else {
+            $fields = [
+                'option_id' => 'required'
+            ];
+        }
+
+        return $fields;
     }
 }

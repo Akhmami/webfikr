@@ -175,7 +175,7 @@
                         </svg>
                         <h3 class="mt-2 text-sm font-medium text-gray-900">Tidak ada pembayaran</h3>
                         <p class="mt-1 text-sm text-gray-500">
-                            Pastikan kamu tidak memiliki tagihan, lihat rincian tagihan.
+                            Pastikan tidak memiliki tagihan, lihat rincian tagihan.
                         </p>
                         @else
                         @if (!empty(auth()->user()->billerDupsb))
