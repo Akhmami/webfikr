@@ -36,8 +36,10 @@
                                                         <select id="country" name="nama"
                                                             class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md">
                                                             <option value="">Pilih</option>
-                                                            <option>Kartu Keluarga</option>
-                                                            <option>Rapor</option>
+                                                            <option value="Akta">Akta Kelahiran</option>
+                                                            <option value="KK">Kartu Keluarga</option>
+                                                            <option value="Rapor">Identitas Rapor</option>
+                                                            <option value="Ijazah">Ijazah</option>
                                                         </select>
                                                         @error('nama')
                                                         <small class="text-sm text-red-500">{{ $message }}</small>
