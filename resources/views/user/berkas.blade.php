@@ -39,6 +39,7 @@
                                                             <option value="Akta">Akta Kelahiran</option>
                                                             <option value="KK">Kartu Keluarga</option>
                                                             <option value="Rapor">Identitas Rapor</option>
+                                                            <option value="NISN">Validasi NISN</option>
                                                             <option value="Ijazah">Ijazah</option>
                                                         </select>
                                                         @error('nama')
