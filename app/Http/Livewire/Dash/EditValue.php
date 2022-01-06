@@ -31,6 +31,15 @@ class EditValue extends ModalComponent
         try {
             $this->data->update([$this->column => $this->value]);
 
+            if ($this->data->wasChanged('status_psb_id')) {
+                $status = null;
+                if ($this->data->status_psb_id == 3) {
+                    $status = 'santri';
+                }
+
+                $this->data->update(['status' => $status]);
+            }
+
             $this->emit('openModal', 'alert-modal', [
                 'status' => 'success',
                 'emit' => 'closeAlertValue',

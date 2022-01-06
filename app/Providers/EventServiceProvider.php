@@ -10,8 +10,6 @@ use App\Listeners\CreateVirtualAccount;
 use App\Listeners\SendRegistrationNotification;
 use App\Listeners\SendPaymentNotification;
 use App\Listeners\DatabasePaymentNotification;
-use App\Observers\BillerObserver;
-use App\Models\Biller;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -39,6 +37,6 @@ class EventServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Biller::observe(BillerObserver::class);
+        #
     }
 }
