@@ -93,16 +93,19 @@ class Cicilan extends ModalComponent
     public function bayar()
     {
         $this->validate();
-        $sisa = $this->max_amount - $this->total_pay;
 
-        if ($this->total_pay > $this->max_amount) {
-            $this->addError('nominal', 'Nominal yang diinput tidak boleh lebih dari ' . $this->max_amount);
-            return;
-        }
+        if ($this->biller->type !== 'SPP') {
+            $sisa = $this->max_amount - $this->total_pay;
 
-        if ($sisa < 10000) {
-            $this->addError('nominal', 'Pastikan sisa tagihan tidak kurang dari 10000');
-            return;
+            if ($this->total_pay > $this->max_amount) {
+                $this->addError('nominal', 'Nominal yang diinput tidak boleh lebih dari ' . $this->max_amount);
+                return;
+            }
+
+            if ($sisa < 10000) {
+                $this->addError('nominal', 'Pastikan sisa tagihan tidak kurang dari 10000');
+                return;
+            }
         }
 
         // kalo saldonya kurang, bayar sisa tagihan
