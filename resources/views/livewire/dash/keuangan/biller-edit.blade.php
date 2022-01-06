@@ -7,7 +7,7 @@
         <x-slot name="content">
             <div class="flex flex-col space-y-4">
                 @php
-                $type = [
+                $type_list = [
                 'SPP' => 'SPP',
                 'DKT' => 'DKT',
                 'PSB' => 'PSB',
@@ -21,11 +21,11 @@
                 'N' => 'Tidak'
                 ]
                 @endphp
-                <x-select label="Tagihan Untuk" name="type" :list="$type" disabled livewire />
+                <x-select label="Tagihan Untuk" name="type" :list="$type_list" disabled livewire />
                 <x-select label="Apakah Bisa Diangsur" name="is_installment" :list="$installment" livewire />
 
-                @if ($is_installment === 'Y')
-                <x-input label="Berapa kali diangsur" name="qty_spp" livewire />
+                @if ($is_installment === 'Y' && $type === 'SPP')
+                <x-input label="Berapa kali pembayaran" name="qty_spp" livewire />
                 @endif
 
                 @foreach ($biller_details as $key => $val)
