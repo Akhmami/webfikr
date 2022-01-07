@@ -6,7 +6,7 @@
         <div class="mb-6 flex space-x-2">
             <div class="text-yellow-600 font-semibold">{{ $komitmen }}</div>
             <a href="#"
-                onclick="Livewire.emit('openModal', 'dash.edit-value', {{ json_encode(['model' => 'SetSpp', 'id' => $user->setSpp->id, 'column' => 'nominal']) }})"
+                onclick="Livewire.emit('openModal', 'dash.edit-value', {{ json_encode(['model' => 'SetSpp', 'id' => $user->setSpp->id ?? null, 'column' => 'nominal']) }})"
                 class="p-1 rounded-md hover:bg-yellow-500">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-500 hover:text-gray-900"
                     viewBox="0 0 20 20" fill="currentColor">
@@ -62,8 +62,8 @@
                                         class="focus:ring-indigo-500 h-5 w-5 text-indigo-600 border-gray-300 rounded-full">
                                 </div>
                                 <div class="ml-3 text-sm">
-                                    <label for="candidates"
-                                        class="font-medium text-gray-700">{{ tanggal(date('m', strtotime($bln->bulan)), 'm') }}</label>
+                                    <label for="candidates" class="font-medium text-gray-700">{{ tanggal(date('m',
+                                        strtotime($bln->bulan)), 'm') }}</label>
                                 </div>
                             </div>
                             @endforeach
