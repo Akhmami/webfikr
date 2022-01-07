@@ -102,9 +102,11 @@ class Cicilan extends ModalComponent
                 return;
             }
 
-            if ($sisa < 10000) {
-                $this->addError('nominal', 'Pastikan sisa tagihan tidak kurang dari 10000');
-                return;
+            if ($this->max_amount > 5000000) {
+                if ($sisa < 10000) {
+                    $this->addError('nominal', 'Pastikan sisa tagihan tidak kurang dari 10000');
+                    return;
+                }
             }
         }
 
