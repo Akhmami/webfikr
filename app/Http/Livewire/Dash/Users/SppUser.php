@@ -26,7 +26,7 @@ class SppUser extends Component
 
     public function render()
     {
-        $this->komitmen = rupiah($this->user->setSpp->nominal);
+        $this->komitmen = rupiah($this->user->setSpp->nominal ?? 0);
         return view('livewire.dash.users.spp-user');
     }
 
