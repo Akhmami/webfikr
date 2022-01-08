@@ -11,7 +11,7 @@ use Rappasoft\LaravelLivewireTables\Views\Filter;
 class CostReductionsTable extends DataTableComponent
 {
     protected $listeners = [
-        'closeCoseReductionAlertModal' => 'indexBilling'
+        'closeCoseReductionAlertModal' => '$refresh'
     ];
 
     public function columns(): array
@@ -53,11 +53,6 @@ class CostReductionsTable extends DataTableComponent
         return CostReduction::query()
             ->with('user')
             ->latest()
-            ->when($this->getFilter('status'), fn ($query, $status) => $query->where('status', $status));
-    }
-
-    public function indexBilling()
-    {
-        # code...
+            ->when($this->getFilter('status'), fn ($query, $status) => $query->where('is_used', $status));
     }
 }
