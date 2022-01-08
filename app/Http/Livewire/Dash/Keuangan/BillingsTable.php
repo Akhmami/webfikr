@@ -11,7 +11,7 @@ use Rappasoft\LaravelLivewireTables\Views\Filter;
 class BillingsTable extends DataTableComponent
 {
     protected $listeners = [
-        'closeBillingAlertModal' => 'indexBilling'
+        'closeBillingAlertModal' => '$refresh'
     ];
 
     public function columns(): array
@@ -47,8 +47,8 @@ class BillingsTable extends DataTableComponent
             'status' => Filter::make('Status Pembayaran')
                 ->select([
                     '' => 'Semua',
-                    'paid' => 'Terbayar',
-                    'unpaid' => 'Belum',
+                    'Y' => 'Terbayar',
+                    'N' => 'Belum',
                 ])
         ];
     }
@@ -57,11 +57,6 @@ class BillingsTable extends DataTableComponent
     {
         return Billing::query()
             ->latest()
-            ->when($this->getFilter('status'), fn ($query, $status) => $query->where('status', $status));
-    }
-
-    public function indexBilling()
-    {
-        # code...
+            ->when($this->getFilter('status'), fn ($query, $status) => $query->where('is_paid', $status));
     }
 }
