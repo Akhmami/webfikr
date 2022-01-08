@@ -38,12 +38,14 @@ class PaymentHistoriesTable extends DataTableComponent
     public function filters(): array
     {
         return [
-            'status' => Filter::make('Status Pembayaran')
-                ->select([
-                    '' => 'Semua',
-                    'paid' => 'Terbayar',
-                    'unpaid' => 'Belum',
-                ])
+            'fromDate' => Filter::make('Dari tanggal')
+                ->date([
+                    'max' => now()->format('Y-m-d')
+                ]),
+            'toDate' => Filter::make('Sampai tanggal')
+                ->date([
+                    'max' => now()->format('Y-m-d')
+                ]),
         ];
     }
 
@@ -51,7 +53,8 @@ class PaymentHistoriesTable extends DataTableComponent
     {
         return PaymentHistory::query()
             ->with('paymentHistory')
-            ->when($this->getFilter('status'), fn ($query, $status) => $query->where('status', $status))
+            ->when($this->getFilter('fromDate'), fn ($query, $fromDate) => $query->whereDate('datetime_payment', '>=', $fromDate))
+            ->when($this->getFilter('toDate'), fn ($query, $toDate) => $query->whereDate('datetime_payment', '<=', $toDate))
             ->latest('id');
     }
 }
