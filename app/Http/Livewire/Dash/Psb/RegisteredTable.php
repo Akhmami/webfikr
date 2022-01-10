@@ -33,7 +33,12 @@ class RegisteredTable extends DataTableComponent
             Column::make('JK', 'gender')
                 ->sortable()
                 ->searchable(),
-            Column::make('Jenjang', 'userDetail.jenjang'),
+            Column::make('Jenjang', 'userDetail.jenjang')
+                ->sortable(function ($query) {
+                    return $query->whereHas('userDetail', function ($q) {
+                        return $q;
+                    });
+                }),
             Column::make('Status')
                 ->format(function ($value, $column, $row) {
                     return view('livewire.dash.psb.status-psb-badge', ['data' => $row]);
