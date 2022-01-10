@@ -24,6 +24,7 @@ class RoleDelete extends ModalComponent
         $role->delete();
 
         $this->emit('openModal', 'alert-modal', [
+            'status' => 'success',
             'emit' => 'closeUserAlertModal',
             'title' => 'Role Deleted',
             'description' => 'Data role yang dipilih telah terhapus!'

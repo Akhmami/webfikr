@@ -30,8 +30,9 @@ class PermissionCreate extends ModalComponent
         Permission::create($validatedData);
 
         $this->emit('openModal', 'alert-modal', [
+            'status' => 'success',
             'emit' => 'closePermissionAlertModal',
-            'title' => 'permission Created',
+            'title' => 'Permission Created',
             'description' => 'Data permission yang dipilih berhasil dibuat!'
         ]);
     }

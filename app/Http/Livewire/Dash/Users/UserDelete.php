@@ -24,6 +24,7 @@ class UserDelete extends ModalComponent
         $user->delete();
 
         $this->emit('openModal', 'alert-modal', [
+            'status' => 'success',
             'emit' => 'closeUserAlertModal',
             'title' => 'User Deleted',
             'description' => 'Data user yang dipilih telah terhapus!'

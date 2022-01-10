@@ -37,6 +37,7 @@ class PermissionEdit extends ModalComponent
         $permission->update($validatedData);
 
         $this->emit('openModal', 'alert-modal', [
+            'status' => 'success',
             'emit' => 'closePermissionAlertModal',
             'title' => 'Permission Updated',
             'description' => 'Data permission yang dipilih berhasil diupdate!'

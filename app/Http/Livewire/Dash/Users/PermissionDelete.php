@@ -24,6 +24,7 @@ class PermissionDelete extends ModalComponent
         $role->delete();
 
         $this->emit('openModal', 'alert-modal', [
+            'status' => 'success',
             'emit' => 'closePermissionAlertModal',
             'title' => 'Permission Deleted',
             'description' => 'Data permission yang dipilih telah terhapus!'

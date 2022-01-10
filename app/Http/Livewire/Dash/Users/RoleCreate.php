@@ -35,6 +35,7 @@ class RoleCreate extends ModalComponent
         $role->givePermissionTo($this->permissions);
 
         $this->emit('openModal', 'alert-modal', [
+            'status' => 'success',
             'emit' => 'closeRoleAlertModal',
             'title' => 'Role Created',
             'description' => 'Data role yang dipilih berhasil dibuat!'

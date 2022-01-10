@@ -43,6 +43,7 @@ class RoleEdit extends ModalComponent
         $role->syncPermissions($this->permissions);
 
         $this->emit('openModal', 'alert-modal', [
+            'status' => 'success',
             'emit' => 'closeUserAlertModal',
             'title' => 'Role Updated',
             'description' => 'Data role yang dipilih berhasil diupdate!'

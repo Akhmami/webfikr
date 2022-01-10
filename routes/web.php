@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Dash\KeuanganController;
-use App\Http\Controllers\Api\CallbackController;
+// use App\Http\Controllers\Api\CallbackController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BajuController;
 use App\Http\Controllers\Dash\IDCardController as DashIDCardController;
