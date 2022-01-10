@@ -6,6 +6,7 @@ use App\Libraries\WA;
 use App\Mail\SendMailPsb;
 use App\Models\Gelombang;
 use App\Models\User;
+use App\Models\UserDetail;
 use App\Models\Year;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Mail;
@@ -34,10 +35,8 @@ class RegisteredTable extends DataTableComponent
                 ->sortable()
                 ->searchable(),
             Column::make('Jenjang', 'userDetail.jenjang')
-                ->sortable(function ($query) {
-                    return $query->whereHas('userDetail', function ($q) {
-                        return $q;
-                    });
+                ->sortable(function (Builder $query, $direction) {
+                    return $query->orderBy(UserDetail::select('jenjang')->where('id', 'user.id'), $direction);
                 }),
             Column::make('Status')
                 ->format(function ($value, $column, $row) {
