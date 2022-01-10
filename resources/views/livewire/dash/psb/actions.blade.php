@@ -1,6 +1,6 @@
 <div class="flex items-center space-x-1">
-    <a href="#"
-        onclick="Livewire.emit('openModal', 'dash.psb.pendaftar-edit', {{ json_encode(['user' => $data->id]) }})"
+    @can('edit data psb')
+    <button onclick="Livewire.emit('openModal', 'dash.psb.pendaftar-edit', {{ json_encode(['user' => $data->id]) }})"
         title="edit"
         class="group p-2 border border-transparent rounded-full shadow-sm text-white bg-gray-200 hover:bg-yellow-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400">
         <!-- Heroicon name: solid/edit-alt -->
@@ -11,7 +11,8 @@
                 d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z"
                 clip-rule="evenodd" />
         </svg>
-    </a>
+    </button>
+    @endcan
 
     <div x-data="{ isOn: false }" class="relative inline-block text-left pl-2">
         <div>
@@ -35,22 +36,30 @@
                     onclick="Livewire.emit('openModal', 'dash.psb.pendaftar-detail', {{ json_encode(['user' => $data->id]) }})"
                     class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100" role="menuitem" tabindex="-1"
                     id="menu-item-1">Detail</a>
+
+                @can('edit status psb')
                 <a href="#" wire:click.prevent="resendConfirm({{ $data->id }})"
                     class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100" role="menuitem" tabindex="-1"
                     id="menu-item-1">Resend WA & Email</a>
+
                 @if ($data->status_psb_id === 1)
                 <a href="#" wire:click.prevent="setTerbayar({{ $data->id }})"
                     class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100" role="menuitem" tabindex="-1"
-                    id="menu-item-1">Set Terbayar</a>
+                    id="menu-item-1">Set
+                    Terbayar</a>
                 @else
                 <a href="#" wire:click.prevent="setMenunggu({{ $data->id }})"
                     class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100" role="menuitem" tabindex="-1"
                     id="menu-item-1">Set
                     Menunggu</a>
                 @endif
+                @endcan
+
+                @can('hapus data psb')
                 <a href="#" wire:click.prevent="deleteConfirm({{ $data->id }})"
                     class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100" role="menuitem" tabindex="-1"
                     id="menu-item-1">Hapus</a>
+                @endcan
             </div>
         </div>
     </div>

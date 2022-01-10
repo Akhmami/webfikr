@@ -25,11 +25,13 @@ $text = [
             @endcan
             class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-{{$color[$data->status_psb_id]}}-100 text-{{$color[$data->status_psb_id]}}-800">
             {{ $text[$data->status_psb_id] }}
+            @can('edit status psb')
             <svg xmlns="http://www.w3.org/2000/svg" class="ml-1 h-4 w-4 text-gray-500 hover:text-gray-900"
                 viewBox="0 0 20 20" fill="currentColor">
                 <path
                     d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" />
             </svg>
+            @endcan
         </button>
         @if ($data->status_psb_id === 3 && $data->userDetail->jenjang === 'SMA')
         <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">

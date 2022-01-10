@@ -28,6 +28,7 @@
                 </div>
             </div>
         </a>
+        @can('edit post tiles')
         <a href="{{ route('dash.psb.posts-index') }}" class="bg-white rounded-xl w-56 hover:bg-cyan-50 hover:shadow">
             <div class="flex items-center space-x-4 p-2">
                 <div class="rounded-xl bg-blue-100 p-2">
@@ -42,6 +43,9 @@
                 </div>
             </div>
         </a>
+        @endcan
+
+        @can('edit status psb')
         <a href="{{ route('dash.psb.status-psb-index') }}"
             class="bg-white rounded-xl w-56 hover:bg-cyan-50 hover:shadow">
             <div class="flex items-center space-x-4 p-2">
@@ -57,6 +61,9 @@
                 </div>
             </div>
         </a>
+        @endcan
+
+        @canany(['buat voucher', 'edit voucher', 'lihat voucher'])
         <a href="{{ route('dash.psb.vouchers-index') }}" class="bg-white rounded-xl w-56 hover:bg-cyan-50 hover:shadow">
             <div class="flex items-center space-x-4 p-2">
                 <div class="rounded-xl bg-red-100 p-2">
@@ -71,6 +78,9 @@
                 </div>
             </div>
         </a>
+        @endcanany
+
+        @can('setting psb')
         <a href="{{ route('dash.psb.settings-index') }}" class="bg-white rounded-xl w-56 hover:bg-cyan-50 hover:shadow">
             <div class="flex items-center space-x-4 p-2">
                 <div class="rounded-xl bg-gray-200 p-2">
@@ -87,5 +97,6 @@
                 </div>
             </div>
         </a>
+        @endcan
     </div>
 </div>

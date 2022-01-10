@@ -69,6 +69,7 @@ Route::domain(config('app.domain'))
                 # route: dashboard/website
                 Route::name('website.')
                     ->prefix('website')
+                    ->middleware('permission:lihat artikel')
                     ->group(function () {
                         Route::get('/', [WebsiteController::class, 'index'])->name('index');
                         Route::get('/{item}', [WebsiteController::class, 'views'])->name('views');
