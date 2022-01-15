@@ -14,4 +14,9 @@ class FailedSppBiller extends Model
         'name',
         'exception'
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

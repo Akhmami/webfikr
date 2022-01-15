@@ -50,10 +50,12 @@ Route::domain(config('app.domain'))
                 Route::get('/keuangan', [KeuanganController::class, 'index'])
                     ->middleware('permission:lihat billing|edit billing|hapus billing|buat billing')
                     ->name('keuangan.index');
-                Route::get('/keuangan/report', [KeuanganController::class, 'report'])->name('keuangan.report');
-                Route::get('/keuangan/riwayat-callback', [KeuanganController::class, 'callback'])->name('keuangan.callback');
-                Route::post('/keuangan/proses-ulang-callback', [KeuanganController::class, 'recallback'])->name('keuangan.recallback');
+                Route::view('/keuangan/report', 'dash.keuangan.report')->name('keuangan.report');
+                Route::view('/keuangan/riwayat-webhook', 'dash.keuangan.webhook')->name('keuangan.webhook');
+                Route::post('/keuangan/proses-ulang-webhook', [KeuanganController::class, 'resendWebhook'])->name('keuangan.resend-webhook');
                 Route::get('/keuangan/pas-card/{jenjang}/{skip}', [DashIDCardController::class, 'index'])->name('keuangan.pas-card');
+                Route::view('/keuangan/spp-gagal-dibuat', 'dash.keuangan.spp-failed')->name('keuangan.spp-failed');
+                Route::post('/keuangan/spp-gagal-dibuat', [KeuanganController::class, 'recreateSPP'])->name('keuangan.recreate-spp');
 
                 # PSB
                 Route::view('/psb', 'dash.psb.index')->middleware('permission:lihat psb')->name('psb.index');

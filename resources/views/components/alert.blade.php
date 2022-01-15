@@ -1,3 +1,8 @@
+@props([
+'type' => 'success',
+'message' => ''
+])
+
 <!-- Alert -->
 @php
 $type === 'error' ? $bg = 'bg-red-50' : $bg = 'bg-green-50';

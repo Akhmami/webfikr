@@ -109,11 +109,9 @@ class AutoPayment extends Command
                         DB::commit();
                     } catch (\Throwable $th) {
                         DB::rollBack();
-                        FailedSppBiller::create([
-                            'user_id' => $user->id,
-                            'name' => $user->name . ' => Autopay saldo gagal',
-                            'exception' => $th->getMessage()
-                        ]);
+                        activity('autopay')
+                            ->causedBy($user)
+                            ->log($user->name . ' Autopay saldo gagal => ' . $th->getMessage());
                     }
                 }
             }

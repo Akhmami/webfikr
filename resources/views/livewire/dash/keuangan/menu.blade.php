@@ -30,17 +30,33 @@
             </div>
         </a>
 
-        <a href="{{ route('dash.keuangan.callback') }}" class="bg-white rounded-xl w-56 hover:bg-cyan-50 hover:shadow">
+        <a href="{{ route('dash.keuangan.webhook') }}" class="bg-white rounded-xl w-56 hover:bg-cyan-50 hover:shadow">
             <div class="flex items-center space-x-4 p-2">
-                <div class="rounded-xl bg-red-100 p-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-red-500" viewBox="0 0 20 20"
-                        fill="currentColor">
-                        <path
-                            d="M5 12a1 1 0 102 0V6.414l1.293 1.293a1 1 0 001.414-1.414l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L5 6.414V12zM15 8a1 1 0 10-2 0v5.586l-1.293-1.293a1 1 0 00-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L15 13.586V8z" />
+                <div class="rounded-xl bg-blue-100 p-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-500" fill="none"
+                        viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 19l3 3m0 0l3-3m-3 3V10" />
                     </svg>
                 </div>
                 <div>
-                    <p class="text-gray-700">Riwayat Callback</p>
+                    <p class="text-gray-700">Webhook masuk</p>
+                </div>
+            </div>
+        </a>
+
+        <a href="{{ route('dash.keuangan.spp-failed') }}"
+            class="bg-white rounded-xl w-56 hover:bg-cyan-50 hover:shadow">
+            <div class="flex items-center space-x-4 p-2">
+                <div class="rounded-xl bg-red-100 p-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-red-500" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                    </svg>
+                </div>
+                <div>
+                    <p class="text-gray-700">SPP gagal dibuat</p>
                 </div>
             </div>
         </a>
