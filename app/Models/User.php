@@ -155,6 +155,11 @@ class User extends Authenticatable
         return $this->hasMany(PaymentHistory::class);
     }
 
+    public function clothes()
+    {
+        return $this->hasMany(Clothes::class);
+    }
+
     public function grades()
     {
         return $this->belongsToMany(Grade::class)->withTimestamps();

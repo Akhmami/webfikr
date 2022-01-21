@@ -115,7 +115,7 @@ Route::domain('apps.' . config('app.domain'))
         Route::post('/berkas/store', [UploadController::class, 'store'])->name('berkas.store');
         Route::get('/berkas/{nama}', [UploadController::class, 'show'])->name('berkas.show');
         Route::get('/ukuran-baju', [BajuController::class, 'index'])->name('baju');
-        Route::put('/baju/{id}', [BajuController::class, 'update'])->name('baju.update');
+        Route::post('/ukuran-baju', [BajuController::class, 'store'])->name('baju.store');
         Route::get('/pas/print/{id}', [IDCardController::class, 'index'])->name('pas.print');
         # Survey
         Route::get('/survey/{uri}', [SurveyController::class, 'index'])->name('survey');
