@@ -22,7 +22,7 @@
                                 <div class="mt-4" x-data="{ show: false }" x-cloak>
                                     <button
                                         class="px-2.5 py-1.5 border border-gray-300 shadow-sm text-xs font-medium rounded text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                                        @click="show = !show">Tampilkan tabel ukuran</button>
+                                        @click="show = !show">Lihat tabel ukuran</button>
                                     <div x-show="show">
                                         <img src="{{ asset('images/clothing/kemeja_'. auth()->user()->gender .'.png') }}"
                                             alt="Kemeja">
