@@ -172,18 +172,22 @@ class Psb extends Component
                 </div>
                 <div class="relative flex items-start">
                     <div class="flex items-center h-5">
-                        <input type="checkbox" disabled ' . ($user->userDetail->jenis_pendaftaran === 'internal' ? 'checked' : '') . '
+                        <input type="checkbox" disabled ' . ($user->userDetail->jenis_pendaftaran === 'internal' ? 'checked' : (auth()->user()->clothes()->count() >= 2 ? 'checked' : '')) . '
                             class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded">
                     </div>
                     <div class="ml-3 text-sm flex flex-col sm:flex-row items-start sm:items-center sm:space-x-4">
                         <div>
                             <label class="font-medium text-gray-700">Mengisi Ukuran Baju</label>
                             <p class="text-gray-500" style="margin-top: 0.25em; margin-bottom: 0;">
-                                Keterangan: ' . ($user->userDetail->jenis_pendaftaran === 'internal' ? 'pengukuran langsung disekolah' : 'Dalam Konfirmasi') . '
+                                Keterangan: ' . ($user->userDetail->jenis_pendaftaran === 'internal' ? 'pengukuran langsung disekolah' : (auth()->user()->clothes()->count() >= 2 ? '<a href="' . route('user.baju') . '"
+                                    class="text-blue-600 hover:underline">Selengkapnya klik disini!</a>' : '')) . '
                             </p>
                         </div>
                         ' .
-                ($user->userDetail->jenis_pendaftaran === 'internal' ? '' : '')
+                ($user->userDetail->jenis_pendaftaran === 'internal' ? '' : (auth()->user()->clothes()->count() >= 2 ? '' : '<a href="' . route('user.baju') . '" style="color: white; text-decoration: none;"
+                            class="inline-flex items-center px-3 py-1 border border-transparent shadow-sm text-sm font-medium text-white bg-gradient-to-r from-indigo-600 to-blue-600 hover:from-indigo-700 hover:to-blue-700 rounded-full">
+                            Isi sekarang
+                        </a>'))
                 . '
                     </div>
                 </div>
