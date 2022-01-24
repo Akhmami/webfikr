@@ -77,9 +77,6 @@ Route::domain(config('app.domain'))
                         Route::get('/{item}', [WebsiteController::class, 'views'])->name('views');
                         Route::get('/{item}/create', [WebsiteController::class, 'create'])->name('create');
                         Route::get('/{item}/{id}/edit', [WebsiteController::class, 'edit'])->name('edit');
-
-                        # slideshow
-                        Route::view('/slideshow', 'dash.website.create');
                     });
             });
 

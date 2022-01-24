@@ -13,9 +13,9 @@
                     <div class="divide-y">
                         <div class="flex items-center justify-between px-4 py-4">
                             <div class="text-md font-medium uppercase text-gray-700">
-                                Daftar Artikel
+                                Daftar Slideshow
                             </div>
-                            <a href="{{ route('dash.website.create', 'posts') }}" class="inline-flex items-center pl-3 pr-4 py-1.5 text-xs
+                            <a href="{{ route('dash.website.create', 'slideshows') }}" class="inline-flex items-center pl-3 pr-4 py-1.5 text-xs
                                                     font-medium rounded-lg text-white bg-blue-600 hover:bg-blue-700 focus:outline-none
                                                     focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
@@ -28,7 +28,7 @@
                             </a>
                         </div>
                         <div class="rounded-b flex flex-col px-4 py-4">
-                            <livewire:dash.website.posts-table />
+                            <livewire:dash.website.slideshows-table />
                         </div>
                     </div>
                 </div>
