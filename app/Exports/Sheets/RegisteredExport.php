@@ -2,6 +2,7 @@
 
 namespace App\Exports\Sheets;
 
+use App\Models\Clothes;
 use App\Models\MobilePhone;
 use App\Models\User;
 use Maatwebsite\Excel\Concerns\FromQuery;
@@ -41,6 +42,12 @@ class RegisteredExport implements
 
         if ($this->sheet === 'mobilePhones') {
             $users = MobilePhone::query()->whereHas('user', function ($q) {
+                $q->where('tahun_pendaftaran', $this->tahun_pendaftaran);
+            });
+        }
+
+        if ($this->sheet === 'clothes') {
+            $users = Clothes::query()->whereHas('user', function ($q) {
                 $q->where('tahun_pendaftaran', $this->tahun_pendaftaran);
             });
         }
@@ -88,6 +95,18 @@ class RegisteredExport implements
             ];
         }
 
+        if ($this->sheet == 'clothes') {
+            $array = [
+                $user->user->username,
+                $user->user->name,
+                $user->user->userDetail->jenjang,
+                $user->user->userDetail->jenis_pendaftaran,
+                $user->nama,
+                $user->ukuran,
+                $user->deskripsi
+            ];
+        }
+
         return $array;
     }
 
@@ -130,6 +149,18 @@ class RegisteredExport implements
             ];
         }
 
+        if ($this->sheet === 'clothes') {
+            $heading = [
+                'No Pendaftaran',
+                'Nama Lengkap',
+                'Jenjang',
+                'Jenis Pendaftaran',
+                'Jenis Pakaian',
+                'Ukuran',
+                'Deskripsi'
+            ];
+        }
+
         return $heading;
     }
 
@@ -142,6 +173,10 @@ class RegisteredExport implements
 
         if ($this->sheet === 'mobilePhones') {
             $sheetName = 'No HP';
+        }
+
+        if ($this->sheet === 'clothes') {
+            $sheetName = 'Ukuran Baju';
         }
 
         return $sheetName;

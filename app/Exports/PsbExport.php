@@ -23,7 +23,7 @@ class PsbExport implements WithMultipleSheets
     public function sheets(): array
     {
         $sheets = [];
-        $relations = ['userDetail', 'mobilePhones'];
+        $relations = ['userDetail', 'mobilePhones', 'clothes'];
 
         foreach ($relations as $item) {
             $sheets[] = new RegisteredExport($item, $this->tahun_pendaftaran);
