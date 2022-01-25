@@ -12,4 +12,9 @@ class Clothes extends Model
     protected $fillable = [
         'nama', 'ukuran', 'deskripsi'
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
