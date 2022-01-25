@@ -17,7 +17,8 @@ class WebsiteController extends Controller
             'posts' => 'dash.website.posts-index',
             'slideshows' => 'dash.website.slideshows-index',
             'categories' => 'dash.website.categories-index',
-            'info' => 'dash.website.info-index'
+            'info' => 'dash.website.info-index',
+            'about-us' => 'dash.website.aboutus-index'
         ];
 
         if (!array_key_exists($item, $components)) {
@@ -33,7 +34,8 @@ class WebsiteController extends Controller
             'posts' => 'dash.website.posts-form',
             'slideshows' => 'dash.website.slideshows-form',
             'categories' => 'dash.website.categories-form',
-            'info' => 'dash.website.info-form'
+            'info' => 'dash.website.info-form',
+            'about-us' => 'dash.website.aboutus-form'
         ];
 
         if (!array_key_exists($item, $components)) {
@@ -51,7 +53,8 @@ class WebsiteController extends Controller
             'posts' => 'dash.website.posts-form',
             'slideshows' => 'dash.website.slideshows-form',
             'categories' => 'dash.website.categories-form',
-            'info' => 'dash.website.info-form'
+            'info' => 'dash.website.info-form',
+            'about-us' => 'dash.website.aboutus-form'
         ];
 
         if (!array_key_exists($item, $components)) {
