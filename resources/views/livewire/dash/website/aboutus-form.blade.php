@@ -14,6 +14,9 @@
                     <x-input label="URL Video Embed" name="url_embed" livewire />
                     <x-input label="Url baca selengkapnya" name="url_read_more" livewire />
                     <x-tinymce wire:model="body" placeholder="Type anything you want..." />
+                    @error('body')
+                    <p class="mt-2 text-xs font-semibold text-red-600" id="email-error">{{ $message }}</p>
+                    @enderror
                 </div>
             </div>
         </div>

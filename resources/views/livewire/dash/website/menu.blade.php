@@ -30,7 +30,8 @@
                 </div>
             </div>
         </a>
-        <a href="#" class="bg-white rounded-xl w-56 hover:bg-cyan-50 hover:shadow">
+        <a href="{{ route('dash.website.views', 'categories') }}"
+            class="bg-white rounded-xl w-56 hover:bg-cyan-50 hover:shadow">
             <div class="flex items-center space-x-4 p-2">
                 <div class="rounded-xl bg-green-100 p-2">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500" fill="none"
