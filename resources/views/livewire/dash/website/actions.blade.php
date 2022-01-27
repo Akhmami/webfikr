@@ -11,7 +11,7 @@
         </svg>
     </a>
 
-    <div x-data="{ isOn: false }" class="relative inline-block text-left pl-2" x-cloak>
+    <div x-data="{ isOn: false }" class="relative inline-block text-left pl-2">
         <div>
             <button @click="isOn = !isOn" type="button" :class="{ 'bg-gray-100' : isOn }"
                 class="rounded-full flex items-center text-gray-600 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500"
@@ -27,7 +27,7 @@
         </div>
         <div x-show="isOn" @click.away="isOn = false"
             class="z-10 origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
-            role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
+            x-cloak>
             <div class="py-1" role="none">
                 <a href="#" wire:click.prevent="deleteConfirm({{ $data->id }})"
                     class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100" role="menuitem" tabindex="-1"
