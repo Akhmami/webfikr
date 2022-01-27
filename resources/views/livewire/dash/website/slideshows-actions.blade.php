@@ -1,5 +1,5 @@
 <div class="flex items-center space-x-1">
-    <a href="{{ route('dash.website.edit', ['item' => 'slideshows', 'id' => $data->id]) }}" title="edit"
+    {{-- <a href="{{ route('dash.website.edit', ['item' => 'slideshows', 'id' => $data->id]) }}" title="edit"
         class="group p-2 border border-transparent rounded-full shadow-sm text-white bg-gray-200 hover:bg-yellow-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400">
         <!-- Heroicon name: solid/edit-alt -->
         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-500 group-hover:text-white" viewBox="0 0 20 20"
@@ -9,7 +9,7 @@
                 d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z"
                 clip-rule="evenodd" />
         </svg>
-    </a>
+    </a> --}}
 
     <button wire:click.prevent="deleteConfirm({{ $data->id }})" title="hapus"
         class="group p-2 border border-transparent rounded-full shadow-sm text-white bg-gray-200 hover:bg-red-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400">

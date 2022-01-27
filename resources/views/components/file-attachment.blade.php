@@ -1,11 +1,14 @@
 {{-- For single image upload the blade component will look like this: --}}
-{{-- <x-file-attachment wire:model="photo" :file="$photo" /> --}}
+{{--
+<x-file-attachment wire:model="photo" :file="$photo" /> --}}
 
 {{-- For multiple image upload the blade component will look like this: --}}
-{{-- <x-file-attachment wire:model="photo" :file="$photo" multiple /> --}}
+{{--
+<x-file-attachment wire:model="photo" :file="$photo" multiple /> --}}
 
 {{-- For profile image upload the blade component will look like this: --}}
-{{-- <x-file-attachment wire:model="photo" :file="$photo" mode="profile" profile-class="w-24 h-24 rounded-lg"
+{{--
+<x-file-attachment wire:model="photo" :file="$photo" mode="profile" profile-class="w-24 h-24 rounded-lg"
     accept="image/jpg,image/jpeg,image/png" /> --}}
 
 @props([
