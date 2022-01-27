@@ -29,7 +29,7 @@ class PostsTable extends DataTableComponent
                 ->format(function ($value, $column, $row) {
                     return view('livewire.dash.website.title', ['data' => $row]);
                 }),
-            Column::make('Viewer', 'view_count')
+            Column::make('Dilihat', 'view_count')
                 ->sortable()
                 ->searchable(),
             Column::make('Penulis', 'user.name')
