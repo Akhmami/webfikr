@@ -11,7 +11,7 @@
         </svg>
     </a>
 
-    <div x-data="{ isOn: false }" class="relative inline-block text-left pl-2">
+    <div x-data="{ isOn: false }" class="relative inline-block text-left pl-2" x-cloak>
         <div>
             <button @click="isOn = !isOn" type="button" :class="{ 'bg-gray-100' : isOn }"
                 class="rounded-full flex items-center text-gray-600 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500"
