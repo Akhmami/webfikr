@@ -19,7 +19,7 @@ class PostsTable extends DataTableComponent
     public function columns(): array
     {
         return [
-            Column::make('Image')
+            Column::make('Gambar')
                 ->format(function ($value, $column, $row) {
                     return '<img src="' . $row->image_thumb_url . '" class="h-auto w-28 rounded" />';
                 })->asHtml(),
@@ -27,22 +27,16 @@ class PostsTable extends DataTableComponent
                 ->sortable()
                 ->searchable()
                 ->format(function ($value, $column, $row) {
-                    return '<a href="' . route('post.show', $row->slug) . '" target="_blank" class="text-blue-700 font-semibold break-words hover:underline">' . $value . '</a>';
-                })->asHtml(),
+                    return view('livewire.dash.website.title', ['data' => $row]);
+                }),
             Column::make('Viewer', 'view_count')
                 ->sortable()
                 ->searchable(),
-            Column::make('Author')
+            Column::make('Penulis', 'user.name')
                 ->sortable()
                 ->searchable()
                 ->format(function ($value, $column, $row) {
                     return '<a href="#" class="text-gray-600">' . $row->user->name . '</a>';
-                })->asHtml(),
-            Column::make('Status')
-                ->sortable()
-                ->searchable()
-                ->format(function ($value, $column, $row) {
-                    return $row->publicationLabel();
                 })->asHtml(),
             Column::make('Actions')
                 ->format(function ($value, $column, $row) {
@@ -66,6 +60,7 @@ class PostsTable extends DataTableComponent
     public function query(): Builder
     {
         return Post::query()
+            ->with(['user', 'category'])
             ->latest()
             ->when($this->getFilter('category_id'), fn ($query, $category_id) => $query->where('category_id', $category_id));
     }
