@@ -25,6 +25,10 @@ class PostsForm extends Component
     public $image_edit;
     public $categories;
 
+    protected $listeners = [
+        'refreshCategory'
+    ];
+
     public function mount($postId)
     {
         if (!is_null($postId)) {
@@ -107,6 +111,11 @@ class PostsForm extends Component
         }
 
         return redirect()->route('dash.website.index');
+    }
+
+    public function refreshCategory()
+    {
+        $this->categories = Category::pluck('title', 'id')->toArray();
     }
 
     protected function rules()

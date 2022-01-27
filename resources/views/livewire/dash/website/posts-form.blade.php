@@ -46,6 +46,7 @@
                         <div class="space-x-4">
                             <div class="mb-7"></div>
                             <button
+                                onclick="Livewire.emit('openModal', 'dash.website.categories-form', {{ json_encode(['id' => null]) }})"
                                 class="inline-flex items-center pl-3 pr-4 py-1.5 text-xs font-medium rounded-lg text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
                                     fill="currentColor">
@@ -66,6 +67,9 @@
                     <x-input label="Judul" name="title" livewire />
                     <x-input label="Slug" name="slug" livewire />
                     <x-tinymce wire:model="body" placeholder="Type anything you want..." />
+                    @error('body')
+                    <p class="mt-2 text-xs font-semibold text-red-600" id="email-error">{{ $message }}</p>
+                    @enderror
                     {{-- <div wire:ignore>
                         <textarea class="editor" wire:model.lazy="body"></textarea>
                     </div> --}}
