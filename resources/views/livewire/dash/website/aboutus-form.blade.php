@@ -2,7 +2,7 @@
     <form wire:submit.prevent="save">
         <div class="px-4 py-5 sm:p-6 md:grid md:grid-cols-3 md:gap-6">
             <div class="md:col-span-1">
-                <h3 class="text-lg font-medium leading-6 text-gray-900">Buat Artikel</h3>
+                <h3 class="text-lg font-medium leading-6 text-gray-900">Tentang Kami</h3>
                 <p class="mt-1 mb-4 text-sm text-gray-500">
                     URL Video Embed bisa didapatkan dari channel Youtube terkait,
                     sedangkan URL baca selengkapnya bisa diperoleh pada artikel website yang membahas deskripsi secara
