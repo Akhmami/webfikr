@@ -45,7 +45,7 @@
                 </div>
             </div>
         </a>
-        <a href="{{ route('dash.website.views', 'posts') }}filters[category_id]=5"
+        <a href="{{ route('dash.website.views', 'posts') }}?filters[category_id]=5"
             class="bg-white rounded-xl w-56 hover:bg-cyan-50 hover:shadow">
             <div class="flex items-center space-x-4 p-2">
                 <div class="rounded-xl bg-red-100 p-2">
