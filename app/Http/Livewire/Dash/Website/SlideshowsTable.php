@@ -17,7 +17,7 @@ class SlideshowsTable extends DataTableComponent
     public function columns(): array
     {
         return [
-            Column::make('Image')
+            Column::make('Gambar')
                 ->format(function ($value, $column, $row) {
                     return '<img src="' . $row->image_thumb_url . '" class="h-auto w-28 rounded" />';
                 })->asHtml(),
