@@ -58,6 +58,7 @@ class PostsForm extends Component
     public function save()
     {
         $validatedData = $this->validate();
+        $validatedData['published_at'] = !empty($this->published_at) ? $this->published_at : null;
         $length = config('cms.excerpt.length');
         $end    = config('cms.excerpt.end');
         $validatedData['excerpt'] = str_excerpt(strip_tags($this->body), $length, $end);
