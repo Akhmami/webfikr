@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Dash\Keuangan;
 
 use LivewireUI\Modal\ModalComponent;
 use App\Models\Biller;
+use App\Models\BillerDetail;
 
 class BillerEdit extends ModalComponent
 {
@@ -71,6 +72,9 @@ class BillerEdit extends ModalComponent
 
     public function remove($key)
     {
+        $billerDetail = $this->biller_details[$key];
+        BillerDetail::destroy($billerDetail['id']);
+
         unset($this->biller_details[$key]);
         unset($this->nama[$key]);
         unset($this->nominal[$key]);
@@ -93,13 +97,17 @@ class BillerEdit extends ModalComponent
         } else {
             $validatedData = $this->validate();
             $this->biller->update($validatedData);
-            $this->biller->billerDetails()->delete(); //memory big
 
-            foreach ($this->nama as $key => $value) {
-                $this->biller->billerDetails()->create([
-                    'nama' => $this->nama[$key],
-                    'nominal' => $this->nominal[$key]
-                ]);
+            foreach ($this->biller_details as $key => $value) {
+                $this->biller->billerDetails()->updateOrCreate(
+                    [
+                        'id' => $value['id'] ?? null
+                    ],
+                    [
+                        'nama' => $this->nama[$key],
+                        'nominal' => $this->nominal[$key]
+                    ]
+                );
             }
 
             $this->emit('openModal', 'alert-modal', [
