@@ -57,7 +57,7 @@ class Cicilan extends ModalComponent
             //     ];
             // }
             $this->options = [];
-            if ($this->max_amount <= 5000000) {
+            if ($this->max_amount <= 500000) {
                 $this->options[1] = [
                     'value' => $this->max_amount,
                     'description' => '1x Pembayaran '
@@ -102,7 +102,7 @@ class Cicilan extends ModalComponent
                 return;
             }
 
-            if ($this->max_amount > 5000000) {
+            if ($this->max_amount > 500000) {
                 if ($sisa < 10000) {
                     $this->addError('nominal', 'Pastikan sisa tagihan tidak kurang dari 10000');
                     return;
