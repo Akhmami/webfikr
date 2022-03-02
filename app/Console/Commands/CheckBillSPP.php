@@ -76,47 +76,47 @@ class CheckBillSPP extends Command
                 try {
                     $latest_biller = $user->billers()->latest('id')->first();
                     # Klo tagihan bulan ini belum ada
-                    // if (date('Y-m', strtotime($latest_biller->created_at)) !== date('Y-m')) {
-                    $spp_active = $user->billerSPP;
+                    if (date('Y-m', strtotime($latest_biller->created_at)) !== date('Y-m')) {
+                        $spp_active = $user->billerSPP;
 
-                    # masih ada tagihan SPP
-                    if (!empty($spp_active)) {
-                        $billing = $spp_active->activeBillings()->first();
+                        # masih ada tagihan SPP
+                        if (!empty($spp_active)) {
+                            $billing = $spp_active->activeBillings()->first();
 
-                        # non aktifkan billing atau VA
-                        $this->inactivingBilling($billing);
+                            # non aktifkan billing atau VA
+                            $this->inactivingBilling($billing);
 
-                        # non aktifkan biller
-                        $user->billerSPP()->update([
-                            'is_active' => 'N',
+                            # non aktifkan biller
+                            $user->billerSPP()->update([
+                                'is_active' => 'N',
+                            ]);
+                        }
+
+                        # buat biller baru
+                        $newBiller = $user->billers()->create([
+                            'amount' => ($spp_perbulan * $range),
+                            'type' => 'SPP',
+                            'is_installment' => ($range > 1 ? 'Y' : 'N'),
+                            'is_active' => 'Y',
+                            'qty_spp' => $range,
+                            'previous_spp_date' => $user->latestSpp->bulan,
+                            'description' => 'Tagihan SPP hingga bulan ' . $month_only
                         ]);
+
+                        for ($i = 1; $i <= $range; $i++) {
+                            $addMonth = date('Y-m-d', strtotime("+ {$i} month", strtotime($user->latestSpp->bulan)));
+                            $month_only = tanggal($month[date('m', strtotime($addMonth))], 'bulan');
+                            $newBiller->billerDetails()->create([
+                                'nama' => 'SPP Bulan ' . $month_only,
+                                'nominal' => $spp_perbulan
+                            ]);
+                        }
+
+                        # Aktifkan ulang Billing atau VA
+                        $this->activingBilling($newBiller, $billing);
+
+                        DB::commit();
                     }
-
-                    # buat biller baru
-                    $newBiller = $user->billers()->create([
-                        'amount' => ($spp_perbulan * $range),
-                        'type' => 'SPP',
-                        'is_installment' => ($range > 1 ? 'Y' : 'N'),
-                        'is_active' => 'Y',
-                        'qty_spp' => $range,
-                        'previous_spp_date' => $user->latestSpp->bulan,
-                        'description' => 'Tagihan SPP hingga bulan ' . $month_only
-                    ]);
-
-                    for ($i = 1; $i <= $range; $i++) {
-                        $addMonth = date('Y-m-d', strtotime("+ {$i} month", strtotime($user->latestSpp->bulan)));
-                        $month_only = tanggal($month[date('m', strtotime($addMonth))], 'bulan');
-                        $newBiller->billerDetails()->create([
-                            'nama' => 'SPP Bulan ' . $month_only,
-                            'nominal' => $spp_perbulan
-                        ]);
-                    }
-
-                    # Aktifkan ulang Billing atau VA
-                    $this->activingBilling($newBiller, $billing);
-
-                    DB::commit();
-                    // }
                 } catch (\Throwable $th) {
                     DB::rollBack();
                     FailedSppBiller::create([
