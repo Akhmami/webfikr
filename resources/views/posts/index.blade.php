@@ -64,7 +64,7 @@
         interval: 4000,
     }).mount();
 </script>
-<script>
+{{-- <script>
     var image = document.querySelector("#popup");
     swal({
     button: false,
@@ -72,5 +72,5 @@
     content: image
     ,
     });
-</script>
+</script> --}}
 @endpush
