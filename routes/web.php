@@ -140,5 +140,5 @@ Route::domain('psb.' . config('app.domain'))
 # rekrutmen.nfbs.or.id
 Route::domain('rekrutmen.' . config('app.domain'))
     ->group(function () {
-        Route::redirect('/', 'https://docs.google.com/forms/d/e/1FAIpQLSd5VQiA38ZL3vytOag-1sLCWsSz-SYWFfKpfQXSLFdwS-y7xw/viewform?usp=sf_link')->with('alert', 'We are moving!');
+        Route::redirect('/', 'https://docs.google.com/forms/d/e/1FAIpQLSd5VQiA38ZL3vytOag-1sLCWsSz-SYWFfKpfQXSLFdwS-y7xw/viewform?usp=sf_link');
     });
