@@ -136,3 +136,9 @@ Route::domain('psb.' . config('app.domain'))
         // Route::get('ensb0w6p5vqylbdd0xvpj24i3', 'PsbController@gelombangTertutup')->name('psb.tertutup');
         Route::get('users/d/{string}', [PsbController::class, 'verify'])->name('verify');
     });
+
+# rekrutmen.nfbs.or.id
+Route::domain('rekrutmen.' . config('app.domain'))
+    ->group(function () {
+        Route::redirect('/', 'https://docs.google.com/forms/d/e/1FAIpQLSd5VQiA38ZL3vytOag-1sLCWsSz-SYWFfKpfQXSLFdwS-y7xw/viewform?usp=sf_link')->with('alert', 'We are moving!');
+    });
