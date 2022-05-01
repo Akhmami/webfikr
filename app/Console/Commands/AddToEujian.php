@@ -43,6 +43,8 @@ class AddToEujian extends Command
             ->where('hak_akses', 0)
             ->get();
 
+        dd($eujians);
+
         foreach ($eujians as $item) {
             $allow = 1;
             $user = User::query()
