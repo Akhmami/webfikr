@@ -27,6 +27,9 @@ class Kernel extends ConsoleKernel
     {
         $schedule->command('app:billspp')->monthlyOn(1, '00:05');
         $schedule->command('app:autopay')->monthlyOn(1, '02:00');
+        $schedule->command('app:eujian')
+            ->everyFifteenMinutes()
+            ->withoutOverlapping();
     }
 
     /**
