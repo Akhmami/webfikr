@@ -41,7 +41,7 @@
                                         <div class="text-xl font-semibold">{{ $cbt->nama_peserta }}</div>
                                         <div>Kelas {{ $cbt->kelompok }}</div>
                                         <div class="flex flex-col items-start pt-4 text-sm space-y-2">
-                                            <div>Akses Aplikasi: https://cbt.nfbsnet.edu (Lokal Server)</div>
+                                            <div>Akses Aplikasi: <a href="//e-ujian.com/nfbs_serang">e-ujian.com/nfbs_serang</a></div>
                                             <div>Username: {{ $cbt->no_peserta }}</div>
                                             <div>Password: {{ $cbt->kode_akses }}</div>
                                         </div>
