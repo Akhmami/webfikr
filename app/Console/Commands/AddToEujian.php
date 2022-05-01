@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use App\Models\Eujian;
 use App\Models\User;
+use App\Models\UserDetail;
 use Illuminate\Console\Command;
 
 class AddToEujian extends Command
@@ -45,13 +46,18 @@ class AddToEujian extends Command
 
         foreach ($eujians as $item) {
             $allow = 1;
+            $response = '';
             $user = User::query()
-                ->with(['billerAnother', 'latestSpp', 'userDetail'])
+                ->with(['billerAnother', 'latestSpp'])
                 ->where('username', $item->no_peserta)
                 ->first();
 
             if (!$user) {
                 $this->info("User {$item->no_peserta} tidak ditemukan");
+                $user = User::query()
+                    ->with(['billerAnother', 'latestSpp'])
+                    ->where('id', UserDetail::where('no_pendaftaran', $item->no_peserta)->first()->user_id)
+                    ->first();
                 continue;
             }
 
@@ -95,12 +101,13 @@ class AddToEujian extends Command
                 $response = curl_exec($curl);
 
                 curl_close($curl);
-                $this->info($response);
             }
 
             $item->update([
                 'hak_akses' => $allow
             ]);
+
+            $this->info($response);
         }
     }
 }
