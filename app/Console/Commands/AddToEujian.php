@@ -53,7 +53,7 @@ class AddToEujian extends Command
                 ->first();
 
             if (!$user) {
-                $this->info("User {$item->no_peserta} tidak ditemukan");
+                // $this->info("User {$item->no_peserta} tidak ditemukan");
                 $user = User::query()
                     ->with(['billerAnother', 'latestSpp'])
                     ->where('id', UserDetail::where('no_pendaftaran', $item->no_peserta)->first()->user_id)
@@ -80,9 +80,7 @@ class AddToEujian extends Command
                     CURLOPT_URL => 'https://www.e-ujian.com/api/peserta/add',
                     CURLOPT_RETURNTRANSFER => true,
                     CURLOPT_ENCODING => '',
-                    CURLOPT_MAXREDIRS => 10,
                     CURLOPT_TIMEOUT => 0,
-                    CURLOPT_FOLLOWLOCATION => true,
                     CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
                     CURLOPT_CUSTOMREQUEST => 'POST',
                     CURLOPT_POSTFIELDS => array(
@@ -99,7 +97,6 @@ class AddToEujian extends Command
                 ));
 
                 $response = curl_exec($curl);
-
                 curl_close($curl);
             }
 
