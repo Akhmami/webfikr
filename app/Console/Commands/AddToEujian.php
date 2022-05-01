@@ -46,7 +46,7 @@ class AddToEujian extends Command
 
         foreach ($eujians as $item) {
             $allow = 1;
-            $response = null;
+            $response = 'Kosong';
             $user = User::query()
                 ->with(['billerAnother', 'latestSpp'])
                 ->where('username', $item->no_peserta)
