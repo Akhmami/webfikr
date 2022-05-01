@@ -58,7 +58,7 @@ class AddToEujian extends Command
                     ->with(['billerAnother', 'latestSpp'])
                     ->where('id', UserDetail::where('no_pendaftaran', $item->no_peserta)->first()->user_id)
                     ->first();
-                continue;
+                // continue;
             }
 
             if (strtotime($user->latestSpp->bulan) < strtotime('2022-05-01')) {
@@ -80,7 +80,9 @@ class AddToEujian extends Command
                     CURLOPT_URL => 'https://www.e-ujian.com/api/peserta/add',
                     CURLOPT_RETURNTRANSFER => true,
                     CURLOPT_ENCODING => '',
+                    CURLOPT_MAXREDIRS => 10,
                     CURLOPT_TIMEOUT => 0,
+                    CURLOPT_FOLLOWLOCATION => true,
                     CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
                     CURLOPT_CUSTOMREQUEST => 'POST',
                     CURLOPT_POSTFIELDS => array(
@@ -92,7 +94,8 @@ class AddToEujian extends Command
                         'tags' => 'US2022'
                     ),
                     CURLOPT_HTTPHEADER => array(
-                        'Authorization: Basic aHVtYXNuZmJzc2VyYW5nQGdtYWlsLmNvbTp1MnhkVmg='
+                        'Authorization: Basic aHVtYXNuZmJzc2VyYW5nQGdtYWlsLmNvbTp1MnhkVmg=',
+                        'Cookie: XSRF-TOKEN=eyJpdiI6IndvOTNSK2hiRmx5WVBXWlA4V0hsSFE9PSIsInZhbHVlIjoiNTJWY3hsUGQrMEtmaDdBbDI3MjVBa2ZwN3hOalA0SVVGc3VjR3FDTXZXdUNTcS9wTFpaNWJjWHZVUVQzUllwbnl2SCtPS0M2SlBBSzRwTHVsSG9DQmJQU0lzbXJEeFRHcDd1MmtWazl1ME9FWWlIRE8zSTFEQlQ2QXFwbFhUUUwiLCJtYWMiOiI3ZjAzZjliN2UyZWU2NmY2MjUxNWZhNGQxYTU0Mjc0MTJjNDVhYzY1NzQ0MmIxMTlhMzczZTg1NjVjYzcyNTAxIiwidGFnIjoiIn0%3D; session_e_ujian_aws_redis_gcp=eyJpdiI6Ik13cXZjc1Z3MTdSMVNmZDFRQU5pc0E9PSIsInZhbHVlIjoiTE01WUdHeFhCc1dEbUVRTDVpT1dNZ1U0WG0rc0JIenpmZ1lybC83SGVPUkErZ3c4Q1NielR4ZitWK1lnT2RuN3p4UU1mRnUxZ0c3dCs2eUNnVXM3RTEvOWk5TC9COWRueWdRajdENUhqZVJ6clNQaW1jbXFGSWRXaGRvOVMwWDYiLCJtYWMiOiJhNjM1YmJjNjI0MGZjMzc4ZDQyNWZkMTA0YzUwOTg4YTk3NGE0NDc2OGQ3YjliZTI1ZTIyNGZkZjllNmQzNDEwIiwidGFnIjoiIn0%3D'
                     ),
                 ));
 
@@ -104,7 +107,7 @@ class AddToEujian extends Command
                 'hak_akses' => $allow
             ]);
 
-            $this->info($response);
+            echo $response;
         }
     }
 }
