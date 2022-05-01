@@ -103,9 +103,8 @@ class AddToEujian extends Command
                 curl_close($curl);
             }
 
-            $item->update([
-                'hak_akses' => $allow
-            ]);
+            $item->hak_akses = $allow;
+            $item->save();
 
             $this->info($response);
         }
