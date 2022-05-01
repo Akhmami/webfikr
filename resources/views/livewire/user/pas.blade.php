@@ -71,7 +71,7 @@
                                 </h3>
                                 <div class="mt-2 text-sm text-yellow-700">
                                     <p>
-                                        Mohon untuk menyelesaikan administrasi agar mendapatkan akses!
+                                        Mohon untuk menyelesaikan administrasi untuk mendapatkan akses!
                                     </p>
                                 </div>
                             </div>
