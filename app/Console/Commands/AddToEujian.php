@@ -51,7 +51,7 @@ class AddToEujian extends Command
                 ->first();
 
             if (!$user) {
-                $this->info('User tidak ditemukan');
+                $this->info("User {$item->no_peserta} tidak ditemukan");
                 continue;
             }
 
