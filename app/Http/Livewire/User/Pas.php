@@ -2,30 +2,26 @@
 
 namespace App\Http\Livewire\User;
 
+use App\Models\Eujian;
 use Livewire\Component;
 
 class Pas extends Component
 {
     public function render()
     {
-        $user = auth()->user()->load('billerAnother', 'latestSpp', 'userDetail');
         $allow = true;
+        $cbt = Eujian::query()
+            ->where('no_peserta', auth()->user()->username)
+            ->where('hak_akses', 1)
+            ->first();
 
-        if (strtotime($user->latestSpp->bulan) < strtotime('2021-11-01')) {
-            $allow = false;
-        }
-
-        $tagihanLain = $user->billerAnother->sum('amount') - ($user->billerAnother->sum('cumulative_payment_amount') +
-            $user->billerAnother->sum('cost_reduction') +
-            $user->billerAnother->sum('balance_used'));
-
-        if ($tagihanLain > 0) {
+        if (!$cbt) {
             $allow = false;
         }
 
         return view('livewire.user.pas', [
             'allow' => $allow,
-            'cbt' => $this->fromCBT($user->userDetail->no_pendaftaran)
+            'cbt' => $cbt
         ]);
     }
 

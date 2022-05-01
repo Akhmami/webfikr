@@ -58,7 +58,7 @@
                                             </div>
                                         </div>
                                         <div class="text-sm font-bold">
-                                            PAS
+                                            e-Ujian
                                         </div>
                                     </div>
                                 </a>
