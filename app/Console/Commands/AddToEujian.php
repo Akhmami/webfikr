@@ -72,8 +72,6 @@ class AddToEujian extends Command
 
             $item->hak_akses = $allow;
             $item->save();
-
-            break;
         }
     }
 
