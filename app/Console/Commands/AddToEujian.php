@@ -53,6 +53,7 @@ class AddToEujian extends Command
                 ->first();
 
             if (!$user) {
+                $this->info('User tidak ditemukan');
                 continue;
             }
 
@@ -68,7 +69,7 @@ class AddToEujian extends Command
                 $allow = 0;
             }
 
-            if ($allow === 1) {
+            if ($allow == 1) {
                 $curl = curl_init();
 
                 curl_setopt_array($curl, array(
@@ -99,8 +100,9 @@ class AddToEujian extends Command
                 $this->info($response);
             }
 
-            $item->hak_akses = $allow;
-            $item->save();
+            $item->update([
+                'hak_akses' => $allow
+            ]);
         }
     }
 }
