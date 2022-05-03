@@ -9,20 +9,25 @@ class Pas extends Component
 {
     public function render()
     {
-        $allow = true;
-        $cbt = Eujian::query()
-            ->where('no_peserta', auth()->user()->username)
+        return view('livewire.user.pas');
+    }
+
+    public function getCbtProperty()
+    {
+        return Eujian::query()
+            ->where('no_peserta', auth()->user()->userDetail->no_pendaftaran)
             ->where('hak_akses', 1)
             ->first();
+    }
 
-        if (!$cbt) {
+    public function getAllowProperty()
+    {
+        $allow = true;
+        if (!$this->cbt) {
             $allow = false;
         }
 
-        return view('livewire.user.pas', [
-            'allow' => $allow,
-            'cbt' => $cbt
-        ]);
+        return $allow;
     }
 
     public function fromCBT($no_psb)

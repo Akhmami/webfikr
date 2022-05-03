@@ -8,7 +8,7 @@
                 </div>
 
                 <div>
-                    @if ($allow)
+                    @if ($this->allow)
                     <div class="rounded-md bg-green-50 p-4">
                         <div class="flex">
                             <div class="flex-shrink-0">
@@ -38,12 +38,12 @@
                                 <img class="pt-4 w-auto h-1/2 rounded-l-sm" src="{{ asset('images/man.png') }}" alt="Room Image">
                                 <div class="w-full pl-4">
                                     <div class="p-4 pb-0 flex flex-col items-start space-y-2">
-                                        <div class="text-xl font-semibold">{{ $cbt->nama_peserta }}</div>
-                                        <div>Kelas {{ $cbt->kelompok }}</div>
+                                        <div class="text-xl font-semibold">{{ $this->cbt->nama_peserta }}</div>
+                                        <div>Kelas {{ $this->cbt->kelompok }}</div>
                                         <div class="flex flex-col items-start pt-4 text-sm space-y-2">
                                             <div>Akses Aplikasi: <a href="//www.e-ujian.com/nfbs_serang" target="_blank" class="font-bold text-blue-500">e-ujian.com/nfbs_serang</a></div>
-                                            <div>Username: {{ $cbt->no_peserta }}</div>
-                                            <div>Password: {{ $cbt->kode_akses }}</div>
+                                            <div>Username: {{ $this->cbt->no_peserta }}</div>
+                                            <div>Password: {{ $this->cbt->kode_akses }}</div>
                                         </div>
                                     </div>
                                 </div>
