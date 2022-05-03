@@ -49,16 +49,12 @@ class AddToEujian extends Command
             $response = 'Kosong';
             $user = User::query()
                 ->with(['billerAnother', 'latestSpp'])
-                ->where('username', $item->no_peserta)
+                ->where('id', UserDetail::where('no_pendaftaran', $item->no_peserta)->first()->user_id)
                 ->first();
 
             if (!$user) {
-                // $this->info("User {$item->no_peserta} tidak ditemukan");
-                $user = User::query()
-                    ->with(['billerAnother', 'latestSpp'])
-                    ->where('id', UserDetail::where('no_pendaftaran', $item->no_peserta)->first()->user_id)
-                    ->first();
-                // continue;
+                $this->info("User {$item->no_peserta} tidak ditemukan");
+                continue;
             }
 
             if (strtotime($user->latestSpp->bulan) < strtotime('2022-05-01')) {
