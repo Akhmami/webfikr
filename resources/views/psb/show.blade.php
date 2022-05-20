@@ -5,7 +5,7 @@
             <div class="flex items-center justify-between">
                 <div class="space-y-1">
                     <h3 class="text-lg leading-6 font-medium text-gray-900">
-                        {{ $post->title }}
+                        {{ $post->title ?? '' }}
                     </h3>
                 </div>
                 <div class="inline-flex items-center">
@@ -16,7 +16,7 @@
                 </div>
             </div>
             <div class="mt-6 prose lg:prose-xl"">
-                {!! $post->content !!}
+                {!! $post->content ?? '' !!}
             </div>
         </div>
     </div>

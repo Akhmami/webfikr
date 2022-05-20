@@ -88,14 +88,16 @@ class RegisteredTable extends DataTableComponent
     /** @return Builder  */
     public function query(): Builder
     {
-        $activeYear = Year::active()->first();
+        $activeYear = Year::query()
+            ->active()
+            ->first();
 
         return User::query()
             ->with('userDetail', 'files')
             ->where('tahun_pendaftaran', $activeYear->periode)
             ->latest('id')
-            ->when($this->getFilter('fromDate'), fn ($query, $fromDate) => $query->whereDate('created_at', '>=', $fromDate))
-            ->when($this->getFilter('toDate'), fn ($query, $toDate) => $query->whereDate('created_at', '<=', $toDate))
+            ->when($this->getFilter('fromDate'), fn ($query, $fromDate) => $query->where('created_at', '>=', $fromDate))
+            ->when($this->getFilter('toDate'), fn ($query, $toDate) => $query->where('created_at', '<=', $toDate))
             ->when($this->getFilter('gelombang'), fn ($query, $gelombang) => $query->where('gelombang_id', $gelombang))
             ->when($this->getFilter('statusPsb'), fn ($query, $statusPsb) => $query->where('status_psb_id', $statusPsb))
             ->when($this->getFilter('questionnairePsb'), fn ($query, $questionnairePsb) => $query->where('questionnaire_psb', $questionnairePsb));
@@ -136,8 +138,9 @@ class RegisteredTable extends DataTableComponent
 
     public function resend($id)
     {
-        $user = User::find($id);
-        $user->load('billerPsb');
+        $user = User::query()
+            ->with(['billerPsb'])
+            ->find($id);
         Mail::to($user->email)->send(new SendMailPsb($user));
         // Send WA Notification
         $wa = new WA($user);
@@ -165,6 +168,6 @@ class RegisteredTable extends DataTableComponent
 
     public function delete($id)
     {
-        User::findOrFail($id)->delete();
+        User::destroy($id);
     }
 }

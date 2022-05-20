@@ -8,10 +8,12 @@
                         <h3 class="text-lg leading-6 font-medium text-gray-900">
                             Formulir Pendaftaran
                         </h3>
+                        @if (Route::is('psb.index'))
                         <p class="max-w-2xl text-sm text-gray-500">
                             Pendaftar dari SMP Islam Nurul Fikri Serang? <a href="{{ route('psb.internal') }}"
                                 class="text-red-600 font-semibold animate-pulse">KLIK DISINI!</a>
                         </p>
+                        @endif
                     </div>
                     <div class="inline-flex items-center">
                         <span class="hidden md:block">atau</span>

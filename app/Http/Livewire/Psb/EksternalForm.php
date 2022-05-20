@@ -12,6 +12,7 @@ use App\Models\MedicalCheck;
 use App\Models\Voucher;
 use App\Models\User;
 use App\Models\Year;
+use Illuminate\Support\Facades\Route;
 
 class EksternalForm extends Component
 {
@@ -320,7 +321,7 @@ class EksternalForm extends Component
         $data['kecamatan'] = $this->kec[$this->kecamatan];
         $data['kelurahan'] = $this->kel[$this->kelurahan];
         $data['password'] = bcrypt(date('dmY', strtotime($this->birth_date)));
-        $data['jalur_masuk'] = 'psb';
+        $data['jalur_masuk'] = Route::is('mutasi.index') ? 'mutasi' : 'psb';
         $data['angkatan'] = $angkatan;
         $data['jenis_pendaftaran'] = 'eksternal';
         $data['tahun_pendaftaran'] = $this->conf->periode;

@@ -29,7 +29,7 @@
             <!-- Sidebar component, swap this element with another sidebar if you like -->
             <nav class="pt-16 pb-4 flex flex-col flex-grow overflow-y-auto">
                 <div class="px-4 grid grid-cols-2 gap-4 justify-center">
-                    <a href="{{ url('alur-pendaftaran') }}"
+                    <a href="{{ route('psb.show', 'alur-pendaftaran') }}"
                         class="flex flex-col space-y-2 items-center p-4 rounded-xl text-white bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-300 hover:to-blue-400">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12" fill="none" viewBox="0 0 24 24"
                             stroke="currentColor">
@@ -47,7 +47,7 @@
                         </svg>
                         <div class="text-sm text-center">Santri Internal</div>
                     </a>
-                    <a href="{{ url('persyaratan') }}"
+                    <a href="{{ route('psb.show', 'persyaratan') }}"
                         class="flex flex-col space-y-2 items-center p-4 rounded-xl text-white bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-300 hover:to-blue-400">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12" fill="none" viewBox="0 0 24 24"
                             stroke="currentColor">
@@ -56,7 +56,7 @@
                         </svg>
                         <div class="text-sm text-center">Persyaratan</div>
                     </a>
-                    <a href="{{ url('biaya-pendidikan') }}"
+                    <a href="{{ route('psb.show', 'biaya-pendidikan') }}"
                         class="flex flex-col space-y-2 items-center p-4 rounded-xl text-white bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-300 hover:to-blue-400">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12" fill="none" viewBox="0 0 24 24"
                             stroke="currentColor">
@@ -65,7 +65,7 @@
                         </svg>
                         <div class="text-sm text-center">Biaya Pendidikan</div>
                     </a>
-                    <a href="{{ url('asrama') }}"
+                    <a href="{{ route('psb.show', 'asrama') }}"
                         class="flex flex-col space-y-2 items-center p-4 rounded-xl text-white bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-300 hover:to-blue-400">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12" fill="none" viewBox="0 0 24 24"
                             stroke="currentColor">
@@ -74,7 +74,7 @@
                         </svg>
                         <div class="text-sm text-center">Asrama</div>
                     </a>
-                    <a href="{{ url('berkas-kesehatan') }}"
+                    <a href="{{ route('psb.show', 'berkas-kesehatan') }}"
                         class="flex flex-col space-y-2 items-center p-4 rounded-xl text-white bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-300 hover:to-blue-400">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12" fill="none" viewBox="0 0 24 24"
                             stroke="currentColor">
@@ -83,7 +83,7 @@
                         </svg>
                         <div class="text-sm text-center">Berkas Kesehatan</div>
                     </a>
-                    <a href="{{ url('tanggal-penting') }}"
+                    <a href="{{ route('psb.show', 'tanggal-penting') }}"
                         class="flex flex-col space-y-2 items-center p-4 rounded-xl text-white bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-300 hover:to-blue-400">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12" fill="none" viewBox="0 0 24 24"
                             stroke="currentColor">
@@ -92,7 +92,7 @@
                         </svg>
                         <div class="text-sm text-center">Tanggal Penting</div>
                     </a>
-                    <a href="{{ url('brosur-online') }}"
+                    <a href="{{ route('psb.show', 'brosur-online') }}"
                         class="flex flex-col space-y-2 items-center p-4 rounded-xl text-white bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-300 hover:to-blue-400">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12" fill="none" viewBox="0 0 24 24"
                             stroke="currentColor">

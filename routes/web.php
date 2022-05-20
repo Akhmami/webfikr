@@ -12,6 +12,7 @@ use App\Http\Controllers\Dash\UserController;
 use App\Http\Controllers\Dash\WebsiteController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\PsbController;
+use App\Http\Controllers\MutasiController;
 use App\Http\Controllers\SurveyController;
 use App\Http\Controllers\IDCardController;
 use App\Http\Controllers\UploadController;
@@ -135,6 +136,13 @@ Route::domain('psb.' . config('app.domain'))
 
         // Route::get('ensb0w6p5vqylbdd0xvpj24i3', 'PsbController@gelombangTertutup')->name('psb.tertutup');
         Route::get('users/d/{string}', [PsbController::class, 'verify'])->name('verify');
+    });
+
+# mutasi.nfbs.or.id
+Route::domain('mutasi.' . config('app.domain'))
+    ->name('mutasi.')
+    ->group(function () {
+        Route::get('/', [MutasiController::class, 'index']);
     });
 
 # rekrutmen.nfbs.or.id

@@ -13,7 +13,11 @@ class PsbController extends Controller
 {
     public function index()
     {
-        $conf = Gelombang::active()->first();
+        $conf = Gelombang::query()
+            ->whereNull('status')
+            ->active()
+            ->firstOrFail();
+
         $today = strtotime('today');
         $expiry = strtotime($conf->datetime_expired);
         $expired = false;
@@ -45,7 +49,35 @@ class PsbController extends Controller
 
     public function internal()
     {
-        $conf = Gelombang::findOrFail(1);
+        $conf = Gelombang::query()
+            ->where('status', 'I')
+            ->active()
+            ->firstOrFail();
+
+        $today = strtotime('today');
+        $expiry = strtotime($conf->datetime_expired);
+        $expired = false;
+
+        if (is_null($conf->datetime_expired)) {
+            return view('psb.comingsoon');
+        }
+
+        if ($today >= $expiry) {
+            $expired = true;
+        }
+
+        return view('psb.index', [
+            'expired' => $expired
+        ]);
+    }
+
+    public function mutasi()
+    {
+        $conf = Gelombang::query()
+            ->where('status', 'M')
+            ->active()
+            ->firstOrFail();
+
         $today = strtotime('today');
         $expiry = strtotime($conf->datetime_expired);
         $expired = false;
