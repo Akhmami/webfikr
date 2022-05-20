@@ -91,7 +91,7 @@ class EksternalForm extends Component
             'kelurahan' => 'required',
             'alamat' => 'required|min:10|max:250',
             'email' => 'required|email',
-            'medical_check_id' => 'required'
+            'medical_check_id' => 'nullable'
         ],
         3 => [
             'nama_ayah' => 'required',
