@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 class EksternalForm extends Component
 {
+    public $jalur_masuk;
     public $nama_lengkap;
     public $nisn;
     public $gender;
@@ -105,8 +106,9 @@ class EksternalForm extends Component
         ]
     ];
 
-    public function mount()
+    public function mount($jalur_masuk)
     {
+        $this->jalur_masuk = $jalur_masuk;
         $this->prov = DB::table('wilayah')
             ->whereRaw('CHAR_LENGTH(kode) = 2')
             ->pluck('nama', 'kode')
@@ -321,7 +323,7 @@ class EksternalForm extends Component
         $data['kecamatan'] = $this->kec[$this->kecamatan];
         $data['kelurahan'] = $this->kel[$this->kelurahan];
         $data['password'] = bcrypt(date('dmY', strtotime($this->birth_date)));
-        $data['jalur_masuk'] = Route::is('mutasi.index') ? 'mutasi' : 'psb';
+        $data['jalur_masuk'] = $this->jalur_masuk;
         $data['angkatan'] = $angkatan;
         $data['jenis_pendaftaran'] = 'eksternal';
         $data['tahun_pendaftaran'] = $this->conf->periode;

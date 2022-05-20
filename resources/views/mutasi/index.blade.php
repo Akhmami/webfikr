@@ -35,7 +35,7 @@
                         <img class="rounded-xl" src="{{ asset('images/header-psb.jpeg') }}" alt="banner">
                     </div>
                     @if (!$expired)
-                    <livewire:psb.eksternal-form />
+                    <livewire:psb.eksternal-form :jalur_masuk="'mutasi'" />
                     @else
                     <div class="bg-white rounded-xl">
                         <div class="text-center py-12 px-4 sm:px-6 lg:py-16 lg:px-8">
