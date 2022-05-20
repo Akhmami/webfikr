@@ -60,6 +60,7 @@ class CreateUserDetailsTable extends Migration
             $table->string('haji_umroh_ibu', 25)->nullable();
             $table->string('organisasi_islam_ibu')->nullable();
             $table->string('buku_bacaan_islam_ibu')->nullable();
+            $table->string('mutasi_kelas')->nullable();
             $table->timestamps();
         });
     }

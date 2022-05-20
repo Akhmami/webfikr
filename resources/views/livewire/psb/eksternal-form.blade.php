@@ -70,6 +70,9 @@
                         @if ($jenjang === 'SMA')
                         <x-select label="Jurusan Pilihan" name="jurusan_pilihan" :list="$list_jurusan" livewire />
                         @endif
+                        @if ($jalur_masuk == 'mutasi')
+                            <x-select label="Kelas Tujuan" name="mutasi_kelas" :list="$list_kelas" livewire />
+                        @endif
                         <x-input label="NPSN Asal Sekolah" type="number" name="npsn" livewire />
                         @elseif($currentStep === 2)
                         <x-input label="Kewarganegaraan" name="negara" livewire />
@@ -81,7 +84,9 @@
                         <x-input label="Email" type="email" name="email" livewire />
                         {{--
                         <x-select label="Lokasi Tes" name="lokasi_test_id" :list="$lokasi_test" livewire /> --}}
+                        @if ($jalur_masuk == 'psb')
                         <x-select label="Medical Check" name="medical_check_id" :list="$medical_check" livewire />
+                        @endif
                         @else
                         <x-input label="Nama Ayah" name="nama_ayah" livewire />
                         <x-date-picker label="Tanggal Lahir Ayah" name="tanggal_lahir_ayah" livewire />

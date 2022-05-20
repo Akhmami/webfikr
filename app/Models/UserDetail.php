@@ -57,7 +57,8 @@ class UserDetail extends Model
         'jalur_masuk',
         'tahun_pendaftaran',
         'tahun_ajaran',
-        'status'
+        'status',
+        'mutasi_kelas'
     ];
 
     public function user()

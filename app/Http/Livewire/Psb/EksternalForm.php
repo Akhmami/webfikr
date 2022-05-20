@@ -59,6 +59,8 @@ class EksternalForm extends Component
     public $list_jenjang;
     public $list_jurusan;
     public $list_pendidikan;
+    public $list_kelas;
+    public $mutasi_kelas;
     public $country_code;
     public $lokasi_test;
     public $medical_check;
@@ -78,7 +80,8 @@ class EksternalForm extends Component
             'nik' => 'required|min:16|max:16',
             'jenjang' => 'required',
             'npsn' => 'required|min:6|max:8',
-            'jurusan_pilihan' => 'nullable'
+            'jurusan_pilihan' => 'nullable',
+            'mutasi_kelas' => 'nullable'
         ],
         2 => [
             'negara' => 'required|min:3|max:150',
@@ -116,10 +119,28 @@ class EksternalForm extends Component
 
         $this->gel = Gelombang::active()->first();
         $this->conf = Year::active()->first();
+        $jurusan = [
+            'psb' => ['IPA' => 'IPA', 'IPS' => 'IPS', 'IPC' => 'IPA/IPS'],
+            'mutasi' => ['IPC' => 'Mutasi']
+        ];
+
+        if ($jalur_masuk == 'mutasi') {
+            $this->list_kelas = [
+                '7 TB' => 'Kelas 7 Putra',
+                '7 TBH' => 'Kelas 7 Putri',
+                '8 TB' => 'Kelas 8 Putra',
+                '8 TBH' => 'Kelas 8 Putri',
+                '10 IPA TB' => 'Kelas 10 IPA Putra',
+                '10 IPA TBH' => 'Kelas 10 IPA Putri',
+                '10 IPS TB' => 'Kelas 10 IPS Putra',
+                '10 IPS TBH' => 'Kelas 10 IPS Putri',
+                '11 IPA TBH' => 'Kelas 11 IPA Putri'
+            ];
+        }
 
         $this->list_jk = ['L' => 'Laki-laki', 'P' => 'Perempuan'];
         $this->list_jenjang = ['SMP' => 'SMP Islam Nurul Fikri Serang', 'SMA' => 'SMA Islam Nurul Fikri Serang'];
-        $this->list_jurusan = ['IPA' => 'IPA', 'IPS' => 'IPS', 'IPC' => 'IPA/IPS'];
+        $this->list_jurusan = $jurusan[$jalur_masuk];
         $this->list_pendidikan = ['SD' => 'SD', 'SMP' => 'SMP', 'SMA' => 'SMA', 'D3' => 'D3', 'S1' => 'S1', 'S2' =>
         'S2', 'S3' => 'S3'];
     }
