@@ -117,7 +117,9 @@ class EksternalForm extends Component
             ->pluck('nama', 'kode')
             ->toArray();
 
-        $this->gel = Gelombang::active()->first();
+        $this->gel = Gelombang::query()
+            ->active()
+            ->first();
         $this->conf = Year::active()->first();
         $jurusan = [
             'psb' => ['IPA' => 'IPA', 'IPS' => 'IPS', 'IPC' => 'IPA/IPS'],
@@ -125,6 +127,11 @@ class EksternalForm extends Component
         ];
 
         if ($jalur_masuk == 'mutasi') {
+            $this->gel = Gelombang::query()
+                ->where('status', 'M')
+                ->active()
+                ->first();
+
             $this->list_kelas = [
                 '7 TB' => 'Kelas 7 Putra',
                 '7 TBH' => 'Kelas 7 Putri',
