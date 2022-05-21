@@ -317,8 +317,8 @@ class EksternalForm extends Component
         if ($this->jenjang === 'SMP') {
             $angkatan = $this->conf->angkatan_smp;
             $nopes_array = [
-                'L' => ($this->conf->periode . '1' . mt_rand(100, 999)),
-                'P' => ($this->conf->periode . '2' . mt_rand(100, 999))
+                'L' => ($this->conf->periode . mt_rand(1000, 9999)),
+                'P' => ($this->conf->periode . mt_rand(1000, 9999))
             ];
 
             $nopeserta = $nopes_array[$this->gender];
@@ -326,8 +326,8 @@ class EksternalForm extends Component
         } else {
             $angkatan = $this->conf->angkatan_sma;
             $nopes_array = [
-                'L' => ($this->conf->periode . '3' . mt_rand(100, 999)),
-                'P' => ($this->conf->periode . '4' . mt_rand(100, 999))
+                'L' => ($this->conf->periode . mt_rand(1000, 9999)),
+                'P' => ($this->conf->periode . mt_rand(1000, 9999))
             ];
 
             $nopeserta = $nopes_array[$this->gender];
