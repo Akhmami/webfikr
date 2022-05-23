@@ -80,7 +80,8 @@ class RegisteredExport implements
                 $user->userDetail->asal_sekolah,
                 $user->userDetail->npsn,
                 $user->userDetail->nama_ayah,
-                $user->userDetail->nama_ibu
+                $user->userDetail->nama_ibu,
+                $user->userDetail->mutasi_kelas
             ];
         }
 
@@ -134,7 +135,8 @@ class RegisteredExport implements
                 'Asal Sekolah',
                 'NPSN',
                 'Nama Ayah',
-                'Nama Ibu'
+                'Nama Ibu',
+                'Mutasi Kelas Tujuan'
             ];
         }
 
