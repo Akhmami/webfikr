@@ -10,6 +10,7 @@ use App\Http\Controllers\Dash\PostPsbController;
 use App\Http\Controllers\Dash\StatusPsbController;
 use App\Http\Controllers\Dash\UserController;
 use App\Http\Controllers\Dash\WebsiteController;
+use App\Http\Controllers\Dash\DashboardController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\PsbController;
 use App\Http\Controllers\MutasiController;
@@ -40,7 +41,7 @@ Route::domain(config('app.domain'))
             ->middleware(['auth', 'permission:lihat dashboard'])
             ->prefix('dashboard')
             ->group(function () {
-                Route::view('/', 'dashboard')->name('index');
+                Route::get('/', DashboardController::class)->name('index');
                 Route::view('/users', 'dash.users.index')
                     ->middleware('role:super-admin|admin')
                     ->name('users.index');

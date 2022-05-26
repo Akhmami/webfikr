@@ -36,18 +36,18 @@
 
 @section('content')
 
-@include('partials.slideshow', ['data' => $sliders])
-@include('partials.cta')
-@include('partials.about')
+@include('posts._slideshow', ['data' => $sliders])
+@include('posts._cta')
+@include('posts._about')
 
 <!-- Artikel -->
 <livewire:web.blog-post />
 
-@include('partials.achievement')
-@include('partials.program')
-@include('partials.facility')
-@include('partials.alumni')
-{{-- @include('partials.testimonial') --}}
+@include('posts._achievement')
+@include('posts._program')
+@include('posts._facility')
+@include('posts._alumni')
+{{-- @include('posts._testimonial') --}}
 
 {{-- <div class="hidden">
     <a id="popup" href="//psb.nfbs.or.id"><img src="{{ asset('images/popup.jpeg') }}" class="w-full rounded"></a>

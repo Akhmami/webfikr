@@ -22,7 +22,7 @@
 
 @section('content')
 <div class="mb-24 md:pb-2"></div>
-@include('partials.cta')
+@include('posts._cta')
 
 <!-- Artikel -->
 @if (! empty($posts))
