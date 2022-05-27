@@ -1,7 +1,7 @@
 import 'alpinejs';
 import Splide from '@splidejs/splide';
-import intlTelInput from 'intl-tel-input';
+// import intlTelInput from 'intl-tel-input';
 
 window.Splide = Splide;
-window.intlTelInput = intlTelInput;
+// window.intlTelInput = intlTelInput;
 

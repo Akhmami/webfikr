@@ -20,6 +20,7 @@
     <!-- Styles -->
     <link rel="stylesheet" href="{{ url(mix('css/app.css')) }}">
     @livewireStyles
+    {{-- @laravelViewsStyles(laravel-views) --}}
 
     @yield('meta')
     @stack('style')
@@ -35,6 +36,7 @@
     @yield('body')
 
     @livewireScripts
+    {{-- @laravelViewsScripts(laravel-views) --}}
     @stack('script')
 </body>
 
