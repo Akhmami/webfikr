@@ -11,6 +11,9 @@
 
                 <!-- Chart -->
                 @include('dash._chart')
+
+                <!-- user activity -->
+                @include('dash._user_activity')
             </div>
 
             <!-- Report -->
@@ -19,17 +22,12 @@
             </div>
         </div>
 
-        <div class="flex space-x-4">
-            <!-- User Activity -->
-            <div class="w-4/6">
-                @include('dash._user_activity')
-            </div>
-
+        {{-- <div class="flex space-x-4">
             <!-- Balance -->
             <div class="w-2/6">
                 @include('dash._balance')
             </div>
-        </div>
+        </div> --}}
     </main>
 
     @push('script')
