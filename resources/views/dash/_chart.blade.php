@@ -2,7 +2,7 @@
     <div class="text-md font-medium uppercase text-gray-700 mb-2">
         Statistik Pengunjung
     </div>
-    <div class="bg-white rounded-xl flex items-center h-auto">
+    <div class="mb-6 bg-white rounded-xl flex items-center h-auto">
         <div class="overflow-hidden w-full md:flex" style="max-width:900px" x-data="{stockTicker:stockTicker()}"
             x-init="stockTicker.renderChart()">
             <div class="flex flex-col w-full md:w-3/4 pl-6 py-6 bg-white text-white rounded-xl">

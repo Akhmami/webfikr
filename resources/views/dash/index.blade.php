@@ -6,11 +6,11 @@
     <main class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
         <div class="flex flex-col md:flex-row space-x-4 mb-6">
             <div class="md:w-4/6 flex flex-col px-4 md:px-0">
-                <!-- Stat here -->
-                @include('dash._stat')
-
                 <!-- Chart -->
                 @include('dash._chart')
+
+                <!-- Stat here -->
+                @include('dash._stat')
 
                 <!-- user activity -->
                 @include('dash._user_activity')
