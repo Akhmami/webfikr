@@ -65,37 +65,61 @@
             <div>
                 Pembayaran Terbaru
             </div>
-            <div class="flex items-center justify-between bg-gray-100 rounded-xl p-2">
+            <div class="flex items-center justify-between bg-gray-50 rounded-xl p-2">
                 <div class="flex items-center space-x-4">
                     <span class="inline-flex items-center justify-center h-12 w-12 rounded-lg bg-green-200">
                         <span class="text-sm font-medium leading-none text-green-500">SPP</span>
                     </span>
                     <div>
-                        <p class="font-semibold text-gray-700">Muhammad Naufal</p>
+                        <p class="font-semibold text-gray-700">Khoirul Azam</p>
                         <small class="text-xs text-gray-500">29-05-2022 05:00</small>
                     </div>
                 </div>
                 <div class="font-bold text-gray-800">3.850.000</div>
             </div>
-            <div class="flex items-center justify-between bg-gray-100 rounded-xl p-2">
+            <div class="flex items-center justify-between bg-gray-50 rounded-xl p-2">
                 <div class="flex items-center space-x-4">
                     <span class="inline-flex items-center justify-center h-12 w-12 rounded-lg bg-green-200">
                         <span class="text-sm font-medium leading-none text-green-500">SPP</span>
                     </span>
                     <div>
-                        <p class="font-semibold text-gray-700">Muhammad Naufal</p>
+                        <p class="font-semibold text-gray-700">Naura Fitria</p>
                         <small class="text-xs text-gray-500">29-05-2022 05:00</small>
                     </div>
                 </div>
                 <div class="font-bold text-gray-800">3.850.000</div>
             </div>
-            <div class="flex items-center justify-between bg-gray-100 rounded-xl p-2">
+            <div class="flex items-center justify-between bg-gray-50 rounded-xl p-2">
                 <div class="flex items-center space-x-4">
                     <span class="inline-flex items-center justify-center h-12 w-12 rounded-lg bg-green-200">
                         <span class="text-sm font-medium leading-none text-green-500">SPP</span>
                     </span>
                     <div>
-                        <p class="font-semibold text-gray-700">Muhammad Naufal</p>
+                        <p class="font-semibold text-gray-700">Afnan Taki</p>
+                        <small class="text-xs text-gray-500">29-05-2022 05:00</small>
+                    </div>
+                </div>
+                <div class="font-bold text-gray-800">3.850.000</div>
+            </div>
+            <div class="flex items-center justify-between bg-gray-50 rounded-xl p-2">
+                <div class="flex items-center space-x-4">
+                    <span class="inline-flex items-center justify-center h-12 w-12 rounded-lg bg-green-200">
+                        <span class="text-sm font-medium leading-none text-green-500">SPP</span>
+                    </span>
+                    <div>
+                        <p class="font-semibold text-gray-700">Agus Fajri</p>
+                        <small class="text-xs text-gray-500">29-05-2022 05:00</small>
+                    </div>
+                </div>
+                <div class="font-bold text-gray-800">3.850.000</div>
+            </div>
+            <div class="flex items-center justify-between bg-gray-50 rounded-xl p-2">
+                <div class="flex items-center space-x-4">
+                    <span class="inline-flex items-center justify-center h-12 w-12 rounded-lg bg-green-200">
+                        <span class="text-sm font-medium leading-none text-green-500">SPP</span>
+                    </span>
+                    <div>
+                        <p class="font-semibold text-gray-700">Ainal Muna</p>
                         <small class="text-xs text-gray-500">29-05-2022 05:00</small>
                     </div>
                 </div>

@@ -26,7 +26,7 @@
             <div class="w-full md:w-1/4 py-6 pr-6 pl-3 text-gray-600">
                 <div class="w-full h-full bg-blue-500 rounded-xl flex flex-col items-center justify-center space-y-2">
                     <h3 class="text-lg font-semibold leading-tight text-gray-100">Hari ini</h3>
-                    <div class="text-gray-100 text-4xl font-bold">123</div>
+                    <div class="text-gray-100 text-4xl font-bold">{{ mt_rand(1, 20) }}</div>
                     <div class="text-gray-100 text-sm">Pengunjung</div>
                 </div>
             </div>

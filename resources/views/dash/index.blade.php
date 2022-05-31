@@ -10,7 +10,7 @@
                 @include('dash._chart')
 
                 <!-- Stat here -->
-                @include('dash._stat')
+                {{-- @include('dash._stat') --}}
 
                 <!-- user activity -->
                 @include('dash._user_activity')
