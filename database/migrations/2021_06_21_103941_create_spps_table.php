@@ -15,9 +15,11 @@ class CreateSppsTable extends Migration
     {
         Schema::create('spps', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained();
-            $table->foreignId('grade_id')->constrained();
-            $table->foreignId('payment_history_id')->nullable()->constrained();
+            $table->foreignId('grade_id')->constrained()
+                ->cascadeOnDelete();
+            $table->foreignId('payment_id')->nullable()
+                ->constrained()
+                ->cascadeOnDelete();
             $table->date('bulan');
             $table->timestamps();
         });

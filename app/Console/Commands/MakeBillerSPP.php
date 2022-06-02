@@ -9,31 +9,21 @@ use Illuminate\Console\Command;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 
-class CheckBillSPP extends Command
+class MakeBillerSPP extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'app:billspp';
+    protected $signature = 'app:makebillerspp';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Cek tagihan spp dan create tagihan';
-
-    /**
-     * Create a new command instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        parent::__construct();
-    }
+    protected $description = 'Bikin tagihan SPP baru';
 
     /**
      * Execute the console command.

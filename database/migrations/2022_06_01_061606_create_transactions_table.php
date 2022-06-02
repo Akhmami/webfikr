@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBalanceUsagesTable extends Migration
+return new class extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,13 @@ class CreateBalanceUsagesTable extends Migration
      */
     public function up()
     {
-        Schema::create('balance_usages', function (Blueprint $table) {
+        Schema::create('transactions', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained();
-            $table->decimal('trx_amount', 14,0)->default(0);
+            $table->foreignId('user_id')
+                ->constrained()
+                ->onDelete('cascade');
+            $table->decimal('debit', 14,0)->default();
+            $table->decimal('credit', 14,0)->default();
             $table->string('description')->nullable();
             $table->timestamps();
         });
@@ -29,6 +32,6 @@ class CreateBalanceUsagesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('balance_usages');
+        Schema::dropIfExists('transactions');
     }
-}
+};

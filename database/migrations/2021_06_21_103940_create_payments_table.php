@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBillingsTable extends Migration
+return new class extends Migration
 {
     /**
      * Run the migrations.
@@ -13,21 +13,24 @@ class CreateBillingsTable extends Migration
      */
     public function up()
     {
-        Schema::create('billings', function (Blueprint $table) {
+        Schema::create('payments', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('biller_id')->nullable()->constrained();
             $table->foreignId('user_id')->constrained();
+            $table->morphs('payment');
             $table->string('trx_id')->unique();
+            $table->string('payment_ntb')->nullable();
             $table->string('customer_name')->nullable();
             $table->char('virtual_account', 16);
-            $table->decimal('trx_amount', 14, 0);
-            $table->enum('billing_type', ['o', 'i', 'c', 'saldo']);
-            $table->enum('is_paid', ['Y', 'N'])->default('N');
+            $table->decimal('trx_amount', 14, 0)->default(0);
+            $table->decimal('payment_amount', 14, 0)->default(0);
+            $table->decimal('cumulative_payment_amount', 14, 0)->default(0);
+            $table->enum('billing_type', ['o', 'i', 'c', 'b'])
+                ->comment('open, partial, close, balance');
             $table->string('description')->nullable();
-            $table->text('spp_pay_month')->nullable();
+            $table->text('qty_spp')->nullable();
             $table->decimal('use_balance', 14, 0)->nullable();
+            $table->timestamp('datetime_payment')->nullable();
             $table->timestamp('datetime_expired')->nullable();
-            $table->enum('is_balance', ['Y', 'N'])->default('N');
             $table->timestamps();
         });
     }
@@ -39,6 +42,6 @@ class CreateBillingsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('billings');
+        Schema::dropIfExists('payments');
     }
-}
+};

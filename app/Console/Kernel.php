@@ -14,7 +14,7 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         Commands\AutoPayment::class,
-        Commands\CheckBillSPP::class,
+        Commands\MakeBillerSPP::class,
         Commands\AddToEujian::class,
     ];
 
@@ -26,7 +26,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('app:billspp')->monthlyOn(1, '00:05');
+        $schedule->command('app:makebillerspp')->monthlyOn(1, '00:05');
         $schedule->command('app:autopay')->monthlyOn(1, '02:00');
         $schedule->command('app:eujian')
             ->everyFifteenMinutes()
