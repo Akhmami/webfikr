@@ -87,8 +87,8 @@ Route::domain(config('app.domain'))
         // Route::post('/payments/callback/spp', [CallbackController::class, 'index']);
         Route::get('/', [PostController::class, 'index'])->name('home');
         Route::get('/faq', [PostController::class, 'faq'])->name('faq');
-        Route::get('/videos', [PostController::class, 'videos'])->name('post.videos');
-        Route::get('/fasilitas', [PostController::class, 'facilities'])->name('post.facilities');
+        // Route::get('/videos', [PostController::class, 'videos'])->name('post.videos');
+        // Route::get('/fasilitas', [PostController::class, 'facilities'])->name('post.facilities');
         Route::get('/artikel', [PostController::class, 'articles'])->name('post.articles');
         Route::get('/{slug}', [PostController::class, 'show'])->name('post.show');
         Route::get('/category/{category}', [PostController::class, 'category'])->name('category');
