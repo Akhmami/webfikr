@@ -82,7 +82,7 @@ class Cicilan extends ModalComponent
             $this->saldo_terpakai = $this->balance;
         } else {
             $this->total_pay = 0;
-            $this->saldo_terpakai = abs($selected);
+            $this->saldo_terpakai = abs((int) $selected);
         }
 
         return view('livewire.user.cicilan', [
