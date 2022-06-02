@@ -5,7 +5,7 @@
                 <div x-data="{ tab: window.location.hash ? window.location.hash : '#profile' }"
                     class="divide-y divide-gray-200 lg:grid lg:grid-cols-12 lg:divide-y-0 lg:divide-x">
 
-                    @include('layouts.user.setting-menu')
+                    @include('partials.user.setting-menu')
 
                     <div x-show="tab == '#profile'" x-cloak class="divide-y divide-gray-200 lg:col-span-9">
                         <livewire:user.setting-profile />

@@ -143,7 +143,7 @@
 
                 <!-- Right column -->
                 <div class="grid grid-cols-1 gap-4">
-                    @include('layouts.user.sidebar')
+                    @include('partials.user.sidebar')
                 </div>
             </div>
         </div>
