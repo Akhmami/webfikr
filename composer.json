@@ -11,6 +11,7 @@
         "fruitcake/laravel-cors": "^3.0",
         "guzzlehttp/guzzle": "^7.2",
         "intervention/image": "^2.7",
+        "laravel-views/laravel-views": "^2.4",
         "laravel/fortify": "^1.13",
         "laravel/framework": "^9.0",
         "laravel/sanctum": "^2.14.1",

@@ -1,5 +1,9 @@
 @extends('layouts.base')
 
+@push('style')
+    @laravelViewsStyles(laravel-views)
+@endpush
+
 @section('body')
 <!-- navbar goes here -->
 @include('partials.dash.navbar')
@@ -46,3 +50,7 @@
         });
 </script>
 @endsection
+
+@push('script')
+@laravelViewsScripts(laravel-views)
+@endpush

@@ -23,6 +23,7 @@ module.exports = {
         './vendor/wire-elements/modal/resources/views/*.blade.php',
         './storage/framework/views/*.php',
         './vendor/rappasoft/laravel-livewire-tables/resources/views/**/*.blade.php',
+        "./vendor/laravel-views/**/*.php"
     ],
     safelist: [
         "sm:max-w-sm",

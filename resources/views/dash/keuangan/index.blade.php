@@ -90,8 +90,8 @@
                                 <span>NEW</span>
                             </button>
                         </div>
-                        <div class="rounded-b flex flex-col px-4 py-4">
-                            <livewire:dash.keuangan.billers-table />
+                        <div class="rounded-b flex flex-col">
+                            <livewire:dash.biller.biller-table />
                         </div>
                     </div>
                     <!-- Tab Billing -->

@@ -1,13 +1,17 @@
 <?php
 
-namespace App\Http\Livewire\Dash\Keuangan;
+namespace App\Http\Livewire\Dash\Biller;
 
-use App\Models\User;
 use LaravelViews\Views\TableView;
 use Illuminate\Database\Eloquent\Builder;
+use App\Models\User;
+use App\Filters\GradeFilter;
 
-class BillersTableView extends TableView
+class BillerTable extends TableView
 {
+    protected $paginate = 25;   
+    public $searchBy = ['userDetail.no_pendaftaran', 'name'];
+
     public function headers(): array
     {
         return [
@@ -36,5 +40,12 @@ class BillersTableView extends TableView
             ->with(['userDetail', 'billers', 'activeGrade', 'balance'])
             ->where('status', 'santri')
             ->latest();
+    }
+
+    protected function filters()
+    {
+        return [
+            new GradeFilter
+        ];
     }
 }
