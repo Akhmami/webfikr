@@ -34,7 +34,7 @@ class DaftarUlang extends Command
                 $query->whereIn('nama', ['7', '8', '10', '11']);
             })
             ->cursor();
-        
+
         foreach ($users as $user) {
             try {
                 $noms = [
@@ -48,9 +48,8 @@ class DaftarUlang extends Command
                     ->create([
                         'amount' => $noms[$user->activeGrade()->first()->nama],
                         'type' => 'DKT',
-                        'is_installment' => 'Y',
+                        'is_installment' => 'N',
                         'is_active' => 'Y',
-                        'qty_spp' => 2,
                         'description' => 'Tagihan DKT Tahun 2022'
                     ]);
 
@@ -61,7 +60,6 @@ class DaftarUlang extends Command
             } catch (\Throwable $th) {
                 $this->error($th->getMessage());
             }
-            
         }
     }
 }
