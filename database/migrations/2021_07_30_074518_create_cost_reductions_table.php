@@ -15,17 +15,12 @@ class CreateCostReductionsTable extends Migration
     {
         Schema::create('cost_reductions', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()
-                ->cascadeOnDelete()
-                ->cascadeOnUpdate();
             $table->foreignId('biller_detail_id')->constrained()
                 ->cascadeOnDelete()
                 ->cascadeOnUpdate();
             $table->decimal('nominal', 14,0);
-            $table->string('keterangan')->nullable();
-            $table->enum('type', ['SPP', 'LAINNYA']);
+            $table->string('description')->nullable();
             $table->enum('is_used', ['Y', 'N'])->default('N');
-            // $table->enum('operator', ['min', 'plus'])->nullable();
             $table->timestamps();
         });
     }

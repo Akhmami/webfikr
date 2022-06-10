@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateDormitoryUserTable extends Migration
+class CreateDormitoryUserDetailTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreateDormitoryUserTable extends Migration
      */
     public function up()
     {
-        Schema::create('dormitory_user', function (Blueprint $table) {
+        Schema::create('dormitory_user_detail', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('dormitory_id');
-            $table->unsignedBigInteger('user_id');
-            $table->char('tahun_ajaran', 4)->nullable();
+            $table->unsignedBigInteger('user_detail_id');
+            $table->char('school_year', 4)->nullable();
             $table->enum('is_active', ['Y', 'N']);
         });
     }
@@ -29,6 +29,6 @@ class CreateDormitoryUserTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('dormitory_user');
+        Schema::dropIfExists('dormitory_user_detail');
     }
 }

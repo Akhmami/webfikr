@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSetSppsTable extends Migration
+class CreateTestLocationsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,11 @@ class CreateSetSppsTable extends Migration
      */
     public function up()
     {
-        Schema::create('set_spps', function (Blueprint $table) {
+        Schema::create('test_locations', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained();
-            $table->decimal('nominal', 14,0)->default(0);
+            $table->string('location', 25);
+            $table->text('description');
+            $table->enum('is_active', ['Y', 'N'])->default('Y');
             $table->timestamps();
         });
     }
@@ -28,6 +29,6 @@ class CreateSetSppsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('set_spps');
+        Schema::dropIfExists('test_locations');
     }
 }

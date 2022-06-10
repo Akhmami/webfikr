@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateLokasiTestsTable extends Migration
+class CreateGradeUserDetailTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,11 @@ class CreateLokasiTestsTable extends Migration
      */
     public function up()
     {
-        Schema::create('lokasi_tests', function (Blueprint $table) {
+        Schema::create('grade_user_detail', function (Blueprint $table) {
             $table->id();
-            $table->string('lokasi', 25);
-            $table->text('deskripsi');
+            $table->unsignedBigInteger('grade_id');
+            $table->unsignedBigInteger('user_detail_id');
+            $table->char('school_year', 4)->nullable();
             $table->enum('is_active', ['Y', 'N'])->default('Y');
             $table->timestamps();
         });
@@ -29,6 +30,6 @@ class CreateLokasiTestsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('lokasi_tests');
+        Schema::dropIfExists('grade_user_detail');
     }
 }

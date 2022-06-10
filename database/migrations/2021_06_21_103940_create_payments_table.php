@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('payments', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained();
+            $table->foreignId('user_detail_id')->constrained();
             $table->morphs('payment');
             $table->string('trx_id')->unique();
             $table->string('payment_ntb')->nullable();

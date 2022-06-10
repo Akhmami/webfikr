@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSetClothesTable extends Migration
+class CreatePsbYearsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,12 @@ class CreateSetClothesTable extends Migration
      */
     public function up()
     {
-        Schema::create('set_clothes', function (Blueprint $table) {
+        Schema::create('psb_years', function (Blueprint $table) {
             $table->id();
-            $table->string('nama', 50);
-            $table->text('deskripsi');
+            $table->char('period', 4);
+            $table->string('batch_of_smp', 4)->default(00);
+            $table->string('batch_of_sma', 4)->default(00);
+            $table->enum('is_active', ['Y', 'N']);
             $table->timestamps();
         });
     }
@@ -28,6 +30,6 @@ class CreateSetClothesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('set_clothes');
+        Schema::dropIfExists('psb_years');
     }
 }

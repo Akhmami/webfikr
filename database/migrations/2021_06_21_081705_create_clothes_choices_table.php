@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AlterUsersAddGelombangIdColumn extends Migration
+class CreateClothesChoicesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,11 @@ class AlterUsersAddGelombangIdColumn extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->after('medical_check_id', function ($table) {
-                $table->foreignId('gelombang_id')->nullable()->constrained();
-            });
+        Schema::create('clothes_choices', function (Blueprint $table) {
+            $table->id();
+            $table->string('name', 50);
+            $table->text('description');
+            $table->timestamps();
         });
     }
 
@@ -27,8 +28,6 @@ class AlterUsersAddGelombangIdColumn extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('clothes_choices');
     }
 }

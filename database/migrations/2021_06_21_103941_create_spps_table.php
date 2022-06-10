@@ -20,7 +20,7 @@ class CreateSppsTable extends Migration
             $table->foreignId('payment_id')->nullable()
                 ->constrained()
                 ->cascadeOnDelete();
-            $table->date('bulan');
+            $table->date('month');
             $table->timestamps();
         });
     }

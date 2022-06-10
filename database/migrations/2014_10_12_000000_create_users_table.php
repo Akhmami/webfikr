@@ -22,14 +22,7 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->enum('gender', ['L', 'P']);
-            $table->string('birth_place')->nullable();
-            $table->date('birth_date')->nullable();
-            $table->foreignId('status_psb_id')->nullable()->constrained();
-            $table->foreignId('lokasi_test_id')->nullable()->constrained();
-            $table->foreignId('medical_check_id')->nullable()->constrained();
             $table->string('bio', 250)->nullable();
-            $table->tinyInteger('questionnaire_psb')->nullable();
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();

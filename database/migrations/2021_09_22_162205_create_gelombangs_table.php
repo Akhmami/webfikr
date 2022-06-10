@@ -15,6 +15,7 @@ class CreateGelombangsTable extends Migration
     {
         Schema::create('gelombangs', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('psb_year_id')->constrained();
             $table->string('nama');
             $table->dateTime('tgl_tes');
             $table->dateTime('tgl_wawancara');

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateUserFilesTable extends Migration
+class CreateSppChoicesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,11 @@ class CreateUserFilesTable extends Migration
      */
     public function up()
     {
-        Schema::create('user_files', function (Blueprint $table) {
+        Schema::create('spp_choices', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained();
-            $table->string('nama');
-            $table->string('file');
-            $table->enum('type', ['document', 'image', 'video']);
+            $table->foreignId('user_detail_id')->constrained();
+            $table->decimal('nominal', 14,0)->default(0);
+            $table->enum('is_active', ['Y', 'N']);
             $table->timestamps();
         });
     }
@@ -30,6 +29,6 @@ class CreateUserFilesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_files');
+        Schema::dropIfExists('spp_choices');
     }
 }

@@ -15,10 +15,10 @@ class CreateGradesTable extends Migration
     {
         Schema::create('grades', function (Blueprint $table) {
             $table->id();
-            $table->string('nama', 25);
-            $table->enum('jenjang', ['SMP', 'SMA']);
-            $table->string('wali')->nullable();
-            $table->tinyInteger('kapasitas')->nullable();
+            $table->string('name', 25);
+            $table->enum('level', ['SMP', 'SMA']);
+            $table->string('homeroom_teacher')->nullable();
+            $table->tinyInteger('capacity')->nullable();
             $table->timestamps();
         });
     }

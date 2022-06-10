@@ -15,7 +15,7 @@ class CreateQuestionnaireAnswersTable extends Migration
     {
         Schema::create('questionnaire_answers', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('user_detail_id')->constrained()->onDelete('cascade');
             $table->foreignId('questionnaire_question_id')->constrained()->onDelete('cascade');
             $table->string('answer');
             $table->timestamps();

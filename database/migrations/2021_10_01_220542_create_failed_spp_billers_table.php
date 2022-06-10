@@ -15,7 +15,7 @@ class CreateFailedSppBillersTable extends Migration
     {
         Schema::create('failed_spp_billers', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('user_id')->unsigned();
+            $table->bigInteger('user_detail_id')->unsigned();
             $table->string('name');
             $table->longText('exception');
             $table->timestamps();

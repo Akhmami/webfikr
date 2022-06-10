@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTestDatesTable extends Migration
+class CreateUserDetailFilesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,12 @@ class CreateTestDatesTable extends Migration
      */
     public function up()
     {
-        Schema::create('test_dates', function (Blueprint $table) {
+        Schema::create('user_detail_files', function (Blueprint $table) {
             $table->id();
-            $table->string('nama', 25);
-            $table->date('tgl_tes');
-            $table->date('tgl_pengumuman')->nullable();
-            $table->date('batas_pembayaran')->nullable();
-            $table->text('deskripsi')->nullable();
+            $table->foreignId('user_detail_id')->constrained();
+            $table->string('name');
+            $table->string('file');
+            $table->enum('type', ['document', 'image', 'video']);
             $table->timestamps();
         });
     }
@@ -31,6 +30,6 @@ class CreateTestDatesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('test_dates');
+        Schema::dropIfExists('user_detail_files');
     }
 }

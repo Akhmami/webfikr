@@ -15,10 +15,10 @@ class CreateDormitoriesTable extends Migration
     {
         Schema::create('dormitories', function (Blueprint $table) {
             $table->id();
-            $table->string('nama', 50);
-            $table->enum('untuk', ['L', 'P']);
-            $table->string('wali');
-            $table->tinyInteger('kapasitas')->nullable();
+            $table->string('name', 50);
+            $table->enum('for', ['L', 'P']);
+            $table->string('head');
+            $table->tinyInteger('capacity')->nullable();
             $table->timestamps();
         });
     }

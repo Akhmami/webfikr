@@ -18,12 +18,12 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained()
                 ->cascadeOnUpdate()
                 ->cascadeOnDelete();
-            $table->string('nama')->nullable();
-            $table->date('tanggal_lahir', 4)->nullable();
-            $table->enum('pendidikan', ['SD', 'SMP', 'SMA', 'D3', 'S1', 'S2', 'S3'])->nullable();
-            $table->string('pekerjaan')->nullable();
-            $table->decimal('penghasilan', 14, 0)->nullable();
-            $table->string('tempat_kerja', 50)->nullable();
+            $table->string('name')->nullable();
+            $table->date('birth_date')->nullable();
+            $table->enum('graduate', ['SD', 'SMP', 'SMA', 'D3', 'S1', 'S2', 'S3'])->nullable();
+            $table->string('job')->nullable();
+            $table->decimal('income', 14, 0)->nullable();
+            $table->string('workplace', 50)->nullable();
             $table->string('pendidikan_agama')->nullable();
             $table->string('baca_quran', 25)->nullable();
             $table->string('haji_umroh', 25)->nullable();

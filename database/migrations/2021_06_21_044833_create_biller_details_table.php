@@ -18,8 +18,10 @@ class CreateBillerDetailsTable extends Migration
             $table->foreignId('biller_id')->constrained()
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
-            $table->string('nama');
+            $table->string('name');
             $table->decimal('nominal', 14,0)->default(0);
+            $table->decimal('cost_reduction')->nullable();
+            $table->enum('is_paid', ['Y', 'N'])->default('N');
             $table->timestamps();
         });
     }
