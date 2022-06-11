@@ -51,7 +51,7 @@ class CallbackController extends BaseController
             $paymentFromQurban = DB::connection('mysql2')
                 ->table('payments')
                 ->where('trx_id', $data['trx_id'])
-                ->first();
+                ->limit(1);
             
             if (!$paymentFromQurban) {
                 PaymentLog::dispatch($data, 'TRX_ID/No. Tagihan tidak tersedia, callback dihentikan.');
