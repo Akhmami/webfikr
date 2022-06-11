@@ -53,17 +53,20 @@ class CallbackController extends BaseController
                 ->where('trx_id', $data['trx_id'])
                 ->limit(1);
             
-            if (!$paymentFromQurban) {
-                PaymentLog::dispatch($data, 'TRX_ID/No. Tagihan tidak tersedia, callback dihentikan.');
-                echo '{"status":"999", "message":"Trx_id tidak tersedia"}';
+            if ($paymentFromQurban) {
+                $paymentFromQurban->update([
+                    'payment_ntb' => $data['payment_ntb'],
+                    'payment_amount' => $data['payment_amount'],
+                    'datetime_payment' => $data['datetime_payment']
+                ]);
+                
+                echo '{"status":"000"}';
                 exit;
             }
 
-            $paymentFromQurban->update([
-                'payment_ntb' => $data['payment_ntb'],
-                'payment_amount' => $data['payment_amount'],
-                'datetime_payment' => $data['datetime_payment']
-            ]);
+            PaymentLog::dispatch($data, 'TRX_ID/No. Tagihan tidak tersedia, callback dihentikan.');
+            echo '{"status":"999", "message":"Trx_id tidak tersedia"}';
+            exit;
         }
 
         DB::beginTransaction();
