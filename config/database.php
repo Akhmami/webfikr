@@ -66,12 +66,11 @@ return [
         'mysql2' => [
             'driver' => 'mysql',
             'url' => env('DATABASE_URL'),
-            'host' => env('DB_HOST', '127.0.0.1'), //production
-            // 'host' => '178.128.24.222',
+            'host' => '103.253.2.163',
             'port' => env('DB_PORT', '3306'),
-            'database' => 'nfbs',
+            'database' => 'qurban',
             'username' => 'adminNfbs',
-            'password' => 'DBNfbs86cekDAM',
+            'password' => 'AdminNfbs@93',
             'unix_socket' => env('DB_SOCKET', ''),
             'charset' => 'utf8mb4',
             'collation' => 'utf8mb4_unicode_ci',
