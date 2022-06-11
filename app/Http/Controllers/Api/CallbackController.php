@@ -48,7 +48,7 @@ class CallbackController extends BaseController
         $billing = Billing::with(['user', 'biller'])->where('trx_id', $data['trx_id'])->first();
         if (!$billing) {
             // cek database qurban kalo gk ada, kembalikan response 999
-            $paymentFromQurban = DB::connerction('mysql2')
+            $paymentFromQurban = DB::connection('mysql2')
                 ->table('payments')
                 ->where('trx_id', $data['trx_id'])
                 ->first();
