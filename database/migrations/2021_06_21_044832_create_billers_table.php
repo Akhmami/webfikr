@@ -15,7 +15,9 @@ class CreateBillersTable extends Migration
     {
         Schema::create('billers', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_detail_id')->constrained();
+            $table->foreignId('user_detail_id')
+                ->constrained()
+                ->cascadeOnDelete();
             $table->decimal('amount_due', 14,0)->default(0);
             $table->decimal('cumulative_payment_amount', 14,0)->default(0);
             $table->decimal('cost_reduction_amount', 14,0)->default(0);

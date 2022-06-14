@@ -15,7 +15,9 @@ class CreateUserDetailsTable extends Migration
     {
         Schema::create('user_details', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained();
+            $table->foreignId('user_id')
+                ->constrained()
+                ->cascadeOnDelete();
             $table->foreignId('status_psb_id')->nullable()->constrained();
             $table->foreignId('test_location_id')->nullable()->constrained();
             $table->foreignId('medical_check_id')->nullable()->constrained();
@@ -29,7 +31,7 @@ class CreateUserDetailsTable extends Migration
             $table->string('birth_place')->nullable();
             $table->date('birth_date')->nullable();
             $table->enum('level', ['SMP', 'SMA']);
-            $table->char('batch_of', 2)->default('00');
+            $table->char('angkatan', 2)->default('00');
             $table->enum('choice_major', ['IPA', 'IPS', 'IPC'])->nullable();
             $table->enum('major', ['IPA', 'IPS', 'IPC'])->nullable();
             $table->enum('reg_type', ['internal', 'eksternal', 'beasiswa', 'anak karyawan'])->nullable();

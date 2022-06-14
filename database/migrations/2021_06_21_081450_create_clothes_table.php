@@ -15,8 +15,12 @@ class CreateClothesTable extends Migration
     {
         Schema::create('clothes', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_detail_id')->constrained();
-            $table->foreignId('clothes_choice_id')->constrained();
+            $table->foreignId('user_detail_id')
+                ->constrained()
+                ->cascadeOnDelete();
+            $table->foreignId('clothes_choice_id')
+                ->constrained()
+                ->cascadeOnDelete();
             $table->text('description')->nullable();
             $table->timestamps();
         });

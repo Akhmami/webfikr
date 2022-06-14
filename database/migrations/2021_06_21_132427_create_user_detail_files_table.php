@@ -15,7 +15,9 @@ class CreateUserDetailFilesTable extends Migration
     {
         Schema::create('user_detail_files', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_detail_id')->constrained();
+            $table->foreignId('user_detail_id')
+                ->constrained()
+                ->cascadeOnDelete();
             $table->string('name');
             $table->string('file');
             $table->enum('type', ['document', 'image', 'video']);

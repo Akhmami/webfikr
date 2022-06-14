@@ -17,7 +17,7 @@ class CreateDormitoriesTable extends Migration
             $table->id();
             $table->string('name', 50);
             $table->enum('for', ['L', 'P']);
-            $table->string('head');
+            $table->string('wali');
             $table->tinyInteger('capacity')->nullable();
             $table->timestamps();
         });

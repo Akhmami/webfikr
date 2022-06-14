@@ -16,8 +16,8 @@ class CreatePsbYearsTable extends Migration
         Schema::create('psb_years', function (Blueprint $table) {
             $table->id();
             $table->char('period', 4);
-            $table->string('batch_of_smp', 4)->default(00);
-            $table->string('batch_of_sma', 4)->default(00);
+            $table->string('angkatan_smp', 4)->default(00);
+            $table->string('angkatan_sma', 4)->default(00);
             $table->enum('is_active', ['Y', 'N']);
             $table->timestamps();
         });

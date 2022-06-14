@@ -15,7 +15,9 @@ class CreateSppChoicesTable extends Migration
     {
         Schema::create('spp_choices', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_detail_id')->constrained();
+            $table->foreignId('user_detail_id')
+                ->constrained()
+                ->cascadeOnDelete();
             $table->decimal('nominal', 14,0)->default(0);
             $table->enum('is_active', ['Y', 'N']);
             $table->timestamps();
