@@ -120,7 +120,7 @@
 
         </main>
 
-        @include('layouts.web.footer')
+        @include('partials.web.footer')
     </div>
 </div>
 
