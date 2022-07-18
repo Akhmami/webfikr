@@ -134,8 +134,15 @@ class EksternalForm extends Component
 
             $this->list_kelas = [
                 '7 TBH' => 'Kelas 7 Putri',
+                '7 TB' => 'Kelas 7 Putra',
+                '8 TB' => 'Kelas 8 Putra',
+                '10 IPA TB' => 'Kelas 10 IPA Putra',
+                '10 IPA TBH' => 'Kelas 10 IPA Putri',
                 '10 IPS TB' => 'Kelas 10 IPS Putra',
                 '10 IPS TBH' => 'Kelas 10 IPS Putri',
+                '11 IPA TBH' => 'Kelas 11 IPA Putri',
+                '11 IPS TB' => 'Kelas 11 IPS Putra',
+                '11 IPS TBH' => 'Kelas 11 IPS Putri',
             ];
         }
 
