@@ -22,9 +22,7 @@ class VA
         $data_asli = $data;
         $data_asli['type'] = 'createbilling';
         $data_asli['client_id'] = $this->client_id;
-        // if (config('app.env') != 'production') {
-        //     $data_asli['virtual_account'] = str_replace(substr($data['virtual_account'], 0, 8), '98810789', $data['virtual_account']);
-        // }
+        $data_asli['datetime_expired'] = date('c', strtotime($data['datetime_expired']));
 
         $res = $this->hashing($data_asli);
 
@@ -43,6 +41,7 @@ class VA
         $data_asli = $data;
         $data_asli['type'] = 'updatebilling';
         $data_asli['client_id'] = $this->client_id;
+        $data_asli['datetime_expired'] = date('c', strtotime($data['datetime_expired']));
 
         $res = $this->hashing($data_asli);
 

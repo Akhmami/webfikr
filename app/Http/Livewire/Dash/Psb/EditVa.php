@@ -48,7 +48,7 @@ class EditVa extends ModalComponent
                 'customer_name' => $this->billing->customer_name,
                 'datetime_expired' => $validatedData['datetime_expired']
             );
-
+            
             $va = new VA;
             $result = $va->update($data);
             if ($result['status'] !== '000') {
