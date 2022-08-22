@@ -113,9 +113,9 @@
                                 SERANG BANTEN
                             </p>
                             <p class="text-gray-300">
-                            <div>62 877-7783-3303 Humas</div>
-                            <div>62 877-8077-5548 NFBS Serang (WA Official)</div>
-                            <div>62 819-1085-1223 NFBS Serang Finance (WA Official Keuangan)</div>
+                                62 877-7783-3303 Humas <br>
+                                62 877-8077-5548 NFBS Serang (WA Official) <br>
+                                62 819-1085-1223 NFBS Serang Finance (WA Official Keuangan) <br>
                             </p>
                         </div>
                     </div>
