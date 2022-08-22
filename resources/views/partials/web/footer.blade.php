@@ -110,6 +110,11 @@
                         </div>
                         <p class="text-gray-300">KP. CIHIDEUNG, JL. PALKA RT. 014 RW 004 BANTARWARU CINANGKA KAB.
                             SERANG BANTEN</p>
+                        <p>
+                        <div>62 877-7783-3303 Humas</div>
+                        <div>62 877-8077-5548 NFBS Serang (WA Official)</div>
+                        <div>62 819-1085-1223 NFBS Serang Finance (WA Official Keuangan)</div>
+                        </p>
                     </div>
                 </div>
             </div>
