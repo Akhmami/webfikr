@@ -149,5 +149,7 @@ Route::domain('mutasi.' . config('app.domain'))
 # rekrutmen.nfbs.or.id
 Route::domain('rekrutmen.' . config('app.domain'))
     ->group(function () {
-        Route::redirect('/', 'https://forms.gle/GrUe7TjF4rV4dWCz6');
+        Route::get('/', function () {
+            return redirect()->away('https://forms.gle/GrUe7TjF4rV4dWCz6');
+        });
     });
