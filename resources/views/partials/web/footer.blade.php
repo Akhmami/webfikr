@@ -109,8 +109,8 @@
                             </svg>
                         </div>
                         <div>
-                            <p class="text-gray-300">KP. CIHIDEUNG, JL. PALKA RT. 014 RW 004 BANTARWARU CINANGKA KAB.
-                                SERANG BANTEN
+                            <p class="text-gray-300">
+                                KP. CIHIDEUNG, JL. PALKA RT. 014 RW 004 BANTARWARU, KEC. CINANGKA, KAB. SERANG, BANTEN
                             </p> <br>
                             <p class="text-gray-300">
                                 62 877-7783-3303 Humas <br>
