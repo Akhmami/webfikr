@@ -229,6 +229,8 @@ class EksternalForm extends Component
             }
         }
 
+        dd($validatedData);
+
         if ($this->currentStep >= 3) {
             $request = $this->handleRequest($validatedData);
             DB::beginTransaction();
