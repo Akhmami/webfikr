@@ -11,8 +11,7 @@
                 <path d="M12 4v3m-4 -3v6m8 -6v6"></path>
                 <path d="M12 18.5l-3 1.5l.5 -3.5l-2 -2l3 -.5l1.5 -3l1.5 3l3 .5l-2 2l.5 3.5z"></path>
             </svg>
-            <span class="text-4xl font-semibold text-yellow-400">105</span>
-            <span class="text-xl font-light text-gray-500">Akademik</span>
+            <span class="text-4xl font-semibold text-yellow-400">Akademik</span>
         </div>
         <div class="flex-1 flex flex-col justify-center items-center">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-20 w-20 text-blue-400" viewBox="0 0 24 24" stroke-width="2"
@@ -21,8 +20,7 @@
                 <path d="M5 7h7m-2 -2v2a5 8 0 0 1 -5 8m1 -4a7 4 0 0 0 6.7 4"></path>
                 <path d="M11 19l4 -9l4 9m-.9 -2h-6.2"></path>
             </svg>
-            <span class="text-4xl font-semibold text-yellow-400">15</span>
-            <span class="text-xl font-light text-gray-500">Bahasa</span>
+            <span class="text-4xl font-semibold text-yellow-400">Bahasa</span>
         </div>
         <div class="flex-1 flex flex-col justify-center items-center">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-20 w-20 text-blue-400" viewBox="0 0 24 24" stroke-width="2"
@@ -35,8 +33,7 @@
                 <circle cx="5" cy="9" r="2"></circle>
                 <circle cx="19" cy="9" r="2"></circle>
             </svg>
-            <span class="text-4xl font-semibold text-yellow-400">65</span>
-            <span class="text-xl font-light text-gray-500">Olahraga</span>
+            <span class="text-4xl font-semibold text-yellow-400">Olahraga</span>
         </div>
         <div class="flex-1 flex flex-col justify-center items-center">
             <svg xmlns="http://www.w3.org/2000/svg" class="w-20 h-20 text-blue-400" viewBox="0 0 24 24" stroke-width="2"
@@ -48,8 +45,7 @@
                 <circle cx="12" cy="7.5" r=".5" fill="currentColor" />
                 <circle cx="16.5" cy="10.5" r=".5" fill="currentColor" />
             </svg>
-            <span class="text-4xl font-semibold text-yellow-400">10</span>
-            <span class="text-xl font-light text-gray-500">Seni</span>
+            <span class="text-4xl font-semibold text-yellow-400">Seni</span>
         </div>
     </div>
 </div>
