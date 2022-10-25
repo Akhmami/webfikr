@@ -4,9 +4,11 @@
         <div class="splide__track">
             <ul class="splide__list">
                 @foreach ($data as $item)
-                <li class="splide__slide">
-                    <img src="{{ asset($item->image_url) }}" class="object-contain w-full" alt="Slideshow">
-                </li>
+                    <li class="splide__slide">
+                        <a href="{{ $item->url }}">
+                            <img src="{{ asset($item->image_url) }}" class="object-contain w-full" alt="Slideshow">
+                        </a>
+                    </li>
                 @endforeach
             </ul>
         </div>
