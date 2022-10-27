@@ -19,13 +19,6 @@ mix.js("resources/js/app.js", "public/js")
     .postCss("resources/css/web.css", "public/css/web.css", [
         require("tailwindcss"),
     ])
-    .js("resources/js/psb.js", "public/js/psb.js")
-    .postCss("resources/css/psb.css", "public/css/psb.css", [
-        require("tailwindcss"),
-    ])
-    .postCss("resources/css/pas.css", "public/css/pas.css", [
-        require("tailwindcss"),
-    ])
     .copy('node_modules/tinymce', 'public/js/tinymce')
     .copy('node_modules/intl-tel-input/build/js/utils.js', 'public/vendor/intl-tel-input/build/js')
     .copy('node_modules/intl-tel-input/build/img', 'public/vendor/intl-tel-input/build/img');
