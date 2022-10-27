@@ -1,11 +1,10 @@
 <div>
     <div class="flex space-x-2 flex-nowrap">
-        <a href="{{ route('dash.website.views', 'posts') }}"
-            class="bg-white rounded-xl w-56 hover:bg-cyan-50 hover:shadow">
+        <a href="{{ route('dash.views', 'posts') }}" class="bg-white rounded-xl w-56 hover:bg-cyan-50 hover:shadow">
             <div class="flex items-center space-x-4 p-2">
                 <div class="rounded-xl bg-blue-100 p-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-500" fill="none"
-                        viewBox="0 0 24 24" stroke="currentColor">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-500" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2" />
                     </svg>
@@ -15,7 +14,7 @@
                 </div>
             </div>
         </a>
-        <a href="{{ route('dash.website.views', 'slideshows') }}"
+        <a href="{{ route('dash.views', 'slideshows') }}"
             class="bg-white rounded-xl w-56 hover:bg-cyan-50 hover:shadow">
             <div class="flex items-center space-x-4 p-2">
                 <div class="rounded-xl bg-yellow-100 p-2">
@@ -30,7 +29,7 @@
                 </div>
             </div>
         </a>
-        <a href="{{ route('dash.website.views', 'categories') }}"
+        <a href="{{ route('dash.views', 'categories') }}"
             class="bg-white rounded-xl w-56 hover:bg-cyan-50 hover:shadow">
             <div class="flex items-center space-x-4 p-2">
                 <div class="rounded-xl bg-green-100 p-2">
@@ -45,12 +44,12 @@
                 </div>
             </div>
         </a>
-        <a href="{{ route('dash.website.views', 'posts') }}?filters[category_id]=5"
+        <a href="{{ route('dash.views', 'posts') }}?filters[category_id]=5"
             class="bg-white rounded-xl w-56 hover:bg-cyan-50 hover:shadow">
             <div class="flex items-center space-x-4 p-2">
                 <div class="rounded-xl bg-red-100 p-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-red-500" fill="none" viewBox="0 0 24 24"
-                        stroke="currentColor">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-red-500" fill="none"
+                        viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
@@ -60,8 +59,7 @@
                 </div>
             </div>
         </a>
-        <a href="{{ route('dash.website.views', 'about-us') }}"
-            class="bg-white rounded-xl w-56 hover:bg-cyan-50 hover:shadow">
+        <a href="{{ route('dash.views', 'about-us') }}" class="bg-white rounded-xl w-56 hover:bg-cyan-50 hover:shadow">
             <div class="flex items-center space-x-4 p-2">
                 <div class="rounded-xl bg-indigo-100 p-2">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-indigo-500" fill="none"

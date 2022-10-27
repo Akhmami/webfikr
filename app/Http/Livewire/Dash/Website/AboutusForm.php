@@ -51,6 +51,6 @@ class AboutusForm extends Component
             'id' => $this->postId
         ], $validatedData);
 
-        return redirect()->route('dash.website.views', 'about-us');
+        return redirect()->route('dash.views', 'about-us');
     }
 }

@@ -13,7 +13,7 @@
             </a>
 
             <div class="mt-4">
-                <a href="{{ route('dash.website.edit', ['item' => 'about-us', 'id' => $about->id]) }}"
+                <a href="{{ route('dash.edit', ['item' => 'about-us', 'id' => $about->id]) }}"
                     class="inline-flex items-center pl-3 pr-4 py-1.5 text-xs
                                                                     font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none
                                                                     focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">

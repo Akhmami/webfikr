@@ -167,7 +167,6 @@ return [
         /*
          * Package Service Providers...
          */
-        Bugsnag\BugsnagLaravel\BugsnagServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
 
         /*

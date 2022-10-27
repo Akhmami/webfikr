@@ -16,7 +16,7 @@
                                 Daftar Kategori
                             </div>
                             <button
-                                onclick="Livewire.emit('openModal', 'dash.website.categories-form', {{ json_encode(['id' => null]) }})"
+                                onclick="Livewire.emit('openModal', 'dash.categories-form', {{ json_encode(['id' => null]) }})"
                                 class="inline-flex items-center pl-3 pr-4 py-1.5 text-xs font-medium rounded-lg text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
                                     fill="currentColor">

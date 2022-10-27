@@ -68,7 +68,7 @@
                     <x-input label="Slug" name="slug" livewire />
                     <x-tinymce wire:model="body" placeholder="Type anything you want..." />
                     @error('body')
-                    <p class="mt-2 text-xs font-semibold text-red-600" id="email-error">{{ $message }}</p>
+                        <p class="mt-2 text-xs font-semibold text-red-600" id="email-error">{{ $message }}</p>
                     @enderror
                     {{-- <div wire:ignore>
                         <textarea class="editor" wire:model.lazy="body"></textarea>
@@ -89,9 +89,9 @@
     </form>
 
     @once
-    @push('script')
-    <script src="{{ mix('js/tinymce/tinymce.min.js') }}"></script>
-    {{-- <script>
+        @push('script')
+            <script src="{{ mix('js/tinymce/tinymce.min.js') }}"></script>
+            {{-- <script>
         var editor_config = {
         path_absolute : "/",
         selector: '.editor',
@@ -130,6 +130,6 @@
     };
     tinymce.init(editor_config);
     </script> --}}
-    @endpush
+        @endpush
     @endonce
 </div>

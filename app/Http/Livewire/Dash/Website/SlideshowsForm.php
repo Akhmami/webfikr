@@ -91,6 +91,6 @@ class SlideshowsForm extends Component
                 ->save(storage_path('app/' . $destination . '/' . $thumbnail));
         }
 
-        return redirect()->route('dash.website.views', 'slideshows');
+        return redirect()->route('dash.views', 'slideshows');
     }
 }

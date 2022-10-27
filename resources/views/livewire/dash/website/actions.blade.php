@@ -1,5 +1,5 @@
 <div class="flex items-center space-x-1">
-    <a href="{{ route('dash.website.edit', ['item' => 'posts', 'id' => $data->id]) }}" title="edit"
+    <a href="{{ route('dash.edit', ['item' => 'posts', 'id' => $data->id]) }}" title="edit"
         class="group p-2 border border-transparent rounded-full shadow-sm text-white bg-gray-200 hover:bg-yellow-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400">
         <!-- Heroicon name: solid/edit-alt -->
         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-500 group-hover:text-white" viewBox="0 0 20 20"
@@ -11,28 +11,15 @@
         </svg>
     </a>
 
-    <div x-data="{ isOn: false }" class="relative inline-block text-left pl-2">
-        <div>
-            <button @click="isOn = !isOn" type="button" :class="{ 'bg-gray-100' : isOn }"
-                class="rounded-full flex items-center text-gray-600 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500"
-                id="menu-button" aria-expanded="true" aria-haspopup="true">
-                <span class="sr-only">Open options</span>
-                <!-- Heroicon name: solid/dots-vertical -->
-                <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
-                    aria-hidden="true">
-                    <path
-                        d="M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z" />
-                </svg>
-            </button>
-        </div>
-        <div x-show="isOn" @click.away="isOn = false"
-            class="z-10 origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
-            x-cloak>
-            <div class="py-1" role="none">
-                <a href="#" wire:click.prevent="deleteConfirm({{ $data->id }})"
-                    class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100" role="menuitem" tabindex="-1"
-                    id="menu-item-1">Hapus</a>
-            </div>
-        </div>
-    </div>
+    <a href="#" wire:click.prevent="deleteConfirm({{ $data->id }})" title="hapus"
+        class="group p-2 border border-transparent rounded-full shadow-sm text-white bg-gray-200 hover:bg-red-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
+            class="h-4 w-4 text-gray-500 group-hover:text-white">
+            <path fill-rule="evenodd"
+                d="M8.75 1A2.75 2.75 0 006 3.75v.443c-.795.077-1.584.176-2.365.298a.75.75 0 10.23 1.482l.149-.022.841 10.518A2.75 2.75 0 007.596 19h4.807a2.75 2.75 0 002.742-2.53l.841-10.52.149.023a.75.75 0 00.23-1.482A41.03 41.03 0 0014 4.193V3.75A2.75 2.75 0 0011.25 1h-2.5zM10 4c.84 0 1.673.025 2.5.075V3.75c0-.69-.56-1.25-1.25-1.25h-2.5c-.69 0-1.25.56-1.25 1.25v.325C8.327 4.025 9.16 4 10 4zM8.58 7.72a.75.75 0 00-1.5.06l.3 7.5a.75.75 0 101.5-.06l-.3-7.5zm4.34.06a.75.75 0 10-1.5-.06l-.3 7.5a.75.75 0 101.5.06l.3-7.5z"
+                clip-rule="evenodd" />
+        </svg>
+
+
+    </a>
 </div>
